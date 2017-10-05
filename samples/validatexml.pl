@@ -9,7 +9,7 @@ my $keep = 0;
 my @detokenizedFilesToDelete;
 
 sub usage {
-	printf "Usage: $0 [-delete] (<file>.xml|<file>.token)+\n";
+	printf "Usage: $0 [-keep] (<file>.xml|<file>.token)+\n";
 	printf "-keep Keeps the generated de-tokenized files.  The default is to delete the generated de-tokenized files.\n";
 	printf "Each .token file will be de-tokenized to a file without the .token extension prior to validation.\n";
 	exit;
