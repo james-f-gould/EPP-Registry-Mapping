@@ -1,0 +1,2 @@
+# EPP-Registry-Mapping
+This is a project to create an Extensible Provisioning Protocol (EPP) extension for defining a domain name registry features and policies.  This originates from the Versign proprietary Registry Mapping for the Extensible Provisioning Protocol that will be used as the basis in defining an extensible framework for publishing the services along with the service options (MAY and SHOULD) chosen by a registry. 
