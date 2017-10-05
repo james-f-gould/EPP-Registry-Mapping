@@ -1,0 +1,3 @@
+../xsd/eppcom-1.0.xsd
+../xsd/epp-1.0.xsd
+../xsd/registry-1.0.xsd

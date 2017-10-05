@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <registry:chkData
+        xmlns:registry=
+        "http://www.verisign.com/epp/registry-1.0">
+        <registry:cd>
+          <registry:name avail="0">zone1</registry:name>
+          <registry:reason>Client not authorized
+          </registry:reason>
+        </registry:cd>
+        <registry:cd>
+          <registry:name avail="0">zone2
+          </registry:name>
+          <registry:reason>Already supported
+          </registry:reason>
+        </registry:cd>
+        <registry:cd>
+          <registry:name avail="1">zone3
+          </registry:name>
+        </registry:cd>
+      </registry:chkData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54322-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>
