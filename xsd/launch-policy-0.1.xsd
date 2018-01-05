@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:launch-policy=
+  "urn:ietf:params:xml:ns:launch-policy-0.1" 
+  xmlns:epp="urn:ietf:params:xml:ns:epp-1.0" 
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0" 
+  xmlns="http://www.w3.org/2001/XMLSchema" 
+  targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1" 
+  elementFormDefault="qualified">
+  <!--
+  Import common element types.
+  -->
+  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
+  <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
+  
+  <annotation>
+    <documentation>
+      Extensible Provisioning Protocol v1.0
+      Launch Phase Policy Extension Schema.
+     </documentation>
+  </annotation>
+  <!--
+  Child elements found in EPP commands.
+  -->
+  <element name="create" 
+    type="launch-policy:createUpdateType"/>
+  <element name="update" 
+    type="launch-policy:createUpdateType"/>
+
+  <!--
+    Child elements of the <create> and <update> command.
+  -->
+  <complexType name="createUpdateType">
+    <sequence>
+      <element name="phase" 
+        type="launch-policy:phaseType" 
+        minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+
+  <!--
+    Child response elements.
+  -->
+  <element name="infData" 
+    type="launch-policy:infDataType"/>
+
+  <!--
+    <info> response elements.
+  -->
+  <complexType name="infDataType">
+    <sequence>
+      <element name="phase" 
+        type="launch-policy:phaseType" 
+        minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  
+  <!--
+    <phase> elements.
+  -->
+  <complexType name="phaseType">
+    <sequence>
+      <element name="startDate" type="dateTime"/>
+      <element name="endDate" type="dateTime" 
+      minOccurs="0"/>
+    </sequence>
+    <attribute name="type" use="required">
+      <simpleType>
+        <restriction base="token">
+          <enumeration value="pre-delegation"/>
+          <enumeration value="pre-launch"/>
+          <enumeration value="sunrise"/>
+          <enumeration value="landrush"/>
+          <enumeration value="claims"/>
+          <enumeration value="open"/>
+          <enumeration value="custom"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute name="mode" default="fcfs">
+      <simpleType>
+        <restriction base="token">
+          <enumeration value="fcfs"/>
+          <enumeration value="pending-registration"/>
+          <enumeration value="pending-application"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute name="name" use="optional" type="token"/>
+  </complexType>  
+</schema>
