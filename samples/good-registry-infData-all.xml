@@ -6,7 +6,7 @@
     </result>
     <resData>
       <registry:infData
-        xmlns:registry="http://www.verisign.com/epp/registry-1.0">
+        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
         <registry:zoneList>
           <registry:zone>
             <registry:name>EXAMPLE1</registry:name>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <response>
+    <result code="1000">
+      <msg>Command completed successfully</msg>
+    </result>
+    <resData>
+      <registry:infData
+        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+        <registry:system>
+          <registry:maxConnections>200
+          </registry:maxConnections>
+          <registry:idleTimeout>600000
+          </registry:idleTimeout>
+          <registry:absoluteTimeout>86400000
+          </registry:absoluteTimeout>
+          <registry:commandTimeout>10000
+          </registry:commandTimeout>
+          <registry:transLimit perMs="1000">10
+          </registry:transLimit>
+       </registry:system>
+      </registry:infData>
+    </resData>
+    <trID>
+      <clTRID>ABC-12345</clTRID>
+      <svTRID>54322-XYZ</svTRID>
+    </trID>
+  </response>
+</epp>
