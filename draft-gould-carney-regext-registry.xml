@@ -1,0 +1,3024 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+     There has to be one entity for each item to be referenced. 
+     An alternate method (rfc include) is described in the references. -->
+<!ENTITY RFC0952 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0952.xml">
+<!ENTITY RFC1123 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1123.xml">
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC3490 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3490.xml">
+<!ENTITY RFC3688 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml">
+<!ENTITY RFC4034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4034.xml">
+<!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
+<!ENTITY RFC5731 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5731.xml">
+<!ENTITY RFC5732 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5732.xml">
+<!ENTITY RFC5733 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5733.xml">
+<!ENTITY RFC5910 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5910.xml">
+<!ENTITY RFC7451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7451.xml">
+<!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs), 
+     please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
+     (Here they are set differently than their defaults in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="4"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space 
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="yes"?>
+<!-- keep one blank line between list items -->
+<?rfc comments="yes" ?>
+<!-- show cref output -->
+<?rfc inline="yes" ?>
+<!-- inline cref output -->
+<!-- end of list of popular I-D processing instructions -->
+<rfc category="std" docName="draft-gould-carney-regext-registry-00" ipr="trust200902">
+  <!-- category values: std, bcp, info, exp, and historic
+     ipr values: full3667, noModification3667, noDerivatives3667
+     you can add the attributes updates="NNNN" and obsoletes="NNNN" 
+     they will automatically be output with "(if approved)" -->
+
+  <!-- ***** FRONT MATTER ***** -->
+
+  <front>
+    <title abbrev="registry">Registry Mapping for the Extensible Provisioning Protocol (EPP)</title>
+
+
+    <author fullname="James Gould" initials="J.G" surname="Gould">
+      <organization>VeriSign, Inc.</organization>
+
+      <address>
+        <postal>
+          <street>12061 Bluemont Way</street>
+
+          <city>Reston</city>
+
+          <region>VA</region>
+
+          <code>20190</code>
+
+          <country>US</country>
+        </postal>
+
+        <email>jgould@verisign.com</email>
+
+        <uri>http://www.verisigninc.com</uri>
+      </address>
+    </author>
+    
+    <author fullname="Lin Jia" initials="L.J" surname="Jia">
+      <organization>VeriSign, Inc.</organization>
+
+      <address>
+        <postal>
+          <street>12061 Bluemont Way</street>
+
+          <city>Reston</city>
+
+          <region>VA</region>
+
+          <code>20190</code>
+
+          <country>US</country>
+        </postal>
+
+        <email>ljia@verisign.com</email>
+
+        <uri>http://www.verisigninc.com</uri>
+      </address>
+    </author>
+    
+    <author fullname="Roger Carney" initials="R.C" surname="Carney">
+      <organization>GoDaddy Inc.</organization>
+
+      <address>
+        <postal>
+          <street>14455 N. Hayden Rd. #219</street>
+
+          <city>Scottsdale</city>
+
+          <region>AZ</region>
+
+          <code>85260</code>
+
+          <country>US</country>
+        </postal>
+
+        <email>rcarney@godaddy.com</email>
+
+        <uri>http://www.godaddy.com</uri>
+      </address>
+    </author>
+
+    <author fullname="Jody Kolker" initials="J.K" surname="Kolker">
+      <organization>GoDaddy Inc.</organization>
+
+      <address>
+        <postal>
+          <street>14455 N. Hayden Rd. #219</street>
+
+          <city>Scottsdale</city>
+
+          <region>AZ</region>
+
+          <code>85260</code>
+
+          <country>US</country>
+        </postal>
+
+        <email>jkolker@godaddy.com</email>
+
+        <uri>http://www.godaddy.com</uri>
+      </address>
+    </author>
+    
+
+    <date day="9" month="January" year="2018"/>
+
+    <abstract>
+      <t>This document describes an Extensible Provisioning Protocol (EPP)
+      mapping for provisioning zones (e.g. top-level domains) in a 
+      Domain Name Registry.  The attributes of a zone include the features 
+      and policies of the zone.</t>
+    </abstract>
+        
+  </front>
+
+  <middle>
+    <section title="Introduction">
+      <t>This document describes an extension mapping for version 1.0 of the
+      <xref target="RFC5730">Extensible Provisioning Protocol (EPP)</xref>.
+      This document describes a Domain Name Registry Mapping, referred to as 
+      Registry Mapping, for the <xref target="RFC5730">Extensible Provisioning Protocol (EPP)</xref>.  
+      A Domain Name Registry can service one or more zones (e.g. top-level domains) with a 
+      variety of supported services and policies.  This mapping enables the provisioning of the 
+      zones in the Domain Name Registry.  A Domain Name Registry MAY support a subset of all 
+      of the commands defined in this mapping.</t>
+
+      <section title="Conventions Used in This Document">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <xref
+        target="RFC2119">RFC 2119</xref>.</t>
+
+        <t>XML is case sensitive. Unless stated otherwise, XML specifications
+        and examples provided in this document MUST be interpreted in the
+        character case presented in order to develop a conforming
+        implementation.</t>
+        
+        <t>In examples, "C:" represents lines sent by a protocol client and "S:" represents lines returned by a protocol server.  
+        Indentation and white space in examples are provided only to illustrate element relationships 
+        and are not a REQUIRED feature of this protocol.        
+        </t>
+
+        <t>The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:registry-0.1", 
+        but implementations MUST NOT depend on it and instead employ
+        a proper namespace-aware XML parser and serializer to interpret and
+        output the XML documents.</t>
+      </section>
+    </section>
+
+    <section anchor="attrs" title="Object Attributes">
+  
+      <t>An EPP registry object has attributes and associated values 
+      that may be viewed and modified by the sponsoring client or the server.  
+      This section describes each attribute type in detail. The formal 
+      syntax for the attribute values described here can be found 
+      in the "Formal Syntax" section of this document and in the 
+      appropriate normative references.</t>
+  
+      <section anchor="zoneName" title="Zone Name">
+        <t>The zone name is an element that includes an optional "form" attribute that 
+        defines the form of the zone name as either "aLabel" or "uLabel", with the default 
+        value of "aLabel".  The "aLabel" form of a zone name contains all ASCII name labels that conform to 
+        <xref target="RFC0952"/> and <xref target="RFC1123"/>.  
+        The "uLabel" form of a zone name that includes one or more non-ASCII name labels that 
+        can be represented as ASCII labels using <xref target="RFC3490"/>.</t>  
+        <t>At the time of this writing, 
+        <xref target="RFC3490"/> describes a standard to use certain ASCII name labels 
+        to represent non-ASCII name labels.  These conformance requirements 
+        might change in the future as a result of progressing work in developing 
+        standards for internationalized names.</t>
+      </section>    
+    
+      <section anchor="datesTimes" title="Dates and Times">
+        <t>Date and time attribute values MUST be represented in Universal Coordinated Time  
+        (UTC) using the Gregorian calendar.  The extended date-time form using upper case "T" 
+        and "Z" characters defined in <eref
+         target="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/">XML Schema Part 2</eref> 
+         MUST be used to represent date-time values, as 
+        XML Schema does not support truncated date-time forms or lower case "T" and "Z" characters.</t>
+      </section>
+      
+      <section anchor="schedule" title="Schedule">
+        <t>A schedule is defined using the &lt;registry:schedule&gt; element, in the time zone 
+        represented by the OPTIONAL "tz" attribute with the default of "UTC", and containing the first five crontab 
+        entry columns with the format:</t>
+        
+<figure>
+<artwork><![CDATA[
+*     *     *   *    *        
+-     -     -   -    -
+|     |     |   |    |
+|     |     |   |    +----- day of week (0 - 6) (Sunday=0)
+|     |     |   +------- month (1 - 12)
+|     |     +--------- day of month (1 - 31)
+|     +----------- hour (0 - 23)
++------------- min (0 - 59)
+
+* indicates any legal value
+A column can include a list of in range values seperated by commas, 
+as in 2,14 "hour" for 2 AM and 2 PM.  
+A column can include an inclusive range of values using two values 
+seperated by a hyphen, as in (1-5) "day of week" for weekdays.   
+]]></artwork>
+</figure>   
+
+       <figure>
+            <preamble>Example schedule of a batch job that executes at 2 PM Eastern time zone:</preamble>
+            <artwork><![CDATA[
+<registry:batchJob>
+  <registry:name>pendingDelete</registry:name>
+  <registry:description>Pending Delete Batch
+  </registry:description>
+  <registry:schedule tz="EDT5EDT">0 14 * * *
+  </registry:schedule>
+</registry:batchJob>]]></artwork>
+       </figure>
+      </section>
+      
+    
+       <section anchor="zoneObject" title="Zone Object">
+        <t>The Zone object, represented by the &lt;registry:zone&gt; element,  
+        is the primary object managed by this mapping.  The Zone object can 
+        apply to any zone level (top level, second level, third level, etc.).  
+        The &lt;registry:zone&gt; element contains the following child elements:</t>
+        
+        <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:name&gt;:">The zone name that can be at 
+          any level (top level, second level, third level, etc.), 
+          as described in <xref target="zoneName"/>.</t>
+          <t hangText="&lt;registry:group&gt;:">An OPTIONAL server defined 
+          grouping of zones where the zones belong to the same deployable 
+          unit.</t>
+          <t hangText="&lt;registry:services&gt;:">The OPTIONAL EPP namespace 
+          URIs of the objects and object extensions supported by the server 
+          based on <xref target="RFC5730"/>.  The &lt;registry:services&gt; 
+          element contains the following child elements:</t>             
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:objURI&gt;:">One or more 
+              &lt;registry:objURI&gt; elements that contain namespace URIs 
+              representing the objects that the server is capable of managing 
+              for the zone with the required "required" attribute that defines 
+              whether the server requires the use of object represented 
+              by the URI.</t>
+              <t hangText="&lt;registry:svcExtension&gt;:">An OPTIONAL element 
+              that contains one or more &lt;registry:extURI&gt; elements that 
+              contain namespace URIs representing object extensions support 
+              by the server for the zone with the required "required" 
+              attribute that defines whether the server requires the use of 
+              the object extension represented by the URI.</t>
+             </list></t>
+          <t hangText="&lt;registry:crID&gt;:">The OPTIONAL identifier of the 
+          client that created the zone.</t>             
+          <t hangText="&lt;registry:crDate&gt;:">The date and time of zone 
+          object creation.</t>             
+          <t hangText="&lt;registry:upID&gt;:">The OPTIONAL identifier of the 
+          client that last updated the zone object.  This element MUST NOT 
+          be present if the zone has never been modified.</t>             
+          <t hangText="&lt;registry:upDate&gt;:">The OPTIONAL date and time 
+          of the most recent zone object modification.  This element MUST NOT 
+          be present if the domain object has never been modified.</t>             
+          <t hangText="&lt;registry:batch&gt;:">The OPTIONAL list of 
+          batch jobs.  The &lt;registry:batch&gt; element contains the 
+          following child elements:</t>             
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:batchJob&gt;:">One or more 
+              &lt;registry:batchJob&gt; elements containing the batch job information.  
+              The &lt;registry:batchJob&gt; element contains the following 
+              child elements:</t>
+              <t><list hangIndent="4" style="hanging">
+                <t hangText="&lt;registry:name&gt;:">Name of the batch job, like 
+                "autoRenew" or "pendingDelete".</t>
+                <t hangText="&lt;registry:description&gt;:">OPTIONAL freeform 
+                description of batch job, like "Auto Renew Batch" or "Pending Delete Batch".</t>
+                <t hangText="&lt;registry:schedule&gt;:">Execution schedule for 
+                the batch job as defined in <xref target="schedule"/>, 
+                like &lt;registry:schedule tz="EDT5EDT"&gt;0 14 * * *&lt;/registry:schedule&gt;.</t>            
+              </list></t>
+             </list></t>
+          <t hangText="&lt;registry:system&gt;:">The OPTIONAL list of 
+          zones that makeup the system when the "perSystem" share policy is used 
+          for the internal hosts, external hosts, or contacts.  The list of zones 
+          are listed independent of the client's privileges to provision domains 
+          in the zone.  The &lt;registry:system&gt; element contains the 
+          following child elements:</t>             
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:zone&gt;:">One or more 
+              &lt;registry:zone&gt; elements, as described in <xref target="zoneName"/>, containing the name of the zone that 
+              is a member of the system.</t>
+             </list></t>             
+         <t hangText="&lt;registry:domain&gt;:">The domain name object policy 
+         information per <xref target="RFC5731"/>.  The &lt;registry:domain&gt; 
+         element contains the following child elements:</t>             
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:domainName&gt;:">One or more 
+              &lt;registry:domainName&gt; that define the policies for a 
+              domain name label for a specific level, defined with the 
+              "level" attribute, with a minimum value of "2" for the second 
+              level domain name label level.  The &lt;registry:domainName&gt; 
+              element contains the following child elements:</t>
+              <t><list hangIndent="4" style="hanging">
+                <t hangText="&lt;registry:minLength&gt;:">An OPTIONAL minimum 
+                length of the domain name label.</t>
+                <t hangText="&lt;registry:maxLength&gt;:">An OPTIONAL maximum 
+                length of the domain name label.</t>
+                <t hangText="&lt;registry:alphaNumStart&gt;:">An OPTIONAL flag 
+                indicating whether the label must start with an alphanumeric 
+                character with a default of "false".</t>
+                <t hangText="&lt;registry:alphaNumEnd&gt;:">An OPTIONAL flag 
+                indicating whether the label must end with an alphanumeric 
+                character with a default value of "false".</t>
+                <t hangText="&lt;registry:aLabelSupported&gt;:">An OPTIONAL flag 
+                indicating whether ASCII domain names are supported with 
+                a default value of "true".</t>
+                <t hangText="&lt;registry:uLabelSupported&gt;:">An OPTIONAL flag 
+                indicating whether non-ASCII domain names are supported with 
+                a default value of "false".</t>
+                <t hangText="&lt;registry:regex&gt;:">Zero or more 
+                &lt;registry:regex&gt; elements that contain a 
+                &lt;registry:expression&gt; child element that defines the 
+                regular expression to apply to domain name label along with 
+                an OPTIONAL &lt;registry:description&gt; child element that 
+                describes the regular expression with an OPTIONAL "lang" 
+                attribute that defines the language of the description 
+                with a default value of "en".</t>
+                <t hangText="&lt;registry:reservedNames&gt;:">An OPTIONAL 
+                element that defines the set of reserved domain names 
+                starting from that label level.  The reserved names can 
+                refer to values with more than one level which is relative 
+                to the level of the parent &lt;registry:domainName&gt; element.  
+                The &lt;registry:reservedNames&gt; element contains the 
+                following child elements:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:reservedName&gt;:">Zero or more 
+                    &lt;registry:reservedName&gt; elements containing a 
+                    reserved domain name relative to the level of the 
+                    parent &lt;registry:domainName&gt; element.</t>
+                    <t hangText="&lt;registry:reservedNameURI&gt;:">An OPTIONAL 
+                    URI that to an externally defined list of reserved 
+                    domain name relative to the level of the 
+                    parent &lt;registry:domainName&gt; element.</t>
+                  </list></t>
+              </list></t>
+              <t hangText="&lt;registry:idn&gt;:">The OPTIONAL 
+              Internationalized Domain Name (IDN) policy information.  
+              The &lt;registry:idn&gt; element contains the following 
+              child elements:</t>              
+              <t><list hangIndent="4" style="hanging">
+                <t hangText="&lt;registry:idnVersion&gt;:">The OPTIONAL server 
+                unique version of the IDN language rules.</t>
+                <t hangText="&lt;registry:idnaVersion&gt;:">An 
+                Internationalizing Domain Names in Applications (IDNA) version 
+                supported by the server.  IDNA represents a collection of 
+                documents that describe the protocol and usage for 
+                Internationalized Domain for Applications like IDNA 2003, 
+                with value of 2003, or IDNA 2008, with value of 2008.</t>
+                <t hangText="&lt;registry:unicodeVersion&gt;:">The Unicode 
+                version supported by the server like the value of 
+                "6.0" for Unicode 6.0.</t>
+                <t hangText="&lt;registry:encoding&gt;:">The OPTIONAL encoding 
+                for transforming Unicode characters uniquely and reversibly 
+                into DNS compatible characters with a default value 
+                of "Punycode".</t>
+                <t hangText="&lt;registry:commingleAllowed&gt;:">An OPTIONAL 
+                boolean value that indicates whether commingling of scripts 
+                is allowed with a default value of "false".</t>
+                <t hangText="&lt;registry:language&gt;:">Zero or more 
+                &lt;registry:language&gt; elements that defines the supported 
+                language codes and character code point policy.  
+                The required "code" attribute defines the language 
+                code for the supported language.  The language code 
+                SHOULD be an ISO 639 (ISO 639-1 or ISO 639-2) value.  
+                The &lt;registry:language&gt; element contains the following 
+                child elements:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:table&gt;:">The OPTIONAL language 
+                    table URI that contains the set of code points for 
+                    the language.</t>
+                    <t hangText="&lt;registry:variantStrategy&gt;:">An OPTIONAL 
+                    strategy for the handling of variants for the language.  
+                    If no &lt;registry:variantStrategy&gt; element is specified 
+                    then variants are not supported by the language.  
+                    The possible values for the &lt;registry:variantStrategy&gt; 
+                    element include:</t>
+                      <t><list hangIndent="4" style="hanging">
+                        <t hangText="&quot;blocked&quot;:">Variant registrations 
+                        are blocked for all clients.</t>
+                        <t hangText="&quot;restricted&quot;:">Variant 
+                        registrations are allowed for client of the 
+                        original IDN registration.</t>
+                        <t hangText="&quot;open&quot;:">Variant registrations 
+                        are open to all clients.</t>
+                      </list></t>
+                   </list></t>
+                </list></t>
+                <t hangText="&lt;registry:premiumSupport&gt;:">The OPTIONAL 
+                boolean value that indicates whether the server supports 
+                premium domain names with a default value of "false".</t>
+                <t hangText="&lt;registry:contactsSupported&gt;:">The OPTIONAL 
+                boolean value that indicates whether contacts are supported 
+                with a default value of "true".</t>
+                <t hangText="&lt;registry:contact&gt;:">Zero or more 
+                &lt;registry:contact&gt; elements that defines the minimum 
+                and maximum number of contacts by contact type.  
+                The contact type is defined with the required "type" 
+                attribute with the possible values of "admin", "tech", and 
+                "billing", and "custom".  If "custom" is the contact "type" value, 
+                then the "name" attribute MUST be set with the name of the custom type.  
+                The OPTIONAL "description" attribute can be set with a description of the 
+                contact type.  The &lt;registry:contact&gt; element contains 
+                the following child elements:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:min&gt;:">The minimum number of 
+                    contacts for the contact type.</t>
+                    <t hangText="&lt;registry:max&gt;:">The OPTIONAL maximum 
+                    number of contacts for the contact type.  If the 
+                    &lt;registry:max&gt; element is not defined the maximum 
+                    number is unbounded.</t>
+                   </list></t>
+                <t hangText="&lt;registry:ns&gt;:">Defines the minimum and 
+                maximum number of delegated host objects (name servers) that 
+                can be associated with a domain object.  
+                The &lt;registry:ns&gt; element contains the following 
+                child elements:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:min&gt;:">The minimum number of 
+                    name servers associated with a domain object.</t>
+                    <t hangText="&lt;registry:max&gt;:">The OPTIONAL maximum 
+                    number of name servers associated with a domain object.  
+                    If the &lt;registry:max&gt; element is not defined the 
+                    maximum number is unbounded.</t>
+                   </list></t>
+                <t hangText="&lt;registry:childHost&gt;:">Defines the minimum 
+                and maximum number of subordinate host objects (child hosts) 
+                for a domain object.  The &lt;registry: childHost&gt; element 
+                contains the following child elements:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:min&gt;:">The minimum number of 
+                    child hosts for a domain object.</t>
+                    <t hangText="&lt;registry:max&gt;:">The OPTIONAL maximum 
+                    number of child hosts for a domain object.  
+                    If the &lt;registry:max&gt; element is not defined the 
+                    maximum number is unbounded.</t>
+                   </list></t>
+                <t hangText="&lt;registry:period&gt;:">Zero or more 
+                &lt;registry:period&gt; elements that defines the supported 
+                registration periods and default periods by command type.  
+                The required "command" attribute defines the command type 
+                with sample values of "create", "renew", and "transfer".  
+                The &lt;registry:period&gt; element contains one of the 
+                following elements:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:length&gt;:">The default, 
+                    minimum, and maximum period length for the command type.  
+                    The &lt;registry:length&gt; element contains the 
+                    following child elements, where all of the child 
+                    elements require the "unit" attribute with possible 
+                    values of "y" for year and "m" for month:</t>
+                      <t><list hangIndent="4" style="hanging">
+                        <t hangText="&lt;registry:min&gt;:">The minimum supported 
+                        period length.</t>
+                        <t hangText="&lt;registry:max&gt;:">The maximum supported 
+                        period length.</t>
+                        <t hangText="&lt;registry:default&gt;:">The default 
+                        period length if not defined by the client.</t>
+                       </list></t>
+                    <t hangText="or &lt;registry:serverDecided&gt;:">The 
+                    registration period is decided by the server based on the 
+                    relationship to a related object that MUST have the 
+                    same expiration date.</t>
+                   </list></t>
+                <t hangText="&lt;registry:transferHoldPeriod&gt;:">The period 
+                of time a domain object is in the pending transfer before the 
+                transfer is auto approved by the server.  The 
+                &lt;registry:transferHoldPeriod&gt; element MUST have the 
+                "unit" attribute with the possible values of "y" for year, 
+                "m" for month, and "d" for day.</t>
+                <t hangText="&lt;registry:gracePeriod&gt;:">Zero or more 
+                &lt;registry:gracePeriod&gt; elements that defines the grace 
+                periods by operation type.  The required "command" attribute 
+                defines the operation type with the sample values of "create", 
+                "renew", "transfer", and "autoRenew".  
+                The &lt;registry:gracePeriod&gt; element requires the 
+                "unit" attribute with the possible values of "d" for day, 
+                "h" for hour, and "m" for minute.</t>
+                <t hangText="&lt;registry:rgp&gt;:">The OPTIONAL Registry Grace 
+                Period (RGP) status periods.  The &lt;registry:rgp&gt; element 
+                contains the following child elements, where each child 
+                element supports the "unit" attribute with the possible 
+                values of "y" for year, "m" for month, "d" for day, 
+                and "h" for hour:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:redemptionPeriod&gt;:">The length 
+                    of time that a domain object will remain in the 
+                    redemptionPeriod status unless the restore request 
+                    command is received.</t>
+                    <t hangText="&lt;registry:pendingRestore&gt;:">The length of 
+                    time that the domain object will remain in the 
+                    pendingRestore status unless the restore report command 
+                    is received.</t>
+                    <t hangText="&lt;registry:pendingDelete&gt;:">The length of 
+                    time that the domain object will remain in the 
+                    pendingDelete status prior to be purged.</t>
+                   </list></t>
+                <t hangText="&lt;registry:dnssec&gt;:">The OPTIONAL DNS 
+                Security Extensions (DNSSEC) policies for the server.  
+                The &lt;registry:dnssec&gt; element contains the following 
+                child elements:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&lt;registry:dsDataInterface&gt;:">Defines 
+                    the DS Data Interface, as defined in <xref target="RFC5910"/>, 
+                    policies.  The &lt;registry:dsDataInterface&gt; element contains 
+                    the following child elements:</t>
+                      <t><list hangIndent="4" style="hanging">
+                        <t hangText="&lt;registry:min&gt;:">The minimum number 
+                        of DS associated with the domain object.</t>
+                        <t hangText="&lt;registry:max&gt;:">The maximum number 
+                        of DS associated with the domain object.</t>
+                        <t hangText="&lt;registry:alg&gt;:">Zero or more 
+                        &lt;registry:alg&gt; elements that define the 
+                        supported algorithms as described in section 5.1.2 
+                        of <xref target="RFC4034"/>.</t>
+                        <t hangText="&lt;registry:digestType&gt;:">Zero or more 
+                        &lt;registry:digestType&gt; elements that define the 
+                        supported digest types as described in 
+                        section 5.1.3 of <xref target="RFC4034"/>.</t>
+                       </list></t>
+                    <t hangText="&lt;registry:keyDataInterface&gt;:">Defines the 
+                    Key Data Interface, as defined in <xref target="RFC5910"/>, 
+                    policies.  The &lt;registry:keyDataInterface&gt; element 
+                    contains the following child elements:</t>
+                      <t><list hangIndent="4" style="hanging">
+                        <t hangText="&lt;registry:min&gt;:">The minimum number 
+                        of keys associated with the domain object.</t>
+                        <t hangText="&lt;registry:max&gt;:">The maximum number 
+                        of keys associated with the domain object.</t>
+                        <t hangText="&lt;registry:alg&gt;:">Zero or more 
+                        &lt;registry:alg&gt; elements that define the 
+                        supported algorithms as described in section 2.1.3 
+                        of <xref target="RFC4034"/>.</t>
+                       </list></t>
+                    <t hangText="&lt;registry:maxSigLife&gt;:">Defines the 
+                    maximum signature life policies.  The 
+                    &lt;registry:maxSigLife&gt; element contains the 
+                    following child elements:</t>
+                      <t><list hangIndent="4" style="hanging">
+                        <t hangText="&lt;registry:clientDefined&gt;:">An 
+                        OPTIONAL boolean flag indicating whether the client 
+                        can set the maximum signature life with a default 
+                        value of "false".</t>
+                        <t hangText="&lt;registry:default&gt;:">The OPTIONAL 
+                        default maximum signature life set by the server.</t>
+                        <t hangText="&lt;registry:min&gt;:">An OPTIONAL minimum 
+                        signature life supported.  The &lt;registry:min&gt; 
+                        element MUST NOT be defined if the 
+                        &lt;registry:clientDefined&gt; element 
+                        value is "false".</t>
+                        <t hangText="&lt;registry:max&gt;:">An OPTIONAL 
+                        maximum signature life supported.  The 
+                        &lt;registry:max&gt; element MUST NOT be defined 
+                        if the &lt;registry:clientDefined&gt; element value 
+                        is "false".</t>
+                       </list></t>
+                    <t hangText="&lt;registry:urgent&gt;:">An OPTIONAL flag 
+                    that of whether the client can specify the urgent attribute 
+                    for DNSSEC updates with a default value of "false".</t>
+                 </list></t>
+                <t hangText="&lt;registry:maxCheckDomain&gt;:">The maximum 
+                number of domain names (&lt;domain:name&gt; elements) that 
+                can be included in a domain check command defined in 
+                <xref target="RFC5731"/>.</t>
+                <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL 
+                set of supported domain statuses defined in 
+                <xref target="RFC5731"/>.</t>
+                <t hangText="&lt;registry:authInfoRegEx&gt;:">The OPTIONAL 
+                regular expression used to validate the domain object 
+                authorization information value.</t>   
+                <t hangText="&lt;registry:expiryPolicy&gt;:">The OPTIONAL 
+                expiry policy used to define what happens when the 
+                domain object expires with a default value of "autoRenew".  The 
+                possible values for the &lt;registry:expiryPolicy&gt; element 
+                include:</t>
+				  <t><list hangIndent="4" style="hanging">
+					<t hangText="&quot;autoRenew&quot;:">The domain object 
+					will auto renew at expiry.
+					The client can receive a credit for the auto renew if the 
+					domain object is deleted within the auto renew grace period.</t>
+					<t hangText="&quot;autoDelete&quot;:">The domain object 
+					will auto delete at expiry.  The client needs to explicitly 
+					renew the domain object prior to its expiry to ensure that it does not 
+					get deleted.</t>
+					<t hangText="&quot;autoExpire&quot;:">The domain object 
+					will auto expire at expiry that may include the 
+					server placing the domain object on hold.</t>
+					<t hangText="&quot;autoParked&quot;:">The domain object 
+					will be auto parked at expiry that results in the resolution 
+					of the domain object going to a parked page.</t>
+				  </list></t>
+                
+                
+            </list></t>
+
+         <t hangText="&lt;registry:host&gt;:">The host object policy information per 
+         <xref target="RFC5732"/>.  The &lt;registry:host&gt; element contains the 
+         following child elements:</t>             
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:internal&gt;:">Defines the minimum and 
+              maximum number of IP addresses supported for an internal host.  
+              The &lt;registry:internal&gt; elements contains the following 
+              child elements:</t>
+              <t><list hangIndent="4" style="hanging">
+                <t hangText="&lt;registry:minIP&gt;:">Minimum number of IP 
+                addresses supported for an internal host.</t>
+                <t hangText="&lt;registry:maxIP&gt;:">Maximum number of IP 
+                addresses supported for an internal host.</t>
+                <t hangText="&lt;registry:sharePolicy&gt;:">The OPTIONAL policy 
+                for the sharing of internal hosts in the server.  
+                The possible shared policy values include:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&quot;perZone&quot;:">The internal hosts are 
+                    shared across all domains of the zone.  
+                    There is a single pool of internal hosts 
+                    defined for the zone.</t>
+                     <t hangText="&quot;perSystem&quot;:">The internal hosts 
+                     are shared across all zones of the system.  
+                     There is a single pool of internal hosts across 
+                     all of the zones supported by the system.  The system 
+                     MUST be defined using the &lt;registry:system&gt; element.</t>
+                  </list></t>
+                <t hangText="&lt;registry:uniqueIpAddressesRequired&gt;:">The OPTIONAL  
+                boolean value that indicates that all of the IP addresses for the host object 
+                must be unique, with a default value of "false".</t>                  
+              </list></t>             
+              
+              <t hangText="&lt;registry:external&gt;:">Defines the policies 
+              for external hosts.  The &lt;registry:external&gt; elements contains 
+              the following child elements:</t>
+              <t><list hangIndent="4" style="hanging">
+                <t hangText="&lt;registry:minIP&gt;:">Minimum number of IP 
+                addresses supported for an external host.</t>
+                <t hangText="&lt;registry:maxIP&gt;:">Maximum number of IP 
+                addresses supported for an external host.</t>
+                <t hangText="&lt;registry:sharePolicy&gt;:">The OPTIONAL policy 
+                for the sharing of external hosts in the server.  
+                The possible shared policy values include:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&quot;perZone&quot;:">The external hosts are 
+                    shared across all domains of the zone.  
+                    There is a single pool of external hosts 
+                    defined for the zone.</t>
+                     <t hangText="&quot;perSystem&quot;:">The external hosts 
+                     are shared across all zones of the system.  
+                     There is a single pool of external hosts across 
+                     all of the zones supported by the system.  The system 
+                     MUST be defined using the &lt;registry:system&gt; element.</t>
+                  </list></t>
+                <t hangText="&lt;registry:uniqueIpAddressesRequired&gt;:">The OPTIONAL  
+                boolean value that indicates that all of the IP addresses for the host object 
+                must be unique, with a default value of "false".</t>                  
+              </list></t>             
+              
+              <t hangText="&lt;registry:nameRegex&gt;:">Zero or more 
+              &lt;registry:nameRegex&gt; elements that define the regular 
+              expressions used to validate the host name value.</t>
+              
+              <t hangText="&lt;registry:maxCheckHost&gt;:">The maximum number of 
+              host names (&lt;host:name&gt; elements) that can be included in a 
+              host check command defined in <xref target="RFC5732"/>.</t>
+
+              <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL set 
+              of supported host statuses defined in <xref target="RFC5732"/>.</t>
+                            
+            </list></t>  
+            
+         <t hangText="&lt;registry:contact&gt;:">The OPTIONAL contact object 
+         policy information per <xref target="RFC5733"/>.  
+         The &lt;registry:contact&gt; element contains the following child 
+         elements:</t>             
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:contactIdRegEx&gt;:">The OPTIONAL regular 
+              expression used to validate the &lt;contact:id&gt; element 
+              defined in <xref target="RFC5733"/>.</t>
+              <t hangText="&lt;registry:sharePolicy&gt;:">The OPTIONAL policy for 
+              the sharing of contacts in the server.  The possible 
+              shared policy values include:</t>
+                <t><list hangIndent="4" style="hanging">
+                  <t hangText="&quot;perZone&quot;:">The contacts are shared 
+                  across all objects of the zone.  There is a single pool 
+                  of contacts defined for the zone.</t>
+                  <t hangText="&quot;perSystem&quot;:">The contacts are shared 
+                  across all zones of the system.  There is a single pool of 
+                  contacts across all of the zones supported by 
+                  the system.  The system MUST be defined using the 
+                  &lt;registry:system&gt; element.</t>
+                </list></t>
+                
+                <t hangText="&lt;registry:postalInfoTypeSupport&gt;:">The policy 
+                associated with the postal-address information, represented by the 
+                &lt;contact:postalInfo&gt; element in <xref target="RFC5733"/>, supported with 
+                the following possible values:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&quot;loc&quot;:">Indicates that a single 
+                    &lt;contact:postalInfo&gt; element is supported with the type "loc".</t>
+                    <t hangText="&quot;int&quot;:">Indicates that a single 
+                    &lt;contact:postalInfo&gt; element is supported with the type "int".</t>
+                    <t hangText="&quot;locOrInt&quot;:">Indicates that a single 
+                    &lt;contact:postalInfo&gt; element is supported with the type "loc" or "int".</t>
+                    <t hangText="&quot;locAndInt&quot;:">Indicates that up to two  
+                    &lt;contact:postalInfo&gt; elements is supported for defining both the "loc" and the "int" type.  
+                    This policy does not indicate that both must be provided.</t>
+                  </list></t>
+              
+              <t hangText="&lt;registry:postalInfo&gt;:">The postal-address 
+              information policy information.  The &lt;registry:postalInfo&gt; 
+              element contains the following child elements:</t>
+                <t><list hangIndent="4" style="hanging">
+                  <t hangText="&lt;registry:name&gt;:">The minimum and maximum 
+                  length of &lt;contact:name&gt; element defined 
+                  <xref target="RFC5733"/> using the &lt;registry:minLength&gt; 
+                  and &lt;registry:maxLength&gt; child elements, 
+                  respectively.</t>
+                  
+                  <t hangText="&lt;registry:org&gt;:">The minimum and maximum 
+                  length of the &lt;contact:org&gt; element defined in 
+                  <xref target="RFC5733"/> using the &lt;registry:minLength&gt; 
+                  and &lt;registry:maxLength&gt; child elements, 
+                  respectively.</t>
+                  
+                  <t hangText="&lt;registry:address&gt;:">The address 
+                  information policy information.  The &lt;registry:address&gt; 
+                  element contains the following child elements:</t>
+                    <t><list hangIndent="4" style="hanging">
+
+                      <t hangText="&lt;registry:street&gt;:">The minimum and 
+                      maximum length and the minimum and maximum 
+                      number of the &lt;contact:street&gt; elements defined in 
+                      <xref target="RFC5733"/>.  The &lt;registry:street&gt; 
+                      element contains the following child elements:</t>
+
+                      <t><list hangIndent="4" style="hanging">
+                        <t hangText="&lt;registry:minLength&gt;:">The minimum 
+                        length of the &lt;contact:street&gt; elements.</t>
+
+                        <t hangText="&lt;registry:maxLength&gt;:">The maximum  
+                        length of the &lt;contact:street&gt; elements.</t>
+
+                        <t hangText="&lt;registry:minEntry&gt;:">The minimum 
+                        number of &lt;contact:street&gt; elements.</t>
+
+                        <t hangText="&lt;registry:maxEntry&gt;:">The maximum  
+                        number of &lt;contact:street&gt; elements.</t>
+                        
+                      </list></t>
+                  
+                      <t hangText="&lt;registry:city&gt;:">The minimum and 
+                      maximum length of the &lt;contact:city&lt; element 
+                      defined in <xref target="RFC5733"/> using the 
+                      &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; 
+                      child elements, respectively.</t>
+    
+                      <t hangText="&lt;registry:sp&gt;:">The minimum and 
+                      maximum length of the &lt;contact:sp&gt; element 
+                      defined in <xref target="RFC5733"/> using the 
+                      &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; 
+                      child elements, respectively.</t>
+
+                      <t hangText="&lt;registry:pc&gt;:">The minimum and 
+                      maximum length of the &lt;contact:pc&gt; element defined 
+                      in <xref target="RFC5733"/> using the 
+                      &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; 
+                      child elements, respectively.</t>
+    
+                    </list></t>
+                                    
+                <t hangText="&lt;registry:voiceRequired&gt;:">An OPTIONAL 
+                boolean flag indicating whether the server requires 
+                the &lt;contact:voice&gt; element to be defined, with a 
+                default value of "false".</t>
+                    
+                <t hangText="&lt;registry:voiceExt&gt;:">The OPTIONAL minimum 
+                and maximum length of the &lt;contact:voice&gt; extension "x" 
+                attribute defined in <xref target="RFC5733"/> using the 
+                &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child 
+                elements, respectively.</t>
+
+                <t hangText="&lt;registry:emailRegex&gt;:">Zero or more 
+                &lt;registry:emailRegex&gt; elements that define the regular 
+                expressions used to validate the &lt;contact:email&gt; element 
+                defined in <xref target="RFC5733"/>.</t>
+                  
+                </list></t>
+                  
+              <t hangText="&lt;registry:maxCheckContact&gt;:">The maximum number 
+              of contact identifiers (&lt;contact:id&gt; elements) that can be 
+              included in a contact check command defined in 
+              <xref target="RFC5733"/>.</t>
+               
+              <t hangText="&lt;registry:authInfoRegex&gt;:">The OPTIONAL regular 
+              expression used to validate the contact object authorization 
+              information value.</t>
+
+              <t hangText="&lt;registry:clientDisclosureSupported&gt;:">The 
+              OPTIONAL flag that indicates whether the server supports 
+              the client to identify elements that require exception 
+              server-operator handling to allow or restrict disclosure to 
+              third parties defined in <xref target="RFC5733"/> with a 
+              default of "false".</t>
+     
+              <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL set 
+              of supported contact statuses defined in 
+              <xref target="RFC5733"/>.</t>
+     
+              <t hangText="&lt;registry:transferHoldPeriod&gt;:">The OPTIONAL 
+              period of time a contact object is in the pending transfer 
+              before the transfer is auto approved by the server.  
+              The &lt;registry:transferHoldPeriod&gt; element MUST have 
+              the "unit" attribute with the possible values of "y" for year, 
+              "m" for month, and "d" for day.</t>
+                
+			  <t hangText="&lt;registry:privacyContactSupported&gt;:">An OPTIONAL 
+			  boolean value that indicates whether a privacy contact is supported
+			  with a default value of "true".</t>
+                
+			  <t hangText="&lt;registry:proxyContactSupported&gt;:">An OPTIONAL 
+			  boolean value that indicates whether a proxy contact is supported
+			  with a default value of "true".</t>
+            </list></t>        
+        
+        </list></t>
+ 
+       <figure>
+            <preamble>Example of a &lt;registry:zone&gt; element:</preamble>
+
+            <artwork><![CDATA[
+<registry:zone>
+  <registry:name>EXAMPLE</registry:name>
+  <registry:group>STANDARD</registry:group>
+  <registry:services>
+    <registry:objURI required="true">
+      urn:ietf:params:xml:ns:domain-1.0
+    </registry:objURI>
+    <registry:objURI required="true">
+      urn:ietf:params:xml:ns:host-1.0
+    </registry:objURI>
+    <registry:objURI required="true">
+      urn:ietf:params:xml:ns:contact-1.0
+    </registry:objURI>
+    <registry:svcExtension>
+      <registry:extURI required="true">
+        urn:ietf:params:xml:ns:rgp-1.0
+      </registry:extURI>
+      <registry:extURI required="true">
+        urn:ietf:params:xml:ns:secDNS-1.1
+      </registry:extURI>
+      <registry:extURI required="true">
+        http://www.verisign-grs.com/epp/namestoreExt-1.1
+      </registry:extURI>
+      <registry:extURI required="false">
+        http://www.verisign.com/epp/idnLang-1.0
+      </registry:extURI>
+    </registry:svcExtension>
+  </registry:services>
+  <registry:crID>clientX</registry:crID>
+  <registry:crDate>2012-10-01T00:00:00.0Z
+  </registry:crDate>
+  <registry:upID>clientY</registry:upID>
+  <registry:upDate>2012-10-15T00:00:00.0Z
+  </registry:upDate>
+  <registry:batch>
+    <registry:batchJob>
+      <registry:name>pendingDelete</registry:name>
+      <registry:description>Pending Delete Batch
+      </registry:description>
+      <registry:schedule tz="EDT5EDT">0 14 * * *
+      </registry:schedule>
+    </registry:batchJob>
+  </registry:batch>
+  <registry:system>
+    <registry:zone form="aLabel">EXAMPLE
+    </registry:zone>
+    <registry:zone form="aLabel">EXAMPLE2
+    </registry:zone>
+  </registry:system>
+  <registry:domain>
+    <registry:domainName level="2">
+      <registry:minLength>5
+      </registry:minLength>
+      <registry:maxLength>50
+      </registry:maxLength>
+      <registry:alphaNumStart>true
+      </registry:alphaNumStart>
+      <registry:alphaNumEnd>false
+      </registry:alphaNumEnd>
+      <registry:aLabelSupported>true
+      </registry:aLabelSupported>
+      <registry:uLabelSupported>false
+      </registry:uLabelSupported>
+      <registry:regex>
+        <registry:expression>^\w+.*$
+        </registry:expression>
+        <registry:description>Alphanumeric
+        </registry:description>
+      </registry:regex>
+      <registry:regex>
+        <registry:expression>^\d+.*$
+        </registry:expression>
+      </registry:regex>
+      <registry:reservedNames>
+        <registry:reservedName>reserved1
+        </registry:reservedName>
+      </registry:reservedNames>
+    </registry:domainName>
+    <registry:idn>
+      <registry:idnVersion>4.1
+      </registry:idnVersion>
+      <registry:idnaVersion>2008
+      </registry:idnaVersion>
+      <registry:unicodeVersion>6.0
+      </registry:unicodeVersion>
+      <registry:encoding>Punycode
+      </registry:encoding>
+      <registry:commingleAllowed>false
+      </registry:commingleAllowed>
+      <registry:language code="LANG-1">
+        <registry:table>
+          http://www.iana.org/idn-tables/test_tab1_1.1.txt
+        </registry:table>
+        <registry:variantStrategy>blocked
+        </registry:variantStrategy>
+      </registry:language>
+    </registry:idn>
+    <registry:premiumSupport>false
+    </registry:premiumSupport>
+    <registry:contact type="admin">
+      <registry:min>1</registry:min>
+      <registry:max>1</registry:max>
+    </registry:contact>
+    <registry:contact type="tech">
+      <registry:min>1</registry:min>
+      <registry:max>1</registry:max>
+    </registry:contact>
+    <registry:contact type="billing">
+      <registry:min>0</registry:min>
+      <registry:max>0</registry:max>
+    </registry:contact>
+    <registry:contact
+      type="custom"
+      name="abuse"
+      description="Abuse Contact"
+    >
+      <registry:min>0</registry:min>
+      <registry:max>1</registry:max>
+    </registry:contact>
+    <registry:ns>
+      <registry:min>0</registry:min>
+      <registry:max>13</registry:max>
+    </registry:ns>
+    <registry:childHost>
+      <registry:min>0</registry:min>
+    </registry:childHost>
+    <registry:period command="create">
+      <registry:length>
+        <registry:min unit="y">1</registry:min>
+        <registry:max unit="y">10</registry:max>
+        <registry:default unit="y">1</registry:default>
+      </registry:length>
+    </registry:period>
+    <registry:transferHoldPeriod unit="d">5
+    </registry:transferHoldPeriod>
+    <registry:gracePeriod
+      command="create"
+      unit="d"
+    >5
+    </registry:gracePeriod>
+    <registry:gracePeriod
+      command="renew"
+      unit="d"
+    >5
+    </registry:gracePeriod>
+    <registry:gracePeriod
+      command="transfer"
+      unit="d"
+    >5
+    </registry:gracePeriod>
+    <registry:gracePeriod
+      command="autoRenew"
+      unit="d"
+    >45
+    </registry:gracePeriod>
+    <registry:rgp>
+      <registry:redemptionPeriod unit="d">30
+      </registry:redemptionPeriod>
+      <registry:pendingRestore unit="d">7
+      </registry:pendingRestore>
+      <registry:pendingDelete unit="d">5
+      </registry:pendingDelete>
+    </registry:rgp>
+    <registry:dnssec>
+      <registry:dsDataInterface>
+        <registry:min>0</registry:min>
+        <registry:max>13</registry:max>
+        <registry:alg>3</registry:alg>
+        <registry:digestType>1</registry:digestType>
+      </registry:dsDataInterface>
+      <registry:maxSigLife>
+        <registry:clientDefined>false
+        </registry:clientDefined>
+      </registry:maxSigLife>
+    </registry:dnssec>
+    <registry:maxCheckDomain>5
+    </registry:maxCheckDomain>
+    <registry:supportedStatus>
+      <registry:status>ok
+      </registry:status>
+      <registry:status>clientDeleteProhibited
+      </registry:status>
+      <registry:status>serverDeleteProhibited
+      </registry:status>
+      <registry:status>clientHold
+      </registry:status>
+      <registry:status>serverHold
+      </registry:status>
+      <registry:status>clientRenewProhibited
+      </registry:status>
+      <registry:status>serverRenewProhibited
+      </registry:status>
+      <registry:status>clientTransferProhibited
+      </registry:status>
+      <registry:status>serverTransferProhibited
+      </registry:status>
+      <registry:status>clientUpdateProhibited
+      </registry:status>
+      <registry:status>serverUpdateProhibited
+      </registry:status>
+      <registry:status>inactive
+      </registry:status>
+      <registry:status>pendingDelete
+      </registry:status>
+      <registry:status>pendingTransfer
+      </registry:status>
+    </registry:supportedStatus>
+    <registry:authInfoRegex>
+      <registry:expression>^.*$</registry:expression>
+    </registry:authInfoRegex>
+    <registry:expiryPolicy>autoRenew
+    </registry:expiryPolicy>
+  </registry:domain>
+  <registry:host>
+    <registry:internal>
+      <registry:minIP>1</registry:minIP>
+      <registry:maxIP>13</registry:maxIP>
+      <registry:sharePolicy>perSystem
+      </registry:sharePolicy>
+      <registry:uniqueIpAddressesRequired>false
+      </registry:uniqueIpAddressesRequired>
+    </registry:internal>
+    <registry:external>
+      <registry:minIP>0</registry:minIP>
+      <registry:maxIP>0</registry:maxIP>
+      <registry:sharePolicy>perSystem
+      </registry:sharePolicy>
+    </registry:external>
+    <registry:nameRegex>
+      <registry:expression>^.*$
+      </registry:expression>
+    </registry:nameRegex>
+    <registry:maxCheckHost>5
+    </registry:maxCheckHost>
+    <registry:supportedStatus>
+      <registry:status>ok</registry:status>
+      <registry:status>clientDeleteProhibited
+      </registry:status>
+      <registry:status>serverDeleteProhibited
+      </registry:status>
+      <registry:status>clientUpdateProhibited
+      </registry:status>
+      <registry:status>serverUpdateProhibited
+      </registry:status>
+      <registry:status>linked
+      </registry:status>
+      <registry:status>pendingDelete
+      </registry:status>
+      <registry:status>pendingTransfer
+      </registry:status>
+    </registry:supportedStatus>
+  </registry:host>
+  <registry:contact>
+    <registry:contactIdRegex>
+      <registry:expression>^.*$
+      </registry:expression>
+    </registry:contactIdRegex>
+    <registry:sharePolicy>perZone
+    </registry:sharePolicy>
+    <registry:postalInfoTypeSupport>int
+    </registry:postalInfoTypeSupport>
+    <registry:postalInfo>
+      <registry:name>
+        <registry:minLength>5</registry:minLength>
+        <registry:maxLength>15</registry:maxLength>
+      </registry:name>
+      <registry:org>
+        <registry:minLength>2</registry:minLength>
+        <registry:maxLength>40</registry:maxLength>
+      </registry:org>
+      <registry:address>
+        <registry:street>
+          <registry:minLength>1</registry:minLength>
+          <registry:maxLength>40</registry:maxLength>
+          <registry:minEntry>1</registry:minEntry>
+          <registry:maxEntry>3</registry:maxEntry>
+        </registry:street>
+        <registry:city>
+          <registry:minLength>1</registry:minLength>
+          <registry:maxLength>40</registry:maxLength>
+        </registry:city>
+        <registry:sp>
+          <registry:minLength>1</registry:minLength>
+          <registry:maxLength>40</registry:maxLength>
+        </registry:sp>
+        <registry:pc>
+          <registry:minLength>1</registry:minLength>
+          <registry:maxLength>40</registry:maxLength>
+        </registry:pc>
+      </registry:address>
+      <registry:voiceRequired>false
+      </registry:voiceRequired>
+      <registry:voiceExt>
+        <registry:minLength>1</registry:minLength>
+        <registry:maxLength>40</registry:maxLength>
+      </registry:voiceExt>
+      <registry:faxExt>
+        <registry:minLength>1</registry:minLength>
+        <registry:maxLength>40</registry:maxLength>
+      </registry:faxExt>
+      <registry:emailRegex>
+        <registry:expression>^.+\..+$
+        </registry:expression>
+      </registry:emailRegex>
+    </registry:postalInfo>
+    <registry:maxCheckContact>5</registry:maxCheckContact>
+    <registry:authInfoRegex>
+      <registry:expression>^.*$</registry:expression>
+    </registry:authInfoRegex>
+    <registry:clientDisclosureSupported>false
+    </registry:clientDisclosureSupported>
+    <registry:supportedStatus>
+      <registry:status>ok
+      </registry:status>
+      <registry:status>clientDeleteProhibited
+      </registry:status>
+      <registry:status>serverDeleteProhibited
+      </registry:status>
+      <registry:status>clientTransferProhibited
+      </registry:status>
+      <registry:status>serverTransferProhibited
+      </registry:status>
+      <registry:status>clientUpdateProhibited
+      </registry:status>
+      <registry:status>serverUpdateProhibited
+      </registry:status>
+      <registry:status>linked
+      </registry:status>
+      <registry:status>pendingDelete
+      </registry:status>
+      <registry:status>pendingTransfer
+      </registry:status>
+    </registry:supportedStatus>
+    <registry:transferHoldPeriod unit="d">5
+    </registry:transferHoldPeriod>
+    <registry:privacyContactSupported>true
+    </registry:privacyContactSupported>
+    <registry:proxyContactSupported>true
+    </registry:proxyContactSupported>
+  </registry:contact>
+</registry:zone>]]></artwork>
+       </figure>
+ 
+      </section>
+    
+    
+    </section>
+
+    <section anchor="commands" title="EPP Command Mapping">
+      <t>A detailed description of the EPP syntax and semantics can be found
+      in the EPP core protocol specification <xref target="RFC5730"/>. The 
+      command mappings described here are specifically for use in provisioning 
+      and managing TLD names via EPP.</t>
+
+      <section anchor="queryCommands" title="EPP Query Commands">
+      
+        <t><xref target="RFC5730">EPP</xref> provides three commands to retrieve object information: &lt;check&gt; to determine 
+        if an object is known to the server, &lt;info&gt; to retrieve detailed information associated 
+        with an object, and &lt;transfer&gt; to retrieve object transfer status information.</t>
+        
+      <section anchor="checkCommand" title="EPP &lt;check&gt; Command">
+       <t>The EPP &lt;check&gt; command is used to determine if the server 
+       currently supports a zone.  If the response indicates that the zone 
+       is not available, then it is currently supported; otherwise it MAY be 
+       available to be created by an authorized client.</t>
+
+       <t>In addition to the standard EPP command elements, the &lt;check&gt;
+       command MUST contain a &lt;registry:check&gt; element that identifies 
+       the registry namespace.  The &gt;registry:check&gt; element contains the 
+       following child elements:</t>
+          
+       <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:name&gt;:">One or more &lt;registry:name&gt; 
+          elements, as described in <xref target="zoneName"/>, that contain the fully 
+          qualified names of the zone objects to be queried.</t>
+       </list></t>
+          
+       <figure>
+            <preamble>Example &lt;check&gt; command:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <check>
+C:      <registry:check
+C:       xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        <registry:name>zone1</registry:name>
+C:        <registry:name>zone2</registry:name>
+C:        <registry:name>zone3</registry:name>
+C:      </registry:check>
+C:    </check>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+          
+       <t>When a &lt;check&gt; command has been processed successfully, the 
+       EPP &lt;resData&gt; element MUST contain a child &lt;registry:chkData&gt; 
+       element that identifies the registry namespace. The 
+       &lt;registry:chkData&gt; element contains one or more &lt;registry:cd&gt; 
+       elements that contain the following child elements:</t>
+       
+       <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:name&gt;:">element that contains the fully 
+          qualified name of the queried zone object, as described in <xref target="zoneName"/>.  
+          This element MUST contain 
+          an "avail" attribute whose value indicates zone is currently 
+          supported or availability at the moment the &lt;check&gt; command was 
+          completed for an authorized client.  A value of "1" or "true" means 
+          that the zone object is available for an authorized client.  A value 
+          of "0" or "false" means that the zone object is currently supported 
+          by the server.</t>
+          <t hangText="&lt;registry:reason&gt;:">The OPTIONAL element that 
+          MAY be provided when a zone object is not available for 
+          provisioning.  If present, this element contains server-specific 
+          text to help explain why the zone object is unavailable.  This 
+          text MUST be represented in the response language previously 
+          negotiated with the client; an OPTIONAL "lang" attribute MAY be 
+          present to identify the language if the negotiated value is 
+          something other than a default value of "en" (English).</t>
+       </list></t>
+
+
+       <figure>
+            <preamble>Example &lt;check&gt; response:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <registry:chkData
+S:        xmlns:registry=
+S:        "urn:ietf:params:xml:ns:registry-0.1">
+S:        <registry:cd>
+S:          <registry:name avail="0">zone1</registry:name>
+S:          <registry:reason>Client not authorized
+S:          </registry:reason>
+S:        </registry:cd>
+S:        <registry:cd>
+S:          <registry:name avail="0">zone2
+S:          </registry:name>
+S:          <registry:reason>Already supported
+S:          </registry:reason>
+S:        </registry:cd>
+S:        <registry:cd>
+S:          <registry:name avail="1">zone3
+S:          </registry:name>
+S:        </registry:cd>
+S:      </registry:chkData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+
+       <t>An EPP error response MUST be returned if a &lt;check&gt; command 
+       cannot be processed for any reason.</t>
+          
+      </section>
+
+      <!-- end CHECK command -->
+
+      <section anchor="infoCommand" title="EPP &lt;info&gt; Command">
+      
+       <t>The EPP &lt;info&gt; command is used to retrieve information 
+       associated with a zone object.  The response to this command MAY 
+       vary depending on the identity of the querying client, use of 
+       authorization information, and server policy towards unauthorized 
+       clients.  Server policy determines which OPTIONAL elements are 
+       returned.</t>
+               
+       <t>In addition to the standard EPP command elements, the &lt;info&gt; 
+       command MUST contain a &lt;registry:info&gt; element that identifies 
+       the registry namespace. The &lt;registry:info&gt; element contains 
+       one of the following three child elements:</t>
+       
+       <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:all&gt;:">Element that is empty and that 
+          indicates that a list of all of the supported zone objects 
+          are queried with a summary set of attributes per zone object.</t>
+          <t hangText="&lt;registry:name&gt;:">Element that contains the 
+          fully qualified name of the zone object to be queried for a full 
+          set of attributes for the zone object.</t>
+          <t hangText="&lt;registry:system&gt;:">Element that is empty and 
+          that indicates that the registry system attributes, 
+          like maximum connections and timeouts, are queried.</t>
+       </list></t>
+       
+       <figure>
+            <preamble>Example &lt;info&gt; command to query for a summary set of 
+            attributes for all of the supported zone objects:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <info>
+C:      <registry:info
+C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        <registry:all/>
+C:      </registry:info>
+C:    </info>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+ 
+ 
+       <figure>
+            <preamble>Example &lt;info&gt; command to query for the full set 
+            of "zone1" zone object attributes:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <info>
+C:      <registry:info
+C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        <registry:name>zone1</registry:name>
+C:      </registry:info>
+C:    </info>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+
+       <figure>
+            <preamble>Example &lt;info&gt; command to query for registry system  
+            attributes:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <info>
+C:      <registry:info
+C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        <registry:system/>
+C:      </registry:info>
+C:    </info>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+
+ 
+       <t>When an &lt;info&gt; command has been processed successfully, 
+       the EPP &lt;resData&gt; element MUST contain a child &lt;registry:infData&gt; 
+       element that identifies the registry namespace. The &lt;registry:infData&gt; 
+       element contains one of the three following child elements:</t>
+       
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:zoneList&gt;:">Element that contains the 
+          list of supported zones by the server with a set of summary 
+          attributes per zone.  The &lt;registry:zoneList&gt; element contains 
+          the following child elements:</t>
+          
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:name&gt;:">Element that contains the fully 
+                qualified name of the queried zone object.</t>
+              <t hangText="&lt;registry:crDate&gt;:">The date and time of zone 
+              object creation.</t>
+              <t hangText="&lt;registry:upDate&gt;:">The OPTIONAL date and time 
+              of the most recent zone object modification.</t>
+            </list></t>
+              
+          <t hangText="or a &lt;registry:zone&gt;:">Element that contains the 
+          full set of attributes for the zone name as defined in 
+          <xref target="zoneObject"/>.</t>
+          
+          <t hangText="&lt;registry:system&gt;:">Element that contains registry 
+          system attributes.  The &lt;registry:system&gt; element contains 
+          the following child elements:</t>
+          
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;registry:maxConnections&gt;:">The OPTIONAL element 
+                that contains the maximum number of connections that the client 
+                can establish with the registry system.</t>
+              <t hangText="&lt;registry:idleTimeout&gt;:">The OPTIONAL element that 
+              contains the idle timeout for a connection in milliseconds.  If a 
+              connection does not receive a command within 
+              &lt;registry:idleTimeout&gt; milliseconds, the 
+              server will close the connection.</t>
+              <t hangText="&lt;registry:absoluteTimeout&gt;:">The OPTIONAL element that 
+              contains the absolute timeout for a connection in milliseconds.  The absolute 
+              timeout represents the maximum duration in milliseconds that a connection 
+              can be established.  The server will close a connection that has been established for 
+              more than &lt;registry:absoluteTimeout&gt; milliseconds.</t>
+              <t hangText="&lt;registry:commandTimeout&gt;:">The OPTIONAL element that 
+              contains the command timeout for a connection in milliseconds.  The server will close a 
+              connection that has an active command that exceeds &lt;registry:commandTimeout&gt; 
+              milliseconds.</t>
+              <t hangText="&lt;registry:transLimit&gt;:">The OPTIONAL element that 
+              contains the maximum number of transactions that can be submitted on the connection
+              per the "perMs" attribute milliseconds.  It is up to server policy what to do with the connection 
+              when the client exceeds the &lt;registry:transLimit&gt;.</t>
+            </list></t>
+          
+       </list></t>
+       
+       
+       <figure>
+            <preamble>Example &lt;info&gt; response to a query for a summary of all 
+            of the supported zone objects:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <registry:infData
+S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        <registry:zoneList>
+S:          <registry:zone>
+S:            <registry:name>EXAMPLE1</registry:name>
+S:            <registry:crDate>2012-10-01T00:00:00.0Z
+S:            </registry:crDate>
+S:            <registry:upDate>2012-10-15T00:00:00.0Z
+S:            </registry:upDate>
+S:          </registry:zone>
+S:          <registry:zone>
+S:            <registry:name>EXAMPLE2</registry:name>
+S:            <registry:crDate>2012-09-01T00:00:00.0Z
+S:            </registry:crDate>
+S:            <registry:upDate>2012-09-19T00:00:00.0Z
+S:            </registry:upDate>
+S:          </registry:zone>
+S:        </registry:zoneList>
+S:      </registry:infData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+ 
+       <figure>
+            <preamble>Example &lt;info&gt; response to query for the full set 
+            of "EXAMPLE" zone object attributes:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <registry:infData
+S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        <registry:zone>
+S:          <registry:name>EXAMPLE</registry:name>
+S:          ...
+S:        </registry:zone>
+S:      </registry:infData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+
+
+       <figure>
+            <preamble>Example &lt;info&gt; response to query for the registry system attributes:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <registry:infData
+S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        <registry:system>
+S:          <registry:maxConnections>200
+S:          </registry:maxConnections>
+S:          <registry:idleTimeout>600000
+S:          </registry:idleTimeout>
+S:          <registry:absoluteTimeout>86400000
+S:          </registry:absoluteTimeout>
+S:          <registry:commandTimeout>10000
+S:          </registry:commandTimeout>
+S:          <registry:transLimit perMs="1000">10
+S:          </registry:transLimit>
+S:       </registry:system>
+S:      </registry:infData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+
+        
+       <t>An EPP error response MUST be returned if an &lt;info&gt; command 
+       cannot be processed for any reason.</t>   
+      </section>
+      <!-- end INFO command -->
+
+      <section anchor="transferQueryCommand" title="EPP &lt;transfer&gt; Command">
+      
+       <t>Transfer semantics do not directly apply to zone objects, so there 
+       is no mapping defined for the EPP &lt;transfer&gt; query command.</t>
+       
+      </section>
+      <!-- end TRANSFER command -->
+
+      </section>
+      
+      <section anchor="transformCommands" title="EPP Transform Commands">
+      
+        <t>EPP provides five commands to transform objects: &lt;create&gt; to create an instance of an object, 
+        &lt;delete&gt; to delete an instance of an object, &lt;renew&gt; to extend the validity period of an object,
+        &lt;transfer&gt; to manage object sponsorship changes, and &lt;update&gt; to change information associated 
+        with an object.</t>
+        
+      <section anchor="createCommand" title="EPP &lt;create&gt; Command">
+      
+       <t>The EPP &lt;create&gt; command provides a transform operation that 
+       allows a client to create a zone object.  In addition to the standard 
+       EPP command elements, the &lt;create&gt; command MUST contain a 
+       &lt;registry:create&gt; element that identifies the registry namespace.  
+       The &lt;registry:create&gt; element contains the following 
+       child elements:</t>
+
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:zone&gt;:">element that contains the full 
+          set of attributes for the zone to create as defined in 
+          <xref target="zoneObject"/>.</t>
+       </list></t>
+        
+       <figure>
+            <preamble>Example &lt;create&gt; command:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0"
+C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+C:  <command>
+C:    <create>
+C:      <registry:create
+C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        <registry:zone>
+C:          <registry:name>EXAMPLE</registry:name>
+C:          ...
+C:        </registry:zone>
+C:      </registry:create>
+C:    </create>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+
+       <t>When a &lt;create&gt; command has been processed successfully, 
+       the EPP &lt;resData&gt; element MUST contain a child 
+       &lt;registry:creData&gt; element that identifies the registry namespace. 
+       The &lt;registry:creData&gt; element contains the following child 
+       elements:</t>
+
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:name&gt;:">element that contains the fully 
+          qualified name of the zone object.</t>
+          <t hangText="&lt;registry:crDate&gt;:">element that contains the 
+          date and time of zone object creation.</t>
+       </list></t>
+
+       <figure>
+            <preamble>Example &lt;create&gt; response:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <registry:creData
+S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        <registry:name>zone1</registry:name>
+S:        <registry:crDate>2012-10-30T22:00:00.0Z
+S:        </registry:crDate>
+S:      </registry:creData>
+S:    </resData>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+        
+       <t>An EPP error response MUST be returned if a &lt;create&gt; command 
+       can not be processed for any reason.</t>
+        
+        
+      </section>
+      <!-- end CREATE command -->
+
+      <section anchor="deleteCommand" title="EPP &lt;delete&gt; Command">
+      
+       <t>The EPP &lt;delete&gt; command provides a transform operation that 
+       allows a client to delete a zone object.  In addition to the standard 
+       EPP command elements, the &lt;delete&gt; command MUST contain 
+       a &lt;registry:delete&gt; element that identifies the registry namespace.  
+       The &lt;registry:delete&gt; element contains the following child 
+       elements:</t>
+        
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:name&gt;:">element that contains the fully 
+          qualified name of the zone object to be deleted.</t>
+       </list></t>
+
+       <figure>
+            <preamble>Example &lt;delete&gt; command:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <delete>
+C:      <registry:delete
+C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        <registry:name>EXAMPLE</registry:name>
+C:      </registry:delete>
+C:    </delete>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+
+       <t>When a &lt;delete&gt; zone has been processed successfully, 
+       a server MUST respond with an EPP response with no &lt;resData&gt; 
+       element.</t>
+        
+       <figure>
+            <preamble>Example &lt;delete&gt; response:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+        
+       <t>An EPP error response MUST be returned if a &lt;delete&gt; command 
+       can not be processed for any reason.</t>
+        
+      </section>
+      <!-- end DELETE command -->
+
+      <section anchor="renewCommand" title="EPP &lt;renew&gt; Command">
+      
+       <t>Renew semantics do not directly apply to zone objects, so there 
+       is no mapping defined for the EPP &lt;renew&gt; command.</t>
+       
+      </section>
+      <!-- end RENEW command -->
+
+      <section anchor="transferCommand" title="EPP &lt;transfer&gt; Command">
+      
+       <t>Transfer semantics do not directly apply to zone objects, so 
+       there is no mapping defined for the EPP &lt;transfer&gt; command.</t>
+       
+      </section>
+      <!-- end TRANSFER command -->
+
+      <section anchor="updateCommand" title="EPP &lt;update&gt; Command">
+      
+       <t>The EPP &lt;update&gt; command provides a transform operation 
+       that allows a client to modify the attributes of a zone object.  
+       In addition to the standard EPP command elements, the &lt;update&gt; 
+       command MUST contain a &lt;registry:update&gt; element that identifies 
+       the registry namespace. The &lt;registry:update&gt; element contains 
+       the following child elements:</t>
+    
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:zone&gt;:">One or more elements that contain 
+          the full set of attributes for the zones as defined in 
+          <xref target="zoneObject"/>.  The update completely replaces 
+          the prior version of the zone.</t>
+       </list></t>
+    
+       <figure>
+            <preamble>Example &lt;update&gt; command:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <update>
+C:      <registry:update
+C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        <registry:zone>
+C:          <registry:name>EXAMPLE</registry:name>
+C:          ...
+C:        </registry:zone>
+C:      </registry:update>
+C:    </create>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+    
+       <t>When an &lt;update&gt; command has been processed successfully, 
+       a server MUST respond with an EPP response with no &lt;resData&gt; 
+       element.</t>
+
+       <figure>
+            <preamble>Example &lt;update&gt; command:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54321-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+  
+       <t>An EPP error response MUST be returned if an &lt;update&gt; command 
+       can not be processed for any reason.</t>
+  
+      </section>
+      <!-- end UPDATE command -->
+      
+     </section>
+      
+    </section>
+
+    <!-- EPP command mapping -->
+
+    <section anchor="syntax" title="Formal Syntax">
+    
+      <t>One schema is presented here that is the EPP Registry Mapping 
+      Schema.</t>
+      
+      <t>The formal
+      syntax presented here is a complete schema representation of the object
+      mapping suitable for automated validation of EPP XML instances. The
+      BEGIN and END tags are not part of the schema; they are used to note the
+      beginning and ending of the schema for URI registration purposes.</t>
+
+    <section title="Registry Mapping Schema">
+
+      <figure>
+        <artwork><![CDATA[
+BEGIN
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+  xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"
+  xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:ietf:params:xml:ns:registry-0.1"
+  elementFormDefault="qualified"
+>
+  <!--
+    Import common element types.
+  -->
+  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
+  <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
+
+  <annotation>
+    <documentation>
+      Extensible Provisioning Protocol v1.0
+      Registry
+      Mapping Schema.
+    </documentation>
+  </annotation>
+  <!--
+    Child elements found in EPP commands.
+  -->
+  <element
+    name="check"
+    type="registry:mNameType"/>
+  <element
+    name="create"
+    type="registry:createType"/>
+  <element
+    name="delete"
+    type="registry:sNameType"/>
+  <element
+    name="info"
+    type="registry:infoType"/>
+  <element
+    name="update"
+    type="registry:updateType"/>
+  <!--
+    Child elements of the <check> command.
+  -->
+  <complexType name="mNameType">
+    <sequence>
+      <element
+        name="name"
+        type="registry:zoneNameType"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <!--
+    Child elements of the <delete> command.
+  -->
+  <complexType name="sNameType">
+    <sequence>
+      <element
+        name="name"
+        type="registry:zoneNameType"/>
+    </sequence>
+  </complexType>
+  <!--
+    Child elements of the <create> command.
+  -->
+  <complexType name="createType">
+    <sequence>
+      <element
+        name="zone"
+        type="registry:zoneType"/>
+    </sequence>
+  </complexType>
+  <complexType name="updateType">
+    <sequence>
+      <element
+        name="zone"
+        type="registry:zoneType"/>
+    </sequence>
+  </complexType>
+  <!--
+    Child elements of the <info> command.
+  -->
+  <complexType name="infoType">
+    <sequence>
+      <choice>
+        <element name="all">
+          <complexType/>
+        </element>
+        <element
+          name="name"
+          type="registry:zoneNameType"/>
+        <element name="system">
+          <complexType/>
+        </element>
+      </choice>
+    </sequence>
+  </complexType>
+
+  <!--
+    Child response elements.
+  -->
+  <element
+    name="chkData"
+    type="registry:chkDataType"/>
+  <element
+    name="creData"
+    type="registry:creDataType"/>
+  <element
+    name="infData"
+    type="registry:infDataType"/>
+
+  <!--
+    <create> response elements.
+  -->
+  <complexType name="creDataType">
+    <sequence>
+      <element
+        name="name"
+        type="registry:zoneNameType"/>
+      <element
+        name="crDate"
+        type="dateTime"/>
+    </sequence>
+  </complexType>
+  <!--
+    <check> response elements.
+  -->
+  <complexType name="chkDataType">
+    <sequence>
+      <element
+        name="cd"
+        type="registry:checkType"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="checkType">
+    <sequence>
+      <element
+        name="name"
+        type="registry:checkNameType"/>
+      <element
+        name="reason"
+        type="eppcom:reasonType"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="checkNameType">
+    <simpleContent>
+      <extension base="registry:zoneNameType">
+        <attribute
+          name="avail"
+          type="boolean"
+          use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <!--
+    <info> response elements.
+  -->
+  <complexType name="infDataType">
+    <choice>
+      <element
+        name="zoneList"
+        type="registry:zoneListType"/>
+      <element
+        name="zone"
+        type="registry:zoneType"/>
+      <element
+        name="system"
+        type="registry:systemType"/>
+    </choice>
+  </complexType>
+  <complexType name="zoneListType">
+    <sequence>
+      <element
+        name="zone"
+        type="registry:zoneSummaryType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="zoneSummaryType">
+    <sequence>
+      <element
+        name="name"
+        type="registry:zoneNameType"/>
+      <element
+        name="crDate"
+        type="dateTime"/>
+      <element
+        name="upDate"
+        type="dateTime"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="zoneType">
+    <sequence>
+      <element
+        name="name"
+        type="registry:zoneNameType"/>
+      <element
+        name="group"
+        type="token"
+        minOccurs="0"/>
+      <element
+        name="services"
+        type="registry:servicesType"
+        minOccurs="0"/>
+      <element
+        name="crID"
+        type="eppcom:clIDType"
+        minOccurs="0"/>
+      <element
+        name="crDate"
+        type="dateTime"/>
+      <element
+        name="upID"
+        type="eppcom:clIDType"
+        minOccurs="0"/>
+      <element
+        name="upDate"
+        type="dateTime"
+        minOccurs="0"/>
+      <element
+        name="batch"
+        type="registry:batchType"
+        minOccurs="0"/>
+      <element
+        name="system"
+        type="registry:zoneSystemType"
+        minOccurs="0"/>
+      <element
+        name="domain"
+        type="registry:domainType"/>
+      <element
+        name="host"
+        type="registry:hostType"/>
+      <element
+        name="contact"
+        type="registry:contactType"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="fieldsType">
+    <sequence>
+      <element
+        name="field"
+        type="token"
+        maxOccurs="unbounded"/>
+    </sequence>
+    <attribute
+      name="type"
+      use="required"
+    >
+      <simpleType>
+        <restriction base="token">
+          <enumeration value="shared"/>
+          <enumeration value="sync"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+  <complexType name="zoneMemberType">
+    <simpleContent>
+      <extension base="eppcom:labelType">
+        <attribute
+          name="type"
+          use="required"
+        >
+          <simpleType>
+            <restriction base="token">
+              <enumeration value="primary"/>
+              <enumeration value="primaryBasedOnCrDate"/>
+              <enumeration value="alternate"/>
+              <enumeration value="equal"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="servicesType">
+    <sequence>
+      <element
+        name="objURI"
+        type="registry:uriType"
+        maxOccurs="unbounded"/>
+      <element
+        name="svcExtension"
+        type="registry:svcExtensionType"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="svcExtensionType">
+    <sequence>
+      <element
+        name="extURI"
+        type="registry:uriType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="uriType">
+    <simpleContent>
+      <extension base="anyURI">
+        <attribute
+          name="required"
+          type="boolean"
+          use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="reservedNamesType">
+    <choice>
+      <element
+        name="reservedName"
+        type="normalizedString"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="reservedNameURI"
+        type="anyURI"
+        minOccurs="0"/>
+    </choice>
+  </complexType>
+  <complexType name="domainNameType">
+    <sequence>
+      <element
+        name="minLength"
+        type="unsignedShort"
+        minOccurs="0"/>
+      <element
+        name="maxLength"
+        type="unsignedShort"
+        minOccurs="0"/>
+      <element
+        name="alphaNumStart"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="alphaNumEnd"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="aLabelSupported"
+        type="boolean"
+        minOccurs="0"
+        default="true"/>
+      <element
+        name="uLabelSupported"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="regex"
+        type="registry:regexType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="reservedNames"
+        type="registry:reservedNamesType"
+        minOccurs="0"/>
+    </sequence>
+    <attribute
+      name="level"
+      use="required"
+    >
+      <simpleType>
+        <restriction base="unsignedShort">
+          <minInclusive value="2"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+  <complexType name="regexType">
+    <sequence>
+      <element
+        name="expression"
+        type="string"/>
+      <element
+        name="description"
+        minOccurs="0"
+      >
+        <complexType>
+          <simpleContent>
+            <extension base="normalizedString">
+              <attribute
+                name="lang"
+                type="language"
+                default="en"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <simpleType name="zoneFormType">
+    <restriction base="token">
+      <enumeration value="aLabel"/>
+      <enumeration value="uLabel"/>
+    </restriction>
+  </simpleType>
+  <complexType name="zoneNameType">
+    <simpleContent>
+      <extension base="eppcom:labelType">
+        <attribute
+          name="form"
+          type="registry:zoneFormType"
+          default="aLabel"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <simpleType name="variantStrategyType">
+    <restriction base="token">
+      <enumeration value="blocked"/>
+      <enumeration value="restricted"/>
+      <enumeration value="open"/>
+    </restriction>
+  </simpleType>
+  <complexType name="languageType">
+    <sequence>
+      <element
+        name="table"
+        type="anyURI"
+        minOccurs="0"/>
+      <element
+        name="variantStrategy"
+        type="registry:variantStrategyType"
+        minOccurs="0"/>
+    </sequence>
+    <attribute
+      name="code"
+      type="language"
+      use="required"/>
+  </complexType>
+  <complexType name="idnType">
+    <sequence>
+      <element
+        name="idnVersion"
+        type="token"
+        minOccurs="0"/>
+      <element
+        name="idnaVersion"
+        type="token"/>
+      <element
+        name="unicodeVersion"
+        type="token"/>
+      <element
+        name="encoding"
+        type="token"
+        minOccurs="0"
+        default="Punycode"/>
+      <element
+        name="commingleAllowed"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="language"
+        type="registry:languageType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="dContactType">
+    <complexContent>
+      <extension base="registry:minMaxType">
+        <attribute
+          name="type"
+          use="required"
+        >
+          <simpleType>
+            <restriction base="token">
+              <enumeration value="admin"/>
+              <enumeration value="tech"/>
+              <enumeration value="billing"/>
+              <enumeration value="custom"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+        <attribute
+          name="name"
+          type="token"/>
+        <attribute
+          name="description"
+          type="token"/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="minMaxType">
+    <sequence>
+      <element
+        name="min"
+        type="unsignedShort"/>
+      <element
+        name="max"
+        type="unsignedShort"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="minMaxPeriod">
+    <sequence>
+      <element
+        name="min"
+        type="registry:periodType"/>
+      <element
+        name="max"
+        type="registry:periodType"/>
+      <element
+        name="default"
+        type="registry:periodType"/>
+    </sequence>
+  </complexType>
+  <complexType name="dPeriodType">
+    <choice>
+      <element
+        name="length"
+        type="registry:minMaxPeriod"/>
+      <element name="serverDecided">
+        <complexType/>
+      </element>
+    </choice>
+    <attribute
+      name="command"
+      type="token"
+      use="required"/>
+  </complexType>
+  <complexType name="gPeriodType">
+    <simpleContent>
+      <extension base="registry:periodType">
+        <attribute
+          name="command"
+          type="token"
+          use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="periodType">
+    <simpleContent>
+      <extension base="unsignedShort">
+        <attribute
+          name="unit"
+          type="registry:pUnitType"
+          use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <simpleType name="pUnitType">
+    <restriction base="token">
+      <enumeration value="y"/>
+      <enumeration value="m"/>
+      <enumeration value="d"/>
+      <enumeration value="h"/>
+    </restriction>
+  </simpleType>
+  <complexType name="rgpType">
+    <sequence>
+      <element
+        name="redemptionPeriod"
+        type="registry:periodType"/>
+      <element
+        name="pendingRestore"
+        type="registry:periodType"/>
+      <element
+        name="pendingDelete"
+        type="registry:periodType"/>
+    </sequence>
+  </complexType>
+  <complexType name="keyInterfaceType">
+    <sequence>
+      <element
+        name="min"
+        type="unsignedShort"/>
+      <element
+        name="max"
+        type="unsignedShort"/>
+      <element
+        name="alg"
+        type="token"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="dsInterfaceType">
+    <complexContent>
+      <extension base="registry:keyInterfaceType">
+        <sequence>
+          <element
+            name="digestType"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="maxSigLifeType">
+    <sequence>
+      <element
+        name="clientDefined"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="default"
+        type="int"
+        minOccurs="0"/>
+      <element
+        name="min"
+        type="int"
+        minOccurs="0"/>
+      <element
+        name="max"
+        type="int"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="dnssecType">
+    <sequence>
+      <choice>
+        <element
+          name="dsDataInterface"
+          type="registry:dsInterfaceType"/>
+        <element
+          name="keyDataInterface"
+          type="registry:keyInterfaceType"/>
+      </choice>
+      <element
+        name="maxSigLife"
+        type="registry:maxSigLifeType"/>
+      <element
+        name="urgent"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+    </sequence>
+  </complexType>
+  <complexType name="supportedStatusType">
+    <sequence>
+      <element
+        name="status"
+        type="token"
+        minOccurs="1"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="scheduleType">
+    <simpleContent>
+      <extension base="token">
+        <attribute
+          name="tz"
+          type="token"
+          default="UTC"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="batchJobType">
+    <sequence>
+      <element
+        name="name"
+        type="token"/>
+      <element
+        name="description"
+        type="token"
+        minOccurs="0"/>
+      <!-- UNIX crontab job schedule format -->
+      <element
+        name="schedule"
+        type="registry:scheduleType"/>
+    </sequence>
+  </complexType>
+  <!-- Information about the batch jobs -->
+  <complexType name="batchType">
+    <sequence>
+      <element
+        name="batchJob"
+        type="registry:batchJobType"
+        minOccurs="1"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <!--
+    Information the TLDs that makeup the system, which is associated
+    with the "perSystem" sharePolicy.
+  -->
+  <complexType name="zoneSystemType">
+    <sequence>
+      <element
+        name="zone"
+        type="registry:zoneNameType"
+        minOccurs="1"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <simpleType name="expiryPolicyType">
+    <restriction base="token">
+      <enumeration value="autoRenew"/>
+      <enumeration value="autoDelete"/>
+      <enumeration value="autoExpire"/>
+      <enumeration value="autoParked"/>
+    </restriction>
+  </simpleType>
+  <complexType name="domainType">
+    <sequence>
+      <element
+        name="domainName"
+        type="registry:domainNameType"
+        maxOccurs="unbounded"/>
+      <element
+        name="idn"
+        type="registry:idnType"
+        minOccurs="0"/>
+      <element
+        name="premiumSupport"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="contactsSupported"
+        type="boolean"
+        minOccurs="0"
+        default="true"/>
+      <element
+        name="contact"
+        type="registry:dContactType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="ns"
+        type="registry:minMaxType"/>
+      <element
+        name="childHost"
+        type="registry:minMaxType"/>
+      <element
+        name="period"
+        type="registry:dPeriodType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="transferHoldPeriod"
+        type="registry:periodType"/>
+      <element
+        name="gracePeriod"
+        type="registry:gPeriodType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="rgp"
+        type="registry:rgpType"
+        minOccurs="0"/>
+      <element
+        name="dnssec"
+        type="registry:dnssecType"
+        minOccurs="0"/>
+      <element
+        name="maxCheckDomain"
+        type="unsignedShort"/>
+      <element
+        name="supportedStatus"
+        type="registry:supportedStatusType"
+        minOccurs="0"/>
+      <element
+        name="authInfoRegex"
+        type="registry:regexType"
+        minOccurs="0"/>
+      <element
+        name="expiryPolicy"
+        type="registry:expiryPolicyType"
+        minOccurs="0"
+        default="autoRenew"/>
+    </sequence>
+  </complexType>
+  <simpleType name="intHostSharePolicyType">
+    <restriction base="token">
+      <enumeration value="perZone"/>
+      <enumeration value="perSystem"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="extHostSharePolicyType">
+    <restriction base="token">
+      <enumeration value="perRegistrar"/>
+      <enumeration value="perZone"/>
+      <enumeration value="perSystem"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="postalInfoTypeSupportType">
+    <restriction base="token">
+      <enumeration value="loc"/>
+      <enumeration value="int"/>
+      <enumeration value="locOrInt"/>
+      <enumeration value="locAndInt"/>
+    </restriction>
+  </simpleType>
+  <complexType name="intHostPolicyType">
+    <sequence>
+      <element
+        name="minIP"
+        type="unsignedShort"/>
+      <element
+        name="maxIP"
+        type="unsignedShort"/>
+      <element
+        name="sharePolicy"
+        type="registry:intHostSharePolicyType"
+        minOccurs="0"/>
+      <element
+        name="uniqueIpAddressesRequired"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+    </sequence>
+  </complexType>
+  <complexType name="extHostPolicyType">
+    <sequence>
+      <element
+        name="minIP"
+        type="unsignedShort"/>
+      <element
+        name="maxIP"
+        type="unsignedShort"/>
+      <element
+        name="sharePolicy"
+        type="registry:extHostSharePolicyType"
+        minOccurs="0"/>
+      <element
+        name="uniqueIpAddressesRequired"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+    </sequence>
+  </complexType>
+  <complexType name="hostType">
+    <sequence>
+      <element
+        name="internal"
+        type="registry:intHostPolicyType"/>
+      <element
+        name="external"
+        type="registry:extHostPolicyType"/>
+      <element
+        name="nameRegex"
+        type="registry:regexType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="maxCheckHost"
+        type="unsignedShort"/>
+      <element
+        name="supportedStatus"
+        type="registry:supportedStatusType"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="minMaxLength">
+    <sequence>
+      <element
+        name="minLength"
+        type="unsignedShort"/>
+      <element
+        name="maxLength"
+        type="unsignedShort"/>
+    </sequence>
+  </complexType>
+  <simpleType name="contactSharePolicyType">
+    <restriction base="token">
+      <enumeration value="perZone"/>
+      <enumeration value="perSystem"/>
+    </restriction>
+  </simpleType>
+  <complexType name="streetType">
+    <complexContent>
+      <extension base="registry:minMaxLength">
+        <sequence>
+          <element
+            name="minEntry"
+            type="unsignedShort"/>
+          <element
+            name="maxEntry"
+            type="unsignedShort"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="contactAddressType">
+    <sequence>
+      <element
+        name="street"
+        type="registry:streetType"/>
+      <element
+        name="city"
+        type="registry:minMaxLength"/>
+      <element
+        name="sp"
+        type="registry:minMaxLength"/>
+      <element
+        name="pc"
+        type="registry:minMaxLength"/>
+    </sequence>
+  </complexType>
+  <complexType name="postalType">
+    <sequence>
+      <element
+        name="name"
+        type="registry:minMaxLength"/>
+      <element
+        name="org"
+        type="registry:minMaxLength"/>
+      <element
+        name="address"
+        type="registry:contactAddressType"/>
+      <element
+        name="voiceRequired"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="voiceExt"
+        type="registry:minMaxLength"
+        minOccurs="0"/>
+      <element
+        name="faxExt"
+        type="registry:minMaxLength"
+        minOccurs="0"/>
+      <element
+        name="emailRegex"
+        type="registry:regexType"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="contactType">
+    <sequence>
+      <element
+        name="contactIdRegex"
+        type="registry:regexType"
+        minOccurs="0"/>
+      <element
+        name="sharePolicy"
+        type="registry:contactSharePolicyType"
+        minOccurs="0"/>
+      <element
+        name="postalInfoTypeSupport"
+        type="registry:postalInfoTypeSupportType"/>
+      <element
+        name="postalInfo"
+        type="registry:postalType"/>
+      <element
+        name="maxCheckContact"
+        type="unsignedShort"/>
+      <element
+        name="authInfoRegex"
+        type="registry:regexType"
+        minOccurs="0"/>
+      <element
+        name="clientDisclosureSupported"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>
+      <element
+        name="supportedStatus"
+        type="registry:supportedStatusType"
+        minOccurs="0"/>
+      <element
+        name="transferHoldPeriod"
+        type="registry:periodType"
+        minOccurs="0"/>
+      <element
+        name="privacyContactSupported"
+        type="boolean"
+        minOccurs="0"
+        default="true"/>
+      <element
+        name="proxyContactSupported"
+        type="boolean"
+        minOccurs="0"
+        default="true"/>
+    </sequence>
+  </complexType>
+  <complexType name="transLimitType">
+    <simpleContent>
+      <extension base="int">
+        <attribute
+          name="perMs"
+          type="int"
+          use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+  <complexType name="systemType">
+    <sequence>
+      <element
+        name="maxConnections"
+        type="int"
+        minOccurs="0"/>
+      <element
+        name="idleTimeout"
+        type="int"
+        minOccurs="0"/>
+      <element
+        name="absoluteTimeout"
+        type="int"
+        minOccurs="0"/>
+      <element
+        name="commandTimeout"
+        type="int"
+        minOccurs="0"/>
+      <element
+        name="transLimit"
+        type="registry:transLimitType"
+        minOccurs="0"/>
+    </sequence>
+  </complexType>
+</schema>
+END]]></artwork>
+      </figure>
+      </section>
+    </section>
+       
+    <section anchor="IANA" title="IANA Considerations">
+    
+      <section anchor="IANA-XML-Namespace" title="XML Namespace">
+         <t>
+             This document uses URNs to describe XML namespaces and XML schemas
+             conforming to a registry mechanism described in <xref target="RFC3688"/>.
+         </t>
+                  
+         <t>Registration request for the launch namespace:</t>
+         
+         <t><list>
+         <t>URI: urn:ietf:params:xml:ns:registry-1.0</t>
+         
+         <t>Registrant Contact: IESG</t>
+          
+         <t>XML: None. Namespace URIs do not represent an XML specification.</t>
+         </list></t>
+         
+         <t>Registration request for the registry XML schema:</t>
+         
+         <t><list>
+         <t>URI: urn:ietf:params:xml:ns:registry-1.0</t>
+         
+         <t>Registrant Contact: IESG</t>
+          
+         <t>XML: See the "Formal Syntax" section of this document.</t>
+         
+         </list></t>
+         
+       </section>
+       
+       <section anchor="EPP-Extension-Registry" title="EPP Extension Registry">
+       
+        <t>
+   The EPP extension described in this document should be registered by
+   the IANA in the EPP Extension Registry described in <xref target="RFC7451"/>.  The
+   details of the registration are as follows:
+   </t>
+
+   <t>
+   Name of Extension: &quot;Registry Mapping for the Extensible Provisioning Protocol (EPP)&quot;
+   </t>
+   
+   <t>
+   Document status: Standards Track
+   </t>
+   
+   <t>
+   Reference: (insert reference to RFC version of this document)
+   </t>
+
+   <t>
+   Registrant Name and Email Address: IESG, &lt;iesg@ietf.org&gt;
+   </t>
+  
+   <t>
+   TLDs: Any
+   </t>
+ 
+   <t>
+   IPR Disclosure: None
+   </t>
+
+   <t>
+   Status: Active
+   </t>
+
+   <t>
+   Notes: None
+   </t>
+       
+       </section>
+     
+    </section>
+       
+       
+    <section anchor="Implementation" title="Implementation Status">
+      <t>TBD</t>
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+      <t>The mapping extensions described in this document do not provide any
+      security services beyond those described by <xref
+      target="RFC5730">EPP</xref> and protocol layers used by EPP. The security
+      considerations described in these other specifications apply to this
+      specification as well.</t>
+    </section>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+      <t>TBD</t>
+    </section>
+
+  </middle>
+
+  <!--  *****BACK MATTER ***** -->
+
+  <back>
+    <!-- References split into informative and normative -->
+
+    <!-- There are 2 ways to insert reference entries from the citation libraries:
+     1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
+     2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
+        (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+
+     Both are cited textually in the same manner: by using xref elements.
+     If you use the PI option, xml2rfc will, by default, try to find included files in the same
+     directory as the including file. You can also define the XML_LIBRARY environment variable
+     with a value containing a set of directories to search.  These can be either in the local
+     filing system or remote ones accessed by http (http://domain/dir/... ).-->
+
+    <references title="Normative References">
+       
+     &RFC0952;
+     
+     &RFC1123;
+     
+     &RFC2119;
+
+     &RFC3490;
+     
+     &RFC3688;
+     
+     &RFC4034;
+
+     &RFC5730;
+     
+     &RFC5731;
+ 
+     &RFC5732;
+
+     &RFC5733;
+ 
+     &RFC5910;
+     
+     &RFC7451;
+     
+    </references>
+    
+    <section title="Change History">
+    </section>
+    
+  </back>
+
+  <!-- vim: set ts=2 sw=2 expandtab: -->
+</rfc>
