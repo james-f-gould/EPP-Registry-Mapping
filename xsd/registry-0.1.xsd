@@ -689,6 +689,7 @@
       <element
         name="zone"
         type="registry:zoneNameType"
+        minOccurs="1"
         maxOccurs="unbounded"/>
     </sequence>
   </complexType>

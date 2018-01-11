@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:launch-policy=
-  "urn:ietf:params:xml:ns:launch-policy-0.1" 
-  xmlns:epp="urn:ietf:params:xml:ns:epp-1.0" 
-  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0" 
-  xmlns="http://www.w3.org/2001/XMLSchema" 
-  targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1" 
-  elementFormDefault="qualified">
+<schema
+  xmlns:launch-policy="urn:ietf:params:xml:ns:launch-policy-0.1"
+  xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1"
+  elementFormDefault="qualified"
+>
   <!--
-  Import common element types.
+    Import common element types.
   -->
   <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
   <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
-  
+
   <annotation>
     <documentation>
       Extensible Provisioning Protocol v1.0
-      Launch Phase Policy Extension Schema.
-     </documentation>
+      Launch Phase
+      Policy Extension Schema.
+    </documentation>
   </annotation>
   <!--
-  Child elements found in EPP commands.
+    Child elements found in EPP commands.
   -->
-  <element name="create" 
+  <element
+    name="create"
     type="launch-policy:createUpdateType"/>
-  <element name="update" 
+  <element
+    name="update"
     type="launch-policy:createUpdateType"/>
 
   <!--
@@ -31,16 +35,17 @@
   -->
   <complexType name="createUpdateType">
     <sequence>
-      <element name="phase" 
-        type="launch-policy:phaseType" 
-        minOccurs="0" maxOccurs="unbounded"/>
+      <element
+        name="zone"
+        type="launch-policy:zoneType"/>
     </sequence>
   </complexType>
 
   <!--
     Child response elements.
   -->
-  <element name="infData" 
+  <element
+    name="infData"
     type="launch-policy:infDataType"/>
 
   <!--
@@ -48,22 +53,27 @@
   -->
   <complexType name="infDataType">
     <sequence>
-      <element name="phase" 
-        type="launch-policy:phaseType" 
-        minOccurs="0" maxOccurs="unbounded"/>
+      <element
+        name="zone"
+        type="launch-policy:zoneType"/>
     </sequence>
   </complexType>
-  
-  <!--
-    <phase> elements.
-  -->
-  <complexType name="phaseType">
+
+  <complexType name="zoneType">
     <sequence>
-      <element name="startDate" type="dateTime"/>
-      <element name="endDate" type="dateTime" 
-      minOccurs="0"/>
+      <element
+        name="phase"
+        type="launch-policy:phaseType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
     </sequence>
-    <attribute name="type" use="required">
+  </complexType>
+
+  <complexType name="phaseNameType">
+    <attribute
+      name="type"
+      use="required"
+    >
       <simpleType>
         <restriction base="token">
           <enumeration value="pre-delegation"/>
@@ -76,15 +86,180 @@
         </restriction>
       </simpleType>
     </attribute>
-    <attribute name="mode" default="fcfs">
-      <simpleType>
-        <restriction base="token">
-          <enumeration value="fcfs"/>
-          <enumeration value="pending-registration"/>
-          <enumeration value="pending-application"/>
-        </restriction>
-      </simpleType>
-    </attribute>
-    <attribute name="name" use="optional" type="token"/>
-  </complexType>  
+    <attribute
+      name="name"
+      use="optional"
+      type="token"/>
+  </complexType>
+
+  <!--
+    <phase> elements.
+  -->
+  <complexType name="phaseType">
+    <complexContent>
+      <extension base="launch-policy:phaseNameType">
+        <sequence>
+          <element
+            name="startDate"
+            type="dateTime"/>
+          <element
+            name="endDate"
+            type="dateTime"
+            minOccurs="0"/>
+          <element
+            name="validatePhase"
+            type="boolean"
+            minOccurs="0"/>
+          <element
+            name="validatorId"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="status"
+            type="launch-policy:statusType"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="pendingCreate"
+            type="boolean"
+            minOccurs="0"/>
+          <element
+            name="pollPolicy"
+            type="launch-policy:pollPolicyType"
+            minOccurs="0"/>
+          <element
+            name="markValidation"
+            type="launch-policy:markValidationType"
+            minOccurs="0"
+            maxOccurs="4"/>
+          <element
+            name="maxMarks"
+            type="short"
+            minOccurs="0"/>
+          <element
+            name="markSupported"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="signedMarkSupported"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="encodedSignedMarkSupported"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="checkForm"
+            type="launch-policy:checkFormType"
+            minOccurs="0"
+            maxOccurs="4"/>
+          <element
+            name="infoPhase"
+            type="launch-policy:phaseNameType"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="createForm"
+            type="launch-policy:createFormType"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="createValidateType"
+            type="boolean"
+            minOccurs="0"/>
+        </sequence>
+        <attribute
+          name="mode"
+          default="fcfs"
+        >
+          <simpleType>
+            <restriction base="token">
+              <enumeration value="fcfs"/>
+              <enumeration value="pending-registration"/>
+              <enumeration value="pending-application"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <simpleType name="statusValueType">
+    <restriction base="token">
+      <enumeration value="pendingValidation"/>
+      <enumeration value="validated"/>
+      <enumeration value="invalid"/>
+      <enumeration value="pendingAllocation"/>
+      <enumeration value="allocated"/>
+      <enumeration value="rejected"/>
+      <enumeration value="custom"/>
+    </restriction>
+  </simpleType>
+
+  <!-- Status type definition -->
+  <complexType name="statusType">
+    <simpleContent>
+      <extension base="normalizedString">
+        <attribute
+          name="s"
+          type="launch-policy:statusValueType"
+          use="required"/>
+        <attribute
+          name="lang"
+          type="language"
+          default="en"/>
+        <attribute
+          name="name"
+          type="token"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <complexType name="pollPolicyType">
+    <sequence>
+      <element
+        name="intermediateStatus"
+        type="boolean"/>
+      <element
+        name="nonMandatoryInfo"
+        type="boolean"/>
+      <element
+        name="extensionInfo"
+        type="boolean"/>
+    </sequence>
+  </complexType>
+
+
+  <simpleType name="markValidationType">
+    <restriction base="token">
+      <enumeration value="code"/>
+      <enumeration value="mark"/>
+      <enumeration value="codeWithMark"/>
+      <enumeration value="signedMark"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="checkFormType">
+    <restriction base="token">
+      <enumeration value="claims"/>
+      <enumeration value="availability"/>
+      <enumeration value="trademark"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="createFormType">
+    <restriction base="token">
+      <enumeration value="sunrise"/>
+      <enumeration value="claims"/>
+      <enumeration value="general"/>
+      <enumeration value="mixed"/>
+    </restriction>
+  </simpleType>
+
+
+
 </schema>
