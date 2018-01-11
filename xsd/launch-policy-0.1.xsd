@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema
   xmlns:launch-policy="urn:ietf:params:xml:ns:launch-policy-0.1"
-  xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
-  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
   xmlns="http://www.w3.org/2001/XMLSchema"
   targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1"
   elementFormDefault="qualified"
 >
-  <!--
-    Import common element types.
-  -->
-  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
-  <import namespace="urn:ietf:params:xml:ns:epp-1.0"/>
-
   <annotation>
     <documentation>
       Extensible Provisioning Protocol v1.0
@@ -156,7 +148,7 @@
             name="checkForm"
             type="launch-policy:checkFormType"
             minOccurs="0"
-            maxOccurs="4"/>
+            maxOccurs="3"/>
           <element
             name="infoPhase"
             type="launch-policy:phaseNameType"
@@ -166,7 +158,7 @@
             name="createForm"
             type="launch-policy:createFormType"
             minOccurs="0"
-            maxOccurs="unbounded"/>
+            maxOccurs="4"/>
           <element
             name="createValidateType"
             type="boolean"

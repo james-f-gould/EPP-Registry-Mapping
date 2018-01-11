@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+     There has to be one entity for each item to be referenced. 
+     An alternate method (rfc include) is described in the references. -->
+<!ENTITY RFC0952 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0952.xml">
+<!ENTITY RFC1123 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1123.xml">
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC3490 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3490.xml">
+<!ENTITY RFC3688 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml">
+<!ENTITY RFC4034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4034.xml">
+<!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
+<!ENTITY RFC5731 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5731.xml">
+<!ENTITY RFC5732 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5732.xml">
+<!ENTITY RFC5733 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5733.xml">
+<!ENTITY RFC5910 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5910.xml">
+<!ENTITY RFC7451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7451.xml">
+<!ENTITY RFC7848 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7848.xml">
+<!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs), 
+     please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
+     (Here they are set differently than their defaults in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="4"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space 
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="yes"?>
+<!-- keep one blank line between list items -->
+<?rfc comments="yes" ?>
+<!-- show cref output -->
+<?rfc inline="yes" ?>
+<!-- inline cref output -->
+<!-- end of list of popular I-D processing instructions -->
+<rfc category="std" docName="draft-gould-regext-launch-policy-00" ipr="trust200902">
+  <!-- category values: std, bcp, info, exp, and historic
+     ipr values: full3667, noModification3667, noDerivatives3667
+     you can add the attributes updates="NNNN" and obsoletes="NNNN" 
+     they will automatically be output with "(if approved)" -->
+
+  <!-- ***** FRONT MATTER ***** -->
+
+  <front>
+    <title abbrev="launch-policy">Launch Phase Policy Extensions Mapping for the Extensible Provisioning Protocol (EPP)</title>
+
+
+    <author fullname="James Gould" initials="J.G" surname="Gould">
+      <organization>VeriSign, Inc.</organization>
+
+      <address>
+        <postal>
+          <street>12061 Bluemont Way</street>
+
+          <city>Reston</city>
+
+          <region>VA</region>
+
+          <code>20190</code>
+
+          <country>US</country>
+        </postal>
+
+        <email>jgould@verisign.com</email>
+
+        <uri>http://www.verisigninc.com</uri>
+      </address>
+    </author>    
+
+    <date day="11" month="January" year="2018"/>
+
+    <abstract>
+      <t>This document describes an Extensible Provisioning Protocol (EPP)
+      extension of the Registry Mapping to define the server policy of the 
+      Launch Phase EPP extension.  The server policy of the Launch Phase EPP 
+      extension includes the MAYs, SHOULDs, and options implemented by 
+      the server.</t>
+    </abstract>
+        
+  </front>
+
+  <middle>
+    <section title="Introduction">
+      <t>This document describes an extension mapping for version 1.0 of the
+      <xref target="RFC5730">Extensible Provisioning Protocol (EPP)</xref>.
+      This document describes an extension of the Registry Mapping to define the server 
+      policy of the Launch Phase EPP extension for a zone (e.g., top-level domain).  The 
+      extension enables provisioning of the zone policy in the Domain Name Registry.  
+      A Domain Name Registry MAY support a subset of all of the commands defined 
+      in this extension.</t>
+
+      <section title="Conventions Used in This Document">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <xref
+        target="RFC2119">RFC 2119</xref>.</t>
+
+        <t>XML is case sensitive. Unless stated otherwise, XML specifications
+        and examples provided in this document MUST be interpreted in the
+        character case presented in order to develop a conforming
+        implementation.</t>
+        
+        <t>In examples, "C:" represents lines sent by a protocol client and "S:" represents lines returned by a protocol server.  
+        Indentation and white space in examples are provided only to illustrate element relationships 
+        and are not a REQUIRED feature of this protocol.        
+        </t>
+
+        <t>The XML namespace prefix "lp" is used for the namespace "urn:ietf:params:xml:ns:launch-policy-0.1", 
+        but implementations MUST NOT depend on it and instead employ
+        a proper namespace-aware XML parser and serializer to interpret and
+        output the XML documents.</t>
+      </section>
+    </section>
+
+    <section anchor="attrs" title="Object Attributes">
+  
+      <t>An EPP launch phase policy has attributes and associated values 
+      that may be viewed and modified by the sponsoring client or the server.  
+      This section describes each attribute type in detail. The formal 
+      syntax for the attribute values described here can be found 
+      in the "Formal Syntax" section of this document and in the 
+      appropriate normative references.</t>
+  
+      <section anchor="zoneName" title="Zone Name">
+    
+      <section anchor="datesTimes" title="Dates and Times">
+        <t>Date and time attribute values MUST be represented in Universal Coordinated Time  
+        (UTC) using the Gregorian calendar.  The extended date-time form using upper case "T" 
+        and "Z" characters defined in <eref
+         target="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/">XML Schema Part 2</eref> 
+         MUST be used to represent date-time values, as 
+        XML Schema does not support truncated date-time forms or lower case "T" and "Z" characters.</t>
+      </section>
+               
+       <section anchor="zoneObject" title="Zone Object">
+        <t>The Zone object, represented by the &lt;lp:zone&gt; element,  
+        is the object that is extended by this extension.  The Zone object can 
+        apply to any zone level (top level, second level, third level, etc.).  
+        The &lt;lp:zone&gt; element contains zero or more &lt;lp:phase&gt; elements, ordered by 
+        ascending start date.  The &lt;lp:phase&gt; element includes the following attributes:</t>
+        
+        <t><list hangIndent="4" style="hanging">
+          <t hangText="type:">Attribute that defines the phase name / type that include the following 
+          possible values:</t>
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&quot;pre-delegation&quot;">Phase when 
+              pre-delegation testing is done.</t>
+              <t hangText="&quot;pre-launch&quot;">A phase prior to the 
+              sunrise phase where no writable operations will be allowed.</t>
+              <t hangText="&quot;sunrise&quot;">Phase when trademark holders 
+              can submit registration applications with trademark information 
+              that can be validated by the server.</t>
+              <t hangText="&quot;landrush&quot;">Post sunrise phase when 
+              non-trademark holders are allowed to register domain names.</t>
+              <t hangText="&quot;claims&quot;">Trademark claims phase as 
+              defined by Trademark Clearinghouse model of displaying a 
+              claims notice to clients for domain names that match 
+              trademarks.</t>
+              <t hangText="&quot;open&quot;">Post launch phase that is also 
+              referred to as "steady state".  Servers MAY require additional 
+              trademark protection with this phase.</t>
+              <t hangText="&quot;custom&quot;">A custom server launch phase 
+              that is defined using the "name" attribute.</t> 
+             </list></t>
+          <t hangText="name:">OPTIONAL attribute that defines name when the "type" attribute is 
+          set to "custom" or the name of the sub-type of the "type".</t>
+          <t hangText="mode:">OPTIONAL attribute that defines how the phase operates with the following 
+          possible values and with the default value of "fcfs":</t>
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&quot;fcfs&quot;">first-come-first-serve. 
+              In this mode, each domain name is immediately created and there 
+              is no use of an application identifier.</t>
+              <t hangText="&quot;pending-registration&quot;">In this mode, 
+              the domain name is created with the pendingCreate status with 
+              no use of an application identifier.</t>
+              <t hangText="&quot;pending-application&quot;">In this mode, 
+              the domain name, referred to as a domain application, 
+              is created in pendingCreate status with the server returning 
+              an application identifier in the create response for the client 
+              to use in subsequent commands (info, update, delete). 
+              When a domain application is allocated, it will become a 
+              domain without the use of an application identifier.</t>
+             </list></t>
+        </list></t>
+        
+        <t>The &lt;lp:phase&gt; element contains the following child elements:</t>
+        
+        <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;lp:startDate&gt;:">The Start date and time for the phase.</t>
+          <t hangText="&lt;lp:endDate&gt;:">The OPTIONAL end date and time for the phase.</t>
+          <t hangText="&lt;lp:validatePhase&gt;:">An OPTIONAL boolean value that indicates whether the 
+          server validates the phase provided by the client in the phase.</t>
+          <t hangText="&lt;lp:validatorId&gt;:">Zero or more &lt;lp:validatorId&gt; elements that 
+          define the supported Validator Identifier values for the phase.  An example is the reserved Validator Identifier 
+          of "tmch".</t>
+          <t hangText="&lt;lp:status&gt;:">Zero or more &lt;lp:status&gt; elements that defines the 
+          supported launch status values, in precedence order, for the phase.  The &lt;lp:status&gt; element has the 
+          required "s" attribute with one of the possible the status values.  When the "s" attribute is set to "custom", 
+          the "name" attribute is used to define the status value, the &lt;lp:status&gt; element text can describe the 
+          status value, and the OPTIONAL "lang" attribute MAY be present to identify the language of the description if the negotiated value is something 
+          other than the default value of "en" (English).  The possible values of the "s" attribute include:</t>
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&quot;pendingValidation&quot;">The initial state of a newly-created application
+      			or registration object.</t>
+              <t hangText="&quot;validated&quot;">The application or registration meets relevant registry
+      			rules.</t>
+              <t hangText="&quot;invalid&quot;">The application or registration does not validate according
+      			to registry rules.</t>
+              <t hangText="&quot;pendingAllocation&quot;">The allocation of the application or registration
+      			is pending based on the results of some out-of-band process (for
+      			example, an auction).</t>
+              <t hangText="&quot;allocated&quot;">The object corresponding to the application or
+      			registration has been provisioned.</t>
+              <t hangText="&quot;rejected&quot;">The application or registration object was not
+      			provisioned.</t>
+              <t hangText="&quot;custom&quot;">A custom status that is defined using the "name" attribute.</t>
+             </list></t>
+          <t hangText="&lt;lp:pendingCreate&gt;:">An OPTIONAL boolean value that indicates that the server 
+          will place the Launch Application or a Launch Registration in the "pendingCreate" status as specified in 
+          <xref target="RFC5731"/>.</t>
+          <t hangText="&lt;lp:pollPolicy&gt;:">The OPTIONAL element that defines the poll messaging policy for the phase.  
+          The &lt;lp:pollPolicy&gt; element contains the following child elements:</t>             
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&lt;lp:intermediateStatus&gt;:"></t>
+              <t hangText="&lt;lp:nonMandatoryInfo&gt;:"></t>
+              <t hangText="&lt;lp:extensionInfo&gt;:"></t>
+             </list></t>
+          <t hangText="&lt;lp:markValidation&gt;:">Zero to four &lt;lp:markValidation&gt; elements that defines the 
+          supported Mark Validation Models supported by the phase.  The &lt;lp:markValidation&gt; has the following 
+          possible values:</t>
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&quot;code&quot;"></t>
+              <t hangText="&quot;mark&quot;"></t>
+              <t hangText="&quot;codeWithMark&quot;"></t>
+              <t hangText="&quot;signedMark&quot;"></t>
+             </list></t>             
+          <t hangText="&lt;lp:maxMarks&gt;:">An OPTIONAL maximum number number of marks per domain name for the phase.</t>  
+          <t hangText="&lt;lp:markSupported&gt;:">Zero or more &lt;lp:markSupported&gt; elements that defines the 
+          XML namespace of the marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:mark-1.0" for <xref target="RFC7848"/>.</t>  
+          <t hangText="&lt;lp:signedMarkSupported&gt;:">Zero or more &lt;lp:signedMarkSupported&gt; elements that defines the 
+          XML namespace of the signed marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:signedMark-1.0" for <xref target="RFC7848"/>.</t>  
+          <t hangText="&lt;lp:encodedSignedMarkSupported&gt;:">Zero or more &lt;lp:encodedSignedMarkSupported&gt; elements that defines the 
+          XML namespace of the encoded signed marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:signedMark-1.0" for <xref target="RFC7848"/>.</t>  
+          <t hangText="&lt;lp:checkForm&gt;:">Zero to three &lt;lp:checkForm&gt; elements that defines the 
+          supported check forms supported by the phase.  The &lt;lp:checkForm&gt; element has the following 
+          possible values:</t>
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&quot;claims&quot;"></t>
+              <t hangText="&quot;availability&quot;"></t>
+              <t hangText="&quot;trademark&quot;"></t>
+             </list></t>             
+          <t hangText="&lt;lp:infoPhase&gt;:">Zero or more &lt;lp:infoPhase&gt; elements that defines the 
+          possible &lt;launch:phase&gt; values that can be passed by the client in the phase.</t>  
+          <t hangText="&lt;lp:createForm&gt;:">Zero to three &lt;lp:createForm&gt; elements that defines the 
+          supported create forms supported by the phase.  The &lt;lp:createForm&gt; element has the following 
+          possible values:</t>
+            <t><list hangIndent="4" style="hanging">
+              <t hangText="&quot;sunrise&quot;"></t>
+              <t hangText="&quot;claims&quot;"></t>
+              <t hangText="&quot;general&quot;"></t>
+              <t hangText="&quot;mixed&quot;"></t>
+             </list></t>             
+          <t hangText="&lt;lp:createValidateType&gt;:">An OPTIONAL boolean value that indicates whether the 
+          server validates the OPTIONAL &lt;launch:create&gt; "type" attribute.</t>
+          
+        </list></t>
+ 
+       <figure>
+            <preamble>Example of a &lt;lp:zone&gt; element:</preamble>
+
+            <artwork><![CDATA[
+<lp:zone>
+  <lp:phase
+    type="sunrise"
+    mode="pending-application"
+  >
+    <lp:startDate>2017-11-01T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2017-12-01T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:status s="pendingAllocation"/>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pollPolicy>
+      <lp:intermediateStatus>false</lp:intermediateStatus>
+      <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+      <lp:extensionInfo>false</lp:extensionInfo>
+    </lp:pollPolicy>
+    <lp:markValidation>signedMark</lp:markValidation>
+    <lp:maxMarks>1</lp:maxMarks>
+    <lp:signedMarkSupported>
+      urn:ietf:params:xml:ns:signedMark-1.0
+    </lp:signedMarkSupported>
+    <lp:encodedSignedMarkSupported>
+      urn:ietf:params:xml:ns:signedMark-1.0
+    </lp:encodedSignedMarkSupported>
+    <lp:infoPhase type="sunrise"/>
+    <lp:createForm>sunrise</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="claims"
+    name="lrp1"
+    mode="pending-registration"
+  >
+    <lp:startDate>2017-12-01T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2017-12-08T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:status s="pendingValidation"/>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pendingCreate>true</lp:pendingCreate>
+    <lp:checkForm>claims</lp:checkForm>
+    <lp:checkForm>availability</lp:checkForm>
+    <lp:checkForm>trademark</lp:checkForm>
+    <lp:infoPhase type="sunrise"/>
+    <lp:infoPhase
+      type="claims"
+      name="lrp1"/>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="claims"
+    name="landrush"
+    mode="pending-application"
+  >
+    <lp:startDate>2017-12-08T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2017-12-15T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:status s="pendingAllocation"/>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pendingCreate>true</lp:pendingCreate>
+    <lp:pollPolicy>
+      <lp:intermediateStatus>false</lp:intermediateStatus>
+      <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+      <lp:extensionInfo>false</lp:extensionInfo>
+    </lp:pollPolicy>
+    <lp:checkForm>claims</lp:checkForm>
+    <lp:checkForm>availability</lp:checkForm>
+    <lp:checkForm>trademark</lp:checkForm>
+    <lp:infoPhase
+      type="claims"
+      name="lrp1"/>
+    <lp:infoPhase
+      type="claims"
+      name="landrush"/>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="claims"
+    name="open"
+    mode="fcfs"
+  >
+    <lp:startDate>2017-12-15T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2018-02-15T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:checkForm>claims</lp:checkForm>
+    <lp:checkForm>availability</lp:checkForm>
+    <lp:checkForm>trademark</lp:checkForm>
+    <lp:infoPhase
+      type="claims"
+      name="landrush"/>
+    <lp:infoPhase
+      type="claims"
+      name="open"/>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createForm>general</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="custom"
+    name="lrp2"
+    mode="pending-registration"
+  >
+    <lp:startDate>2018-02-15T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2018-03-15T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>lrp2-custom
+    </lp:validatorId>
+    <lp:status
+      s="custom"
+      name="pendingInternalValidation"
+    >
+      Internally validate registration
+    </lp:status>
+    <lp:status
+      s="custom"
+      name="pendingExternalValidation"
+    >
+      Externally validate registration
+    </lp:status>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pendingCreate>true</lp:pendingCreate>
+    <lp:pollPolicy>
+      <lp:intermediateStatus>true</lp:intermediateStatus>
+      <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+      <lp:extensionInfo>false</lp:extensionInfo>
+    </lp:pollPolicy>
+    <lp:markValidation>signedMark</lp:markValidation>
+    <lp:maxMarks>1</lp:maxMarks>
+    <lp:signedMarkSupported>
+      http://www.example.com/epp/lrp2-custom-1.0
+    </lp:signedMarkSupported>
+    <lp:encodedSignedMarkSupported>
+      http://www.example.com/epp/lrp2-custom-1.0
+    </lp:encodedSignedMarkSupported>
+    <lp:infoPhase
+      type="claims"
+      name="open"/>
+    <lp:infoPhase
+      type="custom"
+      name="lrp2"/>
+    <lp:createForm>sunrise</lp:createForm>
+    <lp:createForm>general</lp:createForm>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createForm>mixed</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <!-- Use default mode="fcfs" -->
+  <lp:phase type="open">
+    <lp:startDate>2018-03-15T00:00:00.0Z
+    </lp:startDate>
+    <lp:validatePhase>false</lp:validatePhase>
+  </lp:phase>
+</lp:zone>]]></artwork>
+       </figure>
+ 
+      </section>
+    
+    
+    </section>
+
+    <section anchor="commands" title="EPP Command Mapping">
+      <t>A detailed description of the EPP syntax and semantics can be found
+      in the EPP core protocol specification <xref target="RFC5730"/>. The 
+      command mappings described here are specifically for use in provisioning 
+      and managing launch phase policy via EPP.</t>
+
+      <section anchor="queryCommands" title="EPP Query Commands">
+      
+        <t><xref target="RFC5730">EPP</xref> provides three commands to retrieve object information: &lt;check&gt; to determine 
+        if an object is known to the server, &lt;info&gt; to retrieve detailed information associated 
+        with an object, and &lt;transfer&gt; to retrieve object transfer status information.</t>
+        
+      <section anchor="checkCommand" title="EPP &lt;check&gt; Command">
+       <t>This extension does not define any extension of the EPP &lt;check&gt; command or response described in 
+       the EPP registry mapping.</t> 
+      </section>
+
+      <!-- end CHECK command -->
+
+      <section anchor="infoCommand" title="EPP &lt;info&gt; Command">
+      
+       <t>This extension does not add any elements to the EPP &lt;info&gt; command 
+       described in the EPP registry mapping.  However, additional elements are 
+       defined for the &lt;info&gt; response to a query by the fully qualified name 
+       of the zone object.</t>
+                
+       <t>When an &lt;info&gt; command has been processed successfully, 
+       the EPP &lt;resData&gt; element MUST contain a child elements 
+       as described in the EPP registry mapping.  In addition, the EPP &lt;extension&gt; 
+       element SHOULD contain a child &lt;lp:infData&gt; element that identifies 
+       the extension namespace if the zone object has data associated 
+       with this extension and based on server policy.  The &lt;lp:infData&gt; 
+       element contains the following child elements:</t>
+       
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;registry:zoneList&gt;:">Element that contains the 
+          list of supported zones by the server with a set of summary 
+          attributes per zone.  The &lt;registry:zoneList&gt; element contains 
+          the following child elements:</t>
+          
+          <t><list hangIndent="4" style="hanging">
+			  <t hangText="or a &lt;lp:zone&gt;:">Element that contains the 
+			  full set of launch phase policy attributes for the zone name 
+			  as defined in <xref target="zoneObject"/>.</t>
+          </list></t>       
+        
+       <figure>
+            <preamble>Example &lt;info&gt; response to query for the full set 
+            of "EXAMPLE" zone object attributes including the launch phase policy 
+            attributes:</preamble>
+
+            <artwork><![CDATA[
+S:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+S:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+S:  <response>
+S:    <result code="1000">
+S:      <msg>Command completed successfully</msg>
+S:    </result>
+S:    <resData>
+S:      <registry:infData
+S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:      ...
+S:      </registry:infData>
+S:    </resData>
+S:    <extension>
+S:      <lp:infData 
+S:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1">
+S:        ...
+S:      </lp:infData>
+S:    </extension>
+S:    <trID>
+S:      <clTRID>ABC-12345</clTRID>
+S:      <svTRID>54322-XYZ</svTRID>
+S:    </trID>
+S:  </response>
+S:</epp>]]></artwork>
+       </figure>
+      </section>
+      <!-- end INFO command -->
+
+      <section anchor="transferQueryCommand" title="EPP &lt;transfer&gt; Command">
+      
+       <t>Transfer semantics do not directly apply to zone objects, so there 
+       is no extension defined for the EPP &lt;transfer&gt; query command.</t>
+       
+      </section>
+      <!-- end TRANSFER command -->
+
+      </section>
+      
+      <section anchor="transformCommands" title="EPP Transform Commands">
+      
+        <t>EPP provides five commands to transform objects: &lt;create&gt; to create an instance of an object, 
+        &lt;delete&gt; to delete an instance of an object, &lt;renew&gt; to extend the validity period of an object,
+        &lt;transfer&gt; to manage object sponsorship changes, and &lt;update&gt; to change information associated 
+        with an object.</t>
+        
+      <section anchor="createCommand" title="EPP &lt;create&gt; Command">
+      
+       <t>This extension defines additional elements for the EPP &lt;create&gt;
+          command described in the EPP registry mapping.  No additional
+          elements are defined for the EPP &lt;create&gt; response.</t>
+      
+       <t>The EPP &lt;create&gt; command provides a transform operation that 
+       allows a client to create a zone object.  In addition to the standard 
+       EPP command elements described in the EPP registry mapping, the command 
+       MUST contain an &lt;extension&gt; element, and the &lt;extension&gt; element 
+       MUST contain a &lt;lp:create&gt; element that identifies the extension namespace 
+       if the client wants to associate data in this extension to the zone object.  
+       The &lt;lp:create&gt; element contains the following 
+       child elements:</t>
+
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;lp:zone&gt;:">Element that contains the full 
+          set of launch phase policy attributes for the zone to create as defined in 
+          <xref target="zoneObject"/>.</t>
+       </list></t>
+        
+       <figure>
+            <preamble>Example &lt;create&gt; command:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0"
+C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+C:  <command>
+C:    <create>
+C:      <registry:create
+C:        xmlns:registry="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        <registry:zone>
+C:          <registry:name>EXAMPLE</registry:name>
+C:          ...
+C:        </registry:zone>
+C:      </registry:create>
+C:    </create>
+C:    <extension>
+C:      <lp:create 
+C:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        ...
+C:      </lp:create>
+C:    </extension>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+
+       <t>When a &lt;create&gt; command has been processed successfully, 
+       the EPP response is as described in the EPP registry mapping.</t>
+                
+      </section>
+      <!-- end CREATE command -->
+
+      <section anchor="deleteCommand" title="EPP &lt;delete&gt; Command">
+  
+       <t>This extension does not add any elements to the EPP &lt;delete&gt; 
+       command or &lt;delete&gt; response described in the EPP registry mapping.</t>
+              
+      </section>
+      <!-- end DELETE command -->
+
+      <section anchor="renewCommand" title="EPP &lt;renew&gt; Command">
+      
+       <t>Renew semantics do not directly apply to zone objects, so there 
+       is no extension defined for the EPP &lt;renew&gt; command.</t>
+       
+      </section>
+      <!-- end RENEW command -->
+
+      <section anchor="transferCommand" title="EPP &lt;transfer&gt; Command">
+      
+       <t>Transfer semantics do not directly apply to zone objects, so 
+       there is no extension defined for the EPP &lt;transfer&gt; command.</t>
+       
+      </section>
+      <!-- end TRANSFER command -->
+
+      <section anchor="updateCommand" title="EPP &lt;update&gt; Command">
+      
+       <t>This extension defines additional elements for the EPP &lt;update&gt;
+          command described in the EPP registry mapping.  No additional
+          elements are defined for the EPP &lt;update&gt; response.</t>
+          
+       <t>The EPP &lt;update&gt; command provides a transform operation that 
+       allows a client to modify the attributes of a zone object.  
+       In addition to the standard 
+       EPP command elements described in the EPP registry mapping, the command 
+       MUST contain an &lt;extension&gt; element, and the &lt;extension&gt; element 
+       MUST contain a &lt;lp:update&gt; element that identifies the extension namespace 
+       if the client wants to associate data in this extension to the zone object.  
+       The &lt;lp:update&gt; element contains the following 
+       child elements:</t>
+              
+      <t><list hangIndent="4" style="hanging">
+          <t hangText="&lt;lp:zone&gt;:">One or more elements that contain 
+          the full set of attributes for the zones launch phase policy as defined in 
+          <xref target="zoneObject"/>.  The update completely replaces 
+          the prior version of the zone launch phase policy.</t>
+       </list></t>
+    
+       <figure>
+            <preamble>Example &lt;update&gt; command:</preamble>
+
+            <artwork><![CDATA[
+C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+C:  <command>
+C:    <update>
+C:      <registry:update
+C:        xmlns:registry="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        <registry:zone>
+C:          <registry:name>EXAMPLE</registry:name>
+C:          ...
+C:        </registry:zone>
+C:      </registry:update>
+C:    </update>
+C:    <extension>
+C:      <lp:create 
+C:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        ...
+C:      </lp:create>
+C:    </extension>
+C:    <clTRID>ABC-12345</clTRID>
+C:  </command>
+C:</epp>]]></artwork>
+       </figure>
+      
+       <t>When an extended &lt;update&gt; command has been processed successfully,
+         the EPP response is as described in the EPP registry mapping.</t>
+  
+      </section>
+      <!-- end UPDATE command -->
+      
+     </section>
+      
+    </section>
+
+    <!-- EPP command mapping -->
+
+    <section anchor="syntax" title="Formal Syntax">
+    
+      <t>One schema is presented here that is the EPP Launch Phase Policy 
+      Schema.</t>
+      
+      <t>The formal
+      syntax presented here is a complete schema representation of the object
+      mapping suitable for automated validation of EPP XML instances. The
+      BEGIN and END tags are not part of the schema; they are used to note the
+      beginning and ending of the schema for URI registration purposes.</t>
+
+    <section title="Registry Mapping Schema">
+
+      <figure>
+        <artwork><![CDATA[
+BEGIN
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+  xmlns:launch-policy="urn:ietf:params:xml:ns:launch-policy-0.1"
+  xmlns="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1"
+  elementFormDefault="qualified"
+>
+  <annotation>
+    <documentation>
+      Extensible Provisioning Protocol v1.0
+      Launch Phase
+      Policy Extension Schema.
+    </documentation>
+  </annotation>
+  <!--
+    Child elements found in EPP commands.
+  -->
+  <element
+    name="create"
+    type="launch-policy:createUpdateType"/>
+  <element
+    name="update"
+    type="launch-policy:createUpdateType"/>
+
+  <!--
+    Child elements of the <create> and <update> command.
+  -->
+  <complexType name="createUpdateType">
+    <sequence>
+      <element
+        name="zone"
+        type="launch-policy:zoneType"/>
+    </sequence>
+  </complexType>
+
+  <!--
+    Child response elements.
+  -->
+  <element
+    name="infData"
+    type="launch-policy:infDataType"/>
+
+  <!--
+    <info> response elements.
+  -->
+  <complexType name="infDataType">
+    <sequence>
+      <element
+        name="zone"
+        type="launch-policy:zoneType"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="zoneType">
+    <sequence>
+      <element
+        name="phase"
+        type="launch-policy:phaseType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="phaseNameType">
+    <attribute
+      name="type"
+      use="required"
+    >
+      <simpleType>
+        <restriction base="token">
+          <enumeration value="pre-delegation"/>
+          <enumeration value="pre-launch"/>
+          <enumeration value="sunrise"/>
+          <enumeration value="landrush"/>
+          <enumeration value="claims"/>
+          <enumeration value="open"/>
+          <enumeration value="custom"/>
+        </restriction>
+      </simpleType>
+    </attribute>
+    <attribute
+      name="name"
+      use="optional"
+      type="token"/>
+  </complexType>
+
+  <!--
+    <phase> elements.
+  -->
+  <complexType name="phaseType">
+    <complexContent>
+      <extension base="launch-policy:phaseNameType">
+        <sequence>
+          <element
+            name="startDate"
+            type="dateTime"/>
+          <element
+            name="endDate"
+            type="dateTime"
+            minOccurs="0"/>
+          <element
+            name="validatePhase"
+            type="boolean"
+            minOccurs="0"/>
+          <element
+            name="validatorId"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="status"
+            type="launch-policy:statusType"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="pendingCreate"
+            type="boolean"
+            minOccurs="0"/>
+          <element
+            name="pollPolicy"
+            type="launch-policy:pollPolicyType"
+            minOccurs="0"/>
+          <element
+            name="markValidation"
+            type="launch-policy:markValidationType"
+            minOccurs="0"
+            maxOccurs="4"/>
+          <element
+            name="maxMarks"
+            type="short"
+            minOccurs="0"/>
+          <element
+            name="markSupported"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="signedMarkSupported"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="encodedSignedMarkSupported"
+            type="token"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="checkForm"
+            type="launch-policy:checkFormType"
+            minOccurs="0"
+            maxOccurs="4"/>
+          <element
+            name="infoPhase"
+            type="launch-policy:phaseNameType"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="createForm"
+            type="launch-policy:createFormType"
+            minOccurs="0"
+            maxOccurs="unbounded"/>
+          <element
+            name="createValidateType"
+            type="boolean"
+            minOccurs="0"/>
+        </sequence>
+        <attribute
+          name="mode"
+          default="fcfs"
+        >
+          <simpleType>
+            <restriction base="token">
+              <enumeration value="fcfs"/>
+              <enumeration value="pending-registration"/>
+              <enumeration value="pending-application"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <simpleType name="statusValueType">
+    <restriction base="token">
+      <enumeration value="pendingValidation"/>
+      <enumeration value="validated"/>
+      <enumeration value="invalid"/>
+      <enumeration value="pendingAllocation"/>
+      <enumeration value="allocated"/>
+      <enumeration value="rejected"/>
+      <enumeration value="custom"/>
+    </restriction>
+  </simpleType>
+
+  <!-- Status type definition -->
+  <complexType name="statusType">
+    <simpleContent>
+      <extension base="normalizedString">
+        <attribute
+          name="s"
+          type="launch-policy:statusValueType"
+          use="required"/>
+        <attribute
+          name="lang"
+          type="language"
+          default="en"/>
+        <attribute
+          name="name"
+          type="token"/>
+      </extension>
+    </simpleContent>
+  </complexType>
+
+  <complexType name="pollPolicyType">
+    <sequence>
+      <element
+        name="intermediateStatus"
+        type="boolean"/>
+      <element
+        name="nonMandatoryInfo"
+        type="boolean"/>
+      <element
+        name="extensionInfo"
+        type="boolean"/>
+    </sequence>
+  </complexType>
+
+
+  <simpleType name="markValidationType">
+    <restriction base="token">
+      <enumeration value="code"/>
+      <enumeration value="mark"/>
+      <enumeration value="codeWithMark"/>
+      <enumeration value="signedMark"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="checkFormType">
+    <restriction base="token">
+      <enumeration value="claims"/>
+      <enumeration value="availability"/>
+      <enumeration value="trademark"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="createFormType">
+    <restriction base="token">
+      <enumeration value="sunrise"/>
+      <enumeration value="claims"/>
+      <enumeration value="general"/>
+      <enumeration value="mixed"/>
+    </restriction>
+  </simpleType>
+  
+</schema>
+END]]></artwork>
+      </figure>
+      </section>
+    </section>
+       
+    <section anchor="IANA" title="IANA Considerations">
+    
+      <section anchor="IANA-XML-Namespace" title="XML Namespace">
+         <t>
+             This document uses URNs to describe XML namespaces and XML schemas
+             conforming to a registry mechanism described in <xref target="RFC3688"/>.
+         </t>
+                  
+         <t>Registration request for the launch phase policy namespace:</t>
+         
+         <t><list>
+         <t>URI: urn:ietf:params:xml:ns:launch-policy-0.1</t>
+         
+         <t>Registrant Contact: IESG</t>
+          
+         <t>XML: None. Namespace URIs do not represent an XML specification.</t>
+         </list></t>
+         
+         <t>Registration request for the launch phase policy XML schema:</t>
+         
+         <t><list>
+         <t>URI: urn:ietf:params:xml:ns:launch-policy-0.1</t>
+         
+         <t>Registrant Contact: IESG</t>
+          
+         <t>XML: See the "Formal Syntax" section of this document.</t>
+         
+         </list></t>
+         
+       </section>
+       
+       <section anchor="EPP-Extension-Registry" title="EPP Extension Registry">
+       
+        <t>
+   The EPP extension described in this document should be registered by
+   the IANA in the EPP Extension Registry described in <xref target="RFC7451"/>.  The
+   details of the registration are as follows:
+   </t>
+
+   <t>
+   Name of Extension: &quot;Launch Phase Policy Extensions Mapping for the Extensible Provisioning Protocol (EPP)&quot;
+   </t>
+   
+   <t>
+   Document status: Standards Track
+   </t>
+   
+   <t>
+   Reference: (insert reference to RFC version of this document)
+   </t>
+
+   <t>
+   Registrant Name and Email Address: IESG, &lt;iesg@ietf.org&gt;
+   </t>
+  
+   <t>
+   TLDs: Any
+   </t>
+ 
+   <t>
+   IPR Disclosure: None
+   </t>
+
+   <t>
+   Status: Active
+   </t>
+
+   <t>
+   Notes: None
+   </t>
+       
+       </section>
+     
+    </section>
+       
+       
+    <section anchor="Implementation" title="Implementation Status">
+      <t>TBD</t>
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+      <t>The mapping extensions described in this document do not provide any
+      security services beyond those described by <xref
+      target="RFC5730">EPP</xref> and protocol layers used by EPP. The security
+      considerations described in these other specifications apply to this
+      specification as well.</t>
+    </section>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+      <t>TBD</t>
+    </section>
+
+  </middle>
+
+  <!--  *****BACK MATTER ***** -->
+
+  <back>
+    <!-- References split into informative and normative -->
+
+    <!-- There are 2 ways to insert reference entries from the citation libraries:
+     1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
+     2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
+        (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+
+     Both are cited textually in the same manner: by using xref elements.
+     If you use the PI option, xml2rfc will, by default, try to find included files in the same
+     directory as the including file. You can also define the XML_LIBRARY environment variable
+     with a value containing a set of directories to search.  These can be either in the local
+     filing system or remote ones accessed by http (http://domain/dir/... ).-->
+
+    <references title="Normative References">
+       
+     &RFC0952;
+     
+     &RFC1123;
+     
+     &RFC2119;
+
+     &RFC3490;
+     
+     &RFC3688;
+     
+     &RFC4034;
+
+     &RFC5730;
+     
+     &RFC5731;
+ 
+     &RFC5732;
+
+     &RFC5733;
+ 
+     &RFC5910;
+     
+     &RFC7451;
+
+     &RFC7848;
+     
+    </references>
+    
+    <section title="Change History">
+    </section>
+    
+  </back>
+
+  <!-- vim: set ts=2 sw=2 expandtab: -->
+</rfc>

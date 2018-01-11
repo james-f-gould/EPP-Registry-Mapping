@@ -1746,7 +1746,7 @@ Internet-Draft                  registry                    January 2018
    <registry:create> element that identifies the registry namespace.
    The <registry:create> element contains the following child elements:
 
-   <registry:zone>:  element that contains the full set of attributes
+   <registry:zone>:  Element that contains the full set of attributes
        for the zone to create as defined in Section 2.4.
 
    Example <create> command:
@@ -1931,7 +1931,7 @@ Internet-Draft                  registry                    January 2018
    C:          ...
    C:        </registry:zone>
    C:      </registry:update>
-   C:    </create>
+   C:    </update>
    C:    <clTRID>ABC-12345</clTRID>
    C:  </command>
    C:</epp>
@@ -3168,15 +3168,15 @@ Internet-Draft                  registry                    January 2018
    This document uses URNs to describe XML namespaces and XML schemas
    conforming to a registry mechanism described in [RFC3688].
 
-   Registration request for the launch namespace:
+   Registration request for the registry namespace:
 
-      URI: urn:ietf:params:xml:ns:registry-1.0
+      URI: urn:ietf:params:xml:ns:registry-0.1
       Registrant Contact: IESG
       XML: None.  Namespace URIs do not represent an XML specification.
 
    Registration request for the registry XML schema:
 
-      URI: urn:ietf:params:xml:ns:registry-1.0
+      URI: urn:ietf:params:xml:ns:registry-0.1
       Registrant Contact: IESG
       XML: See the "Formal Syntax" section of this document.
 

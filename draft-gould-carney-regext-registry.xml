@@ -1623,7 +1623,7 @@ S:</epp>]]></artwork>
        child elements:</t>
 
       <t><list hangIndent="4" style="hanging">
-          <t hangText="&lt;registry:zone&gt;:">element that contains the full 
+          <t hangText="&lt;registry:zone&gt;:">Element that contains the full 
           set of attributes for the zone to create as defined in 
           <xref target="zoneObject"/>.</t>
        </list></t>
@@ -1803,7 +1803,7 @@ C:          <registry:name>EXAMPLE</registry:name>
 C:          ...
 C:        </registry:zone>
 C:      </registry:update>
-C:    </create>
+C:    </update>
 C:    <clTRID>ABC-12345</clTRID>
 C:  </command>
 C:</epp>]]></artwork>
@@ -2885,10 +2885,10 @@ END]]></artwork>
              conforming to a registry mechanism described in <xref target="RFC3688"/>.
          </t>
                   
-         <t>Registration request for the launch namespace:</t>
+         <t>Registration request for the registry namespace:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:ns:registry-1.0</t>
+         <t>URI: urn:ietf:params:xml:ns:registry-0.1</t>
          
          <t>Registrant Contact: IESG</t>
           
@@ -2898,7 +2898,7 @@ END]]></artwork>
          <t>Registration request for the registry XML schema:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:ns:registry-1.0</t>
+         <t>URI: urn:ietf:params:xml:ns:registry-0.1</t>
          
          <t>Registrant Contact: IESG</t>
           
