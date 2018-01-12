@@ -74,7 +74,7 @@
       </address>
     </author>    
 
-    <date day="11" month="January" year="2018"/>
+    <date day="12" month="January" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -93,7 +93,7 @@
       This document describes an extension of the Registry Mapping to define the server 
       policy of the Launch Phase EPP extension for a zone (e.g., top-level domain).  The 
       extension enables provisioning of the zone policy in the Domain Name Registry.  
-      A Domain Name Registry MAY support a subset of all of the commands defined 
+      A Domain Name Registry MAY support a subset of all of the commands extended 
       in this extension.</t>
 
       <section title="Conventions Used in This Document">
@@ -138,8 +138,8 @@
       </section>
                
        <section anchor="zoneObject" title="Zone Object">
-        <t>The Zone object, represented by the &lt;lp:zone&gt; element,  
-        is the object that is extended by this extension.  The Zone object can 
+        <t>The Zone object, represented by the &lt;registry:zone&gt; element in the Registry Mapping,  
+        is the object that is extended by this extension with the &lt;lp:zone&gt; element.  The Zone object can 
         apply to any zone level (top level, second level, third level, etc.).  
         The &lt;lp:zone&gt; element contains zero or more &lt;lp:phase&gt; elements, ordered by 
         ascending start date.  The &lt;lp:phase&gt; element includes the following attributes:</t>
@@ -150,7 +150,7 @@
             <t><list hangIndent="4" style="hanging">
               <t hangText="&quot;pre-delegation&quot;">Phase when 
               pre-delegation testing is done.</t>
-              <t hangText="&quot;pre-launch&quot;">A phase prior to the 
+              <t hangText="&quot;pre-launch&quot;">Phase prior to the 
               sunrise phase where no writable operations will be allowed.</t>
               <t hangText="&quot;sunrise&quot;">Phase when trademark holders 
               can submit registration applications with trademark information 
@@ -164,23 +164,23 @@
               <t hangText="&quot;open&quot;">Post launch phase that is also 
               referred to as "steady state".  Servers MAY require additional 
               trademark protection with this phase.</t>
-              <t hangText="&quot;custom&quot;">A custom server launch phase 
+              <t hangText="&quot;custom&quot;">Custom server launch phase 
               that is defined using the "name" attribute.</t> 
              </list></t>
-          <t hangText="name:">OPTIONAL attribute that defines name when the "type" attribute is 
-          set to "custom" or the name of the sub-type of the "type".</t>
+          <t hangText="name:">OPTIONAL attribute that defines the phase name when the "type" attribute is 
+          set to "custom" or the sub-phase name when the "type" attribute is set to a non-"custom" value.</t>
           <t hangText="mode:">OPTIONAL attribute that defines how the phase operates with the following 
           possible values and with the default value of "fcfs":</t>
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;fcfs&quot;">first-come-first-serve. 
+              <t hangText="&quot;fcfs&quot;">First-come-first-serve. 
               In this mode, each domain name is immediately created and there 
               is no use of an application identifier.</t>
               <t hangText="&quot;pending-registration&quot;">In this mode, 
-              the domain name is created with the pendingCreate status with 
+              the domain name is created with the "pendingCreate" status with 
               no use of an application identifier.</t>
               <t hangText="&quot;pending-application&quot;">In this mode, 
               the domain name, referred to as a domain application, 
-              is created in pendingCreate status with the server returning 
+              is created in the "pendingCreate" status with the server returning 
               an application identifier in the create response for the client 
               to use in subsequent commands (info, update, delete). 
               When a domain application is allocated, it will become a 
@@ -194,15 +194,15 @@
           <t hangText="&lt;lp:startDate&gt;:">The Start date and time for the phase.</t>
           <t hangText="&lt;lp:endDate&gt;:">The OPTIONAL end date and time for the phase.</t>
           <t hangText="&lt;lp:validatePhase&gt;:">An OPTIONAL boolean value that indicates whether the 
-          server validates the phase provided by the client in the phase.</t>
+          server validates the phase provided by the client in the &lt;launch:phase&gt; element.</t>
           <t hangText="&lt;lp:validatorId&gt;:">Zero or more &lt;lp:validatorId&gt; elements that 
           define the supported Validator Identifier values for the phase.  An example is the reserved Validator Identifier 
           of "tmch".</t>
           <t hangText="&lt;lp:status&gt;:">Zero or more &lt;lp:status&gt; elements that defines the 
           supported launch status values, in precedence order, for the phase.  The &lt;lp:status&gt; element has the 
           required "s" attribute with one of the possible the status values.  When the "s" attribute is set to "custom", 
-          the "name" attribute is used to define the status value, the &lt;lp:status&gt; element text can describe the 
-          status value, and the OPTIONAL "lang" attribute MAY be present to identify the language of the description if the negotiated value is something 
+          the "name" attribute is used to define the status value, the &lt;lp:status&gt; element text MAY provide the 
+          status value description, and the OPTIONAL "lang" attribute MAY be present to identify the language of the description if the negotiated value is something 
           other than the default value of "en" (English).  The possible values of the "s" attribute include:</t>
             <t><list hangIndent="4" style="hanging">
               <t hangText="&quot;pendingValidation&quot;">The initial state of a newly-created application
@@ -221,23 +221,40 @@
               <t hangText="&quot;custom&quot;">A custom status that is defined using the "name" attribute.</t>
              </list></t>
           <t hangText="&lt;lp:pendingCreate&gt;:">An OPTIONAL boolean value that indicates that the server 
-          will place the Launch Application or a Launch Registration in the "pendingCreate" status as specified in 
+          will place the Launch Application or the Launch Registration in the "pendingCreate" status as specified in 
           <xref target="RFC5731"/>.</t>
-          <t hangText="&lt;lp:pollPolicy&gt;:">The OPTIONAL element that defines the poll messaging policy for the phase.  
+          <t hangText="&lt;lp:pollPolicy&gt;:">An OPTIONAL element that defines the poll messaging policy for the phase.  
           The &lt;lp:pollPolicy&gt; element contains the following child elements:</t>             
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&lt;lp:intermediateStatus&gt;:"></t>
-              <t hangText="&lt;lp:nonMandatoryInfo&gt;:"></t>
-              <t hangText="&lt;lp:extensionInfo&gt;:"></t>
+              <t hangText="&lt;lp:intermediateStatus&gt;:">A boolean value indicating whether the server will insert poll 
+              messages, per <xref target="RFC5730"/>, for the applicable intermediate statuses, including the "pendingValidation", 
+              "validated", "pendingAllocation", and "invalid" statuses, using the &lt;domain:infData&gt; element with the 
+              &lt;launch:infData&gt; extension.</t>
+              <t hangText="&lt;lp:nonMandatoryInfo&gt;:">A boolean value indicating whether the server will include 
+              non-mandatory information in the &lt;domain:infData&gt; element of the poll message.</t>
+              <t hangText="&lt;lp:extensionInfo&gt;:">A boolean value indicating whether the server will include further extensions 
+              that would normally be included in the response to the &lt;domain:info&gt; command, per <xref target="RFC5731"/>, 
+              in the poll message.</t>
              </list></t>
           <t hangText="&lt;lp:markValidation&gt;:">Zero to four &lt;lp:markValidation&gt; elements that defines the 
-          supported Mark Validation Models supported by the phase.  The &lt;lp:markValidation&gt; has the following 
+          supported Mark Validation Models supported by the phase.  The &lt;lp:markValidation&gt; element has the following 
           possible values:</t>
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;code&quot;"></t>
-              <t hangText="&quot;mark&quot;"></t>
-              <t hangText="&quot;codeWithMark&quot;"></t>
-              <t hangText="&quot;signedMark&quot;"></t>
+              <t hangText="&quot;code&quot;">Indicates support for the "code" Mark Validation Model, where the 
+              mark code by itself is used to validate that the mark matches the domain name.  This model is supported 
+              using the &lt;launch:codeMark&gt; element with just the &lt;laumch:code&gt; element.</t>
+              <t hangText="&quot;mark&quot;">Indicates support for the "mark" Mark Validation Model, where the 
+              mark information is passed without any other validation element.  The server will use some custom 
+              form of validation to validate that the mark information is authentic.  This model is supported 
+              using the &lt;launch:codeMark&gt; element with just the &lt;mark:mark&gt; element.</t>
+              <t hangText="&quot;codeWithMark&quot;">Indicates support for the "code with mark" Mark Validation Model, where 
+              the code is used along with the mark information by the server to validate the mark utilizing an external party.  
+              This model is supported using the &lt;launch:codeMark&gt; element that contains both the &lt;launch:code&gt; and 
+              the &lt;mark:mark&gt; elements.</t>
+              <t hangText="&quot;signedMark&quot;">Indicates support for the "signed mark" Mark Validation Model, where 
+              the mark information is digitally signed.  The digital signature can be directly validated by the server 
+              using the public key of the external party that created the signed mark using its private key.  This model 
+              is supported using the &lt;smd:signedMark&gt; and &lt;smd:encodedSignedMark&gt; elements.</t>
              </list></t>             
           <t hangText="&lt;lp:maxMarks&gt;:">An OPTIONAL maximum number number of marks per domain name for the phase.</t>  
           <t hangText="&lt;lp:markSupported&gt;:">Zero or more &lt;lp:markSupported&gt; elements that defines the 
@@ -247,23 +264,35 @@
           <t hangText="&lt;lp:encodedSignedMarkSupported&gt;:">Zero or more &lt;lp:encodedSignedMarkSupported&gt; elements that defines the 
           XML namespace of the encoded signed marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:signedMark-1.0" for <xref target="RFC7848"/>.</t>  
           <t hangText="&lt;lp:checkForm&gt;:">Zero to three &lt;lp:checkForm&gt; elements that defines the 
-          supported check forms supported by the phase.  The &lt;lp:checkForm&gt; element has the following 
+          supported check forms.  The &lt;lp:checkForm&gt; element has the following 
           possible values:</t>
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;claims&quot;"></t>
-              <t hangText="&quot;availability&quot;"></t>
-              <t hangText="&quot;trademark&quot;"></t>
+              <t hangText="&quot;claims&quot;">Indicates support for the Claims Check Form, which defines a new command called 
+              the Claims Check Command that is used to determine whether or not there are any matching trademarks, in the 
+              specified launch phase, for each domain name passed in the command.</t>
+              <t hangText="&quot;availability&quot;">Indicates support for the Availability Check Form, which extends the Domain Check Command 
+              to specify which launch phase to use to check the availability for each domain name passed in the command.</t>
+              <t hangText="&quot;trademark&quot;">Indicates support for the Trademark Check Form, which defines a new command 
+              called the Trademark Check Command that is used to determine whether or not there are any matching trademarks for each domain name passed 
+              in the command, independent of the active launch phase.</t>
              </list></t>             
           <t hangText="&lt;lp:infoPhase&gt;:">Zero or more &lt;lp:infoPhase&gt; elements that defines the 
-          possible &lt;launch:phase&gt; values that can be passed by the client in the phase.</t>  
+          possible &lt;launch:phase&gt; values that can be passed by the client in the phase.  The &lt;lp:infoPhase&gt; supports the "type" and "name" attributes 
+          defined for the &lt;lp:phase&gt; element.</t>  
           <t hangText="&lt;lp:createForm&gt;:">Zero to three &lt;lp:createForm&gt; elements that defines the 
-          supported create forms supported by the phase.  The &lt;lp:createForm&gt; element has the following 
+          supported create forms.  The &lt;lp:createForm&gt; element has the following 
           possible values:</t>
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;sunrise&quot;"></t>
-              <t hangText="&quot;claims&quot;"></t>
-              <t hangText="&quot;general&quot;"></t>
-              <t hangText="&quot;mixed&quot;"></t>
+              <t hangText="&quot;sunrise&quot;">Indicates support for the Sunrise Create Form, which is an extension of the Domain Create Command to include 
+              the verifiable trademark information that the server uses to match against the domain name to authorize the domain create.
+              </t>
+              <t hangText="&quot;claims&quot;">Indicates support for the Claims Create Form, which is an extension of the Domain Create Command to include 
+              information related to the registrant's acceptance of the Claims Notice.</t>
+              <t hangText="&quot;general&quot;">Indicates support for the General Create Form, which is an extension of the Domain Create Command to specify 
+              the target launch phase for the domain create.</t>
+              <t hangText="&quot;mixed&quot;">Indicates support for the Mixed Create Form, where a mix of create forms is supported.  For example, the 
+              Sunrise Create Form and the Claims Create Form is supported in a single command by including both the verified trademark information 
+              and the information related to the registrant's acceptance of the Claims Notice.</t>
              </list></t>             
           <t hangText="&lt;lp:createValidateType&gt;:">An OPTIONAL boolean value that indicates whether the 
           server validates the OPTIONAL &lt;launch:create&gt; "type" attribute.</t>
@@ -271,7 +300,8 @@
         </list></t>
  
        <figure>
-            <preamble>Example of a &lt;lp:zone&gt; element:</preamble>
+            <preamble>Example of a &lt;lp:zone&gt; element with six launch phases, including "sunrise", "claims"/"lrp1", "claims"/"landrush", "claims"/"open", 
+            "lrp2", and "open":</preamble>
 
             <artwork><![CDATA[
 <lp:zone>
@@ -475,7 +505,7 @@
         
       <section anchor="checkCommand" title="EPP &lt;check&gt; Command">
        <t>This extension does not define any extension of the EPP &lt;check&gt; command or response described in 
-       the EPP registry mapping.</t> 
+       the Registry Mapping.</t> 
       </section>
 
       <!-- end CHECK command -->
@@ -483,29 +513,22 @@
       <section anchor="infoCommand" title="EPP &lt;info&gt; Command">
       
        <t>This extension does not add any elements to the EPP &lt;info&gt; command 
-       described in the EPP registry mapping.  However, additional elements are 
+       described in the Registry Mapping.  However, additional elements are 
        defined for the &lt;info&gt; response to a query by the fully qualified name 
        of the zone object.</t>
                 
        <t>When an &lt;info&gt; command has been processed successfully, 
        the EPP &lt;resData&gt; element MUST contain a child elements 
-       as described in the EPP registry mapping.  In addition, the EPP &lt;extension&gt; 
+       as described in the Registry Mapping.  In addition, the EPP &lt;extension&gt; 
        element SHOULD contain a child &lt;lp:infData&gt; element that identifies 
        the extension namespace if the zone object has data associated 
        with this extension and based on server policy.  The &lt;lp:infData&gt; 
        element contains the following child elements:</t>
        
       <t><list hangIndent="4" style="hanging">
-          <t hangText="&lt;registry:zoneList&gt;:">Element that contains the 
-          list of supported zones by the server with a set of summary 
-          attributes per zone.  The &lt;registry:zoneList&gt; element contains 
-          the following child elements:</t>
-          
-          <t><list hangIndent="4" style="hanging">
-			  <t hangText="or a &lt;lp:zone&gt;:">Element that contains the 
-			  full set of launch phase policy attributes for the zone name 
-			  as defined in <xref target="zoneObject"/>.</t>
-          </list></t>   
+		  <t hangText="&lt;lp:zone&gt;:">Element that contains the 
+		  full set of launch phase policy attributes for the zone  
+		  as defined in <xref target="zoneObject"/>.</t>
       </list></t>    
         
        <figure>
@@ -562,12 +585,12 @@ S:</epp>]]></artwork>
       <section anchor="createCommand" title="EPP &lt;create&gt; Command">
       
        <t>This extension defines additional elements for the EPP &lt;create&gt;
-          command described in the EPP registry mapping.  No additional
+          command described in the Registry Mapping.  No additional
           elements are defined for the EPP &lt;create&gt; response.</t>
       
        <t>The EPP &lt;create&gt; command provides a transform operation that 
        allows a client to create a zone object.  In addition to the standard 
-       EPP command elements described in the EPP registry mapping, the command 
+       EPP command elements described in the Registry Mapping, the command 
        MUST contain an &lt;extension&gt; element, and the &lt;extension&gt; element 
        MUST contain a &lt;lp:create&gt; element that identifies the extension namespace 
        if the client wants to associate data in this extension to the zone object.  
@@ -609,7 +632,7 @@ C:</epp>]]></artwork>
        </figure>
 
        <t>When a &lt;create&gt; command has been processed successfully, 
-       the EPP response is as described in the EPP registry mapping.</t>
+       the EPP response is as described in the Registry Mapping.</t>
                 
       </section>
       <!-- end CREATE command -->
@@ -617,7 +640,7 @@ C:</epp>]]></artwork>
       <section anchor="deleteCommand" title="EPP &lt;delete&gt; Command">
   
        <t>This extension does not add any elements to the EPP &lt;delete&gt; 
-       command or &lt;delete&gt; response described in the EPP registry mapping.</t>
+       command or &lt;delete&gt; response described in the Registry Mapping.</t>
               
       </section>
       <!-- end DELETE command -->
@@ -641,13 +664,13 @@ C:</epp>]]></artwork>
       <section anchor="updateCommand" title="EPP &lt;update&gt; Command">
       
        <t>This extension defines additional elements for the EPP &lt;update&gt;
-          command described in the EPP registry mapping.  No additional
+          command described in the Registry Mapping.  No additional
           elements are defined for the EPP &lt;update&gt; response.</t>
           
        <t>The EPP &lt;update&gt; command provides a transform operation that 
        allows a client to modify the attributes of a zone object.  
        In addition to the standard 
-       EPP command elements described in the EPP registry mapping, the command 
+       EPP command elements described in the Registry Mapping, the command 
        MUST contain an &lt;extension&gt; element, and the &lt;extension&gt; element 
        MUST contain a &lt;lp:update&gt; element that identifies the extension namespace 
        if the client wants to associate data in this extension to the zone object.  
@@ -689,7 +712,7 @@ C:</epp>]]></artwork>
        </figure>
       
        <t>When an extended &lt;update&gt; command has been processed successfully,
-         the EPP response is as described in the EPP registry mapping.</t>
+         the EPP response is as described in the Registry Mapping.</t>
   
       </section>
       <!-- end UPDATE command -->
@@ -711,7 +734,7 @@ C:</epp>]]></artwork>
       BEGIN and END tags are not part of the schema; they are used to note the
       beginning and ending of the schema for URI registration purposes.</t>
 
-    <section title="Registry Mapping Schema">
+    <section title="Launch Policy Schema">
 
       <figure>
         <artwork><![CDATA[

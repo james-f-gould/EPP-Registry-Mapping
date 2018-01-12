@@ -4,8 +4,8 @@
 
 Network Working Group                                           J. Gould
 Internet-Draft                                            VeriSign, Inc.
-Intended status: Standards Track                        January 11, 2018
-Expires: July 15, 2018
+Intended status: Standards Track                        January 12, 2018
+Expires: July 16, 2018
 
 
  Launch Phase Policy Extensions Mapping for the Extensible Provisioning
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 15, 2018.
+   This Internet-Draft will expire on July 16, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gould                     Expires July 15, 2018                 [Page 1]
+Gould                     Expires July 16, 2018                 [Page 1]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -68,30 +68,30 @@ Table of Contents
    2.  Object Attributes . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  Dates and Times . . . . . . . . . . . . . . . . . . . . .   3
      2.2.  Zone Object . . . . . . . . . . . . . . . . . . . . . . .   3
-   3.  EPP Command Mapping . . . . . . . . . . . . . . . . . . . . .  10
-     3.1.  EPP Query Commands  . . . . . . . . . . . . . . . . . . .  10
-       3.1.1.  EPP <check> Command . . . . . . . . . . . . . . . . .  11
-       3.1.2.  EPP <info> Command  . . . . . . . . . . . . . . . . .  11
-       3.1.3.  EPP <transfer> Command  . . . . . . . . . . . . . . .  12
-     3.2.  EPP Transform Commands  . . . . . . . . . . . . . . . . .  12
-       3.2.1.  EPP <create> Command  . . . . . . . . . . . . . . . .  12
-       3.2.2.  EPP <delete> Command  . . . . . . . . . . . . . . . .  13
-       3.2.3.  EPP <renew> Command . . . . . . . . . . . . . . . . .  14
-       3.2.4.  EPP <transfer> Command  . . . . . . . . . . . . . . .  14
-       3.2.5.  EPP <update> Command  . . . . . . . . . . . . . . . .  14
-   4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  15
-     4.1.  Registry Mapping Schema . . . . . . . . . . . . . . . . .  15
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  21
-     5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  21
-     5.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  21
-   6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  22
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  22
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  22
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  22
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  22
-     9.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  23
-   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  23
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  23
+   3.  EPP Command Mapping . . . . . . . . . . . . . . . . . . . . .  12
+     3.1.  EPP Query Commands  . . . . . . . . . . . . . . . . . . .  12
+       3.1.1.  EPP <check> Command . . . . . . . . . . . . . . . . .  12
+       3.1.2.  EPP <info> Command  . . . . . . . . . . . . . . . . .  12
+       3.1.3.  EPP <transfer> Command  . . . . . . . . . . . . . . .  13
+     3.2.  EPP Transform Commands  . . . . . . . . . . . . . . . . .  13
+       3.2.1.  EPP <create> Command  . . . . . . . . . . . . . . . .  13
+       3.2.2.  EPP <delete> Command  . . . . . . . . . . . . . . . .  14
+       3.2.3.  EPP <renew> Command . . . . . . . . . . . . . . . . .  15
+       3.2.4.  EPP <transfer> Command  . . . . . . . . . . . . . . .  15
+       3.2.5.  EPP <update> Command  . . . . . . . . . . . . . . . .  15
+   4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  16
+     4.1.  Launch Policy Schema  . . . . . . . . . . . . . . . . . .  16
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  22
+     5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  22
+     5.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  22
+   6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  23
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  23
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  23
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  23
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  23
+     9.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  24
+   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  24
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  24
 
 1.  Introduction
 
@@ -101,7 +101,7 @@ Table of Contents
    policy of the Launch Phase EPP extension for a zone (e.g., top-level
    domain).  The extension enables provisioning of the zone policy in
    the Domain Name Registry.  A Domain Name Registry MAY support a
-   subset of all of the commands defined in this extension.
+   subset of all of the commands extended in this extension.
 
 
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Gould                     Expires July 15, 2018                 [Page 2]
+Gould                     Expires July 16, 2018                 [Page 2]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -155,17 +155,17 @@ Internet-Draft                launch-policy                 January 2018
 
 2.2.  Zone Object
 
-   The Zone object, represented by the <lp:zone> element, is the object
-   that is extended by this extension.  The Zone object can apply to any
-   zone level (top level, second level, third level, etc.).  The
-   <lp:zone> element contains zero or more <lp:phase> elements, ordered
-   by ascending start date.  The <lp:phase> element includes the
-   following attributes:
+   The Zone object, represented by the <registry:zone> element in the
+   Registry Mapping, is the object that is extended by this extension
+   with the <lp:zone> element.  The Zone object can apply to any zone
+   level (top level, second level, third level, etc.).  The <lp:zone>
+   element contains zero or more <lp:phase> elements, ordered by
+   ascending start date.  The <lp:phase> element includes the following
+   attributes:
 
 
 
-
-Gould                     Expires July 15, 2018                 [Page 3]
+Gould                     Expires July 16, 2018                 [Page 3]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -175,8 +175,8 @@ Internet-Draft                launch-policy                 January 2018
 
 
        "pre-delegation"  Phase when pre-delegation testing is done.
-       "pre-launch"  A phase prior to the sunrise phase where no
-           writable operations will be allowed.
+       "pre-launch"  Phase prior to the sunrise phase where no writable
+           operations will be allowed.
        "sunrise"  Phase when trademark holders can submit registration
            applications with trademark information that can be validated
            by the server.
@@ -188,44 +188,47 @@ Internet-Draft                launch-policy                 January 2018
        "open"  Post launch phase that is also referred to as "steady
            state".  Servers MAY require additional trademark protection
            with this phase.
-       "custom"  A custom server launch phase that is defined using the
+       "custom"  Custom server launch phase that is defined using the
            "name" attribute.
-   name:  OPTIONAL attribute that defines name when the "type" attribute
-       is set to "custom" or the name of the sub-type of the "type".
+   name:  OPTIONAL attribute that defines the phase name when the "type"
+       attribute is set to "custom" or the sub-phase name when the
+       "type" attribute is set to a non-"custom" value.
    mode:  OPTIONAL attribute that defines how the phase operates with
        the following possible values and with the default value of
        "fcfs":
 
 
-       "fcfs"  first-come-first-serve.  In this mode, each domain name
+       "fcfs"  First-come-first-serve.  In this mode, each domain name
            is immediately created and there is no use of an application
            identifier.
        "pending-registration"  In this mode, the domain name is created
-           with the pendingCreate status with no use of an application
+           with the "pendingCreate" status with no use of an application
            identifier.
        "pending-application"  In this mode, the domain name, referred to
-           as a domain application, is created in pendingCreate status
-           with the server returning an application identifier in the
-           create response for the client to use in subsequent commands
-           (info, update, delete).  When a domain application is
-           allocated, it will become a domain without the use of an
+           as a domain application, is created in the "pendingCreate"
+           status with the server returning an application identifier in
+           the create response for the client to use in subsequent
+           commands (info, update, delete).  When a domain application
+           is allocated, it will become a domain without the use of an
            application identifier.
 
    The <lp:phase> element contains the following child elements:
 
    <lp:startDate>:  The Start date and time for the phase.
    <lp:endDate>:  The OPTIONAL end date and time for the phase.
-   <lp:validatePhase>:  An OPTIONAL boolean value that indicates whether
-       the server validates the phase provided by the client in the
-       phase.
 
 
 
-Gould                     Expires July 15, 2018                 [Page 4]
+
+
+Gould                     Expires July 16, 2018                 [Page 4]
 
 Internet-Draft                launch-policy                 January 2018
 
 
+   <lp:validatePhase>:  An OPTIONAL boolean value that indicates whether
+       the server validates the phase provided by the client in the
+       <launch:phase> element.
    <lp:validatorId>:  Zero or more <lp:validatorId> elements that define
        the supported Validator Identifier values for the phase.  An
        example is the reserved Validator Identifier of "tmch".
@@ -234,9 +237,9 @@ Internet-Draft                launch-policy                 January 2018
        phase.  The <lp:status> element has the required "s" attribute
        with one of the possible the status values.  When the "s"
        attribute is set to "custom", the "name" attribute is used to
-       define the status value, the <lp:status> element text can
-       describe the status value, and the OPTIONAL "lang" attribute MAY
-       be present to identify the language of the description if the
+       define the status value, the <lp:status> element text MAY provide
+       the status value description, and the OPTIONAL "lang" attribute
+       MAY be present to identify the language of the description if the
        negotiated value is something other than the default value of
        "en" (English).  The possible values of the "s" attribute
        include:
@@ -258,34 +261,66 @@ Internet-Draft                launch-policy                 January 2018
        "custom"  A custom status that is defined using the "name"
            attribute.
    <lp:pendingCreate>:  An OPTIONAL boolean value that indicates that
-       the server will place the Launch Application or a Launch
+       the server will place the Launch Application or the Launch
        Registration in the "pendingCreate" status as specified in
        [RFC5731].
-   <lp:pollPolicy>:  The OPTIONAL element that defines the poll
-       messaging policy for the phase.  The <lp:pollPolicy> element
-       contains the following child elements:
+   <lp:pollPolicy>:  An OPTIONAL element that defines the poll messaging
+       policy for the phase.  The <lp:pollPolicy> element contains the
+       following child elements:
 
 
-       <lp:intermediateStatus>:
-       <lp:nonMandatoryInfo>:
-       <lp:extensionInfo>:
-   <lp:markValidation>:  Zero to four <lp:markValidation> elements that
-       defines the supported Mark Validation Models supported by the
-       phase.  The <lp:markValidation> has the following possible
-       values:
+       <lp:intermediateStatus>:  A boolean value indicating whether the
+           server will insert poll messages, per [RFC5730], for the
+           applicable intermediate statuses, including the
+           "pendingValidation", "validated", "pendingAllocation", and
 
 
 
 
-Gould                     Expires July 15, 2018                 [Page 5]
+Gould                     Expires July 16, 2018                 [Page 5]
 
 Internet-Draft                launch-policy                 January 2018
 
 
-       "code"
-       "mark"
-       "codeWithMark"
-       "signedMark"
+           "invalid" statuses, using the <domain:infData> element with
+           the <launch:infData> extension.
+       <lp:nonMandatoryInfo>:  A boolean value indicating whether the
+           server will include non-mandatory information in the
+           <domain:infData> element of the poll message.
+       <lp:extensionInfo>:  A boolean value indicating whether the
+           server will include further extensions that would normally be
+           included in the response to the <domain:info> command, per
+           [RFC5731], in the poll message.
+   <lp:markValidation>:  Zero to four <lp:markValidation> elements that
+       defines the supported Mark Validation Models supported by the
+       phase.  The <lp:markValidation> element has the following
+       possible values:
+
+
+       "code"  Indicates support for the "code" Mark Validation Model,
+           where the mark code by itself is used to validate that the
+           mark matches the domain name.  This model is supported using
+           the <launch:codeMark> element with just the <laumch:code>
+           element.
+       "mark"  Indicates support for the "mark" Mark Validation Model,
+           where the mark information is passed without any other
+           validation element.  The server will use some custom form of
+           validation to validate that the mark information is
+           authentic.  This model is supported using the
+           <launch:codeMark> element with just the <mark:mark> element.
+       "codeWithMark"  Indicates support for the "code with mark" Mark
+           Validation Model, where the code is used along with the mark
+           information by the server to validate the mark utilizing an
+           external party.  This model is supported using the
+           <launch:codeMark> element that contains both the
+           <launch:code> and the <mark:mark> elements.
+       "signedMark"  Indicates support for the "signed mark" Mark
+           Validation Model, where the mark information is digitally
+           signed.  The digital signature can be directly validated by
+           the server using the public key of the external party that
+           created the signed mark using its private key.  This model is
+           supported using the <smd:signedMark> and
+           <smd:encodedSignedMark> elements.
    <lp:maxMarks>:  An OPTIONAL maximum number number of marks per domain
        name for the phase.
    <lp:markSupported>:  Zero or more <lp:markSupported> elements that
@@ -294,6 +329,15 @@ Internet-Draft                launch-policy                 January 2018
        "urn:ietf:params:xml:ns:mark-1.0" for [RFC7848].
    <lp:signedMarkSupported>:  Zero or more <lp:signedMarkSupported>
        elements that defines the XML namespace of the signed marks that
+
+
+
+
+Gould                     Expires July 16, 2018                 [Page 6]
+
+Internet-Draft                launch-policy                 January 2018
+
+
        are supported in the phase.  For example, the XML namespace
        "urn:ietf:params:xml:ns:signedMark-1.0" for [RFC7848].
    <lp:encodedSignedMarkSupported>:  Zero or more
@@ -302,42 +346,69 @@ Internet-Draft                launch-policy                 January 2018
        phase.  For example, the XML namespace
        "urn:ietf:params:xml:ns:signedMark-1.0" for [RFC7848].
    <lp:checkForm>:  Zero to three <lp:checkForm> elements that defines
-       the supported check forms supported by the phase.  The
-       <lp:checkForm> element has the following possible values:
+       the supported check forms.  The <lp:checkForm> element has the
+       following possible values:
 
 
-       "claims"
-       "availability"
-       "trademark"
+       "claims"  Indicates support for the Claims Check Form, which
+           defines a new command called the Claims Check Command that is
+           used to determine whether or not there are any matching
+           trademarks, in the specified launch phase, for each domain
+           name passed in the command.
+       "availability"  Indicates support for the Availability Check
+           Form, which extends the Domain Check Command to specify which
+           launch phase to use to check the availability for each domain
+           name passed in the command.
+       "trademark"  Indicates support for the Trademark Check Form,
+           which defines a new command called the Trademark Check
+           Command that is used to determine whether or not there are
+           any matching trademarks for each domain name passed in the
+           command, independent of the active launch phase.
    <lp:infoPhase>:  Zero or more <lp:infoPhase> elements that defines
        the possible <launch:phase> values that can be passed by the
-       client in the phase.
+       client in the phase.  The <lp:infoPhase> supports the "type" and
+       "name" attributes defined for the <lp:phase> element.
    <lp:createForm>:  Zero to three <lp:createForm> elements that defines
-       the supported create forms supported by the phase.  The
-       <lp:createForm> element has the following possible values:
+       the supported create forms.  The <lp:createForm> element has the
+       following possible values:
 
 
-       "sunrise"
-       "claims"
-       "general"
-       "mixed"
-   <lp:createValidateType>:  An OPTIONAL boolean value that indicates
-       whether the server validates the OPTIONAL <launch:create> "type"
-       attribute.
+       "sunrise"  Indicates support for the Sunrise Create Form, which
+           is an extension of the Domain Create Command to include the
+           verifiable trademark information that the server uses to
+           match against the domain name to authorize the domain create.
+       "claims"  Indicates support for the Claims Create Form, which is
+           an extension of the Domain Create Command to include
+           information related to the registrant's acceptance of the
+           Claims Notice.
+       "general"  Indicates support for the General Create Form, which
+           is an extension of the Domain Create Command to specify the
+           target launch phase for the domain create.
+       "mixed"  Indicates support for the Mixed Create Form, where a mix
+           of create forms is supported.  For example, the Sunrise
 
-   Example of a <lp:zone> element:
-
-   <lp:zone>
-     <lp:phase
-       type="sunrise"
 
 
-
-Gould                     Expires July 15, 2018                 [Page 6]
+Gould                     Expires July 16, 2018                 [Page 7]
 
 Internet-Draft                launch-policy                 January 2018
 
 
+           Create Form and the Claims Create Form is supported in a
+           single command by including both the verified trademark
+           information and the information related to the registrant's
+           acceptance of the Claims Notice.
+   <lp:createValidateType>:  An OPTIONAL boolean value that indicates
+       whether the server validates the OPTIONAL <launch:create> "type"
+       attribute.
+
+   Example of a <lp:zone> element with six launch phases, including
+   "sunrise", "claims"/"lrp1", "claims"/"landrush", "claims"/"open",
+   "lrp2", and "open":
+
+   <lp:zone>
+     <lp:phase
+       type="sunrise"
        mode="pending-application"
      >
        <lp:startDate>2017-11-01T00:00:00.0Z
@@ -371,6 +442,14 @@ Internet-Draft                launch-policy                 January 2018
      <lp:phase
        type="claims"
        name="lrp1"
+
+
+
+Gould                     Expires July 16, 2018                 [Page 8]
+
+Internet-Draft                launch-policy                 January 2018
+
+
        mode="pending-registration"
      >
        <lp:startDate>2017-12-01T00:00:00.0Z
@@ -386,14 +465,6 @@ Internet-Draft                launch-policy                 January 2018
        <lp:pendingCreate>true</lp:pendingCreate>
        <lp:checkForm>claims</lp:checkForm>
        <lp:checkForm>availability</lp:checkForm>
-
-
-
-Gould                     Expires July 15, 2018                 [Page 7]
-
-Internet-Draft                launch-policy                 January 2018
-
-
        <lp:checkForm>trademark</lp:checkForm>
        <lp:infoPhase type="sunrise"/>
        <lp:infoPhase
@@ -427,6 +498,14 @@ Internet-Draft                launch-policy                 January 2018
        <lp:checkForm>claims</lp:checkForm>
        <lp:checkForm>availability</lp:checkForm>
        <lp:checkForm>trademark</lp:checkForm>
+
+
+
+Gould                     Expires July 16, 2018                 [Page 9]
+
+Internet-Draft                launch-policy                 January 2018
+
+
        <lp:infoPhase
          type="claims"
          name="lrp1"/>
@@ -442,14 +521,6 @@ Internet-Draft                launch-policy                 January 2018
        name="open"
        mode="fcfs"
      >
-
-
-
-Gould                     Expires July 15, 2018                 [Page 8]
-
-Internet-Draft                launch-policy                 January 2018
-
-
        <lp:startDate>2017-12-15T00:00:00.0Z
        </lp:startDate>
        <lp:endDate>2018-02-15T00:00:00.0Z
@@ -483,6 +554,14 @@ Internet-Draft                launch-policy                 January 2018
        <lp:validatePhase>true</lp:validatePhase>
        <lp:validatorId>lrp2-custom
        </lp:validatorId>
+
+
+
+Gould                     Expires July 16, 2018                [Page 10]
+
+Internet-Draft                launch-policy                 January 2018
+
+
        <lp:status
          s="custom"
          name="pendingInternalValidation"
@@ -498,14 +577,6 @@ Internet-Draft                launch-policy                 January 2018
        <lp:status s="allocated"/>
        <lp:status s="rejected"/>
        <lp:pendingCreate>true</lp:pendingCreate>
-
-
-
-Gould                     Expires July 15, 2018                 [Page 9]
-
-Internet-Draft                launch-policy                 January 2018
-
-
        <lp:pollPolicy>
          <lp:intermediateStatus>true</lp:intermediateStatus>
          <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
@@ -540,6 +611,13 @@ Internet-Draft                launch-policy                 January 2018
      </lp:phase>
    </lp:zone>
 
+
+
+Gould                     Expires July 16, 2018                [Page 11]
+
+Internet-Draft                launch-policy                 January 2018
+
+
 3.  EPP Command Mapping
 
    A detailed description of the EPP syntax and semantics can be found
@@ -554,43 +632,28 @@ Internet-Draft                launch-policy                 January 2018
    retrieve detailed information associated with an object, and
    <transfer> to retrieve object transfer status information.
 
-
-
-
-Gould                     Expires July 15, 2018                [Page 10]
-
-Internet-Draft                launch-policy                 January 2018
-
-
 3.1.1.  EPP <check> Command
 
    This extension does not define any extension of the EPP <check>
-   command or response described in the EPP registry mapping.
+   command or response described in the Registry Mapping.
 
 3.1.2.  EPP <info> Command
 
    This extension does not add any elements to the EPP <info> command
-   described in the EPP registry mapping.  However, additional elements
-   are defined for the <info> response to a query by the fully qualified
+   described in the Registry Mapping.  However, additional elements are
+   defined for the <info> response to a query by the fully qualified
    name of the zone object.
 
    When an <info> command has been processed successfully, the EPP
    <resData> element MUST contain a child elements as described in the
-   EPP registry mapping.  In addition, the EPP <extension> element
-   SHOULD contain a child <lp:infData> element that identifies the
-   extension namespace if the zone object has data associated with this
-   extension and based on server policy.  The <lp:infData> element
-   contains the following child elements:
+   Registry Mapping.  In addition, the EPP <extension> element SHOULD
+   contain a child <lp:infData> element that identifies the extension
+   namespace if the zone object has data associated with this extension
+   and based on server policy.  The <lp:infData> element contains the
+   following child elements:
 
-   <registry:zoneList>:  Element that contains the list of supported
-       zones by the server with a set of summary attributes per zone.
-       The <registry:zoneList> element contains the following child
-       elements:
-
-
-       or a <lp:zone>:  Element that contains the full set of launch
-           phase policy attributes for the zone name as defined in
-           Section 2.2.
+   <lp:zone>:  Element that contains the full set of launch phase policy
+       attributes for the zone as defined in Section 2.2.
 
 
 
@@ -606,14 +669,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-
-
-
-
-
-
-
-Gould                     Expires July 15, 2018                [Page 11]
+Gould                     Expires July 16, 2018                [Page 12]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -662,22 +718,22 @@ Internet-Draft                launch-policy                 January 2018
 3.2.1.  EPP <create> Command
 
    This extension defines additional elements for the EPP <create>
-   command described in the EPP registry mapping.  No additional
-   elements are defined for the EPP <create> response.
+   command described in the Registry Mapping.  No additional elements
+   are defined for the EPP <create> response.
 
 
 
 
 
-Gould                     Expires July 15, 2018                [Page 12]
+Gould                     Expires July 16, 2018                [Page 13]
 
 Internet-Draft                launch-policy                 January 2018
 
 
    The EPP <create> command provides a transform operation that allows a
    client to create a zone object.  In addition to the standard EPP
-   command elements described in the EPP registry mapping, the command
-   MUST contain an <extension> element, and the <extension> element MUST
+   command elements described in the Registry Mapping, the command MUST
+   contain an <extension> element, and the <extension> element MUST
    contain a <lp:create> element that identifies the extension namespace
    if the client wants to associate data in this extension to the zone
    object.  The <lp:create> element contains the following child
@@ -712,12 +768,12 @@ Internet-Draft                launch-policy                 January 2018
    C:</epp>
 
    When a <create> command has been processed successfully, the EPP
-   response is as described in the EPP registry mapping.
+   response is as described in the Registry Mapping.
 
 3.2.2.  EPP <delete> Command
 
    This extension does not add any elements to the EPP <delete> command
-   or <delete> response described in the EPP registry mapping.
+   or <delete> response described in the Registry Mapping.
 
 
 
@@ -725,7 +781,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 13]
+Gould                     Expires July 16, 2018                [Page 14]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -743,13 +799,13 @@ Internet-Draft                launch-policy                 January 2018
 3.2.5.  EPP <update> Command
 
    This extension defines additional elements for the EPP <update>
-   command described in the EPP registry mapping.  No additional
-   elements are defined for the EPP <update> response.
+   command described in the Registry Mapping.  No additional elements
+   are defined for the EPP <update> response.
 
    The EPP <update> command provides a transform operation that allows a
    client to modify the attributes of a zone object.  In addition to the
-   standard EPP command elements described in the EPP registry mapping,
-   the command MUST contain an <extension> element, and the <extension>
+   standard EPP command elements described in the Registry Mapping, the
+   command MUST contain an <extension> element, and the <extension>
    element MUST contain a <lp:update> element that identifies the
    extension namespace if the client wants to associate data in this
    extension to the zone object.  The <lp:update> element contains the
@@ -781,7 +837,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 14]
+Gould                     Expires July 16, 2018                [Page 15]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -811,7 +867,7 @@ Internet-Draft                launch-policy                 January 2018
    C:</epp>
 
    When an extended <update> command has been processed successfully,
-   the EPP response is as described in the EPP registry mapping.
+   the EPP response is as described in the Registry Mapping.
 
 4.  Formal Syntax
 
@@ -824,7 +880,7 @@ Internet-Draft                launch-policy                 January 2018
    are used to note the beginning and ending of the schema for URI
    registration purposes.
 
-4.1.  Registry Mapping Schema
+4.1.  Launch Policy Schema
 
    BEGIN
    <?xml version="1.0" encoding="UTF-8"?>
@@ -837,7 +893,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 15]
+Gould                     Expires July 16, 2018                [Page 16]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -893,7 +949,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 16]
+Gould                     Expires July 16, 2018                [Page 17]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -949,7 +1005,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 17]
+Gould                     Expires July 16, 2018                [Page 18]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1005,7 +1061,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 18]
+Gould                     Expires July 16, 2018                [Page 19]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1061,7 +1117,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 19]
+Gould                     Expires July 16, 2018                [Page 20]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1117,7 +1173,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 20]
+Gould                     Expires July 16, 2018                [Page 21]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1173,7 +1229,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 21]
+Gould                     Expires July 16, 2018                [Page 22]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1229,7 +1285,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 15, 2018                [Page 22]
+Gould                     Expires July 16, 2018                [Page 23]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1285,4 +1341,4 @@ Author's Address
 
 
 
-Gould                     Expires July 15, 2018                [Page 23]
+Gould                     Expires July 16, 2018                [Page 24]
