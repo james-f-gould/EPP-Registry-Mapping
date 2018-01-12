@@ -3,17 +3,10 @@
 <!-- One method to get references from the online citation libraries.
      There has to be one entity for each item to be referenced. 
      An alternate method (rfc include) is described in the references. -->
-<!ENTITY RFC0952 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0952.xml">
-<!ENTITY RFC1123 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1123.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC3490 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3490.xml">
 <!ENTITY RFC3688 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml">
-<!ENTITY RFC4034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4034.xml">
 <!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
 <!ENTITY RFC5731 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5731.xml">
-<!ENTITY RFC5732 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5732.xml">
-<!ENTITY RFC5733 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5733.xml">
-<!ENTITY RFC5910 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5910.xml">
 <!ENTITY RFC7451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7451.xml">
 <!ENTITY RFC7848 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7848.xml">
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
@@ -134,9 +127,7 @@
       syntax for the attribute values described here can be found 
       in the "Formal Syntax" section of this document and in the 
       appropriate normative references.</t>
-  
-      <section anchor="zoneName" title="Zone Name">
-    
+      
       <section anchor="datesTimes" title="Dates and Times">
         <t>Date and time attribute values MUST be represented in Universal Coordinated Time  
         (UTC) using the Gregorian calendar.  The extended date-time form using upper case "T" 
@@ -514,7 +505,8 @@
 			  <t hangText="or a &lt;lp:zone&gt;:">Element that contains the 
 			  full set of launch phase policy attributes for the zone name 
 			  as defined in <xref target="zoneObject"/>.</t>
-          </list></t>       
+          </list></t>   
+      </list></t>    
         
        <figure>
             <preamble>Example &lt;info&gt; response to query for the full set 
@@ -1095,29 +1087,15 @@ END]]></artwork>
      filing system or remote ones accessed by http (http://domain/dir/... ).-->
 
     <references title="Normative References">
-       
-     &RFC0952;
-     
-     &RFC1123;
-     
+                
      &RFC2119;
 
-     &RFC3490;
-     
      &RFC3688;
      
-     &RFC4034;
-
      &RFC5730;
      
      &RFC5731;
  
-     &RFC5732;
-
-     &RFC5733;
- 
-     &RFC5910;
-     
      &RFC7451;
 
      &RFC7848;
