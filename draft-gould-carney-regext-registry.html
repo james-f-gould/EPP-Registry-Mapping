@@ -410,9 +410,9 @@
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-1-9" />
-  <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a zone include the features and policies of the zone." />
-  <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a zone include the features and policies of the zone." />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-1-19" />
+  <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
+  <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
 </head>
 
@@ -434,7 +434,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: July 13, 2018</td>
+  <td class="left">Expires: July 23, 2018</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -447,7 +447,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">January 9, 2018</td>
+  <td class="right">January 19, 2018</td>
 </tr>
 
     	
@@ -460,14 +460,14 @@
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
 </h1>
-<p>This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a zone include the features and policies of the zone.</p>
+<p>This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone.</p>
 <h1 id="rfc.status">
   <a href="#rfc.status">Status of This Memo</a>
 </h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on July 13, 2018.</p>
+<p>This Internet-Draft will expire on July 23, 2018.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -513,7 +513,8 @@
   </ul>
 
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
-<p id="rfc.section.1.p.1">This document describes an extension mapping for version 1.0 of the <a href="#RFC5730">Extensible Provisioning Protocol (EPP)</a> <cite title="NONE">[RFC5730]</cite>.  This document describes a Domain Name Registry Mapping, referred to as Registry Mapping, for the <a href="#RFC5730">Extensible Provisioning Protocol (EPP)</a> <cite title="NONE">[RFC5730]</cite>.  A Domain Name Registry can service one or more zones (e.g. top-level domains) with a variety of supported services and policies.  This mapping enables the provisioning of the zones in the Domain Name Registry.  A Domain Name Registry MAY support a subset of all of the commands defined in this mapping.</p>
+<p id="rfc.section.1.p.1">This document describes an extension mapping for version 1.0 of the <a href="#RFC5730">Extensible Provisioning Protocol (EPP)</a> <cite title="NONE">[RFC5730]</cite>.  This document describes a Domain Name Registry Mapping, referred to as Registry Mapping, for the <a href="#RFC5730">Extensible Provisioning Protocol (EPP)</a> <cite title="NONE">[RFC5730]</cite>.  A Domain Name Registry can service one or more registry zones (e.g. top-level domains) with a variety of supported services and policies.  A registry zone, also referred to as a "zone" in this document, is a domain name that the Domain Name Registry supports provisioning operations to manage.  The registry zone and the associated DNS zone has an overlapping data set, where the registry zone is the source for the generation of a DNS zone.  A registry zone is typically a top-level domain name, but it can be a domain name at any domain name level.  A registry zone can be the source for multiple resolution services like DNS and WHOIS.</p>
+<p id="rfc.section.1.p.2">This mapping enables the provisioning of the features and policies of the registry zones in the Domain Name Registry.  A Domain Name Registry MAY support a subset of all of the commands defined in this mapping and can authorize different clients to execute specific commands.  For example, all clients may be capable of executing the <a href="#queryCommands">EPP Query Commands</a> <cite title="NONE">[queryCommands]</cite>, while internal clients or pre-defined external clients may be capable of executing the <a href="#transformCommands">EPP Transform Commands</a> <cite title="NONE">[transformCommands]</cite> for a specific set of zones.  It is up to server policy to define what clients are authorized to execute which commands on which registry zones.  The server policy can be defined out-of-band or in a seperate EPP extension.</p>
 <h1 id="rfc.section.1.1"><a href="#rfc.section.1.1">1.1.</a> Conventions Used in This Document</h1>
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">RFC 2119</a> <cite title="NONE">[RFC2119]</cite>.</p>
 <p id="rfc.section.1.1.p.2">XML is case sensitive. Unless stated otherwise, XML specifications and examples provided in this document MUST be interpreted in the character case presented in order to develop a conforming implementation.</p>
@@ -522,8 +523,8 @@
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#attrs" id="attrs">Object Attributes</a></h1>
 <p id="rfc.section.2.p.1">An EPP registry object has attributes and associated values that may be viewed and modified by the sponsoring client or the server.  This section describes each attribute type in detail. The formal syntax for the attribute values described here can be found in the "Formal Syntax" section of this document and in the appropriate normative references.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#zoneName" id="zoneName">Zone Name</a></h1>
-<p id="rfc.section.2.1.p.1">The zone name is an element that includes an optional "form" attribute that defines the form of the zone name as either "aLabel" or "uLabel", with the default value of "aLabel".  The "aLabel" form of a zone name contains all ASCII name labels that conform to <a href="#RFC0952">[RFC0952]</a> and <a href="#RFC1123">[RFC1123]</a>.  The "uLabel" form of a zone name that includes one or more non-ASCII name labels that can be represented as ASCII labels using <a href="#RFC3490">[RFC3490]</a>.</p>
-<p id="rfc.section.2.1.p.2">At the time of this writing, <a href="#RFC3490">[RFC3490]</a> describes a standard to use certain ASCII name labels to represent non-ASCII name labels.  These conformance requirements might change in the future as a result of progressing work in developing standards for internationalized names.</p>
+<p id="rfc.section.2.1.p.1">The zone name is an element that includes an optional "form" attribute that defines the form of the zone name as either "aLabel" or "uLabel", with the default value of "aLabel".  The "aLabel" form of a zone name contains all ASCII name labels that conform to <a href="#RFC0952">[RFC0952]</a> and <a href="#RFC1123">[RFC1123]</a>.  The "uLabel" form of a zone name that includes one or more non-ASCII name labels that can be represented as ASCII labels using <a href="#RFC5890">[RFC5890]</a>.</p>
+<p id="rfc.section.2.1.p.2">At the time of this writing, <a href="#RFC5890">[RFC5890]</a> describes a standard to use certain ASCII name labels to represent non-ASCII name labels.  These conformance requirements might change in the future as a result of progressing work in developing standards for internationalized names.</p>
 <h1 id="rfc.section.2.2"><a href="#rfc.section.2.2">2.2.</a> <a href="#datesTimes" id="datesTimes">Dates and Times</a></h1>
 <p id="rfc.section.2.2.p.1">Date and time attribute values MUST be represented in Universal Coordinated Time (UTC) using the Gregorian calendar.  The extended date-time form using upper case "T" and "Z" characters defined in <a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/">XML Schema Part 2</a> MUST be used to represent date-time values, as XML Schema does not support truncated date-time forms or lower case "T" and "Z" characters.</p>
 <h1 id="rfc.section.2.3"><a href="#rfc.section.2.3">2.3.</a> <a href="#schedule" id="schedule">Schedule</a></h1>
@@ -691,7 +692,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:contactsSupported&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL boolean value that indicates whether contacts are supported with a default value of "true".</dd>
       <dt>&lt;registry:contact&gt;:</dt>
-      <dd style="margin-left: 4">Zero or more &lt;registry:contact&gt; elements that defines the minimum and maximum number of contacts by contact type.  The contact type is defined with the required "type" attribute with the possible values of "admin", "tech", and "billing", and "custom".  If "custom" is the contact "type" value, then the "name" attribute MUST be set with the name of the custom type.  The OPTIONAL "description" attribute can be set with a description of the contact type.  The &lt;registry:contact&gt; element contains the following child elements:</dd>
+      <dd style="margin-left: 4">Zero or more &lt;registry:contact&gt; elements that defines the minimum and maximum number of contacts by contact type.  The contact type is defined with the required "type" attribute with the possible values of "admin", "tech", and "billing", and "custom".  The OPTIONAL "name" attribute is an identifier, represented in the 7-bit US-ASCII character set, that is used to define the name of the "custom" type.  If "custom" is the contact "type" value, then the "name" attribute MUST be set.  The OPTIONAL "description" attribute can be set with a description of the contact type.  The &lt;registry:contact&gt; element contains the following child elements:</dd>
       <dt></dt>
       <dd style="margin-left: 4">
         <dl>
@@ -1342,7 +1343,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
 <p><a href="#RFC5730">EPP</a> <cite title="NONE">[RFC5730]</cite> provides three commands to retrieve object information: &lt;check&gt; to determine if an object is known to the server, &lt;info&gt; to retrieve detailed information associated with an object, and &lt;transfer&gt; to retrieve object transfer status information.</p>
 <h1 id="rfc.section.3.1.1"><a href="#rfc.section.3.1.1">3.1.1.</a> <a href="#checkCommand" id="checkCommand">EPP &lt;check&gt; Command</a></h1>
 <p id="rfc.section.3.1.1.p.1">The EPP &lt;check&gt; command is used to determine if the server currently supports a zone.  If the response indicates that the zone is not available, then it is currently supported; otherwise it MAY be available to be created by an authorized client.</p>
-<p id="rfc.section.3.1.1.p.2">In addition to the standard EPP command elements, the &lt;check&gt; command MUST contain a &lt;registry:check&gt; element that identifies the registry namespace.  The &gt;registry:check&gt; element contains the following child elements:</p>
+<p id="rfc.section.3.1.1.p.2">In addition to the standard EPP command elements, the &lt;check&gt; command MUST contain a &lt;registry:check&gt; element that identifies the registry namespace.  The &lt;registry:check&gt; element contains the following child elements:</p>
 <p/>
 
 <dl>
@@ -2783,7 +2784,7 @@ END</pre>
 <p id="rfc.section.5.2.p.4">Reference: (insert reference to RFC version of this document) </p>
 <p id="rfc.section.5.2.p.5">Registrant Name and Email Address: IESG, &lt;iesg@ietf.org&gt; </p>
 <p id="rfc.section.5.2.p.6">TLDs: Any </p>
-<p id="rfc.section.5.2.p.7">IPR Disclosure: None </p>
+<p id="rfc.section.5.2.p.7">IPR Disclosure: TBD </p>
 <p id="rfc.section.5.2.p.8">Status: Active </p>
 <p id="rfc.section.5.2.p.9">Notes: None </p>
 <h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#Implementation" id="Implementation">Implementation Status</a></h1>
@@ -2812,12 +2813,6 @@ END</pre>
         <b id="RFC2119">[RFC2119]</b>
       </td>
       <td class="top"><a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC3490">[RFC3490]</b>
-      </td>
-      <td class="top"><a>Faltstrom, P.</a>, <a>Hoffman, P.</a> and <a>A. Costello</a>, "<a href="http://tools.ietf.org/html/rfc3490">Internationalizing Domain Names in Applications (IDNA)</a>", RFC 3490, DOI 10.17487/RFC3490, March 2003.</td>
     </tr>
     <tr>
       <td class="reference">
@@ -2854,6 +2849,12 @@ END</pre>
         <b id="RFC5733">[RFC5733]</b>
       </td>
       <td class="top"><a>Hollenbeck, S.</a>, "<a href="http://tools.ietf.org/html/rfc5733">Extensible Provisioning Protocol (EPP) Contact Mapping</a>", STD 69, RFC 5733, DOI 10.17487/RFC5733, August 2009.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC5890">[RFC5890]</b>
+      </td>
+      <td class="top"><a>Klensin, J.</a>, "<a href="http://tools.ietf.org/html/rfc5890">Internationalized Domain Names for Applications (IDNA): Definitions and Document Framework</a>", RFC 5890, DOI 10.17487/RFC5890, August 2010.</td>
     </tr>
     <tr>
       <td class="reference">

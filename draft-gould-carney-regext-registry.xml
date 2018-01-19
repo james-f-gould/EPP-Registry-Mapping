@@ -6,7 +6,7 @@
 <!ENTITY RFC0952 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0952.xml">
 <!ENTITY RFC1123 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1123.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
-<!ENTITY RFC3490 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3490.xml">
+<!ENTITY RFC5890 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5890.xml">
 <!ENTITY RFC3688 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3688.xml">
 <!ENTITY RFC4034 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4034.xml">
 <!ENTITY RFC5730 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5730.xml">
@@ -147,13 +147,13 @@
     </author>
     
 
-    <date day="9" month="January" year="2018"/>
+    <date day="19" month="January" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
-      mapping for provisioning zones (e.g. top-level domains) in a 
-      Domain Name Registry.  The attributes of a zone include the features 
-      and policies of the zone.</t>
+      mapping for provisioning registry zones (e.g. top-level domains) in a 
+      Domain Name Registry.  The attributes of a registry zone include the features 
+      and policies of the registry zone.</t>
     </abstract>
         
   </front>
@@ -164,10 +164,21 @@
       <xref target="RFC5730">Extensible Provisioning Protocol (EPP)</xref>.
       This document describes a Domain Name Registry Mapping, referred to as 
       Registry Mapping, for the <xref target="RFC5730">Extensible Provisioning Protocol (EPP)</xref>.  
-      A Domain Name Registry can service one or more zones (e.g. top-level domains) with a 
-      variety of supported services and policies.  This mapping enables the provisioning of the 
-      zones in the Domain Name Registry.  A Domain Name Registry MAY support a subset of all 
-      of the commands defined in this mapping.</t>
+      A Domain Name Registry can service one or more registry zones (e.g. top-level domains) with a 
+      variety of supported services and policies.  A registry zone, also referred to as a "zone" in this document, 
+      is a domain name that the Domain Name Registry supports provisioning operations to manage.  The 
+      registry zone and the associated DNS zone has an overlapping data set, where the registry zone 
+      is the source for the generation of a DNS zone.  A registry zone is typically a top-level domain name, 
+      but it can be a domain name at any domain name level.  
+      A registry zone can be the source for multiple resolution services like DNS and WHOIS.</t>
+      <t>This mapping enables the provisioning of the features and policies of the 
+      registry zones in the Domain Name Registry.  A Domain Name Registry MAY support a subset of all 
+      of the commands defined in this mapping and can authorize different clients to execute specific commands.  
+      For example, all clients may be capable of executing the <xref target="queryCommands">EPP Query Commands</xref>, 
+      while internal clients or pre-defined external clients may be capable of executing the 
+      <xref target="transformCommands">EPP Transform Commands</xref> for a specific set of zones.
+      It is up to server policy to define what clients are authorized to execute which commands on 
+      which registry zones.  The server policy can be defined out-of-band or in a seperate EPP extension.</t>
 
       <section title="Conventions Used in This Document">
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -207,9 +218,9 @@
         value of "aLabel".  The "aLabel" form of a zone name contains all ASCII name labels that conform to 
         <xref target="RFC0952"/> and <xref target="RFC1123"/>.  
         The "uLabel" form of a zone name that includes one or more non-ASCII name labels that 
-        can be represented as ASCII labels using <xref target="RFC3490"/>.</t>  
+        can be represented as ASCII labels using <xref target="RFC5890"/>.</t>  
         <t>At the time of this writing, 
-        <xref target="RFC3490"/> describes a standard to use certain ASCII name labels 
+        <xref target="RFC5890"/> describes a standard to use certain ASCII name labels 
         to represent non-ASCII name labels.  These conformance requirements 
         might change in the future as a result of progressing work in developing 
         standards for internationalized names.</t>
@@ -448,8 +459,10 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 and maximum number of contacts by contact type.  
                 The contact type is defined with the required "type" 
                 attribute with the possible values of "admin", "tech", and 
-                "billing", and "custom".  If "custom" is the contact "type" value, 
-                then the "name" attribute MUST be set with the name of the custom type.  
+                "billing", and "custom".  The OPTIONAL "name" attribute is an identifier, represented 
+                in the 7-bit US-ASCII character set, that is used to define the 
+                name of the "custom" type.  If "custom" is the contact "type" value, 
+                then the "name" attribute MUST be set.
                 The OPTIONAL "description" attribute can be set with a description of the 
                 contact type.  The &lt;registry:contact&gt; element contains 
                 the following child elements:</t>
@@ -1244,7 +1257,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
 
        <t>In addition to the standard EPP command elements, the &lt;check&gt;
        command MUST contain a &lt;registry:check&gt; element that identifies 
-       the registry namespace.  The &gt;registry:check&gt; element contains the 
+       the registry namespace.  The &lt;registry:check&gt; element contains the 
        following child elements:</t>
           
        <t><list hangIndent="4" style="hanging">
@@ -2937,7 +2950,7 @@ END]]></artwork>
    </t>
  
    <t>
-   IPR Disclosure: None
+   IPR Disclosure: TBD
    </t>
 
    <t>
@@ -2995,7 +3008,7 @@ END]]></artwork>
      
      &RFC2119;
 
-     &RFC3490;
+     &RFC5890;
      
      &RFC3688;
      

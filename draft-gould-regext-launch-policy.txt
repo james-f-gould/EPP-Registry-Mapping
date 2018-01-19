@@ -4,8 +4,8 @@
 
 Network Working Group                                           J. Gould
 Internet-Draft                                            VeriSign, Inc.
-Intended status: Standards Track                        January 12, 2018
-Expires: July 16, 2018
+Intended status: Standards Track                        January 19, 2018
+Expires: July 23, 2018
 
 
  Launch Phase Policy Extensions Mapping for the Extensible Provisioning
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 16, 2018.
+   This Internet-Draft will expire on July 23, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gould                     Expires July 16, 2018                 [Page 1]
+Gould                     Expires July 23, 2018                 [Page 1]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -98,18 +98,18 @@ Table of Contents
    This document describes an extension mapping for version 1.0 of the
    Extensible Provisioning Protocol (EPP) [RFC5730].  This document
    describes an extension of the Registry Mapping to define the server
-   policy of the Launch Phase EPP extension for a zone (e.g., top-level
-   domain).  The extension enables provisioning of the zone policy in
-   the Domain Name Registry.  A Domain Name Registry MAY support a
-   subset of all of the commands extended in this extension.
+   policy of the Launch Phase EPP extension
+   [I-D.ietf-regext-launchphase] for a registry zone (e.g., top-level
+   domain).  A registry zone, also referred to as a "zone" in this
+   document, is a domain name that the Domain Name Registry supports
+   provisioning operations to manage.  The extension enables
+   provisioning of the registry zone policy in the Domain Name Registry.
+   A Domain Name Registry MAY support a subset of all of the commands
+   extended in this extension.
 
 
 
-
-
-
-
-Gould                     Expires July 16, 2018                 [Page 2]
+Gould                     Expires July 23, 2018                 [Page 2]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                 [Page 3]
+Gould                     Expires July 23, 2018                 [Page 3]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -190,7 +190,8 @@ Internet-Draft                launch-policy                 January 2018
            with this phase.
        "custom"  Custom server launch phase that is defined using the
            "name" attribute.
-   name:  OPTIONAL attribute that defines the phase name when the "type"
+   name:  OPTIONAL identifier attribute, represented in the 7-bit US-
+       ASCII character set, that defines the phase name when the "type"
        attribute is set to "custom" or the sub-phase name when the
        "type" attribute is set to a non-"custom" value.
    mode:  OPTIONAL attribute that defines how the phase operates with
@@ -220,8 +221,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-
-Gould                     Expires July 16, 2018                 [Page 4]
+Gould                     Expires July 23, 2018                 [Page 4]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -235,14 +235,16 @@ Internet-Draft                launch-policy                 January 2018
    <lp:status>:  Zero or more <lp:status> elements that defines the
        supported launch status values, in precedence order, for the
        phase.  The <lp:status> element has the required "s" attribute
-       with one of the possible the status values.  When the "s"
-       attribute is set to "custom", the "name" attribute is used to
-       define the status value, the <lp:status> element text MAY provide
-       the status value description, and the OPTIONAL "lang" attribute
-       MAY be present to identify the language of the description if the
-       negotiated value is something other than the default value of
-       "en" (English).  The possible values of the "s" attribute
-       include:
+       with one of the possible the status values.  The OPTIONAL "name"
+       attribute is an identifier, represented in the 7-bit US-ASCII
+       character set, that is used to define the name of the "custom"
+       status.  When the "s" attribute is set to "custom", then the
+       "name" attribute MUST be set.  The <lp:status> element text MAY
+       provide the status value description, and the OPTIONAL "lang"
+       attribute MAY be present to identify the language of the
+       description if the negotiated value is something other than the
+       default value of "en" (English).  The possible values of the "s"
+       attribute include:
 
 
        "pendingValidation"  The initial state of a newly-created
@@ -272,16 +274,15 @@ Internet-Draft                launch-policy                 January 2018
        <lp:intermediateStatus>:  A boolean value indicating whether the
            server will insert poll messages, per [RFC5730], for the
            applicable intermediate statuses, including the
-           "pendingValidation", "validated", "pendingAllocation", and
 
 
 
-
-Gould                     Expires July 16, 2018                 [Page 5]
+Gould                     Expires July 23, 2018                 [Page 5]
 
 Internet-Draft                launch-policy                 January 2018
 
 
+           "pendingValidation", "validated", "pendingAllocation", and
            "invalid" statuses, using the <domain:infData> element with
            the <launch:infData> extension.
        <lp:nonMandatoryInfo>:  A boolean value indicating whether the
@@ -332,8 +333,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-
-Gould                     Expires July 16, 2018                 [Page 6]
+Gould                     Expires July 23, 2018                 [Page 6]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -389,7 +389,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                 [Page 7]
+Gould                     Expires July 23, 2018                 [Page 7]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -445,7 +445,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                 [Page 8]
+Gould                     Expires July 23, 2018                 [Page 8]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -501,7 +501,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                 [Page 9]
+Gould                     Expires July 23, 2018                 [Page 9]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 10]
+Gould                     Expires July 23, 2018                [Page 10]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 11]
+Gould                     Expires July 23, 2018                [Page 11]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 12]
+Gould                     Expires July 23, 2018                [Page 12]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 13]
+Gould                     Expires July 23, 2018                [Page 13]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 14]
+Gould                     Expires July 23, 2018                [Page 14]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 15]
+Gould                     Expires July 23, 2018                [Page 15]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 16]
+Gould                     Expires July 23, 2018                [Page 16]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -949,7 +949,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 17]
+Gould                     Expires July 23, 2018                [Page 17]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 18]
+Gould                     Expires July 23, 2018                [Page 18]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 19]
+Gould                     Expires July 23, 2018                [Page 19]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 20]
+Gould                     Expires July 23, 2018                [Page 20]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 21]
+Gould                     Expires July 23, 2018                [Page 21]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                     Expires July 16, 2018                [Page 22]
+Gould                     Expires July 23, 2018                [Page 22]
 
 Internet-Draft                launch-policy                 January 2018
 
@@ -1257,6 +1257,12 @@ Internet-Draft                launch-policy                 January 2018
 
 9.1.  Normative References
 
+   [I-D.ietf-regext-launchphase]
+              Gould, J., Tan, W., and G. Brown, "Launch Phase Mapping
+              for the Extensible Provisioning Protocol (EPP)", draft-
+              ietf-regext-launchphase-07 (work in progress), December
+              2017.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
@@ -1275,6 +1281,15 @@ Internet-Draft                launch-policy                 January 2018
               DOI 10.17487/RFC5731, August 2009, <https://www.rfc-
               editor.org/info/rfc5731>.
 
+
+
+
+
+Gould                     Expires July 23, 2018                [Page 23]
+
+Internet-Draft                launch-policy                 January 2018
+
+
    [RFC7451]  Hollenbeck, S., "Extension Registry for the Extensible
               Provisioning Protocol", RFC 7451, DOI 10.17487/RFC7451,
               February 2015, <https://www.rfc-editor.org/info/rfc7451>.
@@ -1282,13 +1297,6 @@ Internet-Draft                launch-policy                 January 2018
    [RFC7848]  Lozano, G., "Mark and Signed Mark Objects Mapping",
               RFC 7848, DOI 10.17487/RFC7848, June 2016,
               <https://www.rfc-editor.org/info/rfc7848>.
-
-
-
-Gould                     Expires July 16, 2018                [Page 23]
-
-Internet-Draft                launch-policy                 January 2018
-
 
 9.2.  URIs
 
@@ -1333,12 +1341,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-Gould                     Expires July 16, 2018                [Page 24]
+Gould                     Expires July 23, 2018                [Page 24]

@@ -5,10 +5,10 @@
 Network Working Group                                           J. Gould
 Internet-Draft                                                    L. Jia
 Intended status: Standards Track                          VeriSign, Inc.
-Expires: July 13, 2018                                         R. Carney
+Expires: July 23, 2018                                         R. Carney
                                                                J. Kolker
                                                             GoDaddy Inc.
-                                                         January 9, 2018
+                                                        January 19, 2018
 
 
     Registry Mapping for the Extensible Provisioning Protocol (EPP)
@@ -17,9 +17,9 @@ Expires: July 13, 2018                                         R. Carney
 Abstract
 
    This document describes an Extensible Provisioning Protocol (EPP)
-   mapping for provisioning zones (e.g. top-level domains) in a Domain
-   Name Registry.  The attributes of a zone include the features and
-   policies of the zone.
+   mapping for provisioning registry zones (e.g. top-level domains) in a
+   Domain Name Registry.  The attributes of a registry zone include the
+   features and policies of the registry zone.
 
 Status of This Memo
 
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 13, 2018.
+   This Internet-Draft will expire on July 23, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gould, et al.             Expires July 13, 2018                 [Page 1]
+Gould, et al.             Expires July 23, 2018                 [Page 1]
 
 Internet-Draft                  registry                    January 2018
 
@@ -66,10 +66,10 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Conventions Used in This Document . . . . . . . . . . . .   3
    2.  Object Attributes . . . . . . . . . . . . . . . . . . . . . .   3
-     2.1.  Zone Name . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  Zone Name . . . . . . . . . . . . . . . . . . . . . . . .   4
      2.2.  Dates and Times . . . . . . . . . . . . . . . . . . . . .   4
      2.3.  Schedule  . . . . . . . . . . . . . . . . . . . . . . . .   4
-     2.4.  Zone Object . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.4.  Zone Object . . . . . . . . . . . . . . . . . . . . . . .   5
    3.  EPP Command Mapping . . . . . . . . . . . . . . . . . . . . .  23
      3.1.  EPP Query Commands  . . . . . . . . . . . . . . . . . . .  23
        3.1.1.  EPP <check> Command . . . . . . . . . . . . . . . . .  23
@@ -101,18 +101,36 @@ Table of Contents
    Extensible Provisioning Protocol (EPP) [RFC5730].  This document
    describes a Domain Name Registry Mapping, referred to as Registry
    Mapping, for the Extensible Provisioning Protocol (EPP) [RFC5730].  A
-   Domain Name Registry can service one or more zones (e.g. top-level
-   domains) with a variety of supported services and policies.  This
-   mapping enables the provisioning of the zones in the Domain Name
-   Registry.  A Domain Name Registry MAY support a subset of all of the
-   commands defined in this mapping.
+   Domain Name Registry can service one or more registry zones (e.g.
+   top-level domains) with a variety of supported services and policies.
+   A registry zone, also referred to as a "zone" in this document, is a
+   domain name that the Domain Name Registry supports provisioning
+   operations to manage.  The registry zone and the associated DNS zone
 
 
 
-Gould, et al.             Expires July 13, 2018                 [Page 2]
+Gould, et al.             Expires July 23, 2018                 [Page 2]
 
 Internet-Draft                  registry                    January 2018
 
+
+   has an overlapping data set, where the registry zone is the source
+   for the generation of a DNS zone.  A registry zone is typically a
+   top-level domain name, but it can be a domain name at any domain name
+   level.  A registry zone can be the source for multiple resolution
+   services like DNS and WHOIS.
+
+   This mapping enables the provisioning of the features and policies of
+   the registry zones in the Domain Name Registry.  A Domain Name
+   Registry MAY support a subset of all of the commands defined in this
+   mapping and can authorize different clients to execute specific
+   commands.  For example, all clients may be capable of executing the
+   EPP Query Commands (Section 3.1), while internal clients or pre-
+   defined external clients may be capable of executing the EPP
+   Transform Commands (Section 3.2) for a specific set of zones.  It is
+   up to server policy to define what clients are authorized to execute
+   which commands on which registry zones.  The server policy can be
+   defined out-of-band or in a seperate EPP extension.
 
 1.1.  Conventions Used in This Document
 
@@ -144,6 +162,14 @@ Internet-Draft                  registry                    January 2018
    Syntax" section of this document and in the appropriate normative
    references.
 
+
+
+
+Gould, et al.             Expires July 23, 2018                 [Page 3]
+
+Internet-Draft                  registry                    January 2018
+
+
 2.1.  Zone Name
 
    The zone name is an element that includes an optional "form"
@@ -152,23 +178,12 @@ Internet-Draft                  registry                    January 2018
    of a zone name contains all ASCII name labels that conform to
    [RFC0952] and [RFC1123].  The "uLabel" form of a zone name that
    includes one or more non-ASCII name labels that can be represented as
-   ASCII labels using [RFC3490].
+   ASCII labels using [RFC5890].
 
-   At the time of this writing, [RFC3490] describes a standard to use
+   At the time of this writing, [RFC5890] describes a standard to use
    certain ASCII name labels to represent non-ASCII name labels.  These
    conformance requirements might change in the future as a result of
    progressing work in developing standards for internationalized names.
-
-
-
-
-
-
-
-Gould, et al.             Expires July 13, 2018                 [Page 3]
-
-Internet-Draft                  registry                    January 2018
-
 
 2.2.  Dates and Times
 
@@ -201,6 +216,16 @@ Internet-Draft                  registry                    January 2018
    A column can include an inclusive range of values using two values
    seperated by a hyphen, as in (1-5) "day of week" for weekdays.
 
+
+
+
+
+
+Gould, et al.             Expires July 23, 2018                 [Page 4]
+
+Internet-Draft                  registry                    January 2018
+
+
    Example schedule of a batch job that executes at 2 PM Eastern time
    zone:
 
@@ -218,13 +243,6 @@ Internet-Draft                  registry                    January 2018
    primary object managed by this mapping.  The Zone object can apply to
    any zone level (top level, second level, third level, etc.).  The
    <registry:zone> element contains the following child elements:
-
-
-
-Gould, et al.             Expires July 13, 2018                 [Page 4]
-
-Internet-Draft                  registry                    January 2018
-
 
    <registry:name>:  The zone name that can be at any level (top level,
        second level, third level, etc.), as described in Section 2.1.
@@ -256,6 +274,14 @@ Internet-Draft                  registry                    January 2018
    <registry:upDate>:  The OPTIONAL date and time of the most recent
        zone object modification.  This element MUST NOT be present if
        the domain object has never been modified.
+
+
+
+Gould, et al.             Expires July 23, 2018                 [Page 5]
+
+Internet-Draft                  registry                    January 2018
+
+
    <registry:batch>:  The OPTIONAL list of batch jobs.  The
        <registry:batch> element contains the following child elements:
 
@@ -274,14 +300,6 @@ Internet-Draft                  registry                    January 2018
            <registry:schedule>:  Execution schedule for the batch job as
                defined in Section 2.3, like <registry:schedule
                tz="EDT5EDT">0 14 * * *</registry:schedule>.
-
-
-
-Gould, et al.             Expires July 13, 2018                 [Page 5]
-
-Internet-Draft                  registry                    January 2018
-
-
    <registry:system>:  The OPTIONAL list of zones that makeup the system
        when the "perSystem" share policy is used for the internal hosts,
        external hosts, or contacts.  The list of zones are listed
@@ -310,6 +328,16 @@ Internet-Draft                  registry                    January 2018
                domain name label.
            <registry:maxLength>:  An OPTIONAL maximum length of the
                domain name label.
+
+
+
+
+
+Gould, et al.             Expires July 23, 2018                 [Page 6]
+
+Internet-Draft                  registry                    January 2018
+
+
            <registry:alphaNumStart>:  An OPTIONAL flag indicating
                whether the label must start with an alphanumeric
                character with a default of "false".
@@ -329,15 +357,6 @@ Internet-Draft                  registry                    January 2018
                element that describes the regular expression with an
                OPTIONAL "lang" attribute that defines the language of
                the description with a default value of "en".
-
-
-
-
-Gould, et al.             Expires July 13, 2018                 [Page 6]
-
-Internet-Draft                  registry                    January 2018
-
-
            <registry:reservedNames>:  An OPTIONAL element that defines
                the set of reserved domain names starting from that label
                level.  The reserved names can refer to values with more
@@ -366,6 +385,15 @@ Internet-Draft                  registry                    January 2018
                in Applications (IDNA) version supported by the server.
                IDNA represents a collection of documents that describe
                the protocol and usage for Internationalized Domain for
+
+
+
+
+Gould, et al.             Expires July 23, 2018                 [Page 7]
+
+Internet-Draft                  registry                    January 2018
+
+
                Applications like IDNA 2003, with value of 2003, or IDNA
                2008, with value of 2008.
            <registry:unicodeVersion>:  The Unicode version supported by
@@ -383,15 +411,6 @@ Internet-Draft                  registry                    January 2018
                language.  The language code SHOULD be an ISO 639 (ISO
                639-1 or ISO 639-2) value.  The <registry:language>
                element contains the following child elements:
-
-
-
-
-
-
-Gould, et al.             Expires July 13, 2018                 [Page 7]
-
-Internet-Draft                  registry                    January 2018
 
 
                <registry:table>:  The OPTIONAL language table URI that
@@ -420,11 +439,21 @@ Internet-Draft                  registry                    January 2018
            that defines the minimum and maximum number of contacts by
            contact type.  The contact type is defined with the required
            "type" attribute with the possible values of "admin", "tech",
-           and "billing", and "custom".  If "custom" is the contact
-           "type" value, then the "name" attribute MUST be set with the
-           name of the custom type.  The OPTIONAL "description"
-           attribute can be set with a description of the contact type.
-           The <registry:contact> element contains the following child
+           and "billing", and "custom".  The OPTIONAL "name" attribute
+           is an identifier, represented in the 7-bit US-ASCII character
+           set, that is used to define the name of the "custom" type.
+
+
+
+Gould, et al.             Expires July 23, 2018                 [Page 8]
+
+Internet-Draft                  registry                    January 2018
+
+
+           If "custom" is the contact "type" value, then the "name"
+           attribute MUST be set.  The OPTIONAL "description" attribute
+           can be set with a description of the contact type.  The
+           <registry:contact> element contains the following child
            elements:
 
 
@@ -441,15 +470,6 @@ Internet-Draft                  registry                    January 2018
 
            <registry:min>:  The minimum number of name servers
                associated with a domain object.
-
-
-
-
-Gould, et al.             Expires July 13, 2018                 [Page 8]
-
-Internet-Draft                  registry                    January 2018
-
-
            <registry:max>:  The OPTIONAL maximum number of name servers
                associated with a domain object.  If the <registry:max>
                element is not defined the maximum number is unbounded.
@@ -479,6 +499,13 @@ Internet-Draft                  registry                    January 2018
                possible values of "y" for year and "m" for month:
 
 
+
+
+Gould, et al.             Expires July 23, 2018                 [Page 9]
+
+Internet-Draft                  registry                    January 2018
+
+
                <registry:min>:  The minimum supported period length.
                <registry:max>:  The maximum supported period length.
                <registry:default>:  The default period length if not
@@ -498,14 +525,6 @@ Internet-Draft                  registry                    January 2018
            "autoRenew".  The <registry:gracePeriod> element requires the
            "unit" attribute with the possible values of "d" for day, "h"
            for hour, and "m" for minute.
-
-
-
-Gould, et al.             Expires July 13, 2018                 [Page 9]
-
-Internet-Draft                  registry                    January 2018
-
-
        <registry:rgp>:  The OPTIONAL Registry Grace Period (RGP) status
            periods.  The <registry:rgp> element contains the following
            child elements, where each child element supports the "unit"
@@ -535,6 +554,14 @@ Internet-Draft                  registry                    January 2018
 
                <registry:min>:  The minimum number of DS associated with
                    the domain object.
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 10]
+
+Internet-Draft                  registry                    January 2018
+
+
                <registry:max>:  The maximum number of DS associated with
                    the domain object.
                <registry:alg>:  Zero or more <registry:alg> elements
@@ -554,14 +581,6 @@ Internet-Draft                  registry                    January 2018
                    with the domain object.
                <registry:max>:  The maximum number of keys associated
                    with the domain object.
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 10]
-
-Internet-Draft                  registry                    January 2018
-
-
                <registry:alg>:  Zero or more <registry:alg> elements
                    that define the supported algorithms as described in
                    section 2.1.3 of [RFC4034].
@@ -591,6 +610,14 @@ Internet-Draft                  registry                    January 2018
            check command defined in [RFC5731].
        <registry:supportedStatus>:  The OPTIONAL set of supported domain
            statuses defined in [RFC5731].
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 11]
+
+Internet-Draft                  registry                    January 2018
+
+
        <registry:authInfoRegEx>:  The OPTIONAL regular expression used
            to validate the domain object authorization information
            value.
@@ -608,16 +635,6 @@ Internet-Draft                  registry                    January 2018
                The client needs to explicitly renew the domain object
                prior to its expiry to ensure that it does not get
                deleted.
-
-
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 11]
-
-Internet-Draft                  registry                    January 2018
-
-
            "autoExpire":  The domain object will auto expire at expiry
                that may include the server placing the domain object on
                hold.
@@ -649,6 +666,14 @@ Internet-Draft                  registry                    January 2018
                    internal hosts defined for the zone.
                "perSystem":  The internal hosts are shared across all
                    zones of the system.  There is a single pool of
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 12]
+
+Internet-Draft                  registry                    January 2018
+
+
                    internal hosts across all of the zones supported by
                    the system.  The system MUST be defined using the
                    <registry:system> element.
@@ -665,15 +690,6 @@ Internet-Draft                  registry                    January 2018
                for an external host.
            <registry:maxIP>:  Maximum number of IP addresses supported
                for an external host.
-
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 12]
-
-Internet-Draft                  registry                    January 2018
-
-
            <registry:sharePolicy>:  The OPTIONAL policy for the sharing
                of external hosts in the server.  The possible shared
                policy values include:
@@ -706,6 +722,14 @@ Internet-Draft                  registry                    January 2018
 
        <registry:contactIdRegEx>:  The OPTIONAL regular expression used
            to validate the <contact:id> element defined in [RFC5733].
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 13]
+
+Internet-Draft                  registry                    January 2018
+
+
        <registry:sharePolicy>:  The OPTIONAL policy for the sharing of
            contacts in the server.  The possible shared policy values
            include:
@@ -722,12 +746,6 @@ Internet-Draft                  registry                    January 2018
            postal-address information, represented by the
            <contact:postalInfo> element in [RFC5733], supported with the
            following possible values:
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 13]
-
-Internet-Draft                  registry                    January 2018
 
 
            "loc":  Indicates that a single <contact:postalInfo> element
@@ -760,6 +778,14 @@ Internet-Draft                  registry                    January 2018
 
                <registry:street>:  The minimum and maximum length and
                    the minimum and maximum number of the
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 14]
+
+Internet-Draft                  registry                    January 2018
+
+
                    <contact:street> elements defined in [RFC5733].  The
                    <registry:street> element contains the following
                    child elements:
@@ -777,15 +803,6 @@ Internet-Draft                  registry                    January 2018
                    <contact:city< element defined in [RFC5733] using the
                    <registry:minLength> and <registry:maxLength> child
                    elements, respectively.
-
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 14]
-
-Internet-Draft                  registry                    January 2018
-
-
                <registry:sp>:  The minimum and maximum length of the
                    <contact:sp> element defined in [RFC5733] using the
                    <registry:minLength> and <registry:maxLength> child
@@ -817,6 +834,14 @@ Internet-Draft                  registry                    January 2018
            elements that require exception server-operator handling to
            allow or restrict disclosure to third parties defined in
            [RFC5733] with a default of "false".
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 15]
+
+Internet-Draft                  registry                    January 2018
+
+
        <registry:supportedStatus>:  The OPTIONAL set of supported
            contact statuses defined in [RFC5733].
        <registry:transferHoldPeriod>:  The OPTIONAL period of time a
@@ -833,14 +858,6 @@ Internet-Draft                  registry                    January 2018
            value of "true".
 
    Example of a <registry:zone> element:
-
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 15]
-
-Internet-Draft                  registry                    January 2018
-
 
    <registry:zone>
      <registry:name>EXAMPLE</registry:name>
@@ -873,6 +890,14 @@ Internet-Draft                  registry                    January 2018
      <registry:crID>clientX</registry:crID>
      <registry:crDate>2012-10-01T00:00:00.0Z
      </registry:crDate>
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 16]
+
+Internet-Draft                  registry                    January 2018
+
+
      <registry:upID>clientY</registry:upID>
      <registry:upDate>2012-10-15T00:00:00.0Z
      </registry:upDate>
@@ -890,14 +915,6 @@ Internet-Draft                  registry                    January 2018
        </registry:zone>
        <registry:zone form="aLabel">EXAMPLE2
        </registry:zone>
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 16]
-
-Internet-Draft                  registry                    January 2018
-
-
      </registry:system>
      <registry:domain>
        <registry:domainName level="2">
@@ -929,6 +946,14 @@ Internet-Draft                  registry                    January 2018
          </registry:reservedNames>
        </registry:domainName>
        <registry:idn>
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 17]
+
+Internet-Draft                  registry                    January 2018
+
+
          <registry:idnVersion>4.1
          </registry:idnVersion>
          <registry:idnaVersion>2008
@@ -946,14 +971,6 @@ Internet-Draft                  registry                    January 2018
            <registry:variantStrategy>blocked
            </registry:variantStrategy>
          </registry:language>
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 17]
-
-Internet-Draft                  registry                    January 2018
-
-
        </registry:idn>
        <registry:premiumSupport>false
        </registry:premiumSupport>
@@ -985,6 +1002,14 @@ Internet-Draft                  registry                    January 2018
          <registry:min>0</registry:min>
        </registry:childHost>
        <registry:period command="create">
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 18]
+
+Internet-Draft                  registry                    January 2018
+
+
          <registry:length>
            <registry:min unit="y">1</registry:min>
            <registry:max unit="y">10</registry:max>
@@ -1002,14 +1027,6 @@ Internet-Draft                  registry                    January 2018
          command="renew"
          unit="d"
        >5
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 18]
-
-Internet-Draft                  registry                    January 2018
-
-
        </registry:gracePeriod>
        <registry:gracePeriod
          command="transfer"
@@ -1041,6 +1058,14 @@ Internet-Draft                  registry                    January 2018
            </registry:clientDefined>
          </registry:maxSigLife>
        </registry:dnssec>
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 19]
+
+Internet-Draft                  registry                    January 2018
+
+
        <registry:maxCheckDomain>5
        </registry:maxCheckDomain>
        <registry:supportedStatus>
@@ -1058,14 +1083,6 @@ Internet-Draft                  registry                    January 2018
          </registry:status>
          <registry:status>serverRenewProhibited
          </registry:status>
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 19]
-
-Internet-Draft                  registry                    January 2018
-
-
          <registry:status>clientTransferProhibited
          </registry:status>
          <registry:status>serverTransferProhibited
@@ -1097,6 +1114,14 @@ Internet-Draft                  registry                    January 2018
          </registry:uniqueIpAddressesRequired>
        </registry:internal>
        <registry:external>
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 20]
+
+Internet-Draft                  registry                    January 2018
+
+
          <registry:minIP>0</registry:minIP>
          <registry:maxIP>0</registry:maxIP>
          <registry:sharePolicy>perSystem
@@ -1114,14 +1139,6 @@ Internet-Draft                  registry                    January 2018
          </registry:status>
          <registry:status>serverDeleteProhibited
          </registry:status>
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 20]
-
-Internet-Draft                  registry                    January 2018
-
-
          <registry:status>clientUpdateProhibited
          </registry:status>
          <registry:status>serverUpdateProhibited
@@ -1153,6 +1170,14 @@ Internet-Draft                  registry                    January 2018
            <registry:maxLength>40</registry:maxLength>
          </registry:org>
          <registry:address>
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 21]
+
+Internet-Draft                  registry                    January 2018
+
+
            <registry:street>
              <registry:minLength>1</registry:minLength>
              <registry:maxLength>40</registry:maxLength>
@@ -1170,14 +1195,6 @@ Internet-Draft                  registry                    January 2018
            <registry:pc>
              <registry:minLength>1</registry:minLength>
              <registry:maxLength>40</registry:maxLength>
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 21]
-
-Internet-Draft                  registry                    January 2018
-
-
            </registry:pc>
          </registry:address>
          <registry:voiceRequired>false
@@ -1209,6 +1226,14 @@ Internet-Draft                  registry                    January 2018
          <registry:status>serverDeleteProhibited
          </registry:status>
          <registry:status>clientTransferProhibited
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 22]
+
+Internet-Draft                  registry                    January 2018
+
+
          </registry:status>
          <registry:status>serverTransferProhibited
          </registry:status>
@@ -1226,14 +1251,6 @@ Internet-Draft                  registry                    January 2018
        <registry:transferHoldPeriod unit="d">5
        </registry:transferHoldPeriod>
        <registry:privacyContactSupported>true
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 22]
-
-Internet-Draft                  registry                    January 2018
-
-
        </registry:privacyContactSupported>
        <registry:proxyContactSupported>true
        </registry:proxyContactSupported>
@@ -1263,32 +1280,19 @@ Internet-Draft                  registry                    January 2018
 
    In addition to the standard EPP command elements, the <check> command
    MUST contain a <registry:check> element that identifies the registry
-   namespace.  The >registry:check> element contains the following child
+   namespace.  The <registry:check> element contains the following child
    elements:
+
+
+
+Gould, et al.             Expires July 23, 2018                [Page 23]
+
+Internet-Draft                  registry                    January 2018
+
 
    <registry:name>:  One or more <registry:name> elements, as described
        in Section 2.1, that contain the fully qualified names of the
        zone objects to be queried.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 23]
-
-Internet-Draft                  registry                    January 2018
-
 
    Example <check> command:
 
@@ -1337,11 +1341,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-
-
-
-
-Gould, et al.             Expires July 13, 2018                [Page 24]
+Gould, et al.             Expires July 23, 2018                [Page 24]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 25]
+Gould, et al.             Expires July 23, 2018                [Page 25]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 26]
+Gould, et al.             Expires July 23, 2018                [Page 26]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1509,7 +1509,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 27]
+Gould, et al.             Expires July 23, 2018                [Page 27]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1565,7 +1565,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 28]
+Gould, et al.             Expires July 23, 2018                [Page 28]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 29]
+Gould, et al.             Expires July 23, 2018                [Page 29]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1677,7 +1677,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 30]
+Gould, et al.             Expires July 23, 2018                [Page 30]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 31]
+Gould, et al.             Expires July 23, 2018                [Page 31]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 32]
+Gould, et al.             Expires July 23, 2018                [Page 32]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 33]
+Gould, et al.             Expires July 23, 2018                [Page 33]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 34]
+Gould, et al.             Expires July 23, 2018                [Page 34]
 
 Internet-Draft                  registry                    January 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 35]
+Gould, et al.             Expires July 23, 2018                [Page 35]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 36]
+Gould, et al.             Expires July 23, 2018                [Page 36]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 37]
+Gould, et al.             Expires July 23, 2018                [Page 37]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 38]
+Gould, et al.             Expires July 23, 2018                [Page 38]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2181,7 +2181,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 39]
+Gould, et al.             Expires July 23, 2018                [Page 39]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2237,7 +2237,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 40]
+Gould, et al.             Expires July 23, 2018                [Page 40]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2293,7 +2293,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 41]
+Gould, et al.             Expires July 23, 2018                [Page 41]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2349,7 +2349,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 42]
+Gould, et al.             Expires July 23, 2018                [Page 42]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2405,7 +2405,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 43]
+Gould, et al.             Expires July 23, 2018                [Page 43]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2461,7 +2461,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 44]
+Gould, et al.             Expires July 23, 2018                [Page 44]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2517,7 +2517,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 45]
+Gould, et al.             Expires July 23, 2018                [Page 45]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2573,7 +2573,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 46]
+Gould, et al.             Expires July 23, 2018                [Page 46]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2629,7 +2629,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 47]
+Gould, et al.             Expires July 23, 2018                [Page 47]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2685,7 +2685,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 48]
+Gould, et al.             Expires July 23, 2018                [Page 48]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2741,7 +2741,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 49]
+Gould, et al.             Expires July 23, 2018                [Page 49]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2797,7 +2797,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 50]
+Gould, et al.             Expires July 23, 2018                [Page 50]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2853,7 +2853,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 51]
+Gould, et al.             Expires July 23, 2018                [Page 51]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2909,7 +2909,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 52]
+Gould, et al.             Expires July 23, 2018                [Page 52]
 
 Internet-Draft                  registry                    January 2018
 
@@ -2965,7 +2965,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 53]
+Gould, et al.             Expires July 23, 2018                [Page 53]
 
 Internet-Draft                  registry                    January 2018
 
@@ -3021,7 +3021,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 54]
+Gould, et al.             Expires July 23, 2018                [Page 54]
 
 Internet-Draft                  registry                    January 2018
 
@@ -3077,7 +3077,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 55]
+Gould, et al.             Expires July 23, 2018                [Page 55]
 
 Internet-Draft                  registry                    January 2018
 
@@ -3133,7 +3133,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 56]
+Gould, et al.             Expires July 23, 2018                [Page 56]
 
 Internet-Draft                  registry                    January 2018
 
@@ -3189,7 +3189,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 57]
+Gould, et al.             Expires July 23, 2018                [Page 57]
 
 Internet-Draft                  registry                    January 2018
 
@@ -3205,7 +3205,7 @@ Internet-Draft                  registry                    January 2018
 
    TLDs: Any
 
-   IPR Disclosure: None
+   IPR Disclosure: TBD
 
    Status: Active
 
@@ -3245,7 +3245,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 58]
+Gould, et al.             Expires July 23, 2018                [Page 58]
 
 Internet-Draft                  registry                    January 2018
 
@@ -3254,11 +3254,6 @@ Internet-Draft                  registry                    January 2018
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
               editor.org/info/rfc2119>.
-
-   [RFC3490]  Faltstrom, P., Hoffman, P., and A. Costello,
-              "Internationalizing Domain Names in Applications (IDNA)",
-              RFC 3490, DOI 10.17487/RFC3490, March 2003,
-              <https://www.rfc-editor.org/info/rfc3490>.
 
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004, <https://www.rfc-
@@ -3286,6 +3281,11 @@ Internet-Draft                  registry                    January 2018
               Contact Mapping", STD 69, RFC 5733, DOI 10.17487/RFC5733,
               August 2009, <https://www.rfc-editor.org/info/rfc5733>.
 
+   [RFC5890]  Klensin, J., "Internationalized Domain Names for
+              Applications (IDNA): Definitions and Document Framework",
+              RFC 5890, DOI 10.17487/RFC5890, August 2010,
+              <https://www.rfc-editor.org/info/rfc5890>.
+
    [RFC5910]  Gould, J. and S. Hollenbeck, "Domain Name System (DNS)
               Security Extensions Mapping for the Extensible
               Provisioning Protocol (EPP)", RFC 5910,
@@ -3301,7 +3301,7 @@ Internet-Draft                  registry                    January 2018
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 59]
+Gould, et al.             Expires July 23, 2018                [Page 59]
 
 Internet-Draft                  registry                    January 2018
 
@@ -3357,4 +3357,4 @@ Authors' Addresses
 
 
 
-Gould, et al.             Expires July 13, 2018                [Page 60]
+Gould, et al.             Expires July 23, 2018                [Page 60]
