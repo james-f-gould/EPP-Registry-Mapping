@@ -76,7 +76,7 @@
       </address>
     </author>    
 
-    <date day="19" month="January" year="2018"/>
+    <date day="30" month="January" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -146,164 +146,169 @@
         is the object that is extended by this extension with the &lt;lp:zone&gt; element.  The Zone object can 
         apply to any zone level (top level, second level, third level, etc.).  
         The &lt;lp:zone&gt; element contains zero or more &lt;lp:phase&gt; elements, ordered by 
-        ascending start date.  The &lt;lp:phase&gt; element includes the following attributes:</t>
-        
-        <t><list hangIndent="4" style="hanging">
-          <t hangText="type:">Attribute that defines the phase name / type that include the following 
-          possible values:</t>
-            <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;pre-delegation&quot;">Phase when 
-              pre-delegation testing is done.</t>
-              <t hangText="&quot;pre-launch&quot;">Phase prior to the 
-              sunrise phase where no writable operations will be allowed.</t>
-              <t hangText="&quot;sunrise&quot;">Phase when trademark holders 
-              can submit registration applications with trademark information 
-              that can be validated by the server.</t>
-              <t hangText="&quot;landrush&quot;">Post sunrise phase when 
-              non-trademark holders are allowed to register domain names.</t>
-              <t hangText="&quot;claims&quot;">Trademark claims phase as 
-              defined by Trademark Clearinghouse model of displaying a 
-              claims notice to clients for domain names that match 
-              trademarks.</t>
-              <t hangText="&quot;open&quot;">Post launch phase that is also 
-              referred to as "steady state".  Servers MAY require additional 
-              trademark protection with this phase.</t>
-              <t hangText="&quot;custom&quot;">Custom server launch phase 
-              that is defined using the "name" attribute.</t> 
-             </list></t>
-          <t hangText="name:">OPTIONAL identifier attribute, represented in the 7-bit US-ASCII character set, 
-          that defines the phase name when the "type" attribute is 
-          set to "custom" or the sub-phase name when the "type" attribute is set to a non-"custom" value.</t>
-          <t hangText="mode:">OPTIONAL attribute that defines how the phase operates with the following 
-          possible values and with the default value of "fcfs":</t>
-            <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;fcfs&quot;">First-come-first-serve. 
-              In this mode, each domain name is immediately created and there 
-              is no use of an application identifier.</t>
-              <t hangText="&quot;pending-registration&quot;">In this mode, 
-              the domain name is created with the "pendingCreate" status with 
-              no use of an application identifier.</t>
-              <t hangText="&quot;pending-application&quot;">In this mode, 
-              the domain name, referred to as a domain application, 
-              is created in the "pendingCreate" status with the server returning 
-              an application identifier in the create response for the client 
-              to use in subsequent commands (info, update, delete). 
-              When a domain application is allocated, it will become a 
-              domain without the use of an application identifier.</t>
-             </list></t>
-        </list></t>
-        
-        <t>The &lt;lp:phase&gt; element contains the following child elements:</t>
-        
-        <t><list hangIndent="4" style="hanging">
-          <t hangText="&lt;lp:startDate&gt;:">The Start date and time for the phase.</t>
-          <t hangText="&lt;lp:endDate&gt;:">The OPTIONAL end date and time for the phase.</t>
-          <t hangText="&lt;lp:validatePhase&gt;:">An OPTIONAL boolean value that indicates whether the 
-          server validates the phase provided by the client in the &lt;launch:phase&gt; element.</t>
-          <t hangText="&lt;lp:validatorId&gt;:">Zero or more &lt;lp:validatorId&gt; elements that 
-          define the supported Validator Identifier values for the phase.  An example is the reserved Validator Identifier 
-          of "tmch".</t>
-          <t hangText="&lt;lp:status&gt;:">Zero or more &lt;lp:status&gt; elements that defines the 
-          supported launch status values, in precedence order, for the phase.  The &lt;lp:status&gt; element has the 
-          required "s" attribute with one of the possible the status values.  The OPTIONAL "name" attribute is an identifier, 
-          represented in the 7-bit US-ASCII character set, that is used to define the name of the "custom" status.  
-          When the "s" attribute is set to "custom", then the "name" attribute MUST be set.  The &lt;lp:status&gt; element text MAY provide the 
-          status value description, and the OPTIONAL "lang" attribute MAY be present to identify the language of the description if the negotiated value is something 
-          other than the default value of "en" (English).  The possible values of the "s" attribute include:</t>
-            <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;pendingValidation&quot;">The initial state of a newly-created application
-      			or registration object.</t>
-              <t hangText="&quot;validated&quot;">The application or registration meets relevant registry
-      			rules.</t>
-              <t hangText="&quot;invalid&quot;">The application or registration does not validate according
-      			to registry rules.</t>
-              <t hangText="&quot;pendingAllocation&quot;">The allocation of the application or registration
-      			is pending based on the results of some out-of-band process (for
-      			example, an auction).</t>
-              <t hangText="&quot;allocated&quot;">The object corresponding to the application or
-      			registration has been provisioned.</t>
-              <t hangText="&quot;rejected&quot;">The application or registration object was not
-      			provisioned.</t>
-              <t hangText="&quot;custom&quot;">A custom status that is defined using the "name" attribute.</t>
-             </list></t>
-          <t hangText="&lt;lp:pendingCreate&gt;:">An OPTIONAL boolean value that indicates that the server 
-          will place the Launch Application or the Launch Registration in the "pendingCreate" status as specified in 
-          <xref target="RFC5731"/>.</t>
-          <t hangText="&lt;lp:pollPolicy&gt;:">An OPTIONAL element that defines the poll messaging policy for the phase.  
-          The &lt;lp:pollPolicy&gt; element contains the following child elements:</t>             
-            <t><list hangIndent="4" style="hanging">
-              <t hangText="&lt;lp:intermediateStatus&gt;:">A boolean value indicating whether the server will insert poll 
-              messages, per <xref target="RFC5730"/>, for the applicable intermediate statuses, including the "pendingValidation", 
-              "validated", "pendingAllocation", and "invalid" statuses, using the &lt;domain:infData&gt; element with the 
-              &lt;launch:infData&gt; extension.</t>
-              <t hangText="&lt;lp:nonMandatoryInfo&gt;:">A boolean value indicating whether the server will include 
-              non-mandatory information in the &lt;domain:infData&gt; element of the poll message.</t>
-              <t hangText="&lt;lp:extensionInfo&gt;:">A boolean value indicating whether the server will include further extensions 
-              that would normally be included in the response to the &lt;domain:info&gt; command, per <xref target="RFC5731"/>, 
-              in the poll message.</t>
-             </list></t>
-          <t hangText="&lt;lp:markValidation&gt;:">Zero to four &lt;lp:markValidation&gt; elements that defines the 
-          supported Mark Validation Models supported by the phase.  The &lt;lp:markValidation&gt; element has the following 
-          possible values:</t>
-            <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;code&quot;">Indicates support for the "code" Mark Validation Model, where the 
-              mark code by itself is used to validate that the mark matches the domain name.  This model is supported 
-              using the &lt;launch:codeMark&gt; element with just the &lt;laumch:code&gt; element.</t>
-              <t hangText="&quot;mark&quot;">Indicates support for the "mark" Mark Validation Model, where the 
-              mark information is passed without any other validation element.  The server will use some custom 
-              form of validation to validate that the mark information is authentic.  This model is supported 
-              using the &lt;launch:codeMark&gt; element with just the &lt;mark:mark&gt; element.</t>
-              <t hangText="&quot;codeWithMark&quot;">Indicates support for the "code with mark" Mark Validation Model, where 
-              the code is used along with the mark information by the server to validate the mark utilizing an external party.  
-              This model is supported using the &lt;launch:codeMark&gt; element that contains both the &lt;launch:code&gt; and 
-              the &lt;mark:mark&gt; elements.</t>
-              <t hangText="&quot;signedMark&quot;">Indicates support for the "signed mark" Mark Validation Model, where 
-              the mark information is digitally signed.  The digital signature can be directly validated by the server 
-              using the public key of the external party that created the signed mark using its private key.  This model 
-              is supported using the &lt;smd:signedMark&gt; and &lt;smd:encodedSignedMark&gt; elements.</t>
-             </list></t>             
-          <t hangText="&lt;lp:maxMarks&gt;:">An OPTIONAL maximum number number of marks per domain name for the phase.</t>  
-          <t hangText="&lt;lp:markSupported&gt;:">Zero or more &lt;lp:markSupported&gt; elements that defines the 
-          XML namespace of the marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:mark-1.0" for <xref target="RFC7848"/>.</t>  
-          <t hangText="&lt;lp:signedMarkSupported&gt;:">Zero or more &lt;lp:signedMarkSupported&gt; elements that defines the 
-          XML namespace of the signed marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:signedMark-1.0" for <xref target="RFC7848"/>.</t>  
-          <t hangText="&lt;lp:encodedSignedMarkSupported&gt;:">Zero or more &lt;lp:encodedSignedMarkSupported&gt; elements that defines the 
-          XML namespace of the encoded signed marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:signedMark-1.0" for <xref target="RFC7848"/>.</t>  
-          <t hangText="&lt;lp:checkForm&gt;:">Zero to three &lt;lp:checkForm&gt; elements that defines the 
-          supported check forms.  The &lt;lp:checkForm&gt; element has the following 
-          possible values:</t>
-            <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;claims&quot;">Indicates support for the Claims Check Form, which defines a new command called 
-              the Claims Check Command that is used to determine whether or not there are any matching trademarks, in the 
-              specified launch phase, for each domain name passed in the command.</t>
-              <t hangText="&quot;availability&quot;">Indicates support for the Availability Check Form, which extends the Domain Check Command 
-              to specify which launch phase to use to check the availability for each domain name passed in the command.</t>
-              <t hangText="&quot;trademark&quot;">Indicates support for the Trademark Check Form, which defines a new command 
-              called the Trademark Check Command that is used to determine whether or not there are any matching trademarks for each domain name passed 
-              in the command, independent of the active launch phase.</t>
-             </list></t>             
-          <t hangText="&lt;lp:infoPhase&gt;:">Zero or more &lt;lp:infoPhase&gt; elements that defines the 
-          possible &lt;launch:phase&gt; values that can be passed by the client in the phase.  The &lt;lp:infoPhase&gt; supports the "type" and "name" attributes 
-          defined for the &lt;lp:phase&gt; element.</t>  
-          <t hangText="&lt;lp:createForm&gt;:">Zero to three &lt;lp:createForm&gt; elements that defines the 
-          supported create forms.  The &lt;lp:createForm&gt; element has the following 
-          possible values:</t>
-            <t><list hangIndent="4" style="hanging">
-              <t hangText="&quot;sunrise&quot;">Indicates support for the Sunrise Create Form, which is an extension of the Domain Create Command to include 
-              the verifiable trademark information that the server uses to match against the domain name to authorize the domain create.
-              </t>
-              <t hangText="&quot;claims&quot;">Indicates support for the Claims Create Form, which is an extension of the Domain Create Command to include 
-              information related to the registrant's acceptance of the Claims Notice.</t>
-              <t hangText="&quot;general&quot;">Indicates support for the General Create Form, which is an extension of the Domain Create Command to specify 
-              the target launch phase for the domain create.</t>
-              <t hangText="&quot;mixed&quot;">Indicates support for the Mixed Create Form, where a mix of create forms is supported.  For example, the 
-              Sunrise Create Form and the Claims Create Form is supported in a single command by including both the verified trademark information 
-              and the information related to the registrant's acceptance of the Claims Notice.</t>
-             </list></t>             
-          <t hangText="&lt;lp:createValidateType&gt;:">An OPTIONAL boolean value that indicates whether the 
-          server validates the OPTIONAL &lt;launch:create&gt; "type" attribute.</t>
+        ascending start date.</t>
+        <t>The &lt;lp:phase&gt; element includes the following attributes:
+        <list>
+			<t><list hangIndent="4" style="hanging">
+			  <t hangText="&quot;type&quot;:">Attribute that defines the phase name / type that include the following 
+			  possible values:</t>
+				<t><list hangIndent="4" style="hanging">
+				  <t hangText="&quot;pre-delegation&quot;">Phase when 
+				  pre-delegation testing is done.</t>
+				  <t hangText="&quot;pre-launch&quot;">Phase prior to the 
+				  sunrise phase where no writable operations will be allowed.</t>
+				  <t hangText="&quot;sunrise&quot;">Phase when trademark holders 
+				  can submit registration applications with trademark information 
+				  that can be validated by the server.</t>
+				  <t hangText="&quot;landrush&quot;">Post-sunrise phase when 
+				  non-trademark holders are allowed to register domain names.</t>
+				  <t hangText="&quot;claims&quot;">Trademark claims phase as 
+				  defined by Trademark Clearinghouse model of displaying a 
+				  claims notice to clients for domain names that match 
+				  trademarks.</t>
+				  <t hangText="&quot;open&quot;">Post-launch phase that is also 
+				  referred to as "steady state".  Servers MAY require additional 
+				  trademark protection with this phase.</t>
+				  <t hangText="&quot;custom&quot;">Custom launch phase 
+				  that is defined using the "name" attribute.</t> 
+				 </list></t>
+			  <t hangText="&quot;name&quot;:">OPTIONAL identifier attribute, represented in the 7-bit US-ASCII character set, 
+			  that defines the phase name when the "type" attribute is 
+			  set to "custom" or the sub-phase name when the "type" attribute is set to a non-"custom" value.</t>
+			  <t hangText="&quot;mode&quot;:">OPTIONAL attribute that defines how the phase operates with the following 
+			  possible values and with the default value of "fcfs":</t>
+				<t><list hangIndent="4" style="hanging">
+				  <t hangText="&quot;fcfs&quot;">First-come-first-serve. 
+				  In this mode, each domain name is immediately created and there 
+				  is no use of an application identifier.</t>
+				  <t hangText="&quot;pending-registration&quot;">In this mode, 
+				  the domain name is created with the "pendingCreate" status with 
+				  no use of an application identifier.</t>
+				  <t hangText="&quot;pending-application&quot;">In this mode, 
+				  the domain name, referred to as a domain application, 
+				  is created in the "pendingCreate" status with the server returning 
+				  an application identifier in the create response for the client 
+				  to use in subsequent commands (info, update, delete). 
+				  When a domain application is allocated, it will become a 
+				  domain without the use of an application identifier.</t>
+				 </list></t>
+			</list></t>
+		</list></t>
           
-        </list></t>
+          
+        <t>The &lt;lp:phase&gt; element contains the following child elements:
+        <list>
+			<t><list hangIndent="4" style="hanging">
+	
+			  <t hangText="&lt;lp:startDate&gt;:">The Start date and time for the phase.</t>
+			  <t hangText="&lt;lp:endDate&gt;:">The OPTIONAL end date and time for the phase.</t>
+			  <t hangText="&lt;lp:validatePhase&gt;:">An OPTIONAL boolean value that indicates whether the 
+			  server validates the phase provided by the client in the &lt;launch:phase&gt; element.</t>
+			  <t hangText="&lt;lp:validatorId&gt;:">Zero or more &lt;lp:validatorId&gt; elements that 
+			  define the supported Validator Identifier values for the phase.  An example is the reserved Validator Identifier 
+			  of "tmch".</t>
+			  <t hangText="&lt;lp:status&gt;:">Zero or more &lt;lp:status&gt; elements that defines the 
+			  supported launch status values, in precedence order, for the phase.  The &lt;lp:status&gt; element has the 
+			  required "s" attribute with one of the possible the status values.  The OPTIONAL "name" attribute is an identifier, 
+			  represented in the 7-bit US-ASCII character set, that is used to define the name of the "custom" status.  
+			  When the "s" attribute is set to "custom", then the "name" attribute MUST be set.  The &lt;lp:status&gt; element text MAY provide the 
+			  status value description, and the OPTIONAL "lang" attribute MAY be present to identify the language of the description if the negotiated value is something 
+			  other than the default value of "en" (English).  The possible values of the "s" attribute include:
+				<list hangIndent="4" style="hanging">
+				  <t hangText="&quot;pendingValidation&quot;">The initial state of a newly-created application
+					or registration object.</t>
+				  <t hangText="&quot;validated&quot;">The application or registration meets relevant registry
+					rules.</t>
+				  <t hangText="&quot;invalid&quot;">The application or registration does not validate according
+					to registry rules.</t>
+				  <t hangText="&quot;pendingAllocation&quot;">The allocation of the application or registration
+					is pending based on the results of some out-of-band process (for
+					example, an auction).</t>
+				  <t hangText="&quot;allocated&quot;">The object corresponding to the application or
+					registration has been provisioned.</t>
+				  <t hangText="&quot;rejected&quot;">The application or registration object was not
+					provisioned.</t>
+				  <t hangText="&quot;custom&quot;">A custom status that is defined using the "name" attribute.</t>
+				</list></t>
+			  <t hangText="&lt;lp:pendingCreate&gt;:">An OPTIONAL boolean value that indicates that the server 
+			  will place the Launch Application or the Launch Registration in the "pendingCreate" status as specified in 
+			  <xref target="RFC5731"/>.</t>
+			  <t hangText="&lt;lp:pollPolicy&gt;:">An OPTIONAL element that defines the poll messaging policy for the phase.  
+			  The &lt;lp:pollPolicy&gt; element contains the following child elements:</t>             
+				<t><list hangIndent="4" style="hanging">
+				  <t hangText="&lt;lp:intermediateStatus&gt;:">A boolean value indicating whether the server will insert poll 
+				  messages, per <xref target="RFC5730"/>, for the applicable intermediate statuses, including the "pendingValidation", 
+				  "validated", "pendingAllocation", and "invalid" statuses, using the &lt;domain:infData&gt; element with the 
+				  &lt;launch:infData&gt; extension.</t>
+				  <t hangText="&lt;lp:nonMandatoryInfo&gt;:">A boolean value indicating whether the server will include 
+				  non-mandatory information in the &lt;domain:infData&gt; element of the poll message.</t>
+				  <t hangText="&lt;lp:extensionInfo&gt;:">A boolean value indicating whether the server will include further extensions 
+				  that would normally be included in the response to the &lt;domain:info&gt; command, per <xref target="RFC5731"/>, 
+				  in the poll message.</t>
+				 </list></t>
+			  <t hangText="&lt;lp:markValidation&gt;:">Zero to four &lt;lp:markValidation&gt; elements that defines the 
+			  supported Mark Validation Models supported by the phase.  The &lt;lp:markValidation&gt; element has the following 
+			  possible values:</t>
+				<t><list hangIndent="4" style="hanging">
+				  <t hangText="&quot;code&quot;">Indicates support for the "code" Mark Validation Model, where the 
+				  mark code by itself is used to validate that the mark matches the domain name.  This model is supported 
+				  using the &lt;launch:codeMark&gt; element with just the &lt;launch:code&gt; element.</t>
+				  <t hangText="&quot;mark&quot;">Indicates support for the "mark" Mark Validation Model, where the 
+				  mark information is passed without any other validation element.  The server will use some custom 
+				  form of validation to validate that the mark information is authentic.  This model is supported 
+				  using the &lt;launch:codeMark&gt; element with just the &lt;mark:mark&gt; element.</t>
+				  <t hangText="&quot;codeWithMark&quot;">Indicates support for the "code with mark" Mark Validation Model, where 
+				  the code is used along with the mark information by the server to validate the mark utilizing an external party.  
+				  This model is supported using the &lt;launch:codeMark&gt; element that contains both the &lt;launch:code&gt; and 
+				  the &lt;mark:mark&gt; elements.</t>
+				  <t hangText="&quot;signedMark&quot;">Indicates support for the "signed mark" Mark Validation Model, where 
+				  the mark information is digitally signed.  The digital signature can be directly validated by the server 
+				  using the public key of the external party that created the signed mark using its private key.  This model 
+				  is supported using the &lt;smd:signedMark&gt; and &lt;smd:encodedSignedMark&gt; elements.</t>
+				 </list></t>             
+			  <t hangText="&lt;lp:maxMarks&gt;:">An OPTIONAL maximum number of marks per domain name for the phase.</t>  
+			  <t hangText="&lt;lp:markSupported&gt;:">Zero or more &lt;lp:markSupported&gt; elements that defines the 
+			  XML namespace of the marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:mark-1.0" for <xref target="RFC7848"/>.</t>  
+			  <t hangText="&lt;lp:signedMarkSupported&gt;:">Zero or more &lt;lp:signedMarkSupported&gt; elements that defines the 
+			  XML namespace of the signed marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:signedMark-1.0" for <xref target="RFC7848"/>.</t>  
+			  <t hangText="&lt;lp:encodedSignedMarkSupported&gt;:">Zero or more &lt;lp:encodedSignedMarkSupported&gt; elements that defines the 
+			  XML namespace of the encoded signed marks that are supported in the phase.  For example, the XML namespace "urn:ietf:params:xml:ns:signedMark-1.0" for <xref target="RFC7848"/>.</t>  
+			  <t hangText="&lt;lp:checkForm&gt;:">Zero to three &lt;lp:checkForm&gt; elements that defines the 
+			  supported check forms.  The &lt;lp:checkForm&gt; element has the following 
+			  possible values:</t>
+				<t><list hangIndent="4" style="hanging">
+				  <t hangText="&quot;claims&quot;">Indicates support for the Claims Check Form, which defines a new command called 
+				  the Claims Check Command that is used to determine whether or not there are any matching trademarks, in the 
+				  specified launch phase, for each domain name passed in the command.</t>
+				  <t hangText="&quot;availability&quot;">Indicates support for the Availability Check Form, which extends the Domain Check Command 
+				  to specify which launch phase to use to check the availability for each domain name passed in the command.</t>
+				  <t hangText="&quot;trademark&quot;">Indicates support for the Trademark Check Form, which defines a new command 
+				  called the Trademark Check Command that is used to determine whether or not there are any matching trademarks for each domain name passed 
+				  in the command, independent of the active launch phase.</t>
+				 </list></t>             
+			  <t hangText="&lt;lp:infoPhase&gt;:">Zero or more &lt;lp:infoPhase&gt; elements that defines the 
+			  possible &lt;launch:phase&gt; values that can be passed by the client in the phase.  The &lt;lp:infoPhase&gt; supports the "type" and "name" attributes 
+			  defined for the &lt;lp:phase&gt; element.</t>  
+			  <t hangText="&lt;lp:createForm&gt;:">Zero to three &lt;lp:createForm&gt; elements that defines the 
+			  supported create forms.  The &lt;lp:createForm&gt; element has the following 
+			  possible values:</t>
+				<t><list hangIndent="4" style="hanging">
+				  <t hangText="&quot;sunrise&quot;">Indicates support for the Sunrise Create Form, which is an extension of the Domain Create Command to include 
+				  the verifiable trademark information that the server uses to match against the domain name to authorize the domain create.
+				  </t>
+				  <t hangText="&quot;claims&quot;">Indicates support for the Claims Create Form, which is an extension of the Domain Create Command to include 
+				  information related to the registrant's acceptance of the Claims Notice.</t>
+				  <t hangText="&quot;general&quot;">Indicates support for the General Create Form, which is an extension of the Domain Create Command to specify 
+				  the target launch phase for the domain create.</t>
+				  <t hangText="&quot;mixed&quot;">Indicates support for the Mixed Create Form, where a mix of create forms is supported.  For example, the 
+				  Sunrise Create Form and the Claims Create Form is supported in a single command by including both the verified trademark information 
+				  and the information related to the registrant's acceptance of the Claims Notice.</t>
+				 </list></t>             
+			  <t hangText="&lt;lp:createValidateType&gt;:">An OPTIONAL boolean value that indicates whether the 
+			  server validates the OPTIONAL &lt;launch:create&gt; "type" attribute.</t>
+			  
+			</list></t>
+		</list></t>
  
        <figure>
             <preamble>Example of a &lt;lp:zone&gt; element with six launch phases, including "sunrise", "claims"/"lrp1", "claims"/"landrush", "claims"/"open", 
@@ -571,7 +576,7 @@ S:</epp>]]></artwork>
       </section>
       <!-- end INFO command -->
 
-      <section anchor="transferQueryCommand" title="EPP &lt;transfer&gt; Command">
+      <section anchor="transferQueryCommand" title="EPP &lt;transfer&gt; Query Command">
       
        <t>Transfer semantics do not directly apply to zone objects, so there 
        is no extension defined for the EPP &lt;transfer&gt; query command.</t>
@@ -731,7 +736,7 @@ C:</epp>]]></artwork>
 
     <section anchor="syntax" title="Formal Syntax">
     
-      <t>One schema is presented here that is the EPP Launch Phase Policy 
+      <t>One schema presented here is the EPP Launch Phase Policy 
       Schema.</t>
       
       <t>The formal
