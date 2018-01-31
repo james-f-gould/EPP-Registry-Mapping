@@ -147,7 +147,7 @@
     </author>
     
 
-    <date day="19" month="January" year="2018"/>
+    <date day="31" month="January" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -266,7 +266,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   <registry:name>pendingDelete</registry:name>
   <registry:description>Pending Delete Batch
   </registry:description>
-  <registry:schedule tz="EDT5EDT">0 14 * * *
+  <registry:schedule tz="EST5EDT">0 14 * * *
   </registry:schedule>
 </registry:batchJob>]]></artwork>
        </figure>
@@ -377,7 +377,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 an OPTIONAL &lt;registry:description&gt; child element that 
                 describes the regular expression with an OPTIONAL "lang" 
                 attribute that defines the language of the description 
-                with a default value of "en".</t>
+                with a default value of "en" (English).</t>
                 <t hangText="&lt;registry:reservedNames&gt;:">An OPTIONAL 
                 element that defines the set of reserved domain names 
                 starting from that label level.  The reserved names can 
@@ -472,7 +472,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     <t hangText="&lt;registry:max&gt;:">The OPTIONAL maximum 
                     number of contacts for the contact type.  If the 
                     &lt;registry:max&gt; element is not defined the maximum 
-                    number is unbounded.</t>
+                    number is unbounded.  The &lt;registry:max&gt; element MUST NOT be 
+                    less than the &lt;registry:min&gt; element.</t>
                    </list></t>
                 <t hangText="&lt;registry:ns&gt;:">Defines the minimum and 
                 maximum number of delegated host objects (name servers) that 
@@ -485,11 +486,12 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     <t hangText="&lt;registry:max&gt;:">The OPTIONAL maximum 
                     number of name servers associated with a domain object.  
                     If the &lt;registry:max&gt; element is not defined the 
-                    maximum number is unbounded.</t>
+                    maximum number is unbounded.  The &lt;registry:max&gt; element MUST NOT be 
+                    less than the &lt;registry:min&gt; element.</t>
                    </list></t>
                 <t hangText="&lt;registry:childHost&gt;:">Defines the minimum 
                 and maximum number of subordinate host objects (child hosts) 
-                for a domain object.  The &lt;registry: childHost&gt; element 
+                for a domain object.  The &lt;registry:childHost&gt; element 
                 contains the following child elements:</t>
                   <t><list hangIndent="4" style="hanging">
                     <t hangText="&lt;registry:min&gt;:">The minimum number of 
@@ -497,7 +499,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     <t hangText="&lt;registry:max&gt;:">The OPTIONAL maximum 
                     number of child hosts for a domain object.  
                     If the &lt;registry:max&gt; element is not defined the 
-                    maximum number is unbounded.</t>
+                    maximum number is unbounded.  The &lt;registry:max&gt; element MUST NOT be 
+                    less than the &lt;registry:min&gt; element.</t>
                    </list></t>
                 <t hangText="&lt;registry:period&gt;:">Zero or more 
                 &lt;registry:period&gt; elements that defines the supported 
@@ -517,7 +520,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                         <t hangText="&lt;registry:min&gt;:">The minimum supported 
                         period length.</t>
                         <t hangText="&lt;registry:max&gt;:">The maximum supported 
-                        period length.</t>
+                        period length.  The &lt;registry:max&gt; element MUST NOT be 
+                        less than the &lt;registry:min&gt; element.</t>
                         <t hangText="&lt;registry:default&gt;:">The default 
                         period length if not defined by the client.</t>
                        </list></t>
@@ -557,7 +561,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     is received.</t>
                     <t hangText="&lt;registry:pendingDelete&gt;:">The length of 
                     time that the domain object will remain in the 
-                    pendingDelete status prior to be purged.</t>
+                    pendingDelete status prior to being purged.</t>
                    </list></t>
                 <t hangText="&lt;registry:dnssec&gt;:">The OPTIONAL DNS 
                 Security Extensions (DNSSEC) policies for the server.  
@@ -572,7 +576,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                         <t hangText="&lt;registry:min&gt;:">The minimum number 
                         of DS associated with the domain object.</t>
                         <t hangText="&lt;registry:max&gt;:">The maximum number 
-                        of DS associated with the domain object.</t>
+                        of DS associated with the domain object.  The &lt;registry:max&gt; element MUST NOT be 
+                        less than the &lt;registry:min&gt; element.</t>
                         <t hangText="&lt;registry:alg&gt;:">Zero or more 
                         &lt;registry:alg&gt; elements that define the 
                         supported algorithms as described in section 5.1.2 
@@ -590,33 +595,36 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                         <t hangText="&lt;registry:min&gt;:">The minimum number 
                         of keys associated with the domain object.</t>
                         <t hangText="&lt;registry:max&gt;:">The maximum number 
-                        of keys associated with the domain object.</t>
+                        of keys associated with the domain object.  
+                        The &lt;registry:max&gt; element MUST NOT be 
+                        less than the &lt;registry:min&gt; element.</t>
                         <t hangText="&lt;registry:alg&gt;:">Zero or more 
                         &lt;registry:alg&gt; elements that define the 
                         supported algorithms as described in section 2.1.3 
                         of <xref target="RFC4034"/>.</t>
                        </list></t>
                     <t hangText="&lt;registry:maxSigLife&gt;:">Defines the 
-                    maximum signature life policies.  The 
+                    maximum signature lifetime policies.  The 
                     &lt;registry:maxSigLife&gt; element contains the 
                     following child elements:</t>
                       <t><list hangIndent="4" style="hanging">
                         <t hangText="&lt;registry:clientDefined&gt;:">An 
                         OPTIONAL boolean flag indicating whether the client 
-                        can set the maximum signature life with a default 
+                        can set the maximum signature lifetime with a default 
                         value of "false".</t>
                         <t hangText="&lt;registry:default&gt;:">The OPTIONAL 
-                        default maximum signature life set by the server.</t>
-                        <t hangText="&lt;registry:min&gt;:">An OPTIONAL minimum 
-                        signature life supported.  The &lt;registry:min&gt; 
+                        default maximum signature lifetime set by the server.</t>
+                        <t hangText="&lt;registry:min&gt;:">An OPTIONAL minimum f
+                        signature lifetime supported.  The &lt;registry:min&gt; 
                         element MUST NOT be defined if the 
                         &lt;registry:clientDefined&gt; element 
                         value is "false".</t>
                         <t hangText="&lt;registry:max&gt;:">An OPTIONAL 
-                        maximum signature life supported.  The 
+                        maximum signature lifetime supported.  The 
                         &lt;registry:max&gt; element MUST NOT be defined 
                         if the &lt;registry:clientDefined&gt; element value 
-                        is "false".</t>
+                        is "false".  The &lt;registry:max&gt; element MUST NOT be 
+                        less than the &lt;registry:min&gt; element.</t>
                        </list></t>
                     <t hangText="&lt;registry:urgent&gt;:">An OPTIONAL flag 
                     that of whether the client can specify the urgent attribute 
@@ -639,18 +647,18 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 include:</t>
 				  <t><list hangIndent="4" style="hanging">
 					<t hangText="&quot;autoRenew&quot;:">The domain object 
-					will auto renew at expiry.
-					The client can receive a credit for the auto renew if the 
-					domain object is deleted within the auto renew grace period.</t>
+					will auto-renew at expiry.
+					The client can receive a credit for the auto-renew if the 
+					domain object is deleted within the auto-renew grace period.</t>
 					<t hangText="&quot;autoDelete&quot;:">The domain object 
-					will auto delete at expiry.  The client needs to explicitly 
+					will auto-delete at expiry.  The client needs to explicitly 
 					renew the domain object prior to its expiry to ensure that it does not 
 					get deleted.</t>
 					<t hangText="&quot;autoExpire&quot;:">The domain object 
-					will auto expire at expiry that may include the 
-					server placing the domain object on hold.</t>
+					will auto-expire at expiry that may include the 
+					server placing the domain object on serverHold.</t>
 					<t hangText="&quot;autoParked&quot;:">The domain object 
-					will be auto parked at expiry that results in the resolution 
+					will be auto-parked at expiry that results in the resolution 
 					of the domain object going to a parked page.</t>
 				  </list></t>
                 
@@ -669,7 +677,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 <t hangText="&lt;registry:minIP&gt;:">Minimum number of IP 
                 addresses supported for an internal host.</t>
                 <t hangText="&lt;registry:maxIP&gt;:">Maximum number of IP 
-                addresses supported for an internal host.</t>
+                addresses supported for an internal host.  The &lt;registry:maxIP&gt; element MUST NOT be 
+                    less than the &lt;registry:minIP&gt; element.</t>
                 <t hangText="&lt;registry:sharePolicy&gt;:">The OPTIONAL policy 
                 for the sharing of internal hosts in the server.  
                 The possible shared policy values include:</t>
@@ -696,7 +705,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 <t hangText="&lt;registry:minIP&gt;:">Minimum number of IP 
                 addresses supported for an external host.</t>
                 <t hangText="&lt;registry:maxIP&gt;:">Maximum number of IP 
-                addresses supported for an external host.</t>
+                addresses supported for an external host.  The &lt;registry:maxIP&gt; element MUST NOT be 
+                    less than the &lt;registry:minIP&gt; element.</t>
                 <t hangText="&lt;registry:sharePolicy&gt;:">The OPTIONAL policy 
                 for the sharing of external hosts in the server.  
                 The possible shared policy values include:</t>
@@ -799,13 +809,17 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                         length of the &lt;contact:street&gt; elements.</t>
 
                         <t hangText="&lt;registry:maxLength&gt;:">The maximum  
-                        length of the &lt;contact:street&gt; elements.</t>
+                        length of the &lt;contact:street&gt; elements.  
+                        The &lt;registry:maxLength&gt; element MUST NOT be 
+                        less than the &lt;registry:minLength&gt; element.</t>
 
                         <t hangText="&lt;registry:minEntry&gt;:">The minimum 
                         number of &lt;contact:street&gt; elements.</t>
 
                         <t hangText="&lt;registry:maxEntry&gt;:">The maximum  
-                        number of &lt;contact:street&gt; elements.</t>
+                        number of &lt;contact:street&gt; elements.  
+                        The &lt;registry:maxEntry&gt; element MUST NOT be 
+                    less than the &lt;registry:minEntry&gt; element.</t>
                         
                       </list></t>
                   
@@ -1461,7 +1475,8 @@ C:</epp>]]></artwork>
               <t hangText="&lt;registry:crDate&gt;:">The date and time of zone 
               object creation.</t>
               <t hangText="&lt;registry:upDate&gt;:">The OPTIONAL date and time 
-              of the most recent zone object modification.</t>
+              of the most recent zone object modification.  This element MUST NOT 
+              be present if the zone object has never been modified.</t>
             </list></t>
               
           <t hangText="or a &lt;registry:zone&gt;:">Element that contains the 
@@ -1609,7 +1624,7 @@ S:</epp>]]></artwork>
       </section>
       <!-- end INFO command -->
 
-      <section anchor="transferQueryCommand" title="EPP &lt;transfer&gt; Command">
+      <section anchor="transferQueryCommand" title="EPP &lt;transfer&gt; Query Command">
       
        <t>Transfer semantics do not directly apply to zone objects, so there 
        is no mapping defined for the EPP &lt;transfer&gt; query command.</t>

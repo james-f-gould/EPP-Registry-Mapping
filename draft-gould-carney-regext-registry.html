@@ -385,7 +385,7 @@
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 EPP Query Commands"/>
 <link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 EPP &lt;check&gt; Command"/>
 <link href="#rfc.section.3.1.2" rel="Chapter" title="3.1.2 EPP &lt;info&gt; Command"/>
-<link href="#rfc.section.3.1.3" rel="Chapter" title="3.1.3 EPP &lt;transfer&gt; Command"/>
+<link href="#rfc.section.3.1.3" rel="Chapter" title="3.1.3 EPP &lt;transfer&gt; Query Command"/>
 <link href="#rfc.section.3.2" rel="Chapter" title="3.2 EPP Transform Commands"/>
 <link href="#rfc.section.3.2.1" rel="Chapter" title="3.2.1 EPP &lt;create&gt; Command"/>
 <link href="#rfc.section.3.2.2" rel="Chapter" title="3.2.2 EPP &lt;delete&gt; Command"/>
@@ -410,7 +410,7 @@
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-1-19" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-1-31" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -434,7 +434,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: July 23, 2018</td>
+  <td class="left">Expires: August 4, 2018</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -447,7 +447,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">January 19, 2018</td>
+  <td class="right">January 31, 2018</td>
 </tr>
 
     	
@@ -467,7 +467,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on July 23, 2018.</p>
+<p>This Internet-Draft will expire on August 4, 2018.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -490,7 +490,7 @@
 <ul><li>3.1.   <a href="#rfc.section.3.1">EPP Query Commands</a></li>
 <ul><li>3.1.1.   <a href="#rfc.section.3.1.1">EPP &lt;check&gt; Command</a></li>
 <li>3.1.2.   <a href="#rfc.section.3.1.2">EPP &lt;info&gt; Command</a></li>
-<li>3.1.3.   <a href="#rfc.section.3.1.3">EPP &lt;transfer&gt; Command</a></li>
+<li>3.1.3.   <a href="#rfc.section.3.1.3">EPP &lt;transfer&gt; Query Command</a></li>
 </ul><li>3.2.   <a href="#rfc.section.3.2">EPP Transform Commands</a></li>
 <ul><li>3.2.1.   <a href="#rfc.section.3.2.1">EPP &lt;create&gt; Command</a></li>
 <li>3.2.2.   <a href="#rfc.section.3.2.2">EPP &lt;delete&gt; Command</a></li>
@@ -551,7 +551,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   &lt;registry:name&gt;pendingDelete&lt;/registry:name&gt;
   &lt;registry:description&gt;Pending Delete Batch
   &lt;/registry:description&gt;
-  &lt;registry:schedule tz="EDT5EDT"&gt;0 14 * * *
+  &lt;registry:schedule tz="EST5EDT"&gt;0 14 * * *
   &lt;/registry:schedule&gt;
 &lt;/registry:batchJob&gt;</pre>
 <h1 id="rfc.section.2.4"><a href="#rfc.section.2.4">2.4.</a> <a href="#zoneObject" id="zoneObject">Zone Object</a></h1>
@@ -634,7 +634,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:uLabelSupported&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL flag indicating whether non-ASCII domain names are supported with a default value of "false".</dd>
           <dt>&lt;registry:regex&gt;:</dt>
-          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements that contain a &lt;registry:expression&gt; child element that defines the regular expression to apply to domain name label along with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description with a default value of "en".</dd>
+          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements that contain a &lt;registry:expression&gt; child element that defines the regular expression to apply to domain name label along with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description with a default value of "en" (English).</dd>
           <dt>&lt;registry:reservedNames&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL element that defines the set of reserved domain names starting from that label level.  The reserved names can refer to values with more than one level which is relative to the level of the parent &lt;registry:domainName&gt; element.  The &lt;registry:reservedNames&gt; element contains the following child elements:</dd>
           <dt></dt>
@@ -699,7 +699,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:min&gt;:</dt>
           <dd style="margin-left: 4">The minimum number of contacts for the contact type.</dd>
           <dt>&lt;registry:max&gt;:</dt>
-          <dd style="margin-left: 4">The OPTIONAL maximum number of contacts for the contact type.  If the &lt;registry:max&gt; element is not defined the maximum number is unbounded.</dd>
+          <dd style="margin-left: 4">The OPTIONAL maximum number of contacts for the contact type.  If the &lt;registry:max&gt; element is not defined the maximum number is unbounded.  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:ns&gt;:</dt>
@@ -710,18 +710,18 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:min&gt;:</dt>
           <dd style="margin-left: 4">The minimum number of name servers associated with a domain object.</dd>
           <dt>&lt;registry:max&gt;:</dt>
-          <dd style="margin-left: 4">The OPTIONAL maximum number of name servers associated with a domain object.  If the &lt;registry:max&gt; element is not defined the maximum number is unbounded.</dd>
+          <dd style="margin-left: 4">The OPTIONAL maximum number of name servers associated with a domain object.  If the &lt;registry:max&gt; element is not defined the maximum number is unbounded.  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:childHost&gt;:</dt>
-      <dd style="margin-left: 4">Defines the minimum and maximum number of subordinate host objects (child hosts) for a domain object.  The &lt;registry: childHost&gt; element contains the following child elements:</dd>
+      <dd style="margin-left: 4">Defines the minimum and maximum number of subordinate host objects (child hosts) for a domain object.  The &lt;registry:childHost&gt; element contains the following child elements:</dd>
       <dt></dt>
       <dd style="margin-left: 4">
         <dl>
           <dt>&lt;registry:min&gt;:</dt>
           <dd style="margin-left: 4">The minimum number of child hosts for a domain object.</dd>
           <dt>&lt;registry:max&gt;:</dt>
-          <dd style="margin-left: 4">The OPTIONAL maximum number of child hosts for a domain object.  If the &lt;registry:max&gt; element is not defined the maximum number is unbounded.</dd>
+          <dd style="margin-left: 4">The OPTIONAL maximum number of child hosts for a domain object.  If the &lt;registry:max&gt; element is not defined the maximum number is unbounded.  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:period&gt;:</dt>
@@ -737,7 +737,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               <dt>&lt;registry:min&gt;:</dt>
               <dd style="margin-left: 4">The minimum supported period length.</dd>
               <dt>&lt;registry:max&gt;:</dt>
-              <dd style="margin-left: 4">The maximum supported period length.</dd>
+              <dd style="margin-left: 4">The maximum supported period length.  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
               <dt>&lt;registry:default&gt;:</dt>
               <dd style="margin-left: 4">The default period length if not defined by the client.</dd>
             </dl>
@@ -760,7 +760,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:pendingRestore&gt;:</dt>
           <dd style="margin-left: 4">The length of time that the domain object will remain in the pendingRestore status unless the restore report command is received.</dd>
           <dt>&lt;registry:pendingDelete&gt;:</dt>
-          <dd style="margin-left: 4">The length of time that the domain object will remain in the pendingDelete status prior to be purged.</dd>
+          <dd style="margin-left: 4">The length of time that the domain object will remain in the pendingDelete status prior to being purged.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:dnssec&gt;:</dt>
@@ -776,7 +776,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               <dt>&lt;registry:min&gt;:</dt>
               <dd style="margin-left: 4">The minimum number of DS associated with the domain object.</dd>
               <dt>&lt;registry:max&gt;:</dt>
-              <dd style="margin-left: 4">The maximum number of DS associated with the domain object.</dd>
+              <dd style="margin-left: 4">The maximum number of DS associated with the domain object.  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
               <dt>&lt;registry:alg&gt;:</dt>
               <dd style="margin-left: 4">Zero or more &lt;registry:alg&gt; elements that define the supported algorithms as described in section 5.1.2 of <a href="#RFC4034">[RFC4034]</a>.</dd>
               <dt>&lt;registry:digestType&gt;:</dt>
@@ -791,24 +791,24 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               <dt>&lt;registry:min&gt;:</dt>
               <dd style="margin-left: 4">The minimum number of keys associated with the domain object.</dd>
               <dt>&lt;registry:max&gt;:</dt>
-              <dd style="margin-left: 4">The maximum number of keys associated with the domain object.</dd>
+              <dd style="margin-left: 4">The maximum number of keys associated with the domain object.  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
               <dt>&lt;registry:alg&gt;:</dt>
               <dd style="margin-left: 4">Zero or more &lt;registry:alg&gt; elements that define the supported algorithms as described in section 2.1.3 of <a href="#RFC4034">[RFC4034]</a>.</dd>
             </dl>
           </dd>
           <dt>&lt;registry:maxSigLife&gt;:</dt>
-          <dd style="margin-left: 4">Defines the maximum signature life policies.  The &lt;registry:maxSigLife&gt; element contains the following child elements:</dd>
+          <dd style="margin-left: 4">Defines the maximum signature lifetime policies.  The &lt;registry:maxSigLife&gt; element contains the following child elements:</dd>
           <dt></dt>
           <dd style="margin-left: 4">
             <dl>
               <dt>&lt;registry:clientDefined&gt;:</dt>
-              <dd style="margin-left: 4">An OPTIONAL boolean flag indicating whether the client can set the maximum signature life with a default value of "false".</dd>
+              <dd style="margin-left: 4">An OPTIONAL boolean flag indicating whether the client can set the maximum signature lifetime with a default value of "false".</dd>
               <dt>&lt;registry:default&gt;:</dt>
-              <dd style="margin-left: 4">The OPTIONAL default maximum signature life set by the server.</dd>
+              <dd style="margin-left: 4">The OPTIONAL default maximum signature lifetime set by the server.</dd>
               <dt>&lt;registry:min&gt;:</dt>
-              <dd style="margin-left: 4">An OPTIONAL minimum signature life supported.  The &lt;registry:min&gt; element MUST NOT be defined if the &lt;registry:clientDefined&gt; element value is "false".</dd>
+              <dd style="margin-left: 4">An OPTIONAL minimum f signature lifetime supported.  The &lt;registry:min&gt; element MUST NOT be defined if the &lt;registry:clientDefined&gt; element value is "false".</dd>
               <dt>&lt;registry:max&gt;:</dt>
-              <dd style="margin-left: 4">An OPTIONAL maximum signature life supported.  The &lt;registry:max&gt; element MUST NOT be defined if the &lt;registry:clientDefined&gt; element value is "false".</dd>
+              <dd style="margin-left: 4">An OPTIONAL maximum signature lifetime supported.  The &lt;registry:max&gt; element MUST NOT be defined if the &lt;registry:clientDefined&gt; element value is "false".  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
             </dl>
           </dd>
           <dt>&lt;registry:urgent&gt;:</dt>
@@ -827,13 +827,13 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dd style="margin-left: 4">
         <dl>
           <dt>"autoRenew":</dt>
-          <dd style="margin-left: 4">The domain object will auto renew at expiry.  The client can receive a credit for the auto renew if the domain object is deleted within the auto renew grace period.</dd>
+          <dd style="margin-left: 4">The domain object will auto-renew at expiry.  The client can receive a credit for the auto-renew if the domain object is deleted within the auto-renew grace period.</dd>
           <dt>"autoDelete":</dt>
-          <dd style="margin-left: 4">The domain object will auto delete at expiry.  The client needs to explicitly renew the domain object prior to its expiry to ensure that it does not get deleted.</dd>
+          <dd style="margin-left: 4">The domain object will auto-delete at expiry.  The client needs to explicitly renew the domain object prior to its expiry to ensure that it does not get deleted.</dd>
           <dt>"autoExpire":</dt>
-          <dd style="margin-left: 4">The domain object will auto expire at expiry that may include the server placing the domain object on hold.</dd>
+          <dd style="margin-left: 4">The domain object will auto-expire at expiry that may include the server placing the domain object on serverHold.</dd>
           <dt>"autoParked":</dt>
-          <dd style="margin-left: 4">The domain object will be auto parked at expiry that results in the resolution of the domain object going to a parked page.</dd>
+          <dd style="margin-left: 4">The domain object will be auto-parked at expiry that results in the resolution of the domain object going to a parked page.</dd>
         </dl>
       </dd>
     </dl>
@@ -851,7 +851,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:minIP&gt;:</dt>
           <dd style="margin-left: 4">Minimum number of IP addresses supported for an internal host.</dd>
           <dt>&lt;registry:maxIP&gt;:</dt>
-          <dd style="margin-left: 4">Maximum number of IP addresses supported for an internal host.</dd>
+          <dd style="margin-left: 4">Maximum number of IP addresses supported for an internal host.  The &lt;registry:maxIP&gt; element MUST NOT be less than the &lt;registry:minIP&gt; element.</dd>
           <dt>&lt;registry:sharePolicy&gt;:</dt>
           <dd style="margin-left: 4">The OPTIONAL policy for the sharing of internal hosts in the server.  The possible shared policy values include:</dd>
           <dt></dt>
@@ -875,7 +875,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:minIP&gt;:</dt>
           <dd style="margin-left: 4">Minimum number of IP addresses supported for an external host.</dd>
           <dt>&lt;registry:maxIP&gt;:</dt>
-          <dd style="margin-left: 4">Maximum number of IP addresses supported for an external host.</dd>
+          <dd style="margin-left: 4">Maximum number of IP addresses supported for an external host.  The &lt;registry:maxIP&gt; element MUST NOT be less than the &lt;registry:minIP&gt; element.</dd>
           <dt>&lt;registry:sharePolicy&gt;:</dt>
           <dd style="margin-left: 4">The OPTIONAL policy for the sharing of external hosts in the server.  The possible shared policy values include:</dd>
           <dt></dt>
@@ -954,11 +954,11 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                   <dt>&lt;registry:minLength&gt;:</dt>
                   <dd style="margin-left: 4">The minimum length of the &lt;contact:street&gt; elements.</dd>
                   <dt>&lt;registry:maxLength&gt;:</dt>
-                  <dd style="margin-left: 4">The maximum length of the &lt;contact:street&gt; elements.</dd>
+                  <dd style="margin-left: 4">The maximum length of the &lt;contact:street&gt; elements.  The &lt;registry:maxLength&gt; element MUST NOT be less than the &lt;registry:minLength&gt; element.</dd>
                   <dt>&lt;registry:minEntry&gt;:</dt>
                   <dd style="margin-left: 4">The minimum number of &lt;contact:street&gt; elements.</dd>
                   <dt>&lt;registry:maxEntry&gt;:</dt>
-                  <dd style="margin-left: 4">The maximum number of &lt;contact:street&gt; elements.</dd>
+                  <dd style="margin-left: 4">The maximum number of &lt;contact:street&gt; elements.  The &lt;registry:maxEntry&gt; element MUST NOT be less than the &lt;registry:minEntry&gt; element.</dd>
                 </dl>
               </dd>
               <dt>&lt;registry:city&gt;:</dt>
@@ -1480,7 +1480,7 @@ C:&lt;/epp&gt;</pre>
       <dt>&lt;registry:crDate&gt;:</dt>
       <dd style="margin-left: 4">The date and time of zone object creation.</dd>
       <dt>&lt;registry:upDate&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL date and time of the most recent zone object modification.</dd>
+      <dd style="margin-left: 4">The OPTIONAL date and time of the most recent zone object modification.  This element MUST NOT be present if the zone object has never been modified.</dd>
     </dl>
   </dd>
   <dt>or a &lt;registry:zone&gt;:</dt>
@@ -1593,7 +1593,7 @@ S:    &lt;/trID&gt;
 S:  &lt;/response&gt;
 S:&lt;/epp&gt;</pre>
 <p id="rfc.section.3.1.2.p.6">An EPP error response MUST be returned if an &lt;info&gt; command cannot be processed for any reason.</p>
-<h1 id="rfc.section.3.1.3"><a href="#rfc.section.3.1.3">3.1.3.</a> <a href="#transferQueryCommand" id="transferQueryCommand">EPP &lt;transfer&gt; Command</a></h1>
+<h1 id="rfc.section.3.1.3"><a href="#rfc.section.3.1.3">3.1.3.</a> <a href="#transferQueryCommand" id="transferQueryCommand">EPP &lt;transfer&gt; Query Command</a></h1>
 <p id="rfc.section.3.1.3.p.1">Transfer semantics do not directly apply to zone objects, so there is no mapping defined for the EPP &lt;transfer&gt; query command.</p>
 <h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#transformCommands" id="transformCommands">EPP Transform Commands</a></h1>
 <p id="rfc.section.3.2.p.1">EPP provides five commands to transform objects: &lt;create&gt; to create an instance of an object, &lt;delete&gt; to delete an instance of an object, &lt;renew&gt; to extend the validity period of an object, &lt;transfer&gt; to manage object sponsorship changes, and &lt;update&gt; to change information associated with an object.</p>
