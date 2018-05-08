@@ -7,7 +7,7 @@
     <resData>
       <registry:chkData
         xmlns:registry=
-        "http://www.verisign.com/epp/registry-1.0">
+        "urn:ietf:params:xml:ns:registry-0.1">
         <registry:cd>
           <registry:name avail="0">zone1</registry:name>
           <registry:reason>Client not authorized

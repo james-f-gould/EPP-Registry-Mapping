@@ -3,7 +3,7 @@
   <command>
     <check>
       <registry:check
-       xmlns:registry="http://www.verisign.com/epp/registry-1.0">
+       xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
         <registry:name>zone1</registry:name>
         <registry:name>zone2</registry:name>
         <registry:name>zone3</registry:name>

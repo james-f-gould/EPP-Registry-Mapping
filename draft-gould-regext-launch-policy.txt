@@ -4,8 +4,8 @@
 
 Network Working Group                                           J. Gould
 Internet-Draft                                            VeriSign, Inc.
-Intended status: Standards Track                        January 30, 2018
-Expires: August 3, 2018
+Intended status: Standards Track                             May 8, 2018
+Expires: November 9, 2018
 
 
  Launch Phase Policy Extensions Mapping for the Extensible Provisioning
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 3, 2018.
+   This Internet-Draft will expire on November 9, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Gould                    Expires August 3, 2018                 [Page 1]
+Gould                   Expires November 9, 2018                [Page 1]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
    the Trust Legal Provisions and are provided without warranty as
@@ -81,37 +81,37 @@ Table of Contents
        3.2.5.  EPP <update> Command  . . . . . . . . . . . . . . . .  15
    4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  16
      4.1.  Launch Policy Schema  . . . . . . . . . . . . . . . . . .  16
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  22
-     5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  22
-     5.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  22
-   6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  23
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  23
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  23
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  23
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  23
-     9.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  24
-   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  24
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  24
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  20
+     5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  20
+     5.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  20
+   6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  21
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  21
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  21
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  21
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  21
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  22
+     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  22
+   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  22
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  22
 
 1.  Introduction
 
    This document describes an extension mapping for version 1.0 of the
    Extensible Provisioning Protocol (EPP) [RFC5730].  This document
    describes an extension of the Registry Mapping to define the server
-   policy of the Launch Phase EPP extension
-   [I-D.ietf-regext-launchphase] for a registry zone (e.g., top-level
-   domain).  A registry zone, also referred to as a "zone" in this
-   document, is a domain name that the Domain Name Registry supports
-   provisioning operations to manage.  The extension enables
-   provisioning of the registry zone policy in the Domain Name Registry.
-   A Domain Name Registry MAY support a subset of all of the commands
-   extended in this extension.
+   policy of the Launch Phase EPP extension [RFC8334] for a registry
+   zone (e.g., top-level domain).  A registry zone, also referred to as
+   a "zone" in this document, is a domain name that the Domain Name
+   Registry supports provisioning operations to manage.  The extension
+   enables provisioning of the registry zone policy in the Domain Name
+   Registry.  A Domain Name Registry MAY support a subset of all of the
+   commands extended in this extension.
 
 
 
-Gould                    Expires August 3, 2018                 [Page 2]
+Gould                   Expires November 9, 2018                [Page 2]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
 1.1.  Conventions Used in This Document
@@ -165,9 +165,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                 [Page 3]
+Gould                   Expires November 9, 2018                [Page 3]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
    The <lp:phase> element includes the following attributes:
@@ -221,9 +221,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                 [Page 4]
+Gould                   Expires November 9, 2018                [Page 4]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
    The <lp:phase> element contains the following child elements:
@@ -277,9 +277,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                 [Page 5]
+Gould                   Expires November 9, 2018                [Page 5]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
       <lp:pollPolicy>:  An OPTIONAL element that defines the poll
@@ -333,9 +333,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                 [Page 6]
+Gould                   Expires November 9, 2018                [Page 6]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
               model is supported using the <smd:signedMark> and
@@ -389,9 +389,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                 [Page 7]
+Gould                   Expires November 9, 2018                [Page 7]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
               include the verifiable trademark information that the
@@ -445,9 +445,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                 [Page 8]
+Gould                   Expires November 9, 2018                [Page 8]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
        </lp:signedMarkSupported>
@@ -501,9 +501,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                 [Page 9]
+Gould                   Expires November 9, 2018                [Page 9]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
        <lp:status s="pendingAllocation"/>
@@ -557,9 +557,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                [Page 10]
+Gould                   Expires November 9, 2018               [Page 10]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
      <lp:phase
@@ -613,9 +613,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                [Page 11]
+Gould                   Expires November 9, 2018               [Page 11]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
        <lp:createForm>claims</lp:createForm>
@@ -669,9 +669,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                [Page 12]
+Gould                   Expires November 9, 2018               [Page 12]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
    <lp:zone>:  Element that contains the full set of launch phase policy
@@ -725,9 +725,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                [Page 13]
+Gould                   Expires November 9, 2018               [Page 13]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
 3.2.1.  EPP <create> Command
@@ -781,9 +781,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                [Page 14]
+Gould                   Expires November 9, 2018               [Page 14]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
 3.2.2.  EPP <delete> Command
@@ -837,9 +837,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                [Page 15]
+Gould                   Expires November 9, 2018               [Page 15]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
    Example <update> command:
@@ -857,10 +857,10 @@ Internet-Draft                launch-policy                 January 2018
    C:      </registry:update>
    C:    </update>
    C:    <extension>
-   C:      <lp:create
+   C:      <lp:update
    C:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1">
    C:        ...
-   C:      </lp:create>
+   C:      </lp:update>
    C:    </extension>
    C:    <clTRID>ABC-12345</clTRID>
    C:  </command>
@@ -883,307 +883,195 @@ Internet-Draft                launch-policy                 January 2018
 
    BEGIN
    <?xml version="1.0" encoding="UTF-8"?>
-   <schema
+   <schema xmlns="http://www.w3.org/2001/XMLSchema"
      xmlns:launch-policy="urn:ietf:params:xml:ns:launch-policy-0.1"
-     xmlns="http://www.w3.org/2001/XMLSchema"
      targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1"
-     elementFormDefault="qualified"
-   >
+     elementFormDefault="qualified">
      <annotation>
+       <documentation>Extensible Provisioning Protocol v1.0
+       Launch Phase Policy Extension Schema.</documentation>
 
 
 
-Gould                    Expires August 3, 2018                [Page 16]
+Gould                   Expires November 9, 2018               [Page 16]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
-       <documentation>
-         Extensible Provisioning Protocol v1.0
-         Launch Phase
-         Policy Extension Schema.
-       </documentation>
      </annotation>
      <!--
        Child elements found in EPP commands.
      -->
-     <element
-       name="create"
-       type="launch-policy:createUpdateType"/>
-     <element
-       name="update"
-       type="launch-policy:createUpdateType"/>
-
-     <!--
-       Child elements of the <create> and <update> command.
-     -->
-     <complexType name="createUpdateType">
-       <sequence>
-         <element
-           name="zone"
-           type="launch-policy:zoneType"/>
-       </sequence>
-     </complexType>
-
+     <element name="create" type="launch-policy:zoneContainerType" />
+     <element name="update" type="launch-policy:zoneContainerType" />
      <!--
        Child response elements.
      -->
-     <element
-       name="infData"
-       type="launch-policy:infDataType"/>
-
+     <element name="infData" type="launch-policy:zoneContainerType" />
      <!--
-       <info> response elements.
+       Container for zone launch phase policy
      -->
-     <complexType name="infDataType">
+     <complexType name="zoneContainerType">
        <sequence>
-         <element
-           name="zone"
-           type="launch-policy:zoneType"/>
+         <element name="zone" type="launch-policy:zoneType" />
        </sequence>
      </complexType>
-
+     <!--
+       Zone launch phase policies
+     -->
      <complexType name="zoneType">
        <sequence>
-         <element
-
-
-
-Gould                    Expires August 3, 2018                [Page 17]
-
-Internet-Draft                launch-policy                 January 2018
-
-
-           name="phase"
-           type="launch-policy:phaseType"
-           minOccurs="0"
-           maxOccurs="unbounded"/>
+         <element name="phase" type="launch-policy:phaseType"
+           minOccurs="0" maxOccurs="unbounded" />
        </sequence>
      </complexType>
-
      <complexType name="phaseNameType">
-       <attribute
-         name="type"
-         use="required"
-       >
+       <attribute name="type" use="required">
          <simpleType>
            <restriction base="token">
-             <enumeration value="pre-delegation"/>
-             <enumeration value="pre-launch"/>
-             <enumeration value="sunrise"/>
-             <enumeration value="landrush"/>
-             <enumeration value="claims"/>
-             <enumeration value="open"/>
-             <enumeration value="custom"/>
+             <enumeration value="pre-delegation" />
+             <enumeration value="pre-launch" />
+             <enumeration value="sunrise" />
+             <enumeration value="landrush" />
+             <enumeration value="claims" />
+             <enumeration value="open" />
+             <enumeration value="custom" />
            </restriction>
          </simpleType>
        </attribute>
-       <attribute
-         name="name"
-         use="optional"
-         type="token"/>
+       <attribute name="name" use="optional" type="token" />
      </complexType>
-
      <!--
        <phase> elements.
      -->
      <complexType name="phaseType">
        <complexContent>
+
+
+
+Gould                   Expires November 9, 2018               [Page 17]
+
+Internet-Draft                launch-policy                     May 2018
+
+
          <extension base="launch-policy:phaseNameType">
            <sequence>
-             <element
-               name="startDate"
-               type="dateTime"/>
-             <element
-               name="endDate"
-               type="dateTime"
-               minOccurs="0"/>
-             <element
-               name="validatePhase"
-               type="boolean"
-               minOccurs="0"/>
-
-
-
-Gould                    Expires August 3, 2018                [Page 18]
-
-Internet-Draft                launch-policy                 January 2018
-
-
-             <element
-               name="validatorId"
-               type="token"
-               minOccurs="0"
-               maxOccurs="unbounded"/>
-             <element
-               name="status"
-               type="launch-policy:statusType"
-               minOccurs="0"
-               maxOccurs="unbounded"/>
-             <element
-               name="pendingCreate"
-               type="boolean"
-               minOccurs="0"/>
-             <element
-               name="pollPolicy"
-               type="launch-policy:pollPolicyType"
-               minOccurs="0"/>
-             <element
-               name="markValidation"
+             <element name="startDate" type="dateTime" />
+             <element name="endDate" type="dateTime"
+               minOccurs="0" />
+             <element name="validatePhase" type="boolean"
+               minOccurs="0" />
+             <element name="validatorId" type="token"
+               minOccurs="0" maxOccurs="unbounded" />
+             <element name="status" type="launch-policy:statusType"
+               minOccurs="0" maxOccurs="unbounded" />
+             <element name="pendingCreate" type="boolean"
+               minOccurs="0" />
+             <element name="pollPolicy"
+               type="launch-policy:pollPolicyType" minOccurs="0" />
+             <element name="markValidation"
                type="launch-policy:markValidationType"
-               minOccurs="0"
-               maxOccurs="4"/>
-             <element
-               name="maxMarks"
-               type="short"
-               minOccurs="0"/>
-             <element
-               name="markSupported"
-               type="token"
-               minOccurs="0"
-               maxOccurs="unbounded"/>
-             <element
-               name="signedMarkSupported"
-               type="token"
-               minOccurs="0"
-               maxOccurs="unbounded"/>
-             <element
-               name="encodedSignedMarkSupported"
-               type="token"
-               minOccurs="0"
-               maxOccurs="unbounded"/>
-             <element
-               name="checkForm"
+               minOccurs="0" maxOccurs="4" />
+             <element name="maxMarks" type="short"
+               minOccurs="0" />
+             <element name="markSupported" type="token"
+               minOccurs="0" maxOccurs="unbounded" />
+             <element name="signedMarkSupported" type="token"
+               minOccurs="0" maxOccurs="unbounded" />
+             <element name="encodedSignedMarkSupported" type="token"
+               minOccurs="0" maxOccurs="unbounded" />
+             <element name="checkForm"
                type="launch-policy:checkFormType"
-               minOccurs="0"
-               maxOccurs="4"/>
-             <element
-
-
-
-Gould                    Expires August 3, 2018                [Page 19]
-
-Internet-Draft                launch-policy                 January 2018
-
-
-               name="infoPhase"
+               minOccurs="0" maxOccurs="3" />
+             <element name="infoPhase"
                type="launch-policy:phaseNameType"
-               minOccurs="0"
-               maxOccurs="unbounded"/>
-             <element
-               name="createForm"
+               minOccurs="0" maxOccurs="unbounded" />
+             <element name="createForm"
                type="launch-policy:createFormType"
-               minOccurs="0"
-               maxOccurs="unbounded"/>
-             <element
-               name="createValidateType"
-               type="boolean"
-               minOccurs="0"/>
+               minOccurs="0" maxOccurs="4" />
+             <element name="createValidateType" type="boolean"
+               minOccurs="0" />
            </sequence>
-           <attribute
-             name="mode"
-             default="fcfs"
-           >
+           <attribute name="mode" default="fcfs">
              <simpleType>
                <restriction base="token">
-                 <enumeration value="fcfs"/>
-                 <enumeration value="pending-registration"/>
-                 <enumeration value="pending-application"/>
+                 <enumeration value="fcfs" />
+                 <enumeration value="pending-registration" />
+                 <enumeration value="pending-application" />
                </restriction>
              </simpleType>
            </attribute>
          </extension>
+
+
+
+Gould                   Expires November 9, 2018               [Page 18]
+
+Internet-Draft                launch-policy                     May 2018
+
+
        </complexContent>
      </complexType>
-
      <simpleType name="statusValueType">
        <restriction base="token">
-         <enumeration value="pendingValidation"/>
-         <enumeration value="validated"/>
-         <enumeration value="invalid"/>
-         <enumeration value="pendingAllocation"/>
-         <enumeration value="allocated"/>
-         <enumeration value="rejected"/>
-         <enumeration value="custom"/>
+         <enumeration value="pendingValidation" />
+         <enumeration value="validated" />
+         <enumeration value="invalid" />
+         <enumeration value="pendingAllocation" />
+         <enumeration value="allocated" />
+         <enumeration value="rejected" />
+         <enumeration value="custom" />
        </restriction>
      </simpleType>
-
      <!-- Status type definition -->
      <complexType name="statusType">
        <simpleContent>
          <extension base="normalizedString">
-           <attribute
-             name="s"
-
-
-
-Gould                    Expires August 3, 2018                [Page 20]
-
-Internet-Draft                launch-policy                 January 2018
-
-
-             type="launch-policy:statusValueType"
-             use="required"/>
-           <attribute
-             name="lang"
-             type="language"
-             default="en"/>
-           <attribute
-             name="name"
-             type="token"/>
+           <attribute name="s" type="launch-policy:statusValueType"
+             use="required" />
+           <attribute name="lang" type="language" default="en" />
+           <attribute name="name" type="token" />
          </extension>
        </simpleContent>
      </complexType>
-
      <complexType name="pollPolicyType">
        <sequence>
-         <element
-           name="intermediateStatus"
-           type="boolean"/>
-         <element
-           name="nonMandatoryInfo"
-           type="boolean"/>
-         <element
-           name="extensionInfo"
-           type="boolean"/>
+         <element name="intermediateStatus" type="boolean" />
+         <element name="nonMandatoryInfo" type="boolean" />
+         <element name="extensionInfo" type="boolean" />
        </sequence>
      </complexType>
-
-
      <simpleType name="markValidationType">
        <restriction base="token">
-         <enumeration value="code"/>
-         <enumeration value="mark"/>
-         <enumeration value="codeWithMark"/>
-         <enumeration value="signedMark"/>
+         <enumeration value="code" />
+         <enumeration value="mark" />
+         <enumeration value="codeWithMark" />
+         <enumeration value="signedMark" />
        </restriction>
      </simpleType>
-
      <simpleType name="checkFormType">
        <restriction base="token">
-         <enumeration value="claims"/>
-         <enumeration value="availability"/>
-         <enumeration value="trademark"/>
+         <enumeration value="claims" />
+         <enumeration value="availability" />
+         <enumeration value="trademark" />
        </restriction>
      </simpleType>
-
      <simpleType name="createFormType">
        <restriction base="token">
-         <enumeration value="sunrise"/>
 
 
 
-Gould                    Expires August 3, 2018                [Page 21]
+Gould                   Expires November 9, 2018               [Page 19]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
-         <enumeration value="claims"/>
-         <enumeration value="general"/>
-         <enumeration value="mixed"/>
+         <enumeration value="sunrise" />
+         <enumeration value="claims" />
+         <enumeration value="general" />
+         <enumeration value="mixed" />
        </restriction>
      </simpleType>
-
    </schema>
    END
 
@@ -1229,9 +1117,9 @@ Internet-Draft                launch-policy                 January 2018
 
 
 
-Gould                    Expires August 3, 2018                [Page 22]
+Gould                   Expires November 9, 2018               [Page 20]
 
-Internet-Draft                launch-policy                 January 2018
+Internet-Draft                launch-policy                     May 2018
 
 
    Notes: None
@@ -1255,12 +1143,6 @@ Internet-Draft                launch-policy                 January 2018
 
 9.1.  Normative References
 
-   [I-D.ietf-regext-launchphase]
-              Gould, J., Tan, W., and G. Brown, "Launch Phase Mapping
-              for the Extensible Provisioning Protocol (EPP)", draft-
-              ietf-regext-launchphase-07 (work in progress), December
-              2017.
-
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
@@ -1279,22 +1161,30 @@ Internet-Draft                launch-policy                 January 2018
               DOI 10.17487/RFC5731, August 2009, <https://www.rfc-
               editor.org/info/rfc5731>.
 
-   [RFC7451]  Hollenbeck, S., "Extension Registry for the Extensible
-              Provisioning Protocol", RFC 7451, DOI 10.17487/RFC7451,
-              February 2015, <https://www.rfc-editor.org/info/rfc7451>.
-
-
-
-Gould                    Expires August 3, 2018                [Page 23]
-
-Internet-Draft                launch-policy                 January 2018
-
-
    [RFC7848]  Lozano, G., "Mark and Signed Mark Objects Mapping",
               RFC 7848, DOI 10.17487/RFC7848, June 2016,
               <https://www.rfc-editor.org/info/rfc7848>.
 
-9.2.  URIs
+   [RFC8334]  Gould, J., Tan, W., and G. Brown, "Launch Phase Mapping
+              for the Extensible Provisioning Protocol (EPP)", RFC 8334,
+              DOI 10.17487/RFC8334, March 2018, <https://www.rfc-
+              editor.org/info/rfc8334>.
+
+
+
+
+Gould                   Expires November 9, 2018               [Page 21]
+
+Internet-Draft                launch-policy                     May 2018
+
+
+9.2.  Informative References
+
+   [RFC7451]  Hollenbeck, S., "Extension Registry for the Extensible
+              Provisioning Protocol", RFC 7451, DOI 10.17487/RFC7451,
+              February 2015, <https://www.rfc-editor.org/info/rfc7451>.
+
+9.3.  URIs
 
    [1] http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/
 
@@ -1339,6 +1229,4 @@ Author's Address
 
 
 
-
-
-Gould                    Expires August 3, 2018                [Page 24]
+Gould                   Expires November 9, 2018               [Page 22]
