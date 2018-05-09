@@ -75,7 +75,7 @@
       </address>
     </author>    
 
-    <date day="8" month="May" year="2018"/>
+    <date day="9" month="May" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -115,7 +115,7 @@
         and are not a REQUIRED feature of this protocol.        
         </t>
 
-        <t>The XML namespace prefix "lp" is used for the namespace "urn:ietf:params:xml:ns:launch-policy-0.1", 
+        <t>The XML namespace prefix "lp" is used for the namespace "urn:ietf:params:xml:ns:launchPolicy-0.1", 
         but implementations MUST NOT depend on it and instead employ
         a proper namespace-aware XML parser and serializer to interpret and
         output the XML documents.</t>
@@ -561,7 +561,7 @@ S:      </registry:infData>
 S:    </resData>
 S:    <extension>
 S:      <lp:infData 
-S:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1">
+S:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1">
 S:        ...
 S:      </lp:infData>
 S:    </extension>
@@ -623,7 +623,7 @@ C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 C:  <command>
 C:    <create>
 C:      <registry:create
-C:        xmlns:registry="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1">
 C:        <registry:zone>
 C:          <registry:name>EXAMPLE</registry:name>
 C:          ...
@@ -632,7 +632,7 @@ C:      </registry:create>
 C:    </create>
 C:    <extension>
 C:      <lp:create 
-C:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1">
 C:        ...
 C:      </lp:create>
 C:    </extension>
@@ -703,7 +703,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <update>
 C:      <registry:update
-C:        xmlns:registry="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1">
 C:        <registry:zone>
 C:          <registry:name>EXAMPLE</registry:name>
 C:          ...
@@ -712,7 +712,7 @@ C:      </registry:update>
 C:    </update>
 C:    <extension>
 C:      <lp:update 
-C:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1">
+C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1">
 C:        ...
 C:      </lp:update>
 C:    </extension>
@@ -751,8 +751,8 @@ C:</epp>]]></artwork>
 BEGIN
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" 
-  xmlns:launch-policy="urn:ietf:params:xml:ns:launch-policy-0.1" 
-  targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1" 
+  xmlns:launchPolicy="urn:ietf:params:xml:ns:launchPolicy-0.1" 
+  targetNamespace="urn:ietf:params:xml:ns:launchPolicy-0.1" 
   elementFormDefault="qualified">
   <annotation>
     <documentation>Extensible Provisioning Protocol v1.0
@@ -761,18 +761,18 @@ BEGIN
   <!--
     Child elements found in EPP commands.
   -->
-  <element name="create" type="launch-policy:zoneContainerType" />
-  <element name="update" type="launch-policy:zoneContainerType" />
+  <element name="create" type="launchPolicy:zoneContainerType" />
+  <element name="update" type="launchPolicy:zoneContainerType" />
   <!--
     Child response elements.
   -->
-  <element name="infData" type="launch-policy:zoneContainerType" />
+  <element name="infData" type="launchPolicy:zoneContainerType" />
   <!--
     Container for zone launch phase policy
   -->
   <complexType name="zoneContainerType">
     <sequence>
-      <element name="zone" type="launch-policy:zoneType" />
+      <element name="zone" type="launchPolicy:zoneType" />
     </sequence>
   </complexType>
   <!-- 
@@ -780,7 +780,7 @@ BEGIN
   -->
   <complexType name="zoneType">
     <sequence>
-      <element name="phase" type="launch-policy:phaseType" 
+      <element name="phase" type="launchPolicy:phaseType" 
         minOccurs="0" maxOccurs="unbounded" />
     </sequence>
   </complexType>
@@ -805,7 +805,7 @@ BEGIN
   -->
   <complexType name="phaseType">
     <complexContent>
-      <extension base="launch-policy:phaseNameType">
+      <extension base="launchPolicy:phaseNameType">
         <sequence>
           <element name="startDate" type="dateTime" />
           <element name="endDate" type="dateTime" 
@@ -814,14 +814,14 @@ BEGIN
             minOccurs="0" />
           <element name="validatorId" type="token" 
             minOccurs="0" maxOccurs="unbounded" />
-          <element name="status" type="launch-policy:statusType" 
+          <element name="status" type="launchPolicy:statusType" 
             minOccurs="0" maxOccurs="unbounded" />
           <element name="pendingCreate" type="boolean" 
             minOccurs="0" />
           <element name="pollPolicy" 
-            type="launch-policy:pollPolicyType" minOccurs="0" />
+            type="launchPolicy:pollPolicyType" minOccurs="0" />
           <element name="markValidation" 
-            type="launch-policy:markValidationType" 
+            type="launchPolicy:markValidationType" 
             minOccurs="0" maxOccurs="4" />
           <element name="maxMarks" type="short" 
             minOccurs="0" />
@@ -832,13 +832,13 @@ BEGIN
           <element name="encodedSignedMarkSupported" type="token" 
             minOccurs="0" maxOccurs="unbounded" />
           <element name="checkForm" 
-            type="launch-policy:checkFormType" 
+            type="launchPolicy:checkFormType" 
             minOccurs="0" maxOccurs="3" />
           <element name="infoPhase" 
-            type="launch-policy:phaseNameType" 
+            type="launchPolicy:phaseNameType" 
             minOccurs="0" maxOccurs="unbounded" />
           <element name="createForm" 
-            type="launch-policy:createFormType" 
+            type="launchPolicy:createFormType" 
             minOccurs="0" maxOccurs="4" />
           <element name="createValidateType" type="boolean" 
             minOccurs="0" />
@@ -870,7 +870,7 @@ BEGIN
   <complexType name="statusType">
     <simpleContent>
       <extension base="normalizedString">
-        <attribute name="s" type="launch-policy:statusValueType" 
+        <attribute name="s" type="launchPolicy:statusValueType" 
           use="required" />
         <attribute name="lang" type="language" default="en" />
         <attribute name="name" type="token" />
@@ -924,7 +924,7 @@ END]]></artwork>
          <t>Registration request for the launch phase policy namespace:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:ns:launch-policy-0.1</t>
+         <t>URI: urn:ietf:params:xml:ns:launchPolicy-0.1</t>
          
          <t>Registrant Contact: IESG</t>
           
@@ -934,7 +934,7 @@ END]]></artwork>
          <t>Registration request for the launch phase policy XML schema:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:ns:launch-policy-0.1</t>
+         <t>URI: urn:ietf:params:xml:ns:launchPolicy-0.1</t>
          
          <t>Registrant Contact: IESG</t>
           

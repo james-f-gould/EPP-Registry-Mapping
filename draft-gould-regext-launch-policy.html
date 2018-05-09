@@ -410,7 +410,7 @@
 
   <meta name="dct.creator" content="Gould, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-regext-launch-policy-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-5-8" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-5-9" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) extension of the Registry Mapping to define the server policy of the Launch Phase EPP extension.  The server policy of the Launch Phase EPP extension includes the MAYs, SHOULDs, and options implemented by the server." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) extension of the Registry Mapping to define the server policy of the Launch Phase EPP extension.  The server policy of the Launch Phase EPP extension includes the MAYs, SHOULDs, and options implemented by the server." />
 
@@ -431,10 +431,10 @@
 </tr>
 <tr>
   <td class="left">Intended status: Standards Track</td>
-  <td class="right">May 8, 2018</td>
+  <td class="right">May 9, 2018</td>
 </tr>
 <tr>
-  <td class="left">Expires: November 9, 2018</td>
+  <td class="left">Expires: November 10, 2018</td>
   <td class="right"></td>
 </tr>
 
@@ -455,7 +455,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 9, 2018.</p>
+<p>This Internet-Draft will expire on November 10, 2018.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -506,7 +506,7 @@
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">RFC 2119</a> <cite title="NONE">[RFC2119]</cite>.</p>
 <p id="rfc.section.1.1.p.2">XML is case sensitive. Unless stated otherwise, XML specifications and examples provided in this document MUST be interpreted in the character case presented in order to develop a conforming implementation.</p>
 <p id="rfc.section.1.1.p.3">In examples, "C:" represents lines sent by a protocol client and "S:" represents lines returned by a protocol server.  Indentation and white space in examples are provided only to illustrate element relationships and are not a REQUIRED feature of this protocol.  </p>
-<p id="rfc.section.1.1.p.4">The XML namespace prefix "lp" is used for the namespace "urn:ietf:params:xml:ns:launch-policy-0.1", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
+<p id="rfc.section.1.1.p.4">The XML namespace prefix "lp" is used for the namespace "urn:ietf:params:xml:ns:launchPolicy-0.1", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#attrs" id="attrs">Object Attributes</a></h1>
 <p id="rfc.section.2.p.1">An EPP launch phase policy has attributes and associated values that may be viewed and modified by the sponsoring client or the server.  This section describes each attribute type in detail. The formal syntax for the attribute values described here can be found in the "Formal Syntax" section of this document and in the appropriate normative references.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#datesTimes" id="datesTimes">Dates and Times</a></h1>
@@ -858,7 +858,7 @@ S:      &lt;/registry:infData&gt;
 S:    &lt;/resData&gt;
 S:    &lt;extension&gt;
 S:      &lt;lp:infData 
-S:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1"&gt;
+S:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
 S:        ...
 S:      &lt;/lp:infData&gt;
 S:    &lt;/extension&gt;
@@ -889,7 +889,7 @@ C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
 C:  &lt;command&gt;
 C:    &lt;create&gt;
 C:      &lt;registry:create
-C:        xmlns:registry="urn:ietf:params:xml:ns:launch-policy-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -898,7 +898,7 @@ C:      &lt;/registry:create&gt;
 C:    &lt;/create&gt;
 C:    &lt;extension&gt;
 C:      &lt;lp:create 
-C:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1"&gt;
+C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
 C:        ...
 C:      &lt;/lp:create&gt;
 C:    &lt;/extension&gt;
@@ -928,7 +928,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;update&gt;
 C:      &lt;registry:update
-C:        xmlns:registry="urn:ietf:params:xml:ns:launch-policy-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -937,7 +937,7 @@ C:      &lt;/registry:update&gt;
 C:    &lt;/update&gt;
 C:    &lt;extension&gt;
 C:      &lt;lp:update 
-C:        xmlns:lp="urn:ietf:params:xml:ns:launch-policy-0.1"&gt;
+C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
 C:        ...
 C:      &lt;/lp:update&gt;
 C:    &lt;/extension&gt;
@@ -953,8 +953,8 @@ C:&lt;/epp&gt;</pre>
 BEGIN
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;schema xmlns="http://www.w3.org/2001/XMLSchema" 
-  xmlns:launch-policy="urn:ietf:params:xml:ns:launch-policy-0.1" 
-  targetNamespace="urn:ietf:params:xml:ns:launch-policy-0.1" 
+  xmlns:launchPolicy="urn:ietf:params:xml:ns:launchPolicy-0.1" 
+  targetNamespace="urn:ietf:params:xml:ns:launchPolicy-0.1" 
   elementFormDefault="qualified"&gt;
   &lt;annotation&gt;
     &lt;documentation&gt;Extensible Provisioning Protocol v1.0
@@ -963,18 +963,18 @@ BEGIN
   &lt;!--
     Child elements found in EPP commands.
   --&gt;
-  &lt;element name="create" type="launch-policy:zoneContainerType" /&gt;
-  &lt;element name="update" type="launch-policy:zoneContainerType" /&gt;
+  &lt;element name="create" type="launchPolicy:zoneContainerType" /&gt;
+  &lt;element name="update" type="launchPolicy:zoneContainerType" /&gt;
   &lt;!--
     Child response elements.
   --&gt;
-  &lt;element name="infData" type="launch-policy:zoneContainerType" /&gt;
+  &lt;element name="infData" type="launchPolicy:zoneContainerType" /&gt;
   &lt;!--
     Container for zone launch phase policy
   --&gt;
   &lt;complexType name="zoneContainerType"&gt;
     &lt;sequence&gt;
-      &lt;element name="zone" type="launch-policy:zoneType" /&gt;
+      &lt;element name="zone" type="launchPolicy:zoneType" /&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
   &lt;!-- 
@@ -982,7 +982,7 @@ BEGIN
   --&gt;
   &lt;complexType name="zoneType"&gt;
     &lt;sequence&gt;
-      &lt;element name="phase" type="launch-policy:phaseType" 
+      &lt;element name="phase" type="launchPolicy:phaseType" 
         minOccurs="0" maxOccurs="unbounded" /&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
@@ -1007,7 +1007,7 @@ BEGIN
   --&gt;
   &lt;complexType name="phaseType"&gt;
     &lt;complexContent&gt;
-      &lt;extension base="launch-policy:phaseNameType"&gt;
+      &lt;extension base="launchPolicy:phaseNameType"&gt;
         &lt;sequence&gt;
           &lt;element name="startDate" type="dateTime" /&gt;
           &lt;element name="endDate" type="dateTime" 
@@ -1016,14 +1016,14 @@ BEGIN
             minOccurs="0" /&gt;
           &lt;element name="validatorId" type="token" 
             minOccurs="0" maxOccurs="unbounded" /&gt;
-          &lt;element name="status" type="launch-policy:statusType" 
+          &lt;element name="status" type="launchPolicy:statusType" 
             minOccurs="0" maxOccurs="unbounded" /&gt;
           &lt;element name="pendingCreate" type="boolean" 
             minOccurs="0" /&gt;
           &lt;element name="pollPolicy" 
-            type="launch-policy:pollPolicyType" minOccurs="0" /&gt;
+            type="launchPolicy:pollPolicyType" minOccurs="0" /&gt;
           &lt;element name="markValidation" 
-            type="launch-policy:markValidationType" 
+            type="launchPolicy:markValidationType" 
             minOccurs="0" maxOccurs="4" /&gt;
           &lt;element name="maxMarks" type="short" 
             minOccurs="0" /&gt;
@@ -1034,13 +1034,13 @@ BEGIN
           &lt;element name="encodedSignedMarkSupported" type="token" 
             minOccurs="0" maxOccurs="unbounded" /&gt;
           &lt;element name="checkForm" 
-            type="launch-policy:checkFormType" 
+            type="launchPolicy:checkFormType" 
             minOccurs="0" maxOccurs="3" /&gt;
           &lt;element name="infoPhase" 
-            type="launch-policy:phaseNameType" 
+            type="launchPolicy:phaseNameType" 
             minOccurs="0" maxOccurs="unbounded" /&gt;
           &lt;element name="createForm" 
-            type="launch-policy:createFormType" 
+            type="launchPolicy:createFormType" 
             minOccurs="0" maxOccurs="4" /&gt;
           &lt;element name="createValidateType" type="boolean" 
             minOccurs="0" /&gt;
@@ -1072,7 +1072,7 @@ BEGIN
   &lt;complexType name="statusType"&gt;
     &lt;simpleContent&gt;
       &lt;extension base="normalizedString"&gt;
-        &lt;attribute name="s" type="launch-policy:statusValueType" 
+        &lt;attribute name="s" type="launchPolicy:statusValueType" 
           use="required" /&gt;
         &lt;attribute name="lang" type="language" default="en" /&gt;
         &lt;attribute name="name" type="token" /&gt;
@@ -1118,7 +1118,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:ns:launch-policy-0.1</li>
+  <li>URI: urn:ietf:params:xml:ns:launchPolicy-0.1</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: None. Namespace URIs do not represent an XML specification.</li>
 </ul>
@@ -1126,7 +1126,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:ns:launch-policy-0.1</li>
+  <li>URI: urn:ietf:params:xml:ns:launchPolicy-0.1</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: See the "Formal Syntax" section of this document.</li>
 </ul>
