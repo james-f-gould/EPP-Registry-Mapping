@@ -46,7 +46,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-carney-regext-registry-00" ipr="trust200902">
+<rfc category="std" docName="draft-gould-carney-regext-registry-02" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -147,7 +147,7 @@
     </author>
     
 
-    <date day="31" month="May" year="2018"/>
+    <date day="25" month="June" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -711,15 +711,19 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 for the sharing of external hosts in the server.  
                 The possible shared policy values include:</t>
                   <t><list hangIndent="4" style="hanging">
+                    <t hangText="&quot;perRegistrar&quot;:">The external hosts are 
+                    shared across all domains of the registrar.  
+                    There is a single pool of external hosts 
+                    defined per registrar.</t>
                     <t hangText="&quot;perZone&quot;:">The external hosts are 
                     shared across all domains of the zone.  
                     There is a single pool of external hosts 
                     defined for the zone.</t>
-                     <t hangText="&quot;perSystem&quot;:">The external hosts 
-                     are shared across all zones of the system.  
-                     There is a single pool of external hosts across 
-                     all of the zones supported by the system.  The system 
-                     MUST be defined using the &lt;registry:system&gt; element.</t>
+                    <t hangText="&quot;perSystem&quot;:">The external hosts 
+                    are shared across all zones of the system.  
+                    There is a single pool of external hosts across 
+                    all of the zones supported by the system.  The system 
+                    MUST be defined using the &lt;registry:system&gt; element.</t>
                   </list></t>
                 <t hangText="&lt;registry:uniqueIpAddressesRequired&gt;:">The OPTIONAL  
                 boolean value that indicates that all of the IP addresses for the host object 
@@ -824,7 +828,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                       </list></t>
                   
                       <t hangText="&lt;registry:city&gt;:">The minimum and 
-                      maximum length of the &lt;contact:city&lt; element 
+                      maximum length of the &lt;contact:city&gt; element 
                       defined in <xref target="RFC5733"/> using the 
                       &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; 
                       child elements, respectively.</t>
@@ -854,9 +858,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child 
                 elements, respectively.</t>
 
-                <t hangText="&lt;registry:emailRegex&gt;:">Zero or more 
-                &lt;registry:emailRegex&gt; elements that define the regular 
-                expressions used to validate the &lt;contact:email&gt; element 
+                <t hangText="&lt;registry:emailRegex&gt;:">An OPTIONAL  
+                &lt;registry:emailRegex&gt; element that defines the regular 
+                expression used to validate the &lt;contact:email&gt; element 
                 defined in <xref target="RFC5733"/>.</t>
                   
                 </list></t>
@@ -2148,25 +2152,6 @@ BEGIN
       </simpleType>
     </attribute>
   </complexType>
-  <complexType name="zoneMemberType">
-    <simpleContent>
-      <extension base="eppcom:labelType">
-        <attribute
-          name="type"
-          use="required"
-        >
-          <simpleType>
-            <restriction base="token">
-              <enumeration value="primary"/>
-              <enumeration value="primaryBasedOnCrDate"/>
-              <enumeration value="alternate"/>
-              <enumeration value="equal"/>
-            </restriction>
-          </simpleType>
-        </attribute>
-      </extension>
-    </simpleContent>
-  </complexType>
   <complexType name="servicesType">
     <sequence>
       <element
@@ -3044,8 +3029,19 @@ END]]></artwork>
     </references>
     
     <section title="Change History">
+      <section title="Change from 00 to 01" anchor="change-00-to-01">
+        <t><list style="numbers">
+          <t>Added missing description of the "perRegistrar" value for the &lt;registry:external&gt; &lt;registry:sharePolicy&gt; element.</t>
+          <t>Revised the description of &lt;registry:emailRegex&gt; to be a single optional 
+          element instead of an optional list of elements to match the definition in the XML schema.</t>
+        </list></t>
+      </section>
+      <section title="Change from 01 to 02" anchor="change-01-to-02">
+        <t><list style="numbers">
+          <t>Removed the unneeded zoneMemberType from the XML schema.</t>
+        </list></t>
+      </section>
     </section>
-    
   </back>
 
   <!-- vim: set ts=2 sw=2 expandtab: -->

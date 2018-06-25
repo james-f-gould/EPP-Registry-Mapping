@@ -402,6 +402,8 @@
 <link href="#rfc.section.8" rel="Chapter" title="8 Acknowledgements"/>
 <link href="#rfc.references" rel="Chapter" title="9 Normative References"/>
 <link href="#rfc.appendix.A" rel="Chapter" title="A Change History"/>
+<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Change from 00 to 01"/>
+<link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Change from 01 to 02"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -409,8 +411,8 @@
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-5-31" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-02" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-6-25" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -434,7 +436,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: December 2, 2018</td>
+  <td class="left">Expires: December 27, 2018</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -447,7 +449,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">May 31, 2018</td>
+  <td class="right">June 25, 2018</td>
 </tr>
 
     	
@@ -455,7 +457,7 @@
   </table>
 
   <p class="title">Registry Mapping for the Extensible Provisioning Protocol (EPP)<br />
-  <span class="filename">draft-gould-carney-regext-registry-00</span></p>
+  <span class="filename">draft-gould-carney-regext-registry-02</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -467,7 +469,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 2, 2018.</p>
+<p>This Internet-Draft will expire on December 27, 2018.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -507,7 +509,9 @@
 <li>8.   <a href="#rfc.section.8">Acknowledgements</a></li>
 <li>9.   <a href="#rfc.references">Normative References</a></li>
 <li>Appendix A.   <a href="#rfc.appendix.A">Change History</a></li>
-<li><a href="#rfc.authors">Authors' Addresses</a></li>
+<ul><li>A.1.   <a href="#rfc.appendix.A.1">Change from 00 to 01</a></li>
+<li>A.2.   <a href="#rfc.appendix.A.2">Change from 01 to 02</a></li>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
   </ul>
@@ -881,6 +885,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt></dt>
           <dd style="margin-left: 4">
             <dl>
+              <dt>"perRegistrar":</dt>
+              <dd style="margin-left: 4">The external hosts are shared across all domains of the registrar.  There is a single pool of external hosts defined per registrar.</dd>
               <dt>"perZone":</dt>
               <dd style="margin-left: 4">The external hosts are shared across all domains of the zone.  There is a single pool of external hosts defined for the zone.</dd>
               <dt>"perSystem":</dt>
@@ -962,7 +968,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 </dl>
               </dd>
               <dt>&lt;registry:city&gt;:</dt>
-              <dd style="margin-left: 4">The minimum and maximum length of the &lt;contact:city&lt; element defined in <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
+              <dd style="margin-left: 4">The minimum and maximum length of the &lt;contact:city&gt; element defined in <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
               <dt>&lt;registry:sp&gt;:</dt>
               <dd style="margin-left: 4">The minimum and maximum length of the &lt;contact:sp&gt; element defined in <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
               <dt>&lt;registry:pc&gt;:</dt>
@@ -974,7 +980,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:voiceExt&gt;:</dt>
           <dd style="margin-left: 4">The OPTIONAL minimum and maximum length of the &lt;contact:voice&gt; extension "x" attribute defined in <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
           <dt>&lt;registry:emailRegex&gt;:</dt>
-          <dd style="margin-left: 4">Zero or more &lt;registry:emailRegex&gt; elements that define the regular expressions used to validate the &lt;contact:email&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
+          <dd style="margin-left: 4">An OPTIONAL &lt;registry:emailRegex&gt; element that defines the regular expression used to validate the &lt;contact:email&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:maxCheckContact&gt;:</dt>
@@ -2005,25 +2011,6 @@ BEGIN
       &lt;/simpleType&gt;
     &lt;/attribute&gt;
   &lt;/complexType&gt;
-  &lt;complexType name="zoneMemberType"&gt;
-    &lt;simpleContent&gt;
-      &lt;extension base="eppcom:labelType"&gt;
-        &lt;attribute
-          name="type"
-          use="required"
-        &gt;
-          &lt;simpleType&gt;
-            &lt;restriction base="token"&gt;
-              &lt;enumeration value="primary"/&gt;
-              &lt;enumeration value="primaryBasedOnCrDate"/&gt;
-              &lt;enumeration value="alternate"/&gt;
-              &lt;enumeration value="equal"/&gt;
-            &lt;/restriction&gt;
-          &lt;/simpleType&gt;
-        &lt;/attribute&gt;
-      &lt;/extension&gt;
-    &lt;/simpleContent&gt;
-  &lt;/complexType&gt;
   &lt;complexType name="servicesType"&gt;
     &lt;sequence&gt;
       &lt;element
@@ -2871,6 +2858,19 @@ END</pre>
   </tbody>
 </table>
 <h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> Change History</h1>
+<h1 id="rfc.appendix.A.1"><a href="#rfc.appendix.A.1">A.1.</a> <a href="#change-00-to-01" id="change-00-to-01">Change from 00 to 01</a></h1>
+<p/>
+
+<ol>
+  <li>Added missing description of the "perRegistrar" value for the &lt;registry:external&gt; &lt;registry:sharePolicy&gt; element.</li>
+  <li>Revised the description of &lt;registry:emailRegex&gt; to be a single optional element instead of an optional list of elements to match the definition in the XML schema.</li>
+</ol>
+<h1 id="rfc.appendix.A.2"><a href="#rfc.appendix.A.2">A.2.</a> <a href="#change-01-to-02" id="change-01-to-02">Change from 01 to 02</a></h1>
+<p/>
+
+<ol>
+  <li>Removed the unneeded zoneMemberType from the XML schema.</li>
+</ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
 </h1>
