@@ -398,6 +398,7 @@
 <link href="#rfc.section.5.1" rel="Chapter" title="5.1 XML Namespace"/>
 <link href="#rfc.section.5.2" rel="Chapter" title="5.2 EPP Extension Registry"/>
 <link href="#rfc.section.6" rel="Chapter" title="6 Implementation Status"/>
+<link href="#rfc.section.6.1" rel="Chapter" title="6.1 Verisign EPP SDK"/>
 <link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations"/>
 <link href="#rfc.section.8" rel="Chapter" title="8 Acknowledgements"/>
 <link href="#rfc.references" rel="Chapter" title="9 Normative References"/>
@@ -412,7 +413,7 @@
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-02" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-6-25" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-6-27" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -436,7 +437,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: December 27, 2018</td>
+  <td class="left">Expires: December 29, 2018</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -449,7 +450,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">June 25, 2018</td>
+  <td class="right">June 27, 2018</td>
 </tr>
 
     	
@@ -469,7 +470,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 27, 2018.</p>
+<p>This Internet-Draft will expire on December 29, 2018.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -505,7 +506,8 @@
 <ul><li>5.1.   <a href="#rfc.section.5.1">XML Namespace</a></li>
 <li>5.2.   <a href="#rfc.section.5.2">EPP Extension Registry</a></li>
 </ul><li>6.   <a href="#rfc.section.6">Implementation Status</a></li>
-<li>7.   <a href="#rfc.section.7">Security Considerations</a></li>
+<ul><li>6.1.   <a href="#rfc.section.6.1">Verisign EPP SDK</a></li>
+</ul><li>7.   <a href="#rfc.section.7">Security Considerations</a></li>
 <li>8.   <a href="#rfc.section.8">Acknowledgements</a></li>
 <li>9.   <a href="#rfc.references">Normative References</a></li>
 <li>Appendix A.   <a href="#rfc.appendix.A">Change History</a></li>
@@ -581,7 +583,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   <dt>&lt;registry:crID&gt;:</dt>
   <dd style="margin-left: 4">The OPTIONAL identifier of the client that created the zone.</dd>
   <dt>&lt;registry:crDate&gt;:</dt>
-  <dd style="margin-left: 4">The date and time of zone object creation.</dd>
+  <dd style="margin-left: 4">The OPTIONAL date and time of zone object creation.  The &lt;registry:crDate&gt; element MUST be set if the zone object has already been created.</dd>
   <dt>&lt;registry:upID&gt;:</dt>
   <dd style="margin-left: 4">The OPTIONAL identifier of the client that last updated the zone object.  This element MUST NOT be present if the zone has never been modified.</dd>
   <dt>&lt;registry:upDate&gt;:</dt>
@@ -647,7 +649,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               <dt>&lt;registry:reservedName&gt;:</dt>
               <dd style="margin-left: 4">Zero or more &lt;registry:reservedName&gt; elements containing a reserved domain name relative to the level of the parent &lt;registry:domainName&gt; element.</dd>
               <dt>&lt;registry:reservedNameURI&gt;:</dt>
-              <dd style="margin-left: 4">An OPTIONAL URI that to an externally defined list of reserved domain name relative to the level of the parent &lt;registry:domainName&gt; element.</dd>
+              <dd style="margin-left: 4">An OPTIONAL URI to an externally defined list of reserved domain names relative to the level of the parent &lt;registry:domainName&gt; element.</dd>
             </dl>
           </dd>
         </dl>
@@ -810,7 +812,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               <dt>&lt;registry:default&gt;:</dt>
               <dd style="margin-left: 4">The OPTIONAL default maximum signature lifetime set by the server.</dd>
               <dt>&lt;registry:min&gt;:</dt>
-              <dd style="margin-left: 4">An OPTIONAL minimum f signature lifetime supported.  The &lt;registry:min&gt; element MUST NOT be defined if the &lt;registry:clientDefined&gt; element value is "false".</dd>
+              <dd style="margin-left: 4">An OPTIONAL minimum signature lifetime supported.  The &lt;registry:min&gt; element MUST NOT be defined if the &lt;registry:clientDefined&gt; element value is "false".</dd>
               <dt>&lt;registry:max&gt;:</dt>
               <dd style="margin-left: 4">An OPTIONAL maximum signature lifetime supported.  The &lt;registry:max&gt; element MUST NOT be defined if the &lt;registry:clientDefined&gt; element value is "false".  The &lt;registry:max&gt; element MUST NOT be less than the &lt;registry:min&gt; element.</dd>
             </dl>
@@ -1426,7 +1428,7 @@ S:&lt;/epp&gt;</pre>
   <dt>&lt;registry:all&gt;:</dt>
   <dd style="margin-left: 4">Element that is empty and that indicates that a list of all of the supported zone objects are queried with a summary set of attributes per zone object.</dd>
   <dt>&lt;registry:name&gt;:</dt>
-  <dd style="margin-left: 4">Element that contains the fully qualified name of the zone object to be queried for a full set of attributes for the zone object.</dd>
+  <dd style="margin-left: 4">Element that contains the fully qualified name of the zone object, as described in <a href="#zoneName">Section 2.1</a>, to be queried for a full set of attributes for the zone object.</dd>
   <dt>&lt;registry:system&gt;:</dt>
   <dd style="margin-left: 4">Element that is empty and that indicates that the registry system attributes, like maximum connections and timeouts, are queried.</dd>
 </dl>
@@ -1482,7 +1484,7 @@ C:&lt;/epp&gt;</pre>
   <dd style="margin-left: 4">
     <dl>
       <dt>&lt;registry:name&gt;:</dt>
-      <dd style="margin-left: 4">Element that contains the fully qualified name of the queried zone object.</dd>
+      <dd style="margin-left: 4">Element that contains the fully qualified name of the queried zone object, as described in <a href="#zoneName">Section 2.1</a>.</dd>
       <dt>&lt;registry:crDate&gt;:</dt>
       <dd style="margin-left: 4">The date and time of zone object creation.</dd>
       <dt>&lt;registry:upDate&gt;:</dt>
@@ -1609,7 +1611,7 @@ S:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:zone&gt;:</dt>
-  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone to create as defined in <a href="#zoneObject">Section 2.4</a>.</dd>
+  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone to create, as defined in <a href="#zoneObject">Section 2.4</a>.</dd>
 </dl>
 <p>Example &lt;create&gt; command:</p>
 <pre>
@@ -1634,7 +1636,7 @@ C:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:name&gt;:</dt>
-  <dd style="margin-left: 4">element that contains the fully qualified name of the zone object.</dd>
+  <dd style="margin-left: 4">element that contains the fully qualified name of the zone object, as described in <a href="#zoneName">Section 2.1</a>.</dd>
   <dt>&lt;registry:crDate&gt;:</dt>
   <dd style="margin-left: 4">element that contains the date and time of zone object creation.</dd>
 </dl>
@@ -1667,7 +1669,7 @@ S:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:name&gt;:</dt>
-  <dd style="margin-left: 4">element that contains the fully qualified name of the zone object to be deleted.</dd>
+  <dd style="margin-left: 4">element that contains the fully qualified name of the zone object to be deleted, as described in <a href="#zoneName">Section 2.1</a>.</dd>
 </dl>
 <p>Example &lt;delete&gt; command:</p>
 <pre>
@@ -1963,7 +1965,8 @@ BEGIN
         minOccurs="0"/&gt;
       &lt;element
         name="crDate"
-        type="dateTime"/&gt;
+        type="dateTime"
+        minOccurs="0"/&gt;
       &lt;element
         name="upID"
         type="eppcom:clIDType"
@@ -2775,7 +2778,18 @@ END</pre>
 <p id="rfc.section.5.2.p.8">Status: Active </p>
 <p id="rfc.section.5.2.p.9">Notes: None </p>
 <h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#Implementation" id="Implementation">Implementation Status</a></h1>
-<p id="rfc.section.6.p.1">TBD</p>
+<p id="rfc.section.6.p.1">Note to RFC Editor: Please remove this section and the reference to <a href="#RFC7942">RFC 7942</a> <cite title="NONE">[RFC7942]</cite> before publication.</p>
+<p id="rfc.section.6.p.2">This section records the status of known implementations of the protocol defined by this specification at the time of posting of this Internet-Draft, and is based on a proposal described in <a href="#RFC7942">RFC 7942</a> <cite title="NONE">[RFC7942]</cite>.  The description of implementations in this section is intended to assist the IETF in its decision processes in progressing drafts to RFCs.  Please note that the listing of any individual implementation here does not imply endorsement by the IETF.  Furthermore, no effort has been spent to verify the information presented here that was supplied by IETF contributors.  This is not intended as, and must not be construed to be, a catalog of available implementations or their features.  Readers are advised to note that other implementations may exist.</p>
+<p id="rfc.section.6.p.3">According to <a href="#RFC7942">RFC 7942</a> <cite title="NONE">[RFC7942]</cite>, "this will allow reviewers and working groups to assign due consideration to documents that have the benefit of running code, which may serve as evidence of valuable experimentation and feedback that have made the implemented protocols more mature.  It is up to the individual working groups to use this information as they see fit".</p>
+<h1 id="rfc.section.6.1"><a href="#rfc.section.6.1">6.1.</a> Verisign EPP SDK</h1>
+<p id="rfc.section.6.1.p.1">Organization: Verisign Inc.</p>
+<p id="rfc.section.6.1.p.2">Name: Verisign EPP SDK</p>
+<p id="rfc.section.6.1.p.3">Description: The Verisign EPP SDK includes both a full client implementation and a full server stub implementation of draft-gould-carney-regext-registry.</p>
+<p id="rfc.section.6.1.p.4">Level of maturity: Development</p>
+<p id="rfc.section.6.1.p.5">Coverage: All aspects of the protocol are implemented.</p>
+<p id="rfc.section.6.1.p.6">Licensing: GNU Lesser General Public License</p>
+<p id="rfc.section.6.1.p.7">Contact: jgould@verisign.com</p>
+<p id="rfc.section.6.1.p.8">URL: https://www.verisign.com/en_US/channel-resources/domain-registry-products/epp-sdks</p>
 <h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#Security" id="Security">Security Considerations</a></h1>
 <p id="rfc.section.7.p.1">The mapping extensions described in this document do not provide any security services beyond those described by <a href="#RFC5730">EPP</a> <cite title="NONE">[RFC5730]</cite> and protocol layers used by EPP. The security considerations described in these other specifications apply to this specification as well.</p>
 <h1 id="rfc.section.8"><a href="#rfc.section.8">8.</a> <a href="#Acknowledgements" id="Acknowledgements">Acknowledgements</a></h1>
@@ -2855,6 +2869,12 @@ END</pre>
       </td>
       <td class="top"><a>Hollenbeck, S.</a>, "<a href="http://tools.ietf.org/html/rfc7451">Extension Registry for the Extensible Provisioning Protocol</a>", RFC 7451, DOI 10.17487/RFC7451, February 2015.</td>
     </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7942">[RFC7942]</b>
+      </td>
+      <td class="top"><a>Sheffer, Y.</a> and <a>A. Farrel</a>, "<a href="http://tools.ietf.org/html/rfc7942">Improving Awareness of Running Code: The Implementation Status Section</a>", BCP 205, RFC 7942, DOI 10.17487/RFC7942, July 2016.</td>
+    </tr>
   </tbody>
 </table>
 <h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> Change History</h1>
@@ -2870,6 +2890,9 @@ END</pre>
 
 <ol>
   <li>Removed the unneeded zoneMemberType from the XML schema.</li>
+  <li>Added reference to the Zone Name section for the &lt;registry:name&gt; elements, since they use the XML schema zoneFormType that supports the "form" attribute with the default value of "aLabel".</li>
+  <li>Made the zoneType crDate element optional to support sending the zone on a create command without the crDate being set by the client.</li>
+  <li>Updated the Implementation Status section to include the leading paragraphs and to include the "Verisign EPP SDK" sub-section.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

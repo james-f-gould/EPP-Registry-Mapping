@@ -15,6 +15,7 @@
 <!ENTITY RFC5733 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5733.xml">
 <!ENTITY RFC5910 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5910.xml">
 <!ENTITY RFC7451 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7451.xml">
+<!ENTITY RFC7942 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7942.xml">
 <!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -140,14 +141,14 @@
           <country>US</country>
         </postal>
 
-        <email>jkolker@godaddy.com</email>
+        <email>jkolker@godaddy.com</email> 
 
         <uri>http://www.godaddy.com</uri>
       </address>
     </author>
     
 
-    <date day="25" month="June" year="2018"/>
+    <date day="27" month="June" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -306,8 +307,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
              </list></t>
           <t hangText="&lt;registry:crID&gt;:">The OPTIONAL identifier of the 
           client that created the zone.</t>             
-          <t hangText="&lt;registry:crDate&gt;:">The date and time of zone 
-          object creation.</t>             
+          <t hangText="&lt;registry:crDate&gt;:">The OPTIONAL date and time of zone 
+          object creation.  The &lt;registry:crDate&gt; element MUST be set if the zone object 
+          has already been created.</t>             
           <t hangText="&lt;registry:upID&gt;:">The OPTIONAL identifier of the 
           client that last updated the zone object.  This element MUST NOT 
           be present if the zone has never been modified.</t>             
@@ -391,8 +393,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     reserved domain name relative to the level of the 
                     parent &lt;registry:domainName&gt; element.</t>
                     <t hangText="&lt;registry:reservedNameURI&gt;:">An OPTIONAL 
-                    URI that to an externally defined list of reserved 
-                    domain name relative to the level of the 
+                    URI to an externally defined list of reserved 
+                    domain names relative to the level of the 
                     parent &lt;registry:domainName&gt; element.</t>
                   </list></t>
               </list></t>
@@ -614,7 +616,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                         value of "false".</t>
                         <t hangText="&lt;registry:default&gt;:">The OPTIONAL 
                         default maximum signature lifetime set by the server.</t>
-                        <t hangText="&lt;registry:min&gt;:">An OPTIONAL minimum f
+                        <t hangText="&lt;registry:min&gt;:">An OPTIONAL minimum 
                         signature lifetime supported.  The &lt;registry:min&gt; 
                         element MUST NOT be defined if the 
                         &lt;registry:clientDefined&gt; element 
@@ -1396,8 +1398,8 @@ S:</epp>]]></artwork>
           indicates that a list of all of the supported zone objects 
           are queried with a summary set of attributes per zone object.</t>
           <t hangText="&lt;registry:name&gt;:">Element that contains the 
-          fully qualified name of the zone object to be queried for a full 
-          set of attributes for the zone object.</t>
+          fully qualified name of the zone object, as described in <xref target="zoneName"/>, 
+          to be queried for a full set of attributes for the zone object.</t>
           <t hangText="&lt;registry:system&gt;:">Element that is empty and 
           that indicates that the registry system attributes, 
           like maximum connections and timeouts, are queried.</t>
@@ -1475,7 +1477,7 @@ C:</epp>]]></artwork>
           
             <t><list hangIndent="4" style="hanging">
               <t hangText="&lt;registry:name&gt;:">Element that contains the fully 
-                qualified name of the queried zone object.</t>
+                qualified name of the queried zone object, as described in <xref target="zoneName"/>.</t>
               <t hangText="&lt;registry:crDate&gt;:">The date and time of zone 
               object creation.</t>
               <t hangText="&lt;registry:upDate&gt;:">The OPTIONAL date and time 
@@ -1656,7 +1658,7 @@ S:</epp>]]></artwork>
 
       <t><list hangIndent="4" style="hanging">
           <t hangText="&lt;registry:zone&gt;:">Element that contains the full 
-          set of attributes for the zone to create as defined in 
+          set of attributes for the zone to create, as defined in 
           <xref target="zoneObject"/>.</t>
        </list></t>
         
@@ -1690,7 +1692,7 @@ C:</epp>]]></artwork>
 
       <t><list hangIndent="4" style="hanging">
           <t hangText="&lt;registry:name&gt;:">element that contains the fully 
-          qualified name of the zone object.</t>
+          qualified name of the zone object, as described in <xref target="zoneName"/>.</t>
           <t hangText="&lt;registry:crDate&gt;:">element that contains the 
           date and time of zone object creation.</t>
        </list></t>
@@ -1739,7 +1741,7 @@ S:</epp>]]></artwork>
         
       <t><list hangIndent="4" style="hanging">
           <t hangText="&lt;registry:name&gt;:">element that contains the fully 
-          qualified name of the zone object to be deleted.</t>
+          qualified name of the zone object to be deleted, as described in <xref target="zoneName"/>.</t>
        </list></t>
 
        <figure>
@@ -2104,7 +2106,8 @@ BEGIN
         minOccurs="0"/>
       <element
         name="crDate"
-        type="dateTime"/>
+        type="dateTime"
+        minOccurs="0"/>
       <element
         name="upID"
         type="eppcom:clIDType"
@@ -2967,7 +2970,37 @@ END]]></artwork>
        
        
     <section anchor="Implementation" title="Implementation Status">
-      <t>TBD</t>
+      <t>Note to RFC Editor: Please remove this section and the reference to
+      <xref target="RFC7942">RFC 7942</xref> before publication.</t>
+      <t>This section records the status of known implementations of the
+      protocol defined by this specification at the time of posting of
+      this Internet-Draft, and is based on a proposal described in <xref target="RFC7942">RFC
+      7942</xref>.  The description of implementations in this section is
+      intended to assist the IETF in its decision processes in
+      progressing drafts to RFCs.  Please note that the listing of any
+      individual implementation here does not imply endorsement by the
+      IETF.  Furthermore, no effort has been spent to verify the
+      information presented here that was supplied by IETF contributors.
+      This is not intended as, and must not be construed to be, a
+      catalog of available implementations or their features.  Readers
+      are advised to note that other implementations may exist.</t>
+      <t>According to <xref target="RFC7942">RFC 7942</xref>, "this will allow reviewers and working
+      groups to assign due consideration to documents that have the
+      benefit of running code, which may serve as evidence of valuable
+      experimentation and feedback that have made the implemented
+      protocols more mature.  It is up to the individual working groups
+      to use this information as they see fit".</t>
+      <section title="Verisign EPP SDK">
+        <t>Organization: Verisign Inc.</t>
+        <t>Name: Verisign EPP SDK</t>
+        <t>Description: The Verisign EPP SDK includes both a full client implementation
+        and a full server stub implementation of draft-gould-carney-regext-registry.</t>
+        <t>Level of maturity: Development</t>
+        <t>Coverage: All aspects of the protocol are implemented.</t>
+        <t>Licensing: GNU Lesser General Public License</t>
+        <t>Contact: jgould@verisign.com</t>
+        <t>URL: https://www.verisign.com/en_US/channel-resources/domain-registry-products/epp-sdks</t>
+      </section>
     </section>
 
     <section anchor="Security" title="Security Considerations">
@@ -3025,7 +3058,9 @@ END]]></artwork>
      &RFC5910;
      
      &RFC7451;
-     
+   
+     &RFC7942;
+   
     </references>
     
     <section title="Change History">
@@ -3039,6 +3074,10 @@ END]]></artwork>
       <section title="Change from 01 to 02" anchor="change-01-to-02">
         <t><list style="numbers">
           <t>Removed the unneeded zoneMemberType from the XML schema.</t>
+          <t>Added reference to the Zone Name section for the &lt;registry:name&gt; elements, 
+          since they use the XML schema zoneFormType that supports the "form" attribute with the default value of "aLabel".</t> 
+          <t>Made the zoneType crDate element optional to support sending the zone on a create command without the crDate being set by the client.</t>
+          <t>Updated the Implementation Status section to include the leading paragraphs and to include the "Verisign EPP SDK" sub-section.</t>
         </list></t>
       </section>
     </section>

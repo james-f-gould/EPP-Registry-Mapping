@@ -5,10 +5,10 @@
 Network Working Group                                           J. Gould
 Internet-Draft                                                    L. Jia
 Intended status: Standards Track                          VeriSign, Inc.
-Expires: December 27, 2018                                     R. Carney
+Expires: December 29, 2018                                     R. Carney
                                                                J. Kolker
                                                             GoDaddy Inc.
-                                                           June 25, 2018
+                                                           June 27, 2018
 
 
     Registry Mapping for the Extensible Provisioning Protocol (EPP)
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 27, 2018.
+   This Internet-Draft will expire on December 29, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gould, et al.           Expires December 27, 2018               [Page 1]
+Gould, et al.           Expires December 29, 2018               [Page 1]
 
 Internet-Draft                  registry                       June 2018
 
@@ -87,15 +87,16 @@ Table of Contents
      5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  58
      5.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  58
    6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  59
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  59
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  59
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  59
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  59
-     9.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  60
-   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  60
-     A.1.  Change from 00 to 01  . . . . . . . . . . . . . . . . . .  60
-     A.2.  Change from 01 to 02  . . . . . . . . . . . . . . . . . .  60
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  61
+     6.1.  Verisign EPP SDK  . . . . . . . . . . . . . . . . . . . .  59
+   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  60
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  60
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  60
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  60
+     9.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  61
+   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  61
+     A.1.  Change from 00 to 01  . . . . . . . . . . . . . . . . . .  61
+     A.2.  Change from 01 to 02  . . . . . . . . . . . . . . . . . .  61
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  62
 
 1.  Introduction
 
@@ -105,15 +106,15 @@ Table of Contents
    Mapping, for the Extensible Provisioning Protocol (EPP) [RFC5730].  A
    Domain Name Registry can service one or more registry zones (e.g.
    top-level domains) with a variety of supported services and policies.
-   A registry zone, also referred to as a "zone" in this document, is a
 
 
 
-Gould, et al.           Expires December 27, 2018               [Page 2]
+Gould, et al.           Expires December 29, 2018               [Page 2]
 
 Internet-Draft                  registry                       June 2018
 
 
+   A registry zone, also referred to as a "zone" in this document, is a
    domain name that the Domain Name Registry supports provisioning
    operations to manage.  The registry zone and the associated DNS zone
    has an overlapping data set, where the registry zone is the source
@@ -164,8 +165,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-
-Gould, et al.           Expires December 27, 2018               [Page 3]
+Gould, et al.           Expires December 29, 2018               [Page 3]
 
 Internet-Draft                  registry                       June 2018
 
@@ -221,7 +221,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018               [Page 4]
+Gould, et al.           Expires December 29, 2018               [Page 4]
 
 Internet-Draft                  registry                       June 2018
 
@@ -267,21 +267,24 @@ Internet-Draft                  registry                       June 2018
            represented by the URI.
    <registry:crID>:  The OPTIONAL identifier of the client that created
        the zone.
-   <registry:crDate>:  The date and time of zone object creation.
+   <registry:crDate>:  The OPTIONAL date and time of zone object
+       creation.  The <registry:crDate> element MUST be set if the zone
+       object has already been created.
    <registry:upID>:  The OPTIONAL identifier of the client that last
        updated the zone object.  This element MUST NOT be present if the
        zone has never been modified.
-   <registry:upDate>:  The OPTIONAL date and time of the most recent
-       zone object modification.  This element MUST NOT be present if
-       the domain object has never been modified.
 
 
 
-Gould, et al.           Expires December 27, 2018               [Page 5]
+
+Gould, et al.           Expires December 29, 2018               [Page 5]
 
 Internet-Draft                  registry                       June 2018
 
 
+   <registry:upDate>:  The OPTIONAL date and time of the most recent
+       zone object modification.  This element MUST NOT be present if
+       the domain object has never been modified.
    <registry:batch>:  The OPTIONAL list of batch jobs.  The
        <registry:batch> element contains the following child elements:
 
@@ -326,18 +329,17 @@ Internet-Draft                  registry                       June 2018
 
            <registry:minLength>:  An OPTIONAL minimum length of the
                domain name label.
-           <registry:maxLength>:  An OPTIONAL maximum length of the
-               domain name label.
 
 
 
 
-
-Gould, et al.           Expires December 27, 2018               [Page 6]
+Gould, et al.           Expires December 29, 2018               [Page 6]
 
 Internet-Draft                  registry                       June 2018
 
 
+           <registry:maxLength>:  An OPTIONAL maximum length of the
+               domain name label.
            <registry:alphaNumStart>:  An OPTIONAL flag indicating
                whether the label must start with an alphanumeric
                character with a default of "false".
@@ -370,8 +372,8 @@ Internet-Draft                  registry                       June 2018
                    <registry:reservedName> elements containing a
                    reserved domain name relative to the level of the
                    parent <registry:domainName> element.
-               <registry:reservedNameURI>:  An OPTIONAL URI that to an
-                   externally defined list of reserved domain name
+               <registry:reservedNameURI>:  An OPTIONAL URI to an
+                   externally defined list of reserved domain names
                    relative to the level of the parent
                    <registry:domainName> element.
        <registry:idn>:  The OPTIONAL Internationalized Domain Name (IDN)
@@ -384,16 +386,15 @@ Internet-Draft                  registry                       June 2018
            <registry:idnaVersion>:  An Internationalizing Domain Names
                in Applications (IDNA) version supported by the server.
                IDNA represents a collection of documents that describe
-               the protocol and usage for Internationalized Domain for
 
 
 
-
-Gould, et al.           Expires December 27, 2018               [Page 7]
+Gould, et al.           Expires December 29, 2018               [Page 7]
 
 Internet-Draft                  registry                       June 2018
 
 
+               the protocol and usage for Internationalized Domain for
                Applications like IDNA 2003, with value of 2003, or IDNA
                2008, with value of 2008.
            <registry:unicodeVersion>:  The Unicode version supported by
@@ -441,15 +442,15 @@ Internet-Draft                  registry                       June 2018
            "type" attribute with the possible values of "admin", "tech",
            and "billing", and "custom".  The OPTIONAL "name" attribute
            is an identifier, represented in the 7-bit US-ASCII character
-           set, that is used to define the name of the "custom" type.
 
 
 
-Gould, et al.           Expires December 27, 2018               [Page 8]
+Gould, et al.           Expires December 29, 2018               [Page 8]
 
 Internet-Draft                  registry                       June 2018
 
 
+           set, that is used to define the name of the "custom" type.
            If "custom" is the contact "type" value, then the "name"
            attribute MUST be set.  The OPTIONAL "description" attribute
            can be set with a description of the contact type.  The
@@ -500,8 +501,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-
-Gould, et al.           Expires December 27, 2018               [Page 9]
+Gould, et al.           Expires December 29, 2018               [Page 9]
 
 Internet-Draft                  registry                       June 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 10]
+Gould, et al.           Expires December 29, 2018              [Page 10]
 
 Internet-Draft                  registry                       June 2018
 
@@ -604,7 +604,7 @@ Internet-Draft                  registry                       June 2018
                    signature lifetime with a default value of "false".
                <registry:default>:  The OPTIONAL default maximum
                    signature lifetime set by the server.
-               <registry:min>:  An OPTIONAL minimum f signature lifetime
+               <registry:min>:  An OPTIONAL minimum signature lifetime
                    supported.  The <registry:min> element MUST NOT be
                    defined if the <registry:clientDefined> element value
                    is "false".
@@ -613,7 +613,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 11]
+Gould, et al.           Expires December 29, 2018              [Page 11]
 
 Internet-Draft                  registry                       June 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 12]
+Gould, et al.           Expires December 29, 2018              [Page 12]
 
 Internet-Draft                  registry                       June 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 13]
+Gould, et al.           Expires December 29, 2018              [Page 13]
 
 Internet-Draft                  registry                       June 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 14]
+Gould, et al.           Expires December 29, 2018              [Page 14]
 
 Internet-Draft                  registry                       June 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 15]
+Gould, et al.           Expires December 29, 2018              [Page 15]
 
 Internet-Draft                  registry                       June 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 16]
+Gould, et al.           Expires December 29, 2018              [Page 16]
 
 Internet-Draft                  registry                       June 2018
 
@@ -949,7 +949,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 17]
+Gould, et al.           Expires December 29, 2018              [Page 17]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 18]
+Gould, et al.           Expires December 29, 2018              [Page 18]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 19]
+Gould, et al.           Expires December 29, 2018              [Page 19]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 20]
+Gould, et al.           Expires December 29, 2018              [Page 20]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 21]
+Gould, et al.           Expires December 29, 2018              [Page 21]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 22]
+Gould, et al.           Expires December 29, 2018              [Page 22]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 23]
+Gould, et al.           Expires December 29, 2018              [Page 23]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1341,7 +1341,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 24]
+Gould, et al.           Expires December 29, 2018              [Page 24]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 25]
+Gould, et al.           Expires December 29, 2018              [Page 25]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 26]
+Gould, et al.           Expires December 29, 2018              [Page 26]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1467,8 +1467,8 @@ Internet-Draft                  registry                       June 2018
        of all of the supported zone objects are queried with a summary
        set of attributes per zone object.
    <registry:name>:  Element that contains the fully qualified name of
-       the zone object to be queried for a full set of attributes for
-       the zone object.
+       the zone object, as described in Section 2.1, to be queried for a
+       full set of attributes for the zone object.
    <registry:system>:  Element that is empty and that indicates that the
        registry system attributes, like maximum connections and
        timeouts, are queried.
@@ -1509,7 +1509,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 27]
+Gould, et al.           Expires December 29, 2018              [Page 27]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1541,7 +1541,7 @@ Internet-Draft                  registry                       June 2018
 
 
        <registry:name>:  Element that contains the fully qualified name
-           of the queried zone object.
+           of the queried zone object, as described in Section 2.1.
        <registry:crDate>:  The date and time of zone object creation.
        <registry:upDate>:  The OPTIONAL date and time of the most recent
            zone object modification.  This element MUST NOT be present
@@ -1565,7 +1565,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 28]
+Gould, et al.           Expires December 29, 2018              [Page 28]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 29]
+Gould, et al.           Expires December 29, 2018              [Page 29]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1677,7 +1677,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 30]
+Gould, et al.           Expires December 29, 2018              [Page 30]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 31]
+Gould, et al.           Expires December 29, 2018              [Page 31]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 32]
+Gould, et al.           Expires December 29, 2018              [Page 32]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1803,7 +1803,7 @@ Internet-Draft                  registry                       June 2018
    The <registry:create> element contains the following child elements:
 
    <registry:zone>:  Element that contains the full set of attributes
-       for the zone to create as defined in Section 2.4.
+       for the zone to create, as defined in Section 2.4.
 
    Example <create> command:
 
@@ -1830,7 +1830,7 @@ Internet-Draft                  registry                       June 2018
    element contains the following child elements:
 
    <registry:name>:  element that contains the fully qualified name of
-       the zone object.
+       the zone object, as described in Section 2.1.
    <registry:crDate>:  element that contains the date and time of zone
        object creation.
 
@@ -1845,7 +1845,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 33]
+Gould, et al.           Expires December 29, 2018              [Page 33]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1885,7 +1885,7 @@ Internet-Draft                  registry                       June 2018
    The <registry:delete> element contains the following child elements:
 
    <registry:name>:  element that contains the fully qualified name of
-       the zone object to be deleted.
+       the zone object to be deleted, as described in Section 2.1.
 
 
 
@@ -1901,7 +1901,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 34]
+Gould, et al.           Expires December 29, 2018              [Page 34]
 
 Internet-Draft                  registry                       June 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 35]
+Gould, et al.           Expires December 29, 2018              [Page 35]
 
 Internet-Draft                  registry                       June 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 36]
+Gould, et al.           Expires December 29, 2018              [Page 36]
 
 Internet-Draft                  registry                       June 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 37]
+Gould, et al.           Expires December 29, 2018              [Page 37]
 
 Internet-Draft                  registry                       June 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 38]
+Gould, et al.           Expires December 29, 2018              [Page 38]
 
 Internet-Draft                  registry                       June 2018
 
@@ -2181,7 +2181,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 39]
+Gould, et al.           Expires December 29, 2018              [Page 39]
 
 Internet-Draft                  registry                       June 2018
 
@@ -2237,7 +2237,7 @@ Internet-Draft                  registry                       June 2018
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 40]
+Gould, et al.           Expires December 29, 2018              [Page 40]
 
 Internet-Draft                  registry                       June 2018
 
@@ -2279,7 +2279,8 @@ Internet-Draft                  registry                       June 2018
            minOccurs="0"/>
          <element
            name="crDate"
-           type="dateTime"/>
+           type="dateTime"
+           minOccurs="0"/>
          <element
            name="upID"
            type="eppcom:clIDType"
@@ -2289,15 +2290,15 @@ Internet-Draft                  registry                       June 2018
            type="dateTime"
            minOccurs="0"/>
          <element
-           name="batch"
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 41]
+Gould, et al.           Expires December 29, 2018              [Page 41]
 
 Internet-Draft                  registry                       June 2018
 
 
+           name="batch"
            type="registry:batchType"
            minOccurs="0"/>
          <element
@@ -2345,15 +2346,15 @@ Internet-Draft                  registry                       June 2018
            name="svcExtension"
            type="registry:svcExtensionType"
            minOccurs="0"/>
-       </sequence>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 42]
+Gould, et al.           Expires December 29, 2018              [Page 42]
 
 Internet-Draft                  registry                       June 2018
 
 
+       </sequence>
      </complexType>
      <complexType name="svcExtensionType">
        <sequence>
@@ -2401,15 +2402,15 @@ Internet-Draft                  registry                       June 2018
            name="alphaNumStart"
            type="boolean"
            minOccurs="0"
-           default="false"/>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 43]
+Gould, et al.           Expires December 29, 2018              [Page 43]
 
 Internet-Draft                  registry                       June 2018
 
 
+           default="false"/>
          <element
            name="alphaNumEnd"
            type="boolean"
@@ -2457,15 +2458,15 @@ Internet-Draft                  registry                       June 2018
          >
            <complexType>
              <simpleContent>
-               <extension base="normalizedString">
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 44]
+Gould, et al.           Expires December 29, 2018              [Page 44]
 
 Internet-Draft                  registry                       June 2018
 
 
+               <extension base="normalizedString">
                  <attribute
                    name="lang"
                    type="language"
@@ -2513,15 +2514,15 @@ Internet-Draft                  registry                       June 2018
        <attribute
          name="code"
          type="language"
-         use="required"/>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 45]
+Gould, et al.           Expires December 29, 2018              [Page 45]
 
 Internet-Draft                  registry                       June 2018
 
 
+         use="required"/>
      </complexType>
      <complexType name="idnType">
        <sequence>
@@ -2569,15 +2570,15 @@ Internet-Draft                  registry                       June 2018
              </simpleType>
            </attribute>
            <attribute
-             name="name"
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 46]
+Gould, et al.           Expires December 29, 2018              [Page 46]
 
 Internet-Draft                  registry                       June 2018
 
 
+             name="name"
              type="token"/>
            <attribute
              name="description"
@@ -2625,15 +2626,15 @@ Internet-Draft                  registry                       June 2018
      </complexType>
      <complexType name="gPeriodType">
        <simpleContent>
-         <extension base="registry:periodType">
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 47]
+Gould, et al.           Expires December 29, 2018              [Page 47]
 
 Internet-Draft                  registry                       June 2018
 
 
+         <extension base="registry:periodType">
            <attribute
              name="command"
              type="token"
@@ -2681,15 +2682,15 @@ Internet-Draft                  registry                       June 2018
            name="max"
            type="unsignedShort"/>
          <element
-           name="alg"
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 48]
+Gould, et al.           Expires December 29, 2018              [Page 48]
 
 Internet-Draft                  registry                       June 2018
 
 
+           name="alg"
            type="token"
            minOccurs="0"
            maxOccurs="unbounded"/>
@@ -2737,15 +2738,15 @@ Internet-Draft                  registry                       June 2018
              type="registry:dsInterfaceType"/>
            <element
              name="keyDataInterface"
-             type="registry:keyInterfaceType"/>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 49]
+Gould, et al.           Expires December 29, 2018              [Page 49]
 
 Internet-Draft                  registry                       June 2018
 
 
+             type="registry:keyInterfaceType"/>
          </choice>
          <element
            name="maxSigLife"
@@ -2793,15 +2794,15 @@ Internet-Draft                  registry                       June 2018
      </complexType>
      <!-- Information about the batch jobs -->
      <complexType name="batchType">
-       <sequence>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 50]
+Gould, et al.           Expires December 29, 2018              [Page 50]
 
 Internet-Draft                  registry                       June 2018
 
 
+       <sequence>
          <element
            name="batchJob"
            type="registry:batchJobType"
@@ -2849,15 +2850,15 @@ Internet-Draft                  registry                       June 2018
            name="contactsSupported"
            type="boolean"
            minOccurs="0"
-           default="true"/>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 51]
+Gould, et al.           Expires December 29, 2018              [Page 51]
 
 Internet-Draft                  registry                       June 2018
 
 
+           default="true"/>
          <element
            name="contact"
            type="registry:dContactType"
@@ -2905,15 +2906,15 @@ Internet-Draft                  registry                       June 2018
            name="expiryPolicy"
            type="registry:expiryPolicyType"
            minOccurs="0"
-           default="autoRenew"/>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 52]
+Gould, et al.           Expires December 29, 2018              [Page 52]
 
 Internet-Draft                  registry                       June 2018
 
 
+           default="autoRenew"/>
        </sequence>
      </complexType>
      <simpleType name="intHostSharePolicyType">
@@ -2961,15 +2962,15 @@ Internet-Draft                  registry                       June 2018
          <element
            name="minIP"
            type="unsignedShort"/>
-         <element
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 53]
+Gould, et al.           Expires December 29, 2018              [Page 53]
 
 Internet-Draft                  registry                       June 2018
 
 
+         <element
            name="maxIP"
            type="unsignedShort"/>
          <element
@@ -3017,15 +3018,15 @@ Internet-Draft                  registry                       June 2018
      </complexType>
      <simpleType name="contactSharePolicyType">
        <restriction base="token">
-         <enumeration value="perZone"/>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 54]
+Gould, et al.           Expires December 29, 2018              [Page 54]
 
 Internet-Draft                  registry                       June 2018
 
 
+         <enumeration value="perZone"/>
          <enumeration value="perSystem"/>
        </restriction>
      </simpleType>
@@ -3073,15 +3074,15 @@ Internet-Draft                  registry                       June 2018
          <element
            name="voiceRequired"
            type="boolean"
-           minOccurs="0"
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 55]
+Gould, et al.           Expires December 29, 2018              [Page 55]
 
 Internet-Draft                  registry                       June 2018
 
 
+           minOccurs="0"
            default="false"/>
          <element
            name="voiceExt"
@@ -3129,15 +3130,15 @@ Internet-Draft                  registry                       June 2018
            name="supportedStatus"
            type="registry:supportedStatusType"
            minOccurs="0"/>
-         <element
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 56]
+Gould, et al.           Expires December 29, 2018              [Page 56]
 
 Internet-Draft                  registry                       June 2018
 
 
+         <element
            name="transferHoldPeriod"
            type="registry:periodType"
            minOccurs="0"/>
@@ -3185,15 +3186,15 @@ Internet-Draft                  registry                       June 2018
            name="transLimit"
            type="registry:transLimitType"
            minOccurs="0"/>
-       </sequence>
 
 
 
-Gould, et al.           Expires December 27, 2018              [Page 57]
+Gould, et al.           Expires December 29, 2018              [Page 57]
 
 Internet-Draft                  registry                       June 2018
 
 
+       </sequence>
      </complexType>
    </schema>
    END
@@ -3244,15 +3245,66 @@ Internet-Draft                  registry                       June 2018
 
 
 
-
-Gould, et al.           Expires December 27, 2018              [Page 58]
+Gould, et al.           Expires December 29, 2018              [Page 58]
 
 Internet-Draft                  registry                       June 2018
 
 
 6.  Implementation Status
 
-   TBD
+   Note to RFC Editor: Please remove this section and the reference to
+   RFC 7942 [RFC7942] before publication.
+
+   This section records the status of known implementations of the
+   protocol defined by this specification at the time of posting of this
+   Internet-Draft, and is based on a proposal described in RFC 7942
+   [RFC7942].  The description of implementations in this section is
+   intended to assist the IETF in its decision processes in progressing
+   drafts to RFCs.  Please note that the listing of any individual
+   implementation here does not imply endorsement by the IETF.
+   Furthermore, no effort has been spent to verify the information
+   presented here that was supplied by IETF contributors.  This is not
+   intended as, and must not be construed to be, a catalog of available
+   implementations or their features.  Readers are advised to note that
+   other implementations may exist.
+
+   According to RFC 7942 [RFC7942], "this will allow reviewers and
+   working groups to assign due consideration to documents that have the
+   benefit of running code, which may serve as evidence of valuable
+   experimentation and feedback that have made the implemented protocols
+   more mature.  It is up to the individual working groups to use this
+   information as they see fit".
+
+6.1.  Verisign EPP SDK
+
+   Organization: Verisign Inc.
+
+   Name: Verisign EPP SDK
+
+   Description: The Verisign EPP SDK includes both a full client
+   implementation and a full server stub implementation of draft-gould-
+   carney-regext-registry.
+
+   Level of maturity: Development
+
+   Coverage: All aspects of the protocol are implemented.
+
+   Licensing: GNU Lesser General Public License
+
+   Contact: jgould@verisign.com
+
+   URL: https://www.verisign.com/en_US/channel-resources/domain-
+   registry-products/epp-sdks
+
+
+
+
+
+
+Gould, et al.           Expires December 29, 2018              [Page 59]
+
+Internet-Draft                  registry                       June 2018
+
 
 7.  Security Considerations
 
@@ -3296,20 +3348,19 @@ Internet-Draft                  registry                       June 2018
               STD 69, RFC 5730, DOI 10.17487/RFC5730, August 2009,
               <https://www.rfc-editor.org/info/rfc5730>.
 
-
-
-
-
-
-Gould, et al.           Expires December 27, 2018              [Page 59]
-
-Internet-Draft                  registry                       June 2018
-
-
    [RFC5731]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
               Domain Name Mapping", STD 69, RFC 5731,
               DOI 10.17487/RFC5731, August 2009, <https://www.rfc-
               editor.org/info/rfc5731>.
+
+
+
+
+
+Gould, et al.           Expires December 29, 2018              [Page 60]
+
+Internet-Draft                  registry                       June 2018
+
 
    [RFC5732]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
               Host Mapping", STD 69, RFC 5732, DOI 10.17487/RFC5732,
@@ -3334,6 +3385,11 @@ Internet-Draft                  registry                       June 2018
               Provisioning Protocol", RFC 7451, DOI 10.17487/RFC7451,
               February 2015, <https://www.rfc-editor.org/info/rfc7451>.
 
+   [RFC7942]  Sheffer, Y. and A. Farrel, "Improving Awareness of Running
+              Code: The Implementation Status Section", BCP 205,
+              RFC 7942, DOI 10.17487/RFC7942, July 2016,
+              <https://www.rfc-editor.org/info/rfc7942>.
+
 9.2.  URIs
 
    [1] http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/
@@ -3351,16 +3407,22 @@ A.1.  Change from 00 to 01
 A.2.  Change from 01 to 02
 
    1.  Removed the unneeded zoneMemberType from the XML schema.
+   2.  Added reference to the Zone Name section for the <registry:name>
+       elements, since they use the XML schema zoneFormType that
+       supports the "form" attribute with the default value of "aLabel".
 
 
 
-
-
-
-Gould, et al.           Expires December 27, 2018              [Page 60]
+Gould, et al.           Expires December 29, 2018              [Page 61]
 
 Internet-Draft                  registry                       June 2018
 
+
+   3.  Made the zoneType crDate element optional to support sending the
+       zone on a create command without the crDate being set by the
+       client.
+   4.  Updated the Implementation Status section to include the leading
+       paragraphs and to include the "Verisign EPP SDK" sub-section.
 
 Authors' Addresses
 
@@ -3407,10 +3469,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-Gould, et al.           Expires December 27, 2018              [Page 61]
+Gould, et al.           Expires December 29, 2018              [Page 62]

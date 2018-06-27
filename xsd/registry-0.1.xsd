@@ -211,7 +211,8 @@
         minOccurs="0"/>
       <element
         name="crDate"
-        type="dateTime"/>
+        type="dateTime"
+        minOccurs="0"/>
       <element
         name="upID"
         type="eppcom:clIDType"
