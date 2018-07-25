@@ -1,0 +1,340 @@
+<registry:zone xmlns:registry="urn:ietf:params:xml:ns:registry-0.2">
+  <registry:name>EXAMPLE</registry:name>
+  <registry:group>STANDARD</registry:group>
+  <registry:services>
+    <registry:objURI required="true">urn:ietf:params:xml:ns:domain-1.0</registry:objURI>
+    <registry:objURI required="true">urn:ietf:params:xml:ns:host-1.0</registry:objURI>
+    <registry:objURI required="true">urn:ietf:params:xml:ns:contact-1.0</registry:objURI>
+    <registry:svcExtension>
+      <registry:extURI required="true">urn:ietf:params:xml:ns:rgp-1.0</registry:extURI>
+      <registry:extURI required="true">urn:ietf:params:xml:ns:secDNS-1.1</registry:extURI>
+      <registry:extURI required="true">http://www.verisign-grs.com/epp/namestoreExt-1.1</registry:extURI>
+      <registry:extURI required="false">http://www.verisign.com/epp/idnLang-1.0</registry:extURI>
+    </registry:svcExtension>
+  </registry:services>
+  <registry:crID>clientX</registry:crID>
+  <registry:crDate>2012-10-01T00:00:00.0Z</registry:crDate>
+  <registry:upID>clientY</registry:upID>
+  <registry:upDate>2012-10-15T00:00:00.0Z</registry:upDate>
+  <registry:batch>
+    <registry:batchJob>
+      <registry:name>pendingDelete</registry:name>
+      <registry:description>Pending Delete Batch</registry:description>
+      <registry:schedule tz="EDT5EDT">0 14 * * *</registry:schedule>
+    </registry:batchJob>
+  </registry:batch>
+  <registry:system>
+    <registry:zone form="aLabel">EXAMPLE</registry:zone>
+    <registry:zone form="aLabel">EXAMPLE2</registry:zone>
+  </registry:system>
+  <registry:policies>
+    <domainPolicy:policy xmlns:domainPolicy="urn:ietf:params:xml:ns:domainPolicy-0.1">
+      <domainPolicy:domainName level="2">
+        <domainPolicy:minLength>5</domainPolicy:minLength>
+        <domainPolicy:maxLength>50</domainPolicy:maxLength>
+        <domainPolicy:alphaNumStart>true</domainPolicy:alphaNumStart>
+        <domainPolicy:alphaNumEnd>false</domainPolicy:alphaNumEnd>
+        <domainPolicy:aLabelSupported>true</domainPolicy:aLabelSupported>
+        <domainPolicy:uLabelSupported>false</domainPolicy:uLabelSupported>
+        <domainPolicy:regex>
+          <registry:expression>^\w+.*$</registry:expression>
+          <registry:description>Alphanumeric</registry:description>
+        </domainPolicy:regex>
+        <domainPolicy:regex>
+          <registry:expression>^\d+.*$</registry:expression>
+        </domainPolicy:regex>
+        <domainPolicy:reservedNames>
+          <domainPolicy:reservedName>reserved1</domainPolicy:reservedName>
+        </domainPolicy:reservedNames>
+      </domainPolicy:domainName>
+      <domainPolicy:idn>
+        <domainPolicy:idnVersion>4.1</domainPolicy:idnVersion>
+        <domainPolicy:idnaVersion>2008</domainPolicy:idnaVersion>
+        <domainPolicy:unicodeVersion>6.0</domainPolicy:unicodeVersion>
+        <domainPolicy:encoding>Punycode</domainPolicy:encoding>
+        <domainPolicy:commingleAllowed>false</domainPolicy:commingleAllowed>
+        <domainPolicy:language code="LANG-1">
+          <domainPolicy:table>http://www.iana.org/idn-tables/test_tab1_1.1.txt</domainPolicy:table>
+          <domainPolicy:variantStrategy>blocked</domainPolicy:variantStrategy>
+        </domainPolicy:language>
+      </domainPolicy:idn>
+      <domainPolicy:premiumSupport>false</domainPolicy:premiumSupport>
+      <domainPolicy:contact type="admin">
+        <registry:min>1</registry:min>
+        <registry:max>1</registry:max>
+      </domainPolicy:contact>
+      <domainPolicy:contact type="tech">
+        <registry:min>1</registry:min>
+        <registry:max>1</registry:max>
+      </domainPolicy:contact>
+      <domainPolicy:contact type="billing">
+        <registry:min>0</registry:min>
+        <registry:max>0</registry:max>
+      </domainPolicy:contact>
+      <domainPolicy:contact type="custom" name="abuse" description="Abuse Contact">
+        <registry:min>0</registry:min>
+        <registry:max>1</registry:max>
+      </domainPolicy:contact>
+      <domainPolicy:ns>
+        <registry:min>0</registry:min>
+        <registry:max>13</registry:max>
+      </domainPolicy:ns>
+      <domainPolicy:childHost>
+        <registry:min>0</registry:min>
+      </domainPolicy:childHost>
+      <domainPolicy:period command="create">
+        <domainPolicy:length>
+          <registry:min unit="y">1</registry:min>
+          <registry:max unit="y">10</registry:max>
+          <registry:default unit="y">1</registry:default>
+        </domainPolicy:length>
+      </domainPolicy:period>
+      <domainPolicy:transferHoldPeriod unit="d">5</domainPolicy:transferHoldPeriod>
+      <domainPolicy:gracePeriod command="create" unit="d">5</domainPolicy:gracePeriod>
+      <domainPolicy:gracePeriod command="renew" unit="d">5</domainPolicy:gracePeriod>
+      <domainPolicy:gracePeriod command="transfer" unit="d">5</domainPolicy:gracePeriod>
+      <domainPolicy:gracePeriod command="autoRenew" unit="d">45</domainPolicy:gracePeriod>
+      <domainPolicy:maxCheckDomain>5</domainPolicy:maxCheckDomain>
+      <domainPolicy:supportedStatus>
+        <registry:status>ok</registry:status>
+        <registry:status>clientDeleteProhibited</registry:status>
+        <registry:status>serverDeleteProhibited</registry:status>
+        <registry:status>clientHold</registry:status>
+        <registry:status>serverHold</registry:status>
+        <registry:status>clientRenewProhibited</registry:status>
+        <registry:status>serverRenewProhibited</registry:status>
+        <registry:status>clientTransferProhibited</registry:status>
+        <registry:status>serverTransferProhibited</registry:status>
+        <registry:status>clientUpdateProhibited</registry:status>
+        <registry:status>serverUpdateProhibited</registry:status>
+        <registry:status>inactive</registry:status>
+        <registry:status>pendingDelete</registry:status>
+        <registry:status>pendingTransfer</registry:status>
+      </domainPolicy:supportedStatus>
+      <domainPolicy:authInfoRegex>
+        <registry:expression>^.*$</registry:expression>
+      </domainPolicy:authInfoRegex>
+      <domainPolicy:expiryPolicy>autoRenew</domainPolicy:expiryPolicy>
+    </domainPolicy:policy>
+    <rgpPolicy:policy xmlns:rgpPolicy="urn:ietf:params:xml:ns:rgpPolicy-0.1">
+      <rgpPolicy:redemptionPeriod unit="d">30</rgpPolicy:redemptionPeriod>
+      <rgpPolicy:pendingRestore unit="d">7</rgpPolicy:pendingRestore>
+      <rgpPolicy:pendingDelete unit="d">5</rgpPolicy:pendingDelete>
+    </rgpPolicy:policy>
+    <dnssecPolicy:policy xmlns:dnssecPolicy="urn:ietf:params:xml:ns:dnssecPolicy-0.1">
+      <dnssecPolicy:dsDataInterface>
+        <dnssecPolicy:min>0</dnssecPolicy:min>
+        <dnssecPolicy:max>13</dnssecPolicy:max>
+        <dnssecPolicy:alg>3</dnssecPolicy:alg>
+        <dnssecPolicy:digestType>1</dnssecPolicy:digestType>
+      </dnssecPolicy:dsDataInterface>
+      <dnssecPolicy:maxSigLife>
+        <dnssecPolicy:clientDefined>false</dnssecPolicy:clientDefined>
+      </dnssecPolicy:maxSigLife>
+    </dnssecPolicy:policy>
+    <hostPolicy:policy xmlns:hostPolicy="urn:ietf:params:xml:ns:hostPolicy-0.1">
+      <hostPolicy:internal>
+        <hostPolicy:minIP>1</hostPolicy:minIP>
+        <hostPolicy:maxIP>13</hostPolicy:maxIP>
+        <hostPolicy:sharePolicy>perSystem</hostPolicy:sharePolicy>
+        <hostPolicy:uniqueIpAddressesRequired>false</hostPolicy:uniqueIpAddressesRequired>
+      </hostPolicy:internal>
+      <hostPolicy:external>
+        <hostPolicy:minIP>0</hostPolicy:minIP>
+        <hostPolicy:maxIP>0</hostPolicy:maxIP>
+        <hostPolicy:sharePolicy>perSystem</hostPolicy:sharePolicy>
+      </hostPolicy:external>
+      <hostPolicy:nameRegex>
+        <registry:expression>^.*$</registry:expression>
+      </hostPolicy:nameRegex>
+      <hostPolicy:maxCheckHost>5</hostPolicy:maxCheckHost>
+      <hostPolicy:supportedStatus>
+        <registry:status>ok</registry:status>
+        <registry:status>clientDeleteProhibited</registry:status>
+        <registry:status>serverDeleteProhibited</registry:status>
+        <registry:status>clientUpdateProhibited</registry:status>
+        <registry:status>serverUpdateProhibited</registry:status>
+        <registry:status>linked</registry:status>
+        <registry:status>pendingDelete</registry:status>
+        <registry:status>pendingTransfer</registry:status>
+      </hostPolicy:supportedStatus>
+    </hostPolicy:policy>
+    <contactPolicy:policy xmlns:contactPolicy="urn:ietf:params:xml:ns:contactPolicy-0.1">
+      <contactPolicy:contactIdRegex>
+        <registry:expression>^.*$</registry:expression>
+      </contactPolicy:contactIdRegex>
+      <contactPolicy:sharePolicy>perZone</contactPolicy:sharePolicy>
+      <contactPolicy:postalInfoTypeSupport>int</contactPolicy:postalInfoTypeSupport>
+      <contactPolicy:postalInfo>
+        <contactPolicy:name>
+          <registry:minLength>5</registry:minLength>
+          <registry:maxLength>15</registry:maxLength>
+        </contactPolicy:name>
+        <contactPolicy:org>
+          <registry:minLength>2</registry:minLength>
+          <registry:maxLength>40</registry:maxLength>
+        </contactPolicy:org>
+        <contactPolicy:address>
+          <contactPolicy:street>
+            <registry:minLength>1</registry:minLength>
+            <registry:maxLength>40</registry:maxLength>
+            <contactPolicy:minEntry>1</contactPolicy:minEntry>
+            <contactPolicy:maxEntry>3</contactPolicy:maxEntry>
+          </contactPolicy:street>
+          <contactPolicy:city>
+            <registry:minLength>1</registry:minLength>
+            <registry:maxLength>40</registry:maxLength>
+          </contactPolicy:city>
+          <contactPolicy:sp>
+            <registry:minLength>1</registry:minLength>
+            <registry:maxLength>40</registry:maxLength>
+          </contactPolicy:sp>
+          <contactPolicy:pc>
+            <registry:minLength>1</registry:minLength>
+            <registry:maxLength>40</registry:maxLength>
+          </contactPolicy:pc>
+        </contactPolicy:address>
+        <contactPolicy:voiceRequired>false</contactPolicy:voiceRequired>
+        <contactPolicy:voiceExt>
+          <registry:minLength>1</registry:minLength>
+          <registry:maxLength>40</registry:maxLength>
+        </contactPolicy:voiceExt>
+        <contactPolicy:faxExt>
+          <registry:minLength>1</registry:minLength>
+          <registry:maxLength>40</registry:maxLength>
+        </contactPolicy:faxExt>
+        <contactPolicy:emailRegex>
+          <registry:expression>^.+\..+$</registry:expression>
+        </contactPolicy:emailRegex>
+      </contactPolicy:postalInfo>
+      <contactPolicy:maxCheckContact>5</contactPolicy:maxCheckContact>
+      <contactPolicy:authInfoRegex>
+        <registry:expression>^.*$</registry:expression>
+      </contactPolicy:authInfoRegex>
+      <contactPolicy:clientDisclosureSupported>false</contactPolicy:clientDisclosureSupported>
+      <contactPolicy:supportedStatus>
+        <registry:status>ok</registry:status>
+        <registry:status>clientDeleteProhibited</registry:status>
+        <registry:status>serverDeleteProhibited</registry:status>
+        <registry:status>clientTransferProhibited</registry:status>
+        <registry:status>serverTransferProhibited</registry:status>
+        <registry:status>clientUpdateProhibited</registry:status>
+        <registry:status>serverUpdateProhibited</registry:status>
+        <registry:status>linked</registry:status>
+        <registry:status>pendingDelete</registry:status>
+        <registry:status>pendingTransfer</registry:status>
+      </contactPolicy:supportedStatus>
+      <contactPolicy:transferHoldPeriod unit="d">5</contactPolicy:transferHoldPeriod>
+      <contactPolicy:privacyContactSupported>true</contactPolicy:privacyContactSupported>
+      <contactPolicy:proxyContactSupported>true</contactPolicy:proxyContactSupported>
+    </contactPolicy:policy>
+    <lp:policy xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.2">
+      <lp:phase type="sunrise" mode="pending-application">
+        <lp:startDate>2017-11-01T00:00:00.0Z</lp:startDate>
+        <lp:endDate>2017-12-01T00:00:00.0Z</lp:endDate>
+        <lp:validatePhase>true</lp:validatePhase>
+        <lp:validatorId>tmch</lp:validatorId>
+        <lp:status s="pendingAllocation" />
+        <lp:status s="allocated" />
+        <lp:status s="rejected" />
+        <lp:pollPolicy>
+          <lp:intermediateStatus>false</lp:intermediateStatus>
+          <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+          <lp:extensionInfo>false</lp:extensionInfo>
+        </lp:pollPolicy>
+        <lp:markValidation>signedMark</lp:markValidation>
+        <lp:maxMarks>1</lp:maxMarks>
+        <lp:signedMarkSupported>urn:ietf:params:xml:ns:signedMark-1.0</lp:signedMarkSupported>
+        <lp:encodedSignedMarkSupported>urn:ietf:params:xml:ns:signedMark-1.0</lp:encodedSignedMarkSupported>
+        <lp:infoPhase type="sunrise" />
+        <lp:createForm>sunrise</lp:createForm>
+        <lp:createValidateType>true</lp:createValidateType>
+      </lp:phase>
+      <lp:phase type="claims" name="lrp1" mode="pending-registration">
+        <lp:startDate>2017-12-01T00:00:00.0Z</lp:startDate>
+        <lp:endDate>2017-12-08T00:00:00.0Z</lp:endDate>
+        <lp:validatePhase>true</lp:validatePhase>
+        <lp:validatorId>tmch</lp:validatorId>
+        <lp:status s="pendingValidation" />
+        <lp:status s="allocated" />
+        <lp:status s="rejected" />
+        <lp:pendingCreate>true</lp:pendingCreate>
+        <lp:checkForm>claims</lp:checkForm>
+        <lp:checkForm>availability</lp:checkForm>
+        <lp:checkForm>trademark</lp:checkForm>
+        <lp:infoPhase type="sunrise" />
+        <lp:infoPhase type="claims" name="lrp1" />
+        <lp:createForm>claims</lp:createForm>
+        <lp:createValidateType>true</lp:createValidateType>
+      </lp:phase>
+      <lp:phase type="claims" name="landrush" mode="pending-application">
+        <lp:startDate>2017-12-08T00:00:00.0Z</lp:startDate>
+        <lp:endDate>2017-12-15T00:00:00.0Z</lp:endDate>
+        <lp:validatePhase>true</lp:validatePhase>
+        <lp:validatorId>tmch</lp:validatorId>
+        <lp:status s="pendingAllocation" />
+        <lp:status s="allocated" />
+        <lp:status s="rejected" />
+        <lp:pendingCreate>true</lp:pendingCreate>
+        <lp:pollPolicy>
+          <lp:intermediateStatus>false</lp:intermediateStatus>
+          <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+          <lp:extensionInfo>false</lp:extensionInfo>
+        </lp:pollPolicy>
+        <lp:checkForm>claims</lp:checkForm>
+        <lp:checkForm>availability</lp:checkForm>
+        <lp:checkForm>trademark</lp:checkForm>
+        <lp:infoPhase type="claims" name="lrp1" />
+        <lp:infoPhase type="claims" name="landrush" />
+        <lp:createForm>claims</lp:createForm>
+        <lp:createValidateType>true</lp:createValidateType>
+      </lp:phase>
+      <lp:phase type="claims" name="open" mode="fcfs">
+        <lp:startDate>2017-12-15T00:00:00.0Z</lp:startDate>
+        <lp:endDate>2018-02-15T00:00:00.0Z</lp:endDate>
+        <lp:validatePhase>true</lp:validatePhase>
+        <lp:validatorId>tmch</lp:validatorId>
+        <lp:checkForm>claims</lp:checkForm>
+        <lp:checkForm>availability</lp:checkForm>
+        <lp:checkForm>trademark</lp:checkForm>
+        <lp:infoPhase type="claims" name="landrush" />
+        <lp:infoPhase type="claims" name="open" />
+        <lp:createForm>claims</lp:createForm>
+        <lp:createForm>general</lp:createForm>
+        <lp:createValidateType>true</lp:createValidateType>
+      </lp:phase>
+      <lp:phase type="custom" name="lrp2" mode="pending-registration">
+        <lp:startDate>2018-02-15T00:00:00.0Z</lp:startDate>
+        <lp:endDate>2018-03-15T00:00:00.0Z</lp:endDate>
+        <lp:validatePhase>true</lp:validatePhase>
+        <lp:validatorId>lrp2-custom</lp:validatorId>
+        <lp:status s="custom" name="pendingInternalValidation">Internally validate registration</lp:status>
+        <lp:status s="custom" name="pendingExternalValidation">Externally validate registration</lp:status>
+        <lp:status s="allocated" />
+        <lp:status s="rejected" />
+        <lp:pendingCreate>true</lp:pendingCreate>
+        <lp:pollPolicy>
+          <lp:intermediateStatus>true</lp:intermediateStatus>
+          <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+          <lp:extensionInfo>false</lp:extensionInfo>
+        </lp:pollPolicy>
+        <lp:markValidation>signedMark</lp:markValidation>
+        <lp:maxMarks>1</lp:maxMarks>
+        <lp:signedMarkSupported>http://www.example.com/epp/lrp2-custom-1.0</lp:signedMarkSupported>
+        <lp:encodedSignedMarkSupported>http://www.example.com/epp/lrp2-custom-1.0</lp:encodedSignedMarkSupported>
+        <lp:infoPhase type="claims" name="open" />
+        <lp:infoPhase type="custom" name="lrp2" />
+        <lp:createForm>sunrise</lp:createForm>
+        <lp:createForm>general</lp:createForm>
+        <lp:createForm>claims</lp:createForm>
+        <lp:createForm>mixed</lp:createForm>
+        <lp:createValidateType>true</lp:createValidateType>
+      </lp:phase>
+      <!-- Use default mode="fcfs" -->
+      <lp:phase type="open">
+        <lp:startDate>2018-03-15T00:00:00.0Z</lp:startDate>
+        <lp:validatePhase>false</lp:validatePhase>
+      </lp:phase>
+    </lp:policy>
+  </registry:policies>
+</registry:zone>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:hostPolicy="urn:ietf:params:xml:ns:hostPolicy-0.1" 
+  xmlns:registry="urn:ietf:params:xml:ns:registry-0.2" 
+  targetNamespace="urn:ietf:params:xml:ns:hostPolicy-0.1" 
+  elementFormDefault="qualified">
+  <!--
+    Import common element types.
+  -->
+  <import namespace="urn:ietf:params:xml:ns:registry-0.2" />
+  <annotation>
+    <documentation>Extensible Provisioning Protocol v1.0
+      Host Policy Schema.</documentation>
+  </annotation>
+  <element name="policy" type="hostPolicy:policyType" substitutionGroup="registry:policy" />
+  <complexType name="policyType">
+    <complexContent>
+      <extension base="registry:policyType">
+        <sequence>
+          <element name="internal" type="hostPolicy:intHostPolicyType" />
+          <element name="external" type="hostPolicy:extHostPolicyType" />
+          <element name="nameRegex" type="registry:regexType" minOccurs="0" maxOccurs="unbounded" />
+          <element name="maxCheckHost" type="unsignedShort" />
+          <element name="supportedStatus" type="registry:supportedStatusType" minOccurs="0" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="intHostPolicyType">
+    <sequence>
+      <element name="minIP" type="unsignedShort" />
+      <element name="maxIP" type="unsignedShort" />
+      <element name="sharePolicy" type="hostPolicy:intHostSharePolicyType" minOccurs="0" />
+      <element name="uniqueIpAddressesRequired" type="boolean" minOccurs="0" default="false" />
+    </sequence>
+  </complexType>
+  <complexType name="extHostPolicyType">
+    <sequence>
+      <element name="minIP" type="unsignedShort" />
+      <element name="maxIP" type="unsignedShort" />
+      <element name="sharePolicy" type="hostPolicy:extHostSharePolicyType" minOccurs="0" />
+      <element name="uniqueIpAddressesRequired" type="boolean" minOccurs="0" default="false" />
+    </sequence>
+  </complexType>
+  <simpleType name="intHostSharePolicyType">
+    <restriction base="token">
+      <enumeration value="perZone" />
+      <enumeration value="perSystem" />
+    </restriction>
+  </simpleType>
+  <simpleType name="extHostSharePolicyType">
+    <restriction base="token">
+      <enumeration value="perRegistrar" />
+      <enumeration value="perZone" />
+      <enumeration value="perSystem" />
+    </restriction>
+  </simpleType>
+</schema>

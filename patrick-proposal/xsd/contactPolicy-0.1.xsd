@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:contactPolicy="urn:ietf:params:xml:ns:contactPolicy-0.1" 
+  xmlns:registry="urn:ietf:params:xml:ns:registry-0.2" 
+  targetNamespace="urn:ietf:params:xml:ns:contactPolicy-0.1" 
+  elementFormDefault="qualified">
+  <!--
+    Import common element types.
+  -->
+  <import namespace="urn:ietf:params:xml:ns:registry-0.2" />
+  <annotation>
+    <documentation>Extensible Provisioning Protocol v1.0
+      Contact Policy Schema.</documentation>
+  </annotation>
+  <element name="policy" type="contactPolicy:policyType" substitutionGroup="registry:policy" />
+  <complexType name="policyType">
+    <complexContent>
+      <extension base="registry:policyType">
+        <sequence>
+          <element name="contactIdRegex" type="registry:regexType" minOccurs="0" />
+          <element name="sharePolicy" type="contactPolicy:contactSharePolicyType" minOccurs="0" />
+          <element name="postalInfoTypeSupport" type="contactPolicy:postalInfoTypeSupportType" />
+          <element name="postalInfo" type="contactPolicy:postalType" />
+          <element name="maxCheckContact" type="unsignedShort" />
+          <element name="authInfoRegex" type="registry:regexType" minOccurs="0" />
+          <element name="clientDisclosureSupported" type="boolean" minOccurs="0" default="false" />
+          <element name="supportedStatus" type="registry:supportedStatusType" minOccurs="0" />
+          <element name="transferHoldPeriod" type="registry:periodType" minOccurs="0" />
+          <element name="privacyContactSupported" type="boolean" minOccurs="0" default="true" />
+          <element name="proxyContactSupported" type="boolean" minOccurs="0" default="true" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="contactSharePolicyType">
+    <restriction base="token">
+      <enumeration value="perZone" />
+      <enumeration value="perSystem" />
+    </restriction>
+  </simpleType>
+  <simpleType name="postalInfoTypeSupportType">
+    <restriction base="token">
+      <enumeration value="loc" />
+      <enumeration value="int" />
+      <enumeration value="locOrInt" />
+      <enumeration value="locAndInt" />
+    </restriction>
+  </simpleType>
+  <complexType name="postalType">
+    <sequence>
+      <element name="name" type="registry:minMaxLength" />
+      <element name="org" type="registry:minMaxLength" />
+      <element name="address" type="contactPolicy:contactAddressType" />
+      <element name="voiceRequired" type="boolean" minOccurs="0" default="false" />
+      <element name="voiceExt" type="registry:minMaxLength" minOccurs="0" />
+      <element name="faxExt" type="registry:minMaxLength" minOccurs="0" />
+      <element name="emailRegex" type="registry:regexType" minOccurs="0" />
+    </sequence>
+  </complexType>
+  <complexType name="streetType">
+    <complexContent>
+      <extension base="registry:minMaxLength">
+        <sequence>
+          <element
+            name="minEntry"
+            type="unsignedShort"/>
+          <element
+            name="maxEntry"
+            type="unsignedShort"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="contactAddressType">
+    <sequence>
+      <element
+        name="street"
+        type="contactPolicy:streetType"/>
+      <element
+        name="city"
+        type="registry:minMaxLength"/>
+      <element
+        name="sp"
+        type="registry:minMaxLength"/>
+      <element
+        name="pc"
+        type="registry:minMaxLength"/>
+    </sequence>
+  </complexType>  
+</schema>

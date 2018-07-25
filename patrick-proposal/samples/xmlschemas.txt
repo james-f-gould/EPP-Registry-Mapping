@@ -1,0 +1,9 @@
+../xsd/eppcom-1.0.xsd
+../xsd/epp-1.0.xsd
+../xsd/registry-0.2.xsd
+../xsd/domainPolicy-0.1.xsd
+../xsd/hostPolicy-0.1.xsd
+../xsd/contactPolicy-0.1.xsd
+../xsd/rgpPolicy-0.1.xsd
+../xsd/dnssecPolicy-0.1.xsd
+../xsd/launchPolicy-0.2.xsd

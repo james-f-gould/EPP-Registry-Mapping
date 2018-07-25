@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:registry="urn:ietf:params:xml:ns:registry-0.2" 
+  xmlns:rgpPolicy="urn:ietf:params:xml:ns:rgpPolicy-0.1" 
+  targetNamespace="urn:ietf:params:xml:ns:rgpPolicy-0.1" 
+  elementFormDefault="qualified">
+  <!--
+    Import common element types.
+  -->
+  <import namespace="urn:ietf:params:xml:ns:registry-0.2" />
+  <annotation>
+    <documentation>Extensible Provisioning Protocol v1.0
+      Contact Policy Schema.</documentation>
+  </annotation>
+  <element name="policy" type="rgpPolicy:policyType" substitutionGroup="registry:policy" />
+  <complexType name="policyType">
+    <complexContent>
+      <extension base="registry:policyType">
+        <sequence>
+          <element name="redemptionPeriod" type="registry:periodType" />
+          <element name="pendingRestore" type="registry:periodType" />
+          <element name="pendingDelete" type="registry:periodType" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</schema>

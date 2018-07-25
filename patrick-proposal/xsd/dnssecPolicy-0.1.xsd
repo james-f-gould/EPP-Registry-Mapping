@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:dnssecPolicy="urn:ietf:params:xml:ns:dnssecPolicy-0.1" 
+  xmlns:registry="urn:ietf:params:xml:ns:registry-0.2" 
+  targetNamespace="urn:ietf:params:xml:ns:dnssecPolicy-0.1" 
+  elementFormDefault="qualified">
+  <!--
+    Import common element types.
+  -->
+  <import namespace="urn:ietf:params:xml:ns:registry-0.2" />
+  <annotation>
+    <documentation>Extensible Provisioning Protocol v1.0
+      Contact Policy Schema.</documentation>
+  </annotation>
+  <element name="policy" type="dnssecPolicy:policyType" substitutionGroup="registry:policy" />
+  <complexType name="policyType">
+    <complexContent>
+      <extension base="registry:policyType">
+        <sequence>
+          <choice>
+            <element name="dsDataInterface" type="dnssecPolicy:dsInterfaceType" />
+            <element name="keyDataInterface" type="dnssecPolicy:keyInterfaceType" />
+          </choice>
+          <element name="maxSigLife" type="dnssecPolicy:maxSigLifeType" />
+          <element name="urgent" type="boolean" minOccurs="0" default="false" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="dsInterfaceType">
+    <complexContent>
+      <extension base="dnssecPolicy:keyInterfaceType">
+        <sequence>
+          <element name="digestType" type="token" minOccurs="0" maxOccurs="unbounded" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="maxSigLifeType">
+    <sequence>
+      <element name="clientDefined" type="boolean" minOccurs="0" default="false" />
+      <element name="default" type="int" minOccurs="0" />
+      <element name="min" type="int" minOccurs="0" />
+      <element name="max" type="int" minOccurs="0" />
+    </sequence>
+  </complexType>
+  <complexType name="keyInterfaceType">
+    <sequence>
+      <element name="min" type="unsignedShort" />
+      <element name="max" type="unsignedShort" />
+      <element name="alg" type="token" minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+</schema>

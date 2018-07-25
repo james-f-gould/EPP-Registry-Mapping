@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+  xmlns:domainPolicy="urn:ietf:params:xml:ns:domainPolicy-0.1" 
+  xmlns:registry="urn:ietf:params:xml:ns:registry-0.2" 
+  xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
+  targetNamespace="urn:ietf:params:xml:ns:domainPolicy-0.1" 
+  elementFormDefault="qualified">
+  <!--
+    Import common element types.
+  -->
+  <import namespace="urn:ietf:params:xml:ns:eppcom-1.0"/>
+  <import namespace="urn:ietf:params:xml:ns:registry-0.2" />
+  <annotation>
+    <documentation>Extensible Provisioning Protocol v1.0
+      Domain Policy Schema.</documentation>
+  </annotation>
+  <element name="policy" type="domainPolicy:policyType" substitutionGroup="registry:policy" />
+  <complexType name="policyType">
+    <complexContent>
+      <extension base="registry:policyType">
+        <sequence>
+          <element name="domainName" type="domainPolicy:domainNameType" maxOccurs="unbounded" />
+          <element name="idn" type="domainPolicy:idnType" minOccurs="0" />
+          <element name="premiumSupport" type="boolean" minOccurs="0" default="false" />
+          <element name="contactsSupported" type="boolean" minOccurs="0" default="true" />
+          <element name="contact" type="domainPolicy:dContactType" minOccurs="0" maxOccurs="unbounded" />
+          <element name="ns" type="registry:minMaxType" />
+          <element name="childHost" type="registry:minMaxType" />
+          <element name="period" type="domainPolicy:dPeriodType" minOccurs="0" maxOccurs="unbounded" />
+          <element name="transferHoldPeriod" type="registry:periodType" />
+          <element name="gracePeriod" type="registry:gPeriodType" minOccurs="0" maxOccurs="unbounded" />
+          <element name="maxCheckDomain" type="unsignedShort" />
+          <element name="supportedStatus" type="registry:supportedStatusType" minOccurs="0" />
+          <element name="authInfoRegex" type="registry:regexType" minOccurs="0" />
+          <element name="expiryPolicy" type="domainPolicy:expiryPolicyType" minOccurs="0" default="autoRenew" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="dPeriodType">
+    <choice>
+      <element
+        name="length"
+        type="registry:minMaxPeriod"/>
+      <element name="serverDecided">
+        <complexType/>
+      </element>
+    </choice>
+    <attribute
+      name="command"
+      type="token"
+      use="required"/>
+  </complexType>  
+  <complexType name="reservedNamesType">
+    <choice>
+      <element name="reservedName" type="normalizedString" minOccurs="0" maxOccurs="unbounded" />
+      <element name="reservedNameURI" type="anyURI" minOccurs="0" />
+    </choice>
+  </complexType>
+  <complexType name="domainNameType">
+    <sequence>
+      <element name="minLength" type="unsignedShort" minOccurs="0" />
+      <element name="maxLength" type="unsignedShort" minOccurs="0" />
+      <element name="alphaNumStart" type="boolean" minOccurs="0" default="false" />
+      <element name="alphaNumEnd" type="boolean" minOccurs="0" default="false" />
+      <element name="aLabelSupported" type="boolean" minOccurs="0" default="true" />
+      <element name="uLabelSupported" type="boolean" minOccurs="0" default="false" />
+      <element name="regex" type="registry:regexType" minOccurs="0" maxOccurs="unbounded" />
+      <element name="reservedNames" type="domainPolicy:reservedNamesType" minOccurs="0" />
+    </sequence>
+    <attribute name="level" use="required">
+      <simpleType>
+        <restriction base="unsignedShort">
+          <minInclusive value="2" />
+        </restriction>
+      </simpleType>
+    </attribute>
+  </complexType>
+  <simpleType name="zoneFormType">
+    <restriction base="token">
+      <enumeration value="aLabel" />
+      <enumeration value="uLabel" />
+    </restriction>
+  </simpleType>
+  <complexType name="zoneNameType">
+    <simpleContent>
+      <extension base="eppcom:labelType">
+        <attribute name="form" type="domainPolicy:zoneFormType" default="aLabel" />
+      </extension>
+    </simpleContent>
+  </complexType>
+  <simpleType name="variantStrategyType">
+    <restriction base="token">
+      <enumeration value="blocked" />
+      <enumeration value="restricted" />
+      <enumeration value="open" />
+    </restriction>
+  </simpleType>
+  <complexType name="languageType">
+    <sequence>
+      <element name="table" type="anyURI" minOccurs="0" />
+      <element name="variantStrategy" type="domainPolicy:variantStrategyType" minOccurs="0" />
+    </sequence>
+    <attribute name="code" type="language" use="required" />
+  </complexType>
+  <complexType name="idnType">
+    <sequence>
+      <element name="idnVersion" type="token" minOccurs="0" />
+      <element name="idnaVersion" type="token" />
+      <element name="unicodeVersion" type="token" />
+      <element name="encoding" type="token" minOccurs="0" default="Punycode" />
+      <element name="commingleAllowed" type="boolean" minOccurs="0" default="false" />
+      <element name="language" type="domainPolicy:languageType" minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </complexType>
+  <complexType name="dContactType">
+    <complexContent>
+      <extension base="registry:minMaxType">
+        <attribute name="type" use="required">
+          <simpleType>
+            <restriction base="token">
+              <enumeration value="admin" />
+              <enumeration value="tech" />
+              <enumeration value="billing" />
+              <enumeration value="custom" />
+            </restriction>
+          </simpleType>
+        </attribute>
+        <attribute name="name" type="token" />
+        <attribute name="description" type="token" />
+      </extension>
+    </complexContent>
+  </complexType>
+  <simpleType name="expiryPolicyType">
+    <restriction base="token">
+      <enumeration value="autoRenew" />
+      <enumeration value="autoDelete" />
+      <enumeration value="autoExpire" />
+      <enumeration value="autoParked" />
+    </restriction>
+  </simpleType>
+</schema>
