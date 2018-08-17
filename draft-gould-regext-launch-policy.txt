@@ -4,13 +4,13 @@
 
 Network Working Group                                           J. Gould
 Internet-Draft                                            VeriSign, Inc.
-Intended status: Standards Track                            May 31, 2018
-Expires: December 2, 2018
+Intended status: Standards Track                         August 17, 2018
+Expires: February 18, 2019
 
 
  Launch Phase Policy Extensions Mapping for the Extensible Provisioning
                              Protocol (EPP)
-                  draft-gould-regext-launch-policy-00
+                  draft-gould-regext-launch-policy-01
 
 Abstract
 
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 2, 2018.
+   This Internet-Draft will expire on February 18, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Gould                   Expires December 2, 2018                [Page 1]
+Gould                   Expires February 18, 2019               [Page 1]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
    the Trust Legal Provisions and are provided without warranty as
@@ -92,6 +92,7 @@ Table of Contents
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  22
      9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  22
    Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  22
+     A.1.  Change from 00 to 01  . . . . . . . . . . . . . . . . . .  22
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  22
 
 1.  Introduction
@@ -104,15 +105,17 @@ Table of Contents
    a "zone" in this document, is a domain name that the Domain Name
    Registry supports provisioning operations to manage.  The extension
    enables provisioning of the registry zone policy in the Domain Name
+
+
+
+
+Gould                   Expires February 18, 2019               [Page 2]
+
+Internet-Draft                launch-policy                  August 2018
+
+
    Registry.  A Domain Name Registry MAY support a subset of all of the
    commands extended in this extension.
-
-
-
-Gould                   Expires December 2, 2018                [Page 2]
-
-Internet-Draft                launch-policy                     May 2018
-
 
 1.1.  Conventions Used in This Document
 
@@ -131,8 +134,8 @@ Internet-Draft                launch-policy                     May 2018
    relationships and are not a REQUIRED feature of this protocol.
 
    The XML namespace prefix "lp" is used for the namespace
-   "urn:ietf:params:xml:ns:launchPolicy-0.1", but implementations MUST
-   NOT depend on it and instead employ a proper namespace-aware XML
+   "urn:ietf:params:xml:ns:epp:launchPolicy-0.1", but implementations
+   MUST NOT depend on it and instead employ a proper namespace-aware XML
    parser and serializer to interpret and output the XML documents.
 
 2.  Object Attributes
@@ -159,16 +162,16 @@ Internet-Draft                launch-policy                     May 2018
    Registry Mapping, is the object that is extended by this extension
    with the <lp:zone> element.  The Zone object can apply to any zone
    level (top level, second level, third level, etc.).  The <lp:zone>
+
+
+
+Gould                   Expires February 18, 2019               [Page 3]
+
+Internet-Draft                launch-policy                  August 2018
+
+
    element contains zero or more <lp:phase> elements, ordered by
    ascending start date.
-
-
-
-
-Gould                   Expires December 2, 2018                [Page 3]
-
-Internet-Draft                launch-policy                     May 2018
-
 
    The <lp:phase> element includes the following attributes:
 
@@ -215,16 +218,16 @@ Internet-Draft                launch-policy                     May 2018
               application identifier in the create response for the
               client to use in subsequent commands (info, update,
               delete).  When a domain application is allocated, it will
+
+
+
+Gould                   Expires February 18, 2019               [Page 4]
+
+Internet-Draft                launch-policy                  August 2018
+
+
               become a domain without the use of an application
               identifier.
-
-
-
-
-Gould                   Expires December 2, 2018                [Page 4]
-
-Internet-Draft                launch-policy                     May 2018
-
 
    The <lp:phase> element contains the following child elements:
 
@@ -270,18 +273,17 @@ Internet-Draft                launch-policy                     May 2018
               attribute.
       <lp:pendingCreate>:  An OPTIONAL boolean value that indicates that
           the server will place the Launch Application or the Launch
+
+
+
+
+Gould                   Expires February 18, 2019               [Page 5]
+
+Internet-Draft                launch-policy                  August 2018
+
+
           Registration in the "pendingCreate" status as specified in
           [RFC5731].
-
-
-
-
-
-Gould                   Expires December 2, 2018                [Page 5]
-
-Internet-Draft                launch-policy                     May 2018
-
-
       <lp:pollPolicy>:  An OPTIONAL element that defines the poll
           messaging policy for the phase.  The <lp:pollPolicy> element
           contains the following child elements:
@@ -328,16 +330,15 @@ Internet-Draft                launch-policy                     May 2018
               Validation Model, where the mark information is digitally
               signed.  The digital signature can be directly validated
               by the server using the public key of the external party
-              that created the signed mark using its private key.  This
 
 
 
-
-Gould                   Expires December 2, 2018                [Page 6]
+Gould                   Expires February 18, 2019               [Page 6]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
+              that created the signed mark using its private key.  This
               model is supported using the <smd:signedMark> and
               <smd:encodedSignedMark> elements.
       <lp:maxMarks>:  An OPTIONAL maximum number of marks per domain
@@ -384,16 +385,17 @@ Internet-Draft                launch-policy                     May 2018
           element has the following possible values:
 
 
+
+
+
+
+Gould                   Expires February 18, 2019               [Page 7]
+
+Internet-Draft                launch-policy                  August 2018
+
+
           "sunrise"  Indicates support for the Sunrise Create Form,
               which is an extension of the Domain Create Command to
-
-
-
-Gould                   Expires December 2, 2018                [Page 7]
-
-Internet-Draft                launch-policy                     May 2018
-
-
               include the verifiable trademark information that the
               server uses to match against the domain name to authorize
               the domain create.
@@ -440,16 +442,16 @@ Internet-Draft                launch-policy                     May 2018
        </lp:pollPolicy>
        <lp:markValidation>signedMark</lp:markValidation>
        <lp:maxMarks>1</lp:maxMarks>
+
+
+
+Gould                   Expires February 18, 2019               [Page 8]
+
+Internet-Draft                launch-policy                  August 2018
+
+
        <lp:signedMarkSupported>
          urn:ietf:params:xml:ns:signedMark-1.0
-
-
-
-Gould                   Expires December 2, 2018                [Page 8]
-
-Internet-Draft                launch-policy                     May 2018
-
-
        </lp:signedMarkSupported>
        <lp:encodedSignedMarkSupported>
          urn:ietf:params:xml:ns:signedMark-1.0
@@ -496,16 +498,16 @@ Internet-Draft                launch-policy                     May 2018
        <lp:endDate>2017-12-15T00:00:00.0Z
        </lp:endDate>
        <lp:validatePhase>true</lp:validatePhase>
+
+
+
+Gould                   Expires February 18, 2019               [Page 9]
+
+Internet-Draft                launch-policy                  August 2018
+
+
        <lp:validatorId>tmch
        </lp:validatorId>
-
-
-
-Gould                   Expires December 2, 2018                [Page 9]
-
-Internet-Draft                launch-policy                     May 2018
-
-
        <lp:status s="pendingAllocation"/>
        <lp:status s="allocated"/>
        <lp:status s="rejected"/>
@@ -552,16 +554,16 @@ Internet-Draft                launch-policy                     May 2018
        <lp:createForm>claims</lp:createForm>
        <lp:createForm>general</lp:createForm>
        <lp:createValidateType>true
+
+
+
+Gould                   Expires February 18, 2019              [Page 10]
+
+Internet-Draft                launch-policy                  August 2018
+
+
        </lp:createValidateType>
      </lp:phase>
-
-
-
-Gould                   Expires December 2, 2018               [Page 10]
-
-Internet-Draft                launch-policy                     May 2018
-
-
      <lp:phase
        type="custom"
        name="lrp2"
@@ -608,16 +610,16 @@ Internet-Draft                launch-policy                     May 2018
        <lp:infoPhase
          type="custom"
          name="lrp2"/>
+
+
+
+Gould                   Expires February 18, 2019              [Page 11]
+
+Internet-Draft                launch-policy                  August 2018
+
+
        <lp:createForm>sunrise</lp:createForm>
        <lp:createForm>general</lp:createForm>
-
-
-
-Gould                   Expires December 2, 2018               [Page 11]
-
-Internet-Draft                launch-policy                     May 2018
-
-
        <lp:createForm>claims</lp:createForm>
        <lp:createForm>mixed</lp:createForm>
        <lp:createValidateType>true
@@ -667,11 +669,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-
-
-Gould                   Expires December 2, 2018               [Page 12]
+Gould                   Expires February 18, 2019              [Page 12]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
    <lp:zone>:  Element that contains the full set of launch phase policy
@@ -694,7 +694,7 @@ Internet-Draft                launch-policy                     May 2018
    S:    </resData>
    S:    <extension>
    S:      <lp:infData
-   S:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1">
+   S:        xmlns:lp="urn:ietf:params:xml:ns:epp:launchPolicy-0.1">
    S:        ...
    S:      </lp:infData>
    S:    </extension>
@@ -725,9 +725,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 13]
+Gould                   Expires February 18, 2019              [Page 13]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
 3.2.1.  EPP <create> Command
@@ -756,7 +756,7 @@ Internet-Draft                launch-policy                     May 2018
    C:  <command>
    C:    <create>
    C:      <registry:create
-   C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
    C:        <registry:zone>
    C:          <registry:name>EXAMPLE</registry:name>
    C:          ...
@@ -765,7 +765,7 @@ Internet-Draft                launch-policy                     May 2018
    C:    </create>
    C:    <extension>
    C:      <lp:create
-   C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1">
+   C:        xmlns:lp="urn:ietf:params:xml:ns:epp:launchPolicy-0.1">
    C:        ...
    C:      </lp:create>
    C:    </extension>
@@ -781,9 +781,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 14]
+Gould                   Expires February 18, 2019              [Page 14]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
 3.2.2.  EPP <delete> Command
@@ -837,9 +837,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 15]
+Gould                   Expires February 18, 2019              [Page 15]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
    Example <update> command:
@@ -849,7 +849,7 @@ Internet-Draft                launch-policy                     May 2018
    C:  <command>
    C:    <update>
    C:      <registry:update
-   C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
    C:        <registry:zone>
    C:          <registry:name>EXAMPLE</registry:name>
    C:          ...
@@ -858,7 +858,7 @@ Internet-Draft                launch-policy                     May 2018
    C:    </update>
    C:    <extension>
    C:      <lp:update
-   C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1">
+   C:        xmlns:lp="urn:ietf:params:xml:ns:epp:launchPolicy-0.1">
    C:        ...
    C:      </lp:update>
    C:    </extension>
@@ -884,8 +884,8 @@ Internet-Draft                launch-policy                     May 2018
    BEGIN
    <?xml version="1.0" encoding="UTF-8"?>
    <schema xmlns="http://www.w3.org/2001/XMLSchema"
-     xmlns:launchPolicy="urn:ietf:params:xml:ns:launchPolicy-0.1"
-     targetNamespace="urn:ietf:params:xml:ns:launchPolicy-0.1"
+     xmlns:launchPolicy="urn:ietf:params:xml:ns:epp:launchPolicy-0.1"
+     targetNamespace="urn:ietf:params:xml:ns:epp:launchPolicy-0.1"
      elementFormDefault="qualified">
      <annotation>
        <documentation>Extensible Provisioning Protocol v1.0
@@ -893,9 +893,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 16]
+Gould                   Expires February 18, 2019              [Page 16]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
      </annotation>
@@ -949,9 +949,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 17]
+Gould                   Expires February 18, 2019              [Page 17]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
          <extension base="launchPolicy:phaseNameType">
@@ -1005,9 +1005,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 18]
+Gould                   Expires February 18, 2019              [Page 18]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
        </complexContent>
@@ -1061,9 +1061,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 19]
+Gould                   Expires February 18, 2019              [Page 19]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
          <enumeration value="sunrise" />
@@ -1084,13 +1084,13 @@ Internet-Draft                launch-policy                     May 2018
 
    Registration request for the launch phase policy namespace:
 
-      URI: urn:ietf:params:xml:ns:launchPolicy-0.1
+      URI: urn:ietf:params:xml:ns:epp:launchPolicy-0.1
       Registrant Contact: IESG
       XML: None.  Namespace URIs do not represent an XML specification.
 
    Registration request for the launch phase policy XML schema:
 
-      URI: urn:ietf:params:xml:ns:launchPolicy-0.1
+      URI: urn:ietf:params:xml:schema:epp:launchPolicy-0.1
       Registrant Contact: IESG
       XML: See the "Formal Syntax" section of this document.
 
@@ -1117,9 +1117,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 20]
+Gould                   Expires February 18, 2019              [Page 20]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
    Notes: None
@@ -1173,9 +1173,9 @@ Internet-Draft                launch-policy                     May 2018
 
 
 
-Gould                   Expires December 2, 2018               [Page 21]
+Gould                   Expires February 18, 2019              [Page 21]
 
-Internet-Draft                launch-policy                     May 2018
+Internet-Draft                launch-policy                  August 2018
 
 
 9.2.  Informative References
@@ -1189,6 +1189,15 @@ Internet-Draft                launch-policy                     May 2018
    [1] http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/
 
 Appendix A.  Change History
+
+A.1.  Change from 00 to 01
+
+   1.  Changed the XML namespace from
+       urn:ietf:params:xml:ns:launchPolicy-0.1 to
+       urn:ietf:params:xml:ns:epp:launchPolicy-0.1, and changed the XML
+       schema registration from urn:ietf:params:xml:ns:launchPolicy-0.1
+       to urn:ietf:params:xml:schema:epp:launchPolicy-0.1 based on a
+       request from IANA with draft-ietf-regext-allocation-token.
 
 Author's Address
 
@@ -1220,13 +1229,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-Gould                   Expires December 2, 2018               [Page 22]
+Gould                   Expires February 18, 2019              [Page 22]

@@ -47,7 +47,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-carney-regext-registry-02" ipr="trust200902">
+<rfc category="std" docName="draft-gould-carney-regext-registry-03" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -148,7 +148,7 @@
     </author>
     
 
-    <date day="27" month="June" year="2018"/>
+    <date day="17" month="August" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -197,7 +197,7 @@
         and are not a REQUIRED feature of this protocol.        
         </t>
 
-        <t>The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:registry-0.1", 
+        <t>The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:epp:registry-0.1", 
         but implementations MUST NOT depend on it and instead employ
         a proper namespace-aware XML parser and serializer to interpret and
         output the XML documents.</t>
@@ -1295,7 +1295,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <check>
 C:      <registry:check
-C:       xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 C:        <registry:name>zone1</registry:name>
 C:        <registry:name>zone2</registry:name>
 C:        <registry:name>zone3</registry:name>
@@ -1346,7 +1346,7 @@ S:    </result>
 S:    <resData>
 S:      <registry:chkData
 S:        xmlns:registry=
-S:        "urn:ietf:params:xml:ns:registry-0.1">
+S:        "urn:ietf:params:xml:ns:epp:registry-0.1">
 S:        <registry:cd>
 S:          <registry:name avail="0">zone1</registry:name>
 S:          <registry:reason>Client not authorized
@@ -1415,7 +1415,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <info>
 C:      <registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 C:        <registry:all/>
 C:      </registry:info>
 C:    </info>
@@ -1435,7 +1435,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <info>
 C:      <registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 C:        <registry:name>zone1</registry:name>
 C:      </registry:info>
 C:    </info>
@@ -1454,7 +1454,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <info>
 C:      <registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 C:        <registry:system/>
 C:      </registry:info>
 C:    </info>
@@ -1533,7 +1533,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 S:        <registry:zoneList>
 S:          <registry:zone>
 S:            <registry:name>EXAMPLE1</registry:name>
@@ -1573,7 +1573,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 S:        <registry:zone>
 S:          <registry:name>EXAMPLE</registry:name>
 S:          ...
@@ -1601,7 +1601,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 S:        <registry:system>
 S:          <registry:maxConnections>200
 S:          </registry:maxConnections>
@@ -1672,7 +1672,7 @@ C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 C:  <command>
 C:    <create>
 C:      <registry:create
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 C:        <registry:zone>
 C:          <registry:name>EXAMPLE</registry:name>
 C:          ...
@@ -1709,7 +1709,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:creData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 S:        <registry:name>zone1</registry:name>
 S:        <registry:crDate>2012-10-30T22:00:00.0Z
 S:        </registry:crDate>
@@ -1753,7 +1753,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <delete>
 C:      <registry:delete
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 C:        <registry:name>EXAMPLE</registry:name>
 C:      </registry:delete>
 C:    </delete>
@@ -1831,7 +1831,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <update>
 C:      <registry:update
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
 C:        <registry:zone>
 C:          <registry:name>EXAMPLE</registry:name>
 C:          ...
@@ -1895,11 +1895,11 @@ S:</epp>]]></artwork>
 BEGIN
 <?xml version="1.0" encoding="UTF-8"?>
 <schema
-  xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"
+  xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"
   xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
   xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
   xmlns="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="urn:ietf:params:xml:ns:registry-0.1"
+  targetNamespace="urn:ietf:params:xml:ns:epp:registry-0.1"
   elementFormDefault="qualified"
 >
   <!--
@@ -2904,7 +2904,7 @@ END]]></artwork>
          <t>Registration request for the registry namespace:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:ns:registry-0.1</t>
+         <t>URI: urn:ietf:params:xml:ns:epp:registry-0.1</t>
          
          <t>Registrant Contact: IESG</t>
           
@@ -2914,7 +2914,7 @@ END]]></artwork>
          <t>Registration request for the registry XML schema:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:ns:registry-0.1</t>
+         <t>URI: urn:ietf:params:xml:schema:epp:registry-0.1</t>
          
          <t>Registrant Contact: IESG</t>
           
@@ -3078,6 +3078,13 @@ END]]></artwork>
           since they use the XML schema zoneFormType that supports the "form" attribute with the default value of "aLabel".</t> 
           <t>Made the zoneType crDate element optional to support sending the zone on a create command without the crDate being set by the client.</t>
           <t>Updated the Implementation Status section to include the leading paragraphs and to include the "Verisign EPP SDK" sub-section.</t>
+        </list></t>
+      </section>
+      <section title="Change from 02 to 03" anchor="change-02-to-03">
+        <t><list style="numbers">
+        <t>Changed the XML namespace from urn:ietf:params:xml:ns:registry-0.1 to urn:ietf:params:xml:ns:epp:registry-0.1, 
+        and changed the XML schema registration from urn:ietf:params:xml:ns:registry-0.1 to urn:ietf:params:xml:schema:epp:registry-0.1 based 
+        on a request from IANA with draft-ietf-regext-allocation-token.</t>
         </list></t>
       </section>
     </section>

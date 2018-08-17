@@ -3,7 +3,7 @@
   <command>
     <info>
       <registry:info
-        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
         <registry:all/>
       </registry:info>
     </info>

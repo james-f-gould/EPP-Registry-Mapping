@@ -405,6 +405,7 @@
 <link href="#rfc.appendix.A" rel="Chapter" title="A Change History"/>
 <link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Change from 00 to 01"/>
 <link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Change from 01 to 02"/>
+<link href="#rfc.appendix.A.3" rel="Chapter" title="A.3 Change from 02 to 03"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -412,8 +413,8 @@
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-02" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-6-27" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-03" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-8-17" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -437,7 +438,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: December 29, 2018</td>
+  <td class="left">Expires: February 18, 2019</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -450,7 +451,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">June 27, 2018</td>
+  <td class="right">August 17, 2018</td>
 </tr>
 
     	
@@ -458,7 +459,7 @@
   </table>
 
   <p class="title">Registry Mapping for the Extensible Provisioning Protocol (EPP)<br />
-  <span class="filename">draft-gould-carney-regext-registry-02</span></p>
+  <span class="filename">draft-gould-carney-regext-registry-03</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -470,7 +471,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 29, 2018.</p>
+<p>This Internet-Draft will expire on February 18, 2019.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -513,6 +514,7 @@
 <li>Appendix A.   <a href="#rfc.appendix.A">Change History</a></li>
 <ul><li>A.1.   <a href="#rfc.appendix.A.1">Change from 00 to 01</a></li>
 <li>A.2.   <a href="#rfc.appendix.A.2">Change from 01 to 02</a></li>
+<li>A.3.   <a href="#rfc.appendix.A.3">Change from 02 to 03</a></li>
 </ul><li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
@@ -525,7 +527,7 @@
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">RFC 2119</a> <cite title="NONE">[RFC2119]</cite>.</p>
 <p id="rfc.section.1.1.p.2">XML is case sensitive. Unless stated otherwise, XML specifications and examples provided in this document MUST be interpreted in the character case presented in order to develop a conforming implementation.</p>
 <p id="rfc.section.1.1.p.3">In examples, "C:" represents lines sent by a protocol client and "S:" represents lines returned by a protocol server.  Indentation and white space in examples are provided only to illustrate element relationships and are not a REQUIRED feature of this protocol.  </p>
-<p id="rfc.section.1.1.p.4">The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:registry-0.1", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
+<p id="rfc.section.1.1.p.4">The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:epp:registry-0.1", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#attrs" id="attrs">Object Attributes</a></h1>
 <p id="rfc.section.2.p.1">An EPP registry object has attributes and associated values that may be viewed and modified by the sponsoring client or the server.  This section describes each attribute type in detail. The formal syntax for the attribute values described here can be found in the "Formal Syntax" section of this document and in the appropriate normative references.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#zoneName" id="zoneName">Zone Name</a></h1>
@@ -1365,7 +1367,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;check&gt;
 C:      &lt;registry:check
-C:       xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
 C:        &lt;registry:name&gt;zone2&lt;/registry:name&gt;
 C:        &lt;registry:name&gt;zone3&lt;/registry:name&gt;
@@ -1394,7 +1396,7 @@ S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:chkData
 S:        xmlns:registry=
-S:        "urn:ietf:params:xml:ns:registry-0.1"&gt;
+S:        "urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 S:        &lt;registry:cd&gt;
 S:          &lt;registry:name avail="0"&gt;zone1&lt;/registry:name&gt;
 S:          &lt;registry:reason&gt;Client not authorized
@@ -1439,7 +1441,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:all/&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
@@ -1453,7 +1455,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
@@ -1467,7 +1469,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:system/&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
@@ -1521,7 +1523,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 S:        &lt;registry:zoneList&gt;
 S:          &lt;registry:zone&gt;
 S:            &lt;registry:name&gt;EXAMPLE1&lt;/registry:name&gt;
@@ -1556,7 +1558,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 S:        &lt;registry:zone&gt;
 S:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 S:          ...
@@ -1579,7 +1581,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 S:        &lt;registry:system&gt;
 S:          &lt;registry:maxConnections&gt;200
 S:          &lt;/registry:maxConnections&gt;
@@ -1621,7 +1623,7 @@ C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
 C:  &lt;command&gt;
 C:    &lt;create&gt;
 C:      &lt;registry:create
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -1650,7 +1652,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:creData
-S:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 S:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
 S:        &lt;registry:crDate&gt;2012-10-30T22:00:00.0Z
 S:        &lt;/registry:crDate&gt;
@@ -1678,7 +1680,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;delete&gt;
 C:      &lt;registry:delete
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:      &lt;/registry:delete&gt;
 C:    &lt;/delete&gt;
@@ -1720,7 +1722,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;update&gt;
 C:      &lt;registry:update
-C:        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -1754,11 +1756,11 @@ S:&lt;/epp&gt;</pre>
 BEGIN
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;schema
-  xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"
+  xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"
   xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
   xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
   xmlns="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="urn:ietf:params:xml:ns:registry-0.1"
+  targetNamespace="urn:ietf:params:xml:ns:epp:registry-0.1"
   elementFormDefault="qualified"
 &gt;
   &lt;!--
@@ -2755,7 +2757,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:ns:registry-0.1</li>
+  <li>URI: urn:ietf:params:xml:ns:epp:registry-0.1</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: None. Namespace URIs do not represent an XML specification.</li>
 </ul>
@@ -2763,7 +2765,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:ns:registry-0.1</li>
+  <li>URI: urn:ietf:params:xml:schema:epp:registry-0.1</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: See the "Formal Syntax" section of this document.</li>
 </ul>
@@ -2893,6 +2895,12 @@ END</pre>
   <li>Added reference to the Zone Name section for the &lt;registry:name&gt; elements, since they use the XML schema zoneFormType that supports the "form" attribute with the default value of "aLabel".</li>
   <li>Made the zoneType crDate element optional to support sending the zone on a create command without the crDate being set by the client.</li>
   <li>Updated the Implementation Status section to include the leading paragraphs and to include the "Verisign EPP SDK" sub-section.</li>
+</ol>
+<h1 id="rfc.appendix.A.3"><a href="#rfc.appendix.A.3">A.3.</a> <a href="#change-02-to-03" id="change-02-to-03">Change from 02 to 03</a></h1>
+<p/>
+
+<ol>
+  <li>Changed the XML namespace from urn:ietf:params:xml:ns:registry-0.1 to urn:ietf:params:xml:ns:epp:registry-0.1, and changed the XML schema registration from urn:ietf:params:xml:ns:registry-0.1 to urn:ietf:params:xml:schema:epp:registry-0.1 based on a request from IANA with draft-ietf-regext-allocation-token.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

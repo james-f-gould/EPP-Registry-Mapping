@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" 
-  xmlns:launchPolicy="urn:ietf:params:xml:ns:launchPolicy-0.1" 
-  targetNamespace="urn:ietf:params:xml:ns:launchPolicy-0.1" 
+  xmlns:launchPolicy="urn:ietf:params:xml:ns:epp:launchPolicy-0.1" 
+  targetNamespace="urn:ietf:params:xml:ns:epp:launchPolicy-0.1" 
   elementFormDefault="qualified">
   <annotation>
     <documentation>Extensible Provisioning Protocol v1.0

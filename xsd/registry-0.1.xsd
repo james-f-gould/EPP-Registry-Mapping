@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema
-  xmlns:registry="urn:ietf:params:xml:ns:registry-0.1"
+  xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"
   xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
   xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
   xmlns="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="urn:ietf:params:xml:ns:registry-0.1"
+  targetNamespace="urn:ietf:params:xml:ns:epp:registry-0.1"
   elementFormDefault="qualified"
 >
   <!--

@@ -402,6 +402,7 @@
 <link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References"/>
 <link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References"/>
 <link href="#rfc.appendix.A" rel="Chapter" title="A Change History"/>
+<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Change from 00 to 01"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -409,8 +410,8 @@
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Gould, J." />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-gould-regext-launch-policy-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-5-31" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-gould-regext-launch-policy-01" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-8-17" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) extension of the Registry Mapping to define the server policy of the Launch Phase EPP extension.  The server policy of the Launch Phase EPP extension includes the MAYs, SHOULDs, and options implemented by the server." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) extension of the Registry Mapping to define the server policy of the Launch Phase EPP extension.  The server policy of the Launch Phase EPP extension includes the MAYs, SHOULDs, and options implemented by the server." />
 
@@ -431,10 +432,10 @@
 </tr>
 <tr>
   <td class="left">Intended status: Standards Track</td>
-  <td class="right">May 31, 2018</td>
+  <td class="right">August 17, 2018</td>
 </tr>
 <tr>
-  <td class="left">Expires: December 2, 2018</td>
+  <td class="left">Expires: February 18, 2019</td>
   <td class="right"></td>
 </tr>
 
@@ -443,7 +444,7 @@
   </table>
 
   <p class="title">Launch Phase Policy Extensions Mapping for the Extensible Provisioning Protocol (EPP)<br />
-  <span class="filename">draft-gould-regext-launch-policy-00</span></p>
+  <span class="filename">draft-gould-regext-launch-policy-01</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -455,7 +456,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 2, 2018.</p>
+<p>This Internet-Draft will expire on February 18, 2019.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -495,7 +496,8 @@
 <ul><li>9.1.   <a href="#rfc.references.1">Normative References</a></li>
 <li>9.2.   <a href="#rfc.references.2">Informative References</a></li>
 </ul><li>Appendix A.   <a href="#rfc.appendix.A">Change History</a></li>
-<li><a href="#rfc.authors">Author's Address</a></li>
+<ul><li>A.1.   <a href="#rfc.appendix.A.1">Change from 00 to 01</a></li>
+</ul><li><a href="#rfc.authors">Author's Address</a></li>
 
 
   </ul>
@@ -506,7 +508,7 @@
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">RFC 2119</a> <cite title="NONE">[RFC2119]</cite>.</p>
 <p id="rfc.section.1.1.p.2">XML is case sensitive. Unless stated otherwise, XML specifications and examples provided in this document MUST be interpreted in the character case presented in order to develop a conforming implementation.</p>
 <p id="rfc.section.1.1.p.3">In examples, "C:" represents lines sent by a protocol client and "S:" represents lines returned by a protocol server.  Indentation and white space in examples are provided only to illustrate element relationships and are not a REQUIRED feature of this protocol.  </p>
-<p id="rfc.section.1.1.p.4">The XML namespace prefix "lp" is used for the namespace "urn:ietf:params:xml:ns:launchPolicy-0.1", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
+<p id="rfc.section.1.1.p.4">The XML namespace prefix "lp" is used for the namespace "urn:ietf:params:xml:ns:epp:launchPolicy-0.1", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#attrs" id="attrs">Object Attributes</a></h1>
 <p id="rfc.section.2.p.1">An EPP launch phase policy has attributes and associated values that may be viewed and modified by the sponsoring client or the server.  This section describes each attribute type in detail. The formal syntax for the attribute values described here can be found in the "Formal Syntax" section of this document and in the appropriate normative references.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#datesTimes" id="datesTimes">Dates and Times</a></h1>
@@ -858,7 +860,7 @@ S:      &lt;/registry:infData&gt;
 S:    &lt;/resData&gt;
 S:    &lt;extension&gt;
 S:      &lt;lp:infData 
-S:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
+S:        xmlns:lp="urn:ietf:params:xml:ns:epp:launchPolicy-0.1"&gt;
 S:        ...
 S:      &lt;/lp:infData&gt;
 S:    &lt;/extension&gt;
@@ -889,7 +891,7 @@ C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
 C:  &lt;command&gt;
 C:    &lt;create&gt;
 C:      &lt;registry:create
-C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -898,7 +900,7 @@ C:      &lt;/registry:create&gt;
 C:    &lt;/create&gt;
 C:    &lt;extension&gt;
 C:      &lt;lp:create 
-C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
+C:        xmlns:lp="urn:ietf:params:xml:ns:epp:launchPolicy-0.1"&gt;
 C:        ...
 C:      &lt;/lp:create&gt;
 C:    &lt;/extension&gt;
@@ -928,7 +930,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;update&gt;
 C:      &lt;registry:update
-C:        xmlns:registry="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -937,7 +939,7 @@ C:      &lt;/registry:update&gt;
 C:    &lt;/update&gt;
 C:    &lt;extension&gt;
 C:      &lt;lp:update 
-C:        xmlns:lp="urn:ietf:params:xml:ns:launchPolicy-0.1"&gt;
+C:        xmlns:lp="urn:ietf:params:xml:ns:epp:launchPolicy-0.1"&gt;
 C:        ...
 C:      &lt;/lp:update&gt;
 C:    &lt;/extension&gt;
@@ -953,8 +955,8 @@ C:&lt;/epp&gt;</pre>
 BEGIN
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;schema xmlns="http://www.w3.org/2001/XMLSchema" 
-  xmlns:launchPolicy="urn:ietf:params:xml:ns:launchPolicy-0.1" 
-  targetNamespace="urn:ietf:params:xml:ns:launchPolicy-0.1" 
+  xmlns:launchPolicy="urn:ietf:params:xml:ns:epp:launchPolicy-0.1" 
+  targetNamespace="urn:ietf:params:xml:ns:epp:launchPolicy-0.1" 
   elementFormDefault="qualified"&gt;
   &lt;annotation&gt;
     &lt;documentation&gt;Extensible Provisioning Protocol v1.0
@@ -1118,7 +1120,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:ns:launchPolicy-0.1</li>
+  <li>URI: urn:ietf:params:xml:ns:epp:launchPolicy-0.1</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: None. Namespace URIs do not represent an XML specification.</li>
 </ul>
@@ -1126,7 +1128,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:ns:launchPolicy-0.1</li>
+  <li>URI: urn:ietf:params:xml:schema:epp:launchPolicy-0.1</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: See the "Formal Syntax" section of this document.</li>
 </ul>
@@ -1200,6 +1202,12 @@ END</pre>
   </tbody>
 </table>
 <h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> Change History</h1>
+<h1 id="rfc.appendix.A.1"><a href="#rfc.appendix.A.1">A.1.</a> <a href="#change-00-to-01" id="change-00-to-01">Change from 00 to 01</a></h1>
+<p/>
+
+<ol>
+  <li>Changed the XML namespace from urn:ietf:params:xml:ns:launchPolicy-0.1 to urn:ietf:params:xml:ns:epp:launchPolicy-0.1, and changed the XML schema registration from urn:ietf:params:xml:ns:launchPolicy-0.1 to urn:ietf:params:xml:schema:epp:launchPolicy-0.1 based on a request from IANA with draft-ietf-regext-allocation-token.</li>
+</ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Author's Address</a>
 </h1>

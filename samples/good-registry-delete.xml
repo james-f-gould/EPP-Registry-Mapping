@@ -3,7 +3,7 @@
   <command>
     <delete>
       <registry:delete
-        xmlns:registry="urn:ietf:params:xml:ns:registry-0.1">
+        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
         <registry:name>EXAMPLE</registry:name>
       </registry:delete>
     </delete>
