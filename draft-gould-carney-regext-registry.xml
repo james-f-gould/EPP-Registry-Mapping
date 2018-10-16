@@ -276,6 +276,13 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
        </figure>
       </section>
       
+       <section anchor="regex" title="Regular Expressions">
+         <t>Elements that contain regular expressions MUST conform to the 
+         <xref target="pcre">Perl-compatible Regular Expression (PCRE)</xref> syntax.  
+         Programming languages support different sets of PCRE features, so the server 
+         SHOULD define a PCRE that leverages features that are supported by a broad set 
+         of client programming languages.</t>
+       </section>
     
        <section anchor="zoneObject" title="Zone Object">
         <t>The Zone object, represented by the &lt;registry:zone&gt; element,  
@@ -389,7 +396,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 <t hangText="&lt;registry:regex&gt;:">Zero or more 
                 &lt;registry:regex&gt; elements that contain a 
                 &lt;registry:expression&gt; child element that defines the 
-                regular expression to apply to domain name label along with 
+                <xref target="regex">regular expressions</xref> to apply to 
+                domain name label along with 
                 an OPTIONAL &lt;registry:description&gt; child element that 
                 describes the regular expression with an OPTIONAL "lang" 
                 attribute that defines the language of the description,  
@@ -660,7 +668,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 set of supported domain statuses that SHOULD match the statuses defined in 
                 <xref target="RFC5731"/>.</t>
                 <t hangText="&lt;registry:authInfoRegEx&gt;:">The OPTIONAL 
-                regular expression used to validate the domain object 
+                <xref target="regex">regular expression</xref> used to validate the domain object 
                 authorization information value.</t>   
                 <t hangText="&lt;registry:expiryPolicy&gt;:">The OPTIONAL 
                 expiry policy used to define what happens when the 
@@ -754,8 +762,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               </list></t>             
               
               <t hangText="&lt;registry:nameRegex&gt;:">Zero or more 
-              &lt;registry:nameRegex&gt; elements that define the regular 
-              expressions used to validate the host name value.</t>
+              &lt;registry:nameRegex&gt; elements that define the <xref target="regex">regular 
+              expressions</xref> used to validate the host name value.</t>
               
               <t hangText="&lt;registry:maxCheckHost&gt;:">The maximum number of 
               host names (&lt;host:name&gt; elements) that can be included in a 
@@ -777,8 +785,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
          The &lt;registry:contact&gt; element contains the following child 
          elements:</t>             
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&lt;registry:contactIdRegex&gt;:">The OPTIONAL regular 
-              expression used to validate the &lt;contact:id&gt; element 
+              <t hangText="&lt;registry:contactIdRegex&gt;:">The OPTIONAL <xref target="regex">regular 
+              expression</xref> used to validate the &lt;contact:id&gt; element 
               defined in <xref target="RFC5733"/>.</t>
               <t hangText="&lt;registry:contactIdPrefix&gt;:">The OPTIONAL client-specific 
                 prefix that must be used for the &lt;contact:id&gt; element defined in <xref target="RFC5733"/>. 
@@ -899,8 +907,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 elements, respectively.</t>
 
                 <t hangText="&lt;registry:emailRegex&gt;:">An OPTIONAL  
-                &lt;registry:emailRegex&gt; element that defines the regular 
-                expression used to validate the &lt;contact:email&gt; element 
+                &lt;registry:emailRegex&gt; element that defines the <xref target="regex">regular 
+                expression</xref> used to validate the &lt;contact:email&gt; element 
                 defined in <xref target="RFC5733"/>.</t>
                   
                 </list></t>
@@ -910,8 +918,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               included in a contact check command defined in 
               <xref target="RFC5733"/>.</t>
                
-              <t hangText="&lt;registry:authInfoRegex&gt;:">The OPTIONAL regular 
-              expression used to validate the contact object authorization 
+              <t hangText="&lt;registry:authInfoRegex&gt;:">The OPTIONAL <xref target="regex">regular 
+              expression</xref> used to validate the contact object authorization 
               information value.</t>
 
               <t hangText="&lt;registry:clientDisclosureSupported&gt;:">The 
@@ -3157,6 +3165,20 @@ END]]></artwork>
    
     </references>
     
+    <references title="Informative References">  
+    
+      <reference anchor="pcre" target="https://www.pcre.org/original/doc/html/pcrepattern.html">
+        <front>
+          <title abbrev='PCRE'>Perl-compatible Regular Expressions (PCRE)</title>
+          <author fullname="Philip Hazel" initials="P.H." surname="Hazel"/> 
+          <date month="October" day="23" year="2016"/>
+        </front>
+        <format type='HTML' target="https://www.pcre.org/original/doc/html/pcrepattern.html" />
+      </reference>        
+    
+    </references>
+    
+    
     <section title="Change History">
       <section title="Change from 00 to 01" anchor="change-00-to-01">
         <t><list style="numbers">
@@ -3213,6 +3235,10 @@ END]]></artwork>
           to reference a list of externally defined invalid IP addresses URIs, based on feedback from Patrick Mevzek.</t>
           <t>Changed all references of urn:ietf:params:xml:ns:epp:registry-0.1 to 
           urn:ietf:params:xml:ns:epp:registry-0.2 in the draft.</t>
+          <t>Added a "Regular Expressions" section that describes the regular expression syntax used in the draft, which 
+          is Perl-compatible Regular Expression (PCRE).  The elements that use regular expression values reference 
+          the new "Regular Expressions" section.  Referencing the expected regular expression syntax to use is based on feedback 
+          from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>

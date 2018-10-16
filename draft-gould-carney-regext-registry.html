@@ -380,7 +380,8 @@
 <link href="#rfc.section.2.1" rel="Chapter" title="2.1 Zone Name"/>
 <link href="#rfc.section.2.2" rel="Chapter" title="2.2 Dates and Times"/>
 <link href="#rfc.section.2.3" rel="Chapter" title="2.3 Schedule"/>
-<link href="#rfc.section.2.4" rel="Chapter" title="2.4 Zone Object"/>
+<link href="#rfc.section.2.4" rel="Chapter" title="2.4 Regular Expressions"/>
+<link href="#rfc.section.2.5" rel="Chapter" title="2.5 Zone Object"/>
 <link href="#rfc.section.3" rel="Chapter" title="3 EPP Command Mapping"/>
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 EPP Query Commands"/>
 <link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 EPP &lt;check&gt; Command"/>
@@ -401,7 +402,9 @@
 <link href="#rfc.section.6.1" rel="Chapter" title="6.1 Verisign EPP SDK"/>
 <link href="#rfc.section.7" rel="Chapter" title="7 Security Considerations"/>
 <link href="#rfc.section.8" rel="Chapter" title="8 Acknowledgements"/>
-<link href="#rfc.references" rel="Chapter" title="9 Normative References"/>
+<link href="#rfc.references" rel="Chapter" title="9 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References"/>
 <link href="#rfc.appendix.A" rel="Chapter" title="A Change History"/>
 <link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Change from 00 to 01"/>
 <link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Change from 01 to 02"/>
@@ -490,7 +493,8 @@
 <ul><li>2.1.   <a href="#rfc.section.2.1">Zone Name</a></li>
 <li>2.2.   <a href="#rfc.section.2.2">Dates and Times</a></li>
 <li>2.3.   <a href="#rfc.section.2.3">Schedule</a></li>
-<li>2.4.   <a href="#rfc.section.2.4">Zone Object</a></li>
+<li>2.4.   <a href="#rfc.section.2.4">Regular Expressions</a></li>
+<li>2.5.   <a href="#rfc.section.2.5">Zone Object</a></li>
 </ul><li>3.   <a href="#rfc.section.3">EPP Command Mapping</a></li>
 <ul><li>3.1.   <a href="#rfc.section.3.1">EPP Query Commands</a></li>
 <ul><li>3.1.1.   <a href="#rfc.section.3.1.1">EPP &lt;check&gt; Command</a></li>
@@ -511,8 +515,10 @@
 <ul><li>6.1.   <a href="#rfc.section.6.1">Verisign EPP SDK</a></li>
 </ul><li>7.   <a href="#rfc.section.7">Security Considerations</a></li>
 <li>8.   <a href="#rfc.section.8">Acknowledgements</a></li>
-<li>9.   <a href="#rfc.references">Normative References</a></li>
-<li>Appendix A.   <a href="#rfc.appendix.A">Change History</a></li>
+<li>9.   <a href="#rfc.references">References</a></li>
+<ul><li>9.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>9.2.   <a href="#rfc.references.2">Informative References</a></li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Change History</a></li>
 <ul><li>A.1.   <a href="#rfc.appendix.A.1">Change from 00 to 01</a></li>
 <li>A.2.   <a href="#rfc.appendix.A.2">Change from 01 to 02</a></li>
 <li>A.3.   <a href="#rfc.appendix.A.3">Change from 02 to 03</a></li>
@@ -564,8 +570,10 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   &lt;registry:schedule tz="EST5EDT"&gt;0 14 * * *
   &lt;/registry:schedule&gt;
 &lt;/registry:batchJob&gt;</pre>
-<h1 id="rfc.section.2.4"><a href="#rfc.section.2.4">2.4.</a> <a href="#zoneObject" id="zoneObject">Zone Object</a></h1>
-<p id="rfc.section.2.4.p.1">The Zone object, represented by the &lt;registry:zone&gt; element, is the primary object managed by this mapping.  The Zone object can apply to any zone level (top level, second level, third level, etc.).  The &lt;registry:zone&gt; element contains the following child elements:</p>
+<h1 id="rfc.section.2.4"><a href="#rfc.section.2.4">2.4.</a> <a href="#regex" id="regex">Regular Expressions</a></h1>
+<p id="rfc.section.2.4.p.1">Elements that contain regular expressions MUST conform to the <a href="#pcre">Perl-compatible Regular Expression (PCRE)</a> <cite title="NONE">[pcre]</cite> syntax.  Programming languages support different sets of PCRE features, so the server SHOULD define a PCRE that leverages features that are supported by a broad set of client programming languages.</p>
+<h1 id="rfc.section.2.5"><a href="#rfc.section.2.5">2.5.</a> <a href="#zoneObject" id="zoneObject">Zone Object</a></h1>
+<p id="rfc.section.2.5.p.1">The Zone object, represented by the &lt;registry:zone&gt; element, is the primary object managed by this mapping.  The Zone object can apply to any zone level (top level, second level, third level, etc.).  The &lt;registry:zone&gt; element contains the following child elements:</p>
 <p/>
 
 <dl>
@@ -655,7 +663,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:uLabelSupported&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL flag indicating whether non-ASCII domain names are supported with a default value of "false".</dd>
           <dt>&lt;registry:regex&gt;:</dt>
-          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements that contain a &lt;registry:expression&gt; child element that defines the regular expression to apply to domain name label along with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description, with a default value of "en" (English).</dd>
+          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements that contain a &lt;registry:expression&gt; child element that defines the <a href="#regex">regular expressions</a> <cite title="NONE">[regex]</cite> to apply to domain name label along with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description, with a default value of "en" (English).</dd>
           <dt>&lt;registry:reservedNames&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL element that defines the set of reserved domain names starting from that label level.  The reserved names can refer to values with more than one level which is relative to the level of the parent &lt;registry:domainName&gt; element.  The &lt;registry:reservedNames&gt; element contains the following child elements:</dd>
           <dt></dt>
@@ -845,7 +853,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:supportedStatus&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL set of supported domain statuses that SHOULD match the statuses defined in <a href="#RFC5731">[RFC5731]</a>.</dd>
       <dt>&lt;registry:authInfoRegEx&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL regular expression used to validate the domain object authorization information value.</dd>
+      <dd style="margin-left: 4">The OPTIONAL <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the domain object authorization information value.</dd>
       <dt>&lt;registry:expiryPolicy&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL expiry policy used to define what happens when the domain object expires, with a default value of "autoRenew".  The possible values for the &lt;registry:expiryPolicy&gt; element include:</dd>
       <dt></dt>
@@ -921,7 +929,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
         </dl>
       </dd>
       <dt>&lt;registry:nameRegex&gt;:</dt>
-      <dd style="margin-left: 4">Zero or more &lt;registry:nameRegex&gt; elements that define the regular expressions used to validate the host name value.</dd>
+      <dd style="margin-left: 4">Zero or more &lt;registry:nameRegex&gt; elements that define the <a href="#regex">regular expressions</a> <cite title="NONE">[regex]</cite> used to validate the host name value.</dd>
       <dt>&lt;registry:maxCheckHost&gt;:</dt>
       <dd style="margin-left: 4">The maximum number of host names (&lt;host:name&gt; elements) that can be included in a host check command defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
@@ -936,7 +944,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   <dd style="margin-left: 4">
     <dl>
       <dt>&lt;registry:contactIdRegex&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL regular expression used to validate the &lt;contact:id&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
+      <dd style="margin-left: 4">The OPTIONAL <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the &lt;contact:id&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
       <dt>&lt;registry:contactIdPrefix&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL client-specific prefix that must be used for the &lt;contact:id&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.  For example, if the client is assigned the client-specific prefix "EX", every contact created by the client must have a &lt;contact:id&gt; element value prefixed with "EX", as in "EX123".</dd>
       <dt>&lt;registry:sharePolicy&gt;:</dt>
@@ -1011,13 +1019,13 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:voiceExt&gt;:</dt>
           <dd style="margin-left: 4">The OPTIONAL minimum and maximum length of the &lt;contact:voice&gt; extension "x" attribute defined in <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
           <dt>&lt;registry:emailRegex&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL &lt;registry:emailRegex&gt; element that defines the regular expression used to validate the &lt;contact:email&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
+          <dd style="margin-left: 4">An OPTIONAL &lt;registry:emailRegex&gt; element that defines the <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the &lt;contact:email&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:maxCheckContact&gt;:</dt>
       <dd style="margin-left: 4">The maximum number of contact identifiers (&lt;contact:id&gt; elements) that can be included in a contact check command defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
       <dt>&lt;registry:authInfoRegex&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL regular expression used to validate the contact object authorization information value.</dd>
+      <dd style="margin-left: 4">The OPTIONAL <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the contact object authorization information value.</dd>
       <dt>&lt;registry:clientDisclosureSupported&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL flag that indicates whether the server supports the client to identify elements that require exception server-operator handling to allow or restrict disclosure to third parties defined in <a href="#RFC5733">[RFC5733]</a> with a default of "false".</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
@@ -1531,7 +1539,7 @@ C:&lt;/epp&gt;</pre>
     </dl>
   </dd>
   <dt>or a &lt;registry:zone&gt;:</dt>
-  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone name as defined in <a href="#zoneObject">Section 2.4</a>.</dd>
+  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone name as defined in <a href="#zoneObject">Section 2.5</a>.</dd>
   <dt>&lt;registry:system&gt;:</dt>
   <dd style="margin-left: 4">Element that contains registry system attributes.  The &lt;registry:system&gt; element contains the following child elements:</dd>
   <dt></dt>
@@ -1650,7 +1658,7 @@ S:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:zone&gt;:</dt>
-  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone to create, as defined in <a href="#zoneObject">Section 2.4</a>.</dd>
+  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone to create, as defined in <a href="#zoneObject">Section 2.5</a>.</dd>
 </dl>
 <p>Example &lt;create&gt; command:</p>
 <pre>
@@ -1750,7 +1758,7 @@ S:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:zone&gt;:</dt>
-  <dd style="margin-left: 4">One or more elements that contain the full set of attributes for the zones as defined in <a href="#zoneObject">Section 2.4</a>.  The update completely replaces the prior version of the zone.</dd>
+  <dd style="margin-left: 4">One or more elements that contain the full set of attributes for the zones as defined in <a href="#zoneObject">Section 2.5</a>.  The update completely replaces the prior version of the zone.</dd>
 </dl>
 <p>Example &lt;update&gt; command:</p>
 <pre>
@@ -2881,7 +2889,8 @@ END</pre>
 <ul>
   <li>Mario Loffredo, Patrick Mevzek</li>
 </ul>
-<h1 id="rfc.references"><a href="#rfc.references">9.</a> Normative References</h1>
+<h1 id="rfc.references"><a href="#rfc.references">9.</a> References</h1>
+<h1 id="rfc.references.1"><a href="#rfc.references.1">9.1.</a> Normative References</h1>
 <table>
   <tbody>
     <tr>
@@ -2964,6 +2973,17 @@ END</pre>
     </tr>
   </tbody>
 </table>
+<h1 id="rfc.references.2"><a href="#rfc.references.2">9.2.</a> Informative References</h1>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="pcre">[pcre]</b>
+      </td>
+      <td class="top"><a>Hazel, P.</a>, "<a href="https://www.pcre.org/original/doc/html/pcrepattern.html">Perl-compatible Regular Expressions (PCRE)</a>", October 2016.</td>
+    </tr>
+  </tbody>
+</table>
 <h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> Change History</h1>
 <h1 id="rfc.appendix.A.1"><a href="#rfc.appendix.A.1">A.1.</a> <a href="#change-00-to-01" id="change-00-to-01">Change from 00 to 01</a></h1>
 <p/>
@@ -3001,6 +3021,7 @@ END</pre>
   <li>Added "or transferred" to the description of the &lt;registry:expiryPolicy&gt; element "autoRenew" value, based on feedback from Mario Laffredo.</li>
   <li>Added support for an optional list of &lt;registry:invalidIP&gt; elements, under the &lt;registry:host&gt; element, to reference a list of externally defined invalid IP addresses URIs, based on feedback from Patrick Mevzek.</li>
   <li>Changed all references of urn:ietf:params:xml:ns:epp:registry-0.1 to urn:ietf:params:xml:ns:epp:registry-0.2 in the draft.</li>
+  <li>Added a "Regular Expressions" section that describes the regular expression syntax used in the draft, which is Perl-compatible Regular Expression (PCRE).  The elements that use regular expression values reference the new "Regular Expressions" section.  Referencing the expected regular expression syntax to use is based on feedback from Patrick Mevzek.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
