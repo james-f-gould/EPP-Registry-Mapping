@@ -562,6 +562,16 @@
         name="max"
         type="unsignedShort"/>
       <element
+        name="flags"
+        type="unsignedShort"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="protocol"
+        type="unsignedByte"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
         name="alg"
         type="token"
         minOccurs="0"
@@ -569,17 +579,24 @@
     </sequence>
   </complexType>
   <complexType name="dsInterfaceType">
-    <complexContent>
-      <extension base="registry:keyInterfaceType">
-        <sequence>
-          <element
-            name="digestType"
-            type="token"
-            minOccurs="0"
-            maxOccurs="unbounded"/>
-        </sequence>
-      </extension>
-    </complexContent>
+  <sequence>
+      <element
+        name="min"
+        type="unsignedShort"/>
+      <element
+        name="max"
+        type="unsignedShort"/>
+      <element
+        name="alg"
+        type="token"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="digestType"
+        type="token"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+  </sequence>
   </complexType>
   <complexType name="maxSigLifeType">
     <sequence>

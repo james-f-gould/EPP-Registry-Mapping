@@ -611,9 +611,15 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                         of keys associated with the domain object.  
                         The &lt;registry:max&gt; element MUST NOT be 
                         less than the &lt;registry:min&gt; element.</t>
+                        <t hangText="&lt;registry:flags&gt;:">Zero or more &lt;registry:flags&gt;
+                        elements that define the supported flags field 
+                        values, as described in section 2.1.1 of <xref target="RFC4034"/>.</t>
+                        <t hangText="&lt;registry:protocol&gt;:">Zero or more &lt;registry:protocol&gt;
+                        elements that define the supported protocols, as described 
+                        in section 2.1.2 of <xref target="RFC4034"/>.</t>
                         <t hangText="&lt;registry:alg&gt;:">Zero or more 
                         &lt;registry:alg&gt; elements that define the 
-                        supported algorithms as described in section 2.1.3 
+                        supported algorithms, as described in section 2.1.3 
                         of <xref target="RFC4034"/>.</t>
                        </list></t>
                     <t hangText="&lt;registry:maxSigLife&gt;:">Defines the 
@@ -2480,6 +2486,16 @@ BEGIN
         name="max"
         type="unsignedShort"/>
       <element
+        name="flags"
+        type="unsignedShort"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="protocol"
+        type="unsignedByte"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
         name="alg"
         type="token"
         minOccurs="0"
@@ -2487,17 +2503,24 @@ BEGIN
     </sequence>
   </complexType>
   <complexType name="dsInterfaceType">
-    <complexContent>
-      <extension base="registry:keyInterfaceType">
-        <sequence>
-          <element
-            name="digestType"
-            type="token"
-            minOccurs="0"
-            maxOccurs="unbounded"/>
-        </sequence>
-      </extension>
-    </complexContent>
+  <sequence>
+      <element
+        name="min"
+        type="unsignedShort"/>
+      <element
+        name="max"
+        type="unsignedShort"/>
+      <element
+        name="alg"
+        type="token"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="digestType"
+        type="token"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+  </sequence>
   </complexType>
   <complexType name="maxSigLifeType">
     <sequence>
@@ -3143,6 +3166,9 @@ END]]></artwork>
           <t>Added the &lt;registry:nullAuthInfoSupported&gt; element to indicate whether 
           the &lt;domain:null&gt; element of <xref target="RFC5731"/> is supported, 
           based on feedback from Patrick Mevzek.</t>
+          <t>Added support for the &lt;registry:flags&gt; and the &lt;registry:protocol&gt; elements 
+          under the &lt;registry:keyDataInterface&gt; element to define the supported set of 
+          key data interface flags and protocols, based on feedback from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>
