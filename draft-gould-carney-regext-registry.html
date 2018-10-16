@@ -843,7 +843,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:maxCheckDomain&gt;:</dt>
       <dd style="margin-left: 4">The maximum number of domain names (&lt;domain:name&gt; elements) that can be included in a domain check command defined in <a href="#RFC5731">[RFC5731]</a>.</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL set of supported domain statuses defined in <a href="#RFC5731">[RFC5731]</a>.</dd>
+      <dd style="margin-left: 4">The OPTIONAL set of supported domain statuses that SHOULD match the statuses defined in <a href="#RFC5731">[RFC5731]</a>.</dd>
       <dt>&lt;registry:authInfoRegEx&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL regular expression used to validate the domain object authorization information value.</dd>
       <dt>&lt;registry:expiryPolicy&gt;:</dt>
@@ -925,7 +925,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:maxCheckHost&gt;:</dt>
       <dd style="margin-left: 4">The maximum number of host names (&lt;host:name&gt; elements) that can be included in a host check command defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL set of supported host statuses defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
+      <dd style="margin-left: 4">The OPTIONAL set of supported host statuses that SHOULD match the statuses defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
     </dl>
   </dd>
   <dt>&lt;registry:contact&gt;:</dt>
@@ -1019,7 +1019,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:clientDisclosureSupported&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL flag that indicates whether the server supports the client to identify elements that require exception server-operator handling to allow or restrict disclosure to third parties defined in <a href="#RFC5733">[RFC5733]</a> with a default of "false".</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL set of supported contact statuses defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
+      <dd style="margin-left: 4">The OPTIONAL set of supported contact statuses that SHOULD match the statuses defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
       <dt>&lt;registry:transferHoldPeriod&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL period of time a contact object is in the pending transfer before the transfer is auto approved by the server.  The &lt;registry:transferHoldPeriod&gt; element MUST have the "unit" attribute with the possible values of "y" for year, "m" for month, and "d" for day.</dd>
       <dt>&lt;registry:privacyContactSupported&gt;:</dt>
@@ -2585,6 +2585,8 @@ BEGIN
       &lt;enumeration value="int"/&gt;
       &lt;enumeration value="locOrInt"/&gt;
       &lt;enumeration value="locAndInt"/&gt;
+      &lt;enumeration value="intOptLoc"/&gt;
+      &lt;enumeration value="locOptInt"/&gt;
     &lt;/restriction&gt;
   &lt;/simpleType&gt;
   &lt;complexType name="intHostPolicyType"&gt;
@@ -2984,6 +2986,7 @@ END</pre>
   <li>Added support for the &lt;registry:flags&gt; and the &lt;registry:protocol&gt; elements under the &lt;registry:keyDataInterface&gt; element to define the supported set of key data interface flags and protocols, based on feedback from Patrick Mevzek.</li>
   <li>Updated the Introduction sentence "It is up to server policy to define what clients are authorized to execute which commands on which registry zones" to "It is up to server policy what commands are supported and to define the clients that are authorized to execute the commands for the registry zones.  The server MUST return a 2101 error response for an unimplemented command and MUST return a 2201 error response for an unauthorized command.", based on feedback from Mario Loffredo.</li>
   <li>Added two additional &lt;registry:postalInfoTypeSupport&gt; element values, which include "intOptLoc" and "locOptInt", based on feedback from Patrick Mevzek.</li>
+  <li>Added "that SHOULD match the statuses" to the descriptions of the &lt;registry:supportedStatus&gt; elements under the &lt;registry:domain&gt; element, the &lt;registry:host&gt; element, and the &lt;registry:contact&gt; element, based on feedback from Mario Loffredo.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

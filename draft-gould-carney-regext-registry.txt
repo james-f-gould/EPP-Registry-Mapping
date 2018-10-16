@@ -84,19 +84,19 @@ Table of Contents
    4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  38
      4.1.  Registry Mapping Schema . . . . . . . . . . . . . . . . .  38
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  59
-     5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  59
+     5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  60
      5.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  60
    6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  60
      6.1.  Verisign EPP SDK  . . . . . . . . . . . . . . . . . . . .  61
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  61
-   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  61
+   8.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  62
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  62
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  62
      9.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  63
    Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  63
      A.1.  Change from 00 to 01  . . . . . . . . . . . . . . . . . .  63
      A.2.  Change from 01 to 02  . . . . . . . . . . . . . . . . . .  63
-     A.3.  Change from 02 to 03  . . . . . . . . . . . . . . . . . .  63
+     A.3.  Change from 02 to 03  . . . . . . . . . . . . . . . . . .  64
      A.4.  Change from 03 to 04  . . . . . . . . . . . . . . . . . .  64
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  64
 
@@ -664,7 +664,7 @@ Internet-Draft                  registry                    October 2018
            (<domain:name> elements) that can be included in a domain
            check command defined in [RFC5731].
        <registry:supportedStatus>:  The OPTIONAL set of supported domain
-           statuses defined in [RFC5731].
+           statuses that SHOULD match the statuses defined in [RFC5731].
 
 
 
@@ -787,7 +787,7 @@ Internet-Draft                  registry                    October 2018
 
 
        <registry:supportedStatus>:  The OPTIONAL set of supported host
-           statuses defined in [RFC5732].
+           statuses that SHOULD match the statuses defined in [RFC5732].
    <registry:contact>:  The OPTIONAL contact object policy information
        per [RFC5733].  The <registry:contact> element contains the
        following child elements:
@@ -926,7 +926,8 @@ Internet-Draft                  registry                    October 2018
            allow or restrict disclosure to third parties defined in
            [RFC5733] with a default of "false".
        <registry:supportedStatus>:  The OPTIONAL set of supported
-           contact statuses defined in [RFC5733].
+           contact statuses that SHOULD match the statuses defined in
+           [RFC5733].
        <registry:transferHoldPeriod>:  The OPTIONAL period of time a
            contact object is in the pending transfer before the transfer
            is auto approved by the server.  The
@@ -945,7 +946,6 @@ Internet-Draft                  registry                    October 2018
    <registry:zone>
      <registry:name>EXAMPLE</registry:name>
      <registry:group>STANDARD</registry:group>
-     <registry:services>
 
 
 
@@ -954,6 +954,7 @@ Gould, et al.            Expires April 19, 2019                [Page 17]
 Internet-Draft                  registry                    October 2018
 
 
+     <registry:services>
        <registry:objURI required="true">
          urn:ietf:params:xml:ns:domain-1.0
        </registry:objURI>
@@ -1001,7 +1002,6 @@ Internet-Draft                  registry                    October 2018
        <registry:zone form="aLabel">EXAMPLE2
        </registry:zone>
      </registry:system>
-     <registry:domain>
 
 
 
@@ -1010,6 +1010,7 @@ Gould, et al.            Expires April 19, 2019                [Page 18]
 Internet-Draft                  registry                    October 2018
 
 
+     <registry:domain>
        <registry:domainName level="2">
          <registry:minLength>5
          </registry:minLength>
@@ -1057,7 +1058,6 @@ Internet-Draft                  registry                    October 2018
            </registry:variantStrategy>
          </registry:language>
        </registry:idn>
-       <registry:premiumSupport>false
 
 
 
@@ -1066,6 +1066,7 @@ Gould, et al.            Expires April 19, 2019                [Page 19]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:premiumSupport>false
        </registry:premiumSupport>
        <registry:contact type="admin">
          <registry:min>1</registry:min>
@@ -1113,7 +1114,6 @@ Internet-Draft                  registry                    October 2018
          unit="d"
        >5
        </registry:gracePeriod>
-       <registry:gracePeriod
 
 
 
@@ -1122,6 +1122,7 @@ Gould, et al.            Expires April 19, 2019                [Page 20]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:gracePeriod
          command="transfer"
          unit="d"
        >5
@@ -1169,7 +1170,6 @@ Internet-Draft                  registry                    October 2018
          <registry:status>serverRenewProhibited
          </registry:status>
          <registry:status>clientTransferProhibited
-         </registry:status>
 
 
 
@@ -1178,6 +1178,7 @@ Gould, et al.            Expires April 19, 2019                [Page 21]
 Internet-Draft                  registry                    October 2018
 
 
+         </registry:status>
          <registry:status>serverTransferProhibited
          </registry:status>
          <registry:status>clientUpdateProhibited
@@ -1225,7 +1226,6 @@ Internet-Draft                  registry                    October 2018
          <registry:status>clientDeleteProhibited
          </registry:status>
          <registry:status>serverDeleteProhibited
-         </registry:status>
 
 
 
@@ -1234,6 +1234,7 @@ Gould, et al.            Expires April 19, 2019                [Page 22]
 Internet-Draft                  registry                    October 2018
 
 
+         </registry:status>
          <registry:status>clientUpdateProhibited
          </registry:status>
          <registry:status>serverUpdateProhibited
@@ -1281,7 +1282,6 @@ Internet-Draft                  registry                    October 2018
              <registry:minLength>1</registry:minLength>
              <registry:maxLength>40</registry:maxLength>
            </registry:sp>
-           <registry:pc>
 
 
 
@@ -1290,6 +1290,7 @@ Gould, et al.            Expires April 19, 2019                [Page 23]
 Internet-Draft                  registry                    October 2018
 
 
+           <registry:pc>
              <registry:minLength>1</registry:minLength>
              <registry:maxLength>40</registry:maxLength>
            </registry:pc>
@@ -1337,7 +1338,6 @@ Internet-Draft                  registry                    October 2018
          <registry:status>pendingTransfer
          </registry:status>
        </registry:supportedStatus>
-       <registry:transferHoldPeriod unit="d">5
 
 
 
@@ -1346,6 +1346,7 @@ Gould, et al.            Expires April 19, 2019                [Page 24]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:transferHoldPeriod unit="d">5
        </registry:transferHoldPeriod>
        <registry:privacyContactSupported>true
        </registry:privacyContactSupported>
@@ -1383,7 +1384,6 @@ Internet-Draft                  registry                    October 2018
    <registry:name>:  One or more <registry:name> elements, as described
        in Section 2.1, that contain the fully qualified names of the
        zone objects to be queried.
-
 
 
 
@@ -3026,6 +3026,8 @@ Gould, et al.            Expires April 19, 2019                [Page 54]
 Internet-Draft                  registry                    October 2018
 
 
+         <enumeration value="intOptLoc"/>
+         <enumeration value="locOptInt"/>
        </restriction>
      </simpleType>
      <complexType name="intHostPolicyType">
@@ -3072,8 +3074,6 @@ Internet-Draft                  registry                    October 2018
            name="internal"
            type="registry:intHostPolicyType"/>
          <element
-           name="external"
-           type="registry:extHostPolicyType"/>
 
 
 
@@ -3082,6 +3082,8 @@ Gould, et al.            Expires April 19, 2019                [Page 55]
 Internet-Draft                  registry                    October 2018
 
 
+           name="external"
+           type="registry:extHostPolicyType"/>
          <element
            name="nameRegex"
            type="registry:regexType"
@@ -3128,8 +3130,6 @@ Internet-Draft                  registry                    October 2018
      </complexType>
      <complexType name="contactAddressType">
        <sequence>
-         <element
-           name="street"
 
 
 
@@ -3138,6 +3138,8 @@ Gould, et al.            Expires April 19, 2019                [Page 56]
 Internet-Draft                  registry                    October 2018
 
 
+         <element
+           name="street"
            type="registry:streetType"/>
          <element
            name="city"
@@ -3184,8 +3186,6 @@ Internet-Draft                  registry                    October 2018
        <sequence>
          <element
            name="contactIdRegex"
-           type="registry:regexType"
-           minOccurs="0"/>
 
 
 
@@ -3194,6 +3194,8 @@ Gould, et al.            Expires April 19, 2019                [Page 57]
 Internet-Draft                  registry                    October 2018
 
 
+           type="registry:regexType"
+           minOccurs="0"/>
          <element
            name="contactIdPrefix"
            type="token"
@@ -3240,8 +3242,6 @@ Internet-Draft                  registry                    October 2018
            default="true"/>
        </sequence>
      </complexType>
-     <complexType name="transLimitType">
-       <simpleContent>
 
 
 
@@ -3250,6 +3250,8 @@ Gould, et al.            Expires April 19, 2019                [Page 58]
 Internet-Draft                  registry                    October 2018
 
 
+     <complexType name="transLimitType">
+       <simpleContent>
          <extension base="int">
            <attribute
              name="perMs"
@@ -3293,10 +3295,8 @@ Internet-Draft                  registry                    October 2018
 
 5.  IANA Considerations
 
-5.1.  XML Namespace
 
-   This document uses URNs to describe XML namespaces and XML schemas
-   conforming to a registry mechanism described in [RFC3688].
+
 
 
 
@@ -3305,6 +3305,11 @@ Gould, et al.            Expires April 19, 2019                [Page 59]
 
 Internet-Draft                  registry                    October 2018
 
+
+5.1.  XML Namespace
+
+   This document uses URNs to describe XML namespaces and XML schemas
+   conforming to a registry mechanism described in [RFC3688].
 
    Registration request for the registry namespace:
 
@@ -3349,11 +3354,6 @@ Internet-Draft                  registry                    October 2018
    This section records the status of known implementations of the
    protocol defined by this specification at the time of posting of this
    Internet-Draft, and is based on a proposal described in RFC 7942
-   [RFC7942].  The description of implementations in this section is
-   intended to assist the IETF in its decision processes in progressing
-   drafts to RFCs.  Please note that the listing of any individual
-   implementation here does not imply endorsement by the IETF.
-   Furthermore, no effort has been spent to verify the information
 
 
 
@@ -3362,6 +3362,11 @@ Gould, et al.            Expires April 19, 2019                [Page 60]
 Internet-Draft                  registry                    October 2018
 
 
+   [RFC7942].  The description of implementations in this section is
+   intended to assist the IETF in its decision processes in progressing
+   drafts to RFCs.  Please note that the listing of any individual
+   implementation here does not imply endorsement by the IETF.
+   Furthermore, no effort has been spent to verify the information
    presented here that was supplied by IETF contributors.  This is not
    intended as, and must not be construed to be, a catalog of available
    implementations or their features.  Readers are advised to note that
@@ -3402,12 +3407,7 @@ Internet-Draft                  registry                    October 2018
    protocol layers used by EPP.  The security considerations described
    in these other specifications apply to this specification as well.
 
-8.  Acknowledgements
 
-   The authors wish to thank the following persons for their feedback
-   and suggestions:
-
-   o  Mario Loffredo, Patrick Mevzek
 
 
 
@@ -3417,6 +3417,13 @@ Gould, et al.            Expires April 19, 2019                [Page 61]
 
 Internet-Draft                  registry                    October 2018
 
+
+8.  Acknowledgements
+
+   The authors wish to thank the following persons for their feedback
+   and suggestions:
+
+   o  Mario Loffredo, Patrick Mevzek
 
 9.  References
 
@@ -3458,6 +3465,15 @@ Internet-Draft                  registry                    October 2018
               Host Mapping", STD 69, RFC 5732, DOI 10.17487/RFC5732,
               August 2009, <https://www.rfc-editor.org/info/rfc5732>.
 
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 62]
+
+Internet-Draft                  registry                    October 2018
+
+
    [RFC5733]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
               Contact Mapping", STD 69, RFC 5733, DOI 10.17487/RFC5733,
               August 2009, <https://www.rfc-editor.org/info/rfc5733>.
@@ -3466,13 +3482,6 @@ Internet-Draft                  registry                    October 2018
               Applications (IDNA): Definitions and Document Framework",
               RFC 5890, DOI 10.17487/RFC5890, August 2010,
               <https://www.rfc-editor.org/info/rfc5890>.
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 62]
-
-Internet-Draft                  registry                    October 2018
-
 
    [RFC5910]  Gould, J. and S. Hollenbeck, "Domain Name System (DNS)
               Security Extensions Mapping for the Extensible
@@ -3512,6 +3521,15 @@ A.2.  Change from 01 to 02
    3.  Made the zoneType crDate element optional to support sending the
        zone on a create command without the crDate being set by the
        client.
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 63]
+
+Internet-Draft                  registry                    October 2018
+
+
    4.  Updated the Implementation Status section to include the leading
        paragraphs and to include the "Verisign EPP SDK" sub-section.
 
@@ -3522,13 +3540,6 @@ A.3.  Change from 02 to 03
        XML schema registration from urn:ietf:params:xml:ns:registry-0.1
        to urn:ietf:params:xml:schema:epp:registry-0.1 based on a request
        from IANA with draft-ietf-regext-allocation-token.
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 63]
-
-Internet-Draft                  registry                    October 2018
-
 
 A.4.  Change from 03 to 04
 
@@ -3557,8 +3568,23 @@ A.4.  Change from 03 to 04
    6.  Added two additional <registry:postalInfoTypeSupport> element
        values, which include "intOptLoc" and "locOptInt", based on
        feedback from Patrick Mevzek.
+   7.  Added "that SHOULD match the statuses" to the descriptions of the
+       <registry:supportedStatus> elements under the <registry:domain>
+       element, the <registry:host> element, and the <registry:contact>
+       element, based on feedback from Mario Loffredo.
 
 Authors' Addresses
+
+
+
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 64]
+
+Internet-Draft                  registry                    October 2018
+
 
    James Gould
    VeriSign, Inc.
@@ -3580,12 +3606,6 @@ Authors' Addresses
    URI:   http://www.verisigninc.com
 
 
-
-Gould, et al.            Expires April 19, 2019                [Page 64]
-
-Internet-Draft                  registry                    October 2018
-
-
    Roger Carney
    GoDaddy Inc.
    14455 N. Hayden Rd. #219
@@ -3604,26 +3624,6 @@ Internet-Draft                  registry                    October 2018
 
    Email: jkolker@godaddy.com
    URI:   http://www.godaddy.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

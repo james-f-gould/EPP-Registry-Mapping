@@ -657,7 +657,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 can be included in a domain check command defined in 
                 <xref target="RFC5731"/>.</t>
                 <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL 
-                set of supported domain statuses defined in 
+                set of supported domain statuses that SHOULD match the statuses defined in 
                 <xref target="RFC5731"/>.</t>
                 <t hangText="&lt;registry:authInfoRegEx&gt;:">The OPTIONAL 
                 regular expression used to validate the domain object 
@@ -762,7 +762,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               host check command defined in <xref target="RFC5732"/>.</t>
 
               <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL set 
-              of supported host statuses defined in <xref target="RFC5732"/>.</t>
+              of supported host statuses that SHOULD match the statuses defined in <xref target="RFC5732"/>.</t>
                             
             </list></t>  
             
@@ -916,7 +916,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               default of "false".</t>
      
               <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL set 
-              of supported contact statuses defined in 
+              of supported contact statuses that SHOULD match the statuses defined in 
               <xref target="RFC5733"/>.</t>
      
               <t hangText="&lt;registry:transferHoldPeriod&gt;:">The OPTIONAL 
@@ -2731,6 +2731,8 @@ BEGIN
       <enumeration value="int"/>
       <enumeration value="locOrInt"/>
       <enumeration value="locAndInt"/>
+      <enumeration value="intOptLoc"/>
+      <enumeration value="locOptInt"/>
     </restriction>
   </simpleType>
   <complexType name="intHostPolicyType">
@@ -3187,6 +3189,9 @@ END]]></artwork>
           based on feedback from Mario Loffredo.</t>
           <t>Added two additional &lt;registry:postalInfoTypeSupport&gt; element values, which include 
           "intOptLoc" and "locOptInt", based on feedback from Patrick Mevzek.</t>
+          <t>Added "that SHOULD match the statuses" to the descriptions of the &lt;registry:supportedStatus&gt; elements 
+          under the &lt;registry:domain&gt; element, the &lt;registry:host&gt; element, and the &lt;registry:contact&gt; element, 
+          based on feedback from Mario Loffredo.</t>
         </list></t>
       </section>      
     </section>
