@@ -200,7 +200,7 @@
         and are not a REQUIRED feature of this protocol.        
         </t>
 
-        <t>The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:epp:registry-0.1", 
+        <t>The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:epp:registry-0.2", 
         but implementations MUST NOT depend on it and instead employ
         a proper namespace-aware XML parser and serializer to interpret and
         output the XML documents.</t>
@@ -1343,7 +1343,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <check>
 C:      <registry:check
-C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 C:        <registry:name>zone1</registry:name>
 C:        <registry:name>zone2</registry:name>
 C:        <registry:name>zone3</registry:name>
@@ -1394,7 +1394,7 @@ S:    </result>
 S:    <resData>
 S:      <registry:chkData
 S:        xmlns:registry=
-S:        "urn:ietf:params:xml:ns:epp:registry-0.1">
+S:        "urn:ietf:params:xml:ns:epp:registry-0.2">
 S:        <registry:cd>
 S:          <registry:name avail="0">zone1</registry:name>
 S:          <registry:reason>Client not authorized
@@ -1463,7 +1463,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <info>
 C:      <registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 C:        <registry:all/>
 C:      </registry:info>
 C:    </info>
@@ -1483,7 +1483,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <info>
 C:      <registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 C:        <registry:name>zone1</registry:name>
 C:      </registry:info>
 C:    </info>
@@ -1502,7 +1502,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <info>
 C:      <registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 C:        <registry:system/>
 C:      </registry:info>
 C:    </info>
@@ -1581,7 +1581,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 S:        <registry:zoneList>
 S:          <registry:zone>
 S:            <registry:name>EXAMPLE1</registry:name>
@@ -1621,7 +1621,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 S:        <registry:zone>
 S:          <registry:name>EXAMPLE</registry:name>
 S:          ...
@@ -1649,7 +1649,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 S:        <registry:system>
 S:          <registry:maxConnections>200
 S:          </registry:maxConnections>
@@ -1720,7 +1720,7 @@ C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 C:  <command>
 C:    <create>
 C:      <registry:create
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 C:        <registry:zone>
 C:          <registry:name>EXAMPLE</registry:name>
 C:          ...
@@ -1757,7 +1757,7 @@ S:      <msg>Command completed successfully</msg>
 S:    </result>
 S:    <resData>
 S:      <registry:creData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 S:        <registry:name>zone1</registry:name>
 S:        <registry:crDate>2012-10-30T22:00:00.0Z
 S:        </registry:crDate>
@@ -1801,7 +1801,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <delete>
 C:      <registry:delete
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 C:        <registry:name>EXAMPLE</registry:name>
 C:      </registry:delete>
 C:    </delete>
@@ -1879,7 +1879,7 @@ C:<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
 C:  <command>
 C:    <update>
 C:      <registry:update
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
 C:        <registry:zone>
 C:          <registry:name>EXAMPLE</registry:name>
 C:          ...
@@ -2995,7 +2995,7 @@ END]]></artwork>
          <t>Registration request for the registry namespace:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:ns:epp:registry-0.1</t>
+         <t>URI: urn:ietf:params:xml:ns:epp:registry-0.2</t>
          
          <t>Registrant Contact: IESG</t>
           
@@ -3005,7 +3005,7 @@ END]]></artwork>
          <t>Registration request for the registry XML schema:</t>
          
          <t><list>
-         <t>URI: urn:ietf:params:xml:schema:epp:registry-0.1</t>
+         <t>URI: urn:ietf:params:xml:schema:epp:registry-0.2</t>
          
          <t>Registrant Contact: IESG</t>
           
@@ -3211,6 +3211,8 @@ END]]></artwork>
           feedback from Mario Laffredo.</t>
           <t>Added support for an optional list of &lt;registry:invalidIP&gt; elements, under the &lt;registry:host&gt; element, 
           to reference a list of externally defined invalid IP addresses URIs, based on feedback from Patrick Mevzek.</t>
+          <t>Changed all references of urn:ietf:params:xml:ns:epp:registry-0.1 to 
+          urn:ietf:params:xml:ns:epp:registry-0.2 in the draft.</t>
         </list></t>
       </section>      
     </section>

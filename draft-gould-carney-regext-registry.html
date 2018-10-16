@@ -529,7 +529,7 @@
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">RFC 2119</a> <cite title="NONE">[RFC2119]</cite>.</p>
 <p id="rfc.section.1.1.p.2">XML is case sensitive. Unless stated otherwise, XML specifications and examples provided in this document MUST be interpreted in the character case presented in order to develop a conforming implementation.</p>
 <p id="rfc.section.1.1.p.3">In examples, "C:" represents lines sent by a protocol client and "S:" represents lines returned by a protocol server.  Indentation and white space in examples are provided only to illustrate element relationships and are not a REQUIRED feature of this protocol.  </p>
-<p id="rfc.section.1.1.p.4">The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:epp:registry-0.1", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
+<p id="rfc.section.1.1.p.4">The XML namespace prefix "registry" is used for the namespace "urn:ietf:params:xml:ns:epp:registry-0.2", but implementations MUST NOT depend on it and instead employ a proper namespace-aware XML parser and serializer to interpret and output the XML documents.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#attrs" id="attrs">Object Attributes</a></h1>
 <p id="rfc.section.2.p.1">An EPP registry object has attributes and associated values that may be viewed and modified by the sponsoring client or the server.  This section describes each attribute type in detail. The formal syntax for the attribute values described here can be found in the "Formal Syntax" section of this document and in the appropriate normative references.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#zoneName" id="zoneName">Zone Name</a></h1>
@@ -1404,7 +1404,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;check&gt;
 C:      &lt;registry:check
-C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 C:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
 C:        &lt;registry:name&gt;zone2&lt;/registry:name&gt;
 C:        &lt;registry:name&gt;zone3&lt;/registry:name&gt;
@@ -1433,7 +1433,7 @@ S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:chkData
 S:        xmlns:registry=
-S:        "urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+S:        "urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 S:        &lt;registry:cd&gt;
 S:          &lt;registry:name avail="0"&gt;zone1&lt;/registry:name&gt;
 S:          &lt;registry:reason&gt;Client not authorized
@@ -1478,7 +1478,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 C:        &lt;registry:all/&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
@@ -1492,7 +1492,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 C:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
@@ -1506,7 +1506,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 C:        &lt;registry:system/&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
@@ -1560,7 +1560,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 S:        &lt;registry:zoneList&gt;
 S:          &lt;registry:zone&gt;
 S:            &lt;registry:name&gt;EXAMPLE1&lt;/registry:name&gt;
@@ -1595,7 +1595,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 S:        &lt;registry:zone&gt;
 S:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 S:          ...
@@ -1618,7 +1618,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:infData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 S:        &lt;registry:system&gt;
 S:          &lt;registry:maxConnections&gt;200
 S:          &lt;/registry:maxConnections&gt;
@@ -1660,7 +1660,7 @@ C:  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
 C:  &lt;command&gt;
 C:    &lt;create&gt;
 C:      &lt;registry:create
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -1689,7 +1689,7 @@ S:      &lt;msg&gt;Command completed successfully&lt;/msg&gt;
 S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:creData
-S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 S:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
 S:        &lt;registry:crDate&gt;2012-10-30T22:00:00.0Z
 S:        &lt;/registry:crDate&gt;
@@ -1717,7 +1717,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;delete&gt;
 C:      &lt;registry:delete
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 C:        &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:      &lt;/registry:delete&gt;
 C:    &lt;/delete&gt;
@@ -1759,7 +1759,7 @@ C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
 C:  &lt;command&gt;
 C:    &lt;update&gt;
 C:      &lt;registry:update
-C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"&gt;
+C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 C:        &lt;registry:zone&gt;
 C:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:          ...
@@ -2837,7 +2837,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:ns:epp:registry-0.1</li>
+  <li>URI: urn:ietf:params:xml:ns:epp:registry-0.2</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: None. Namespace URIs do not represent an XML specification.</li>
 </ul>
@@ -2845,7 +2845,7 @@ END</pre>
 <p/>
 
 <ul class="empty">
-  <li>URI: urn:ietf:params:xml:schema:epp:registry-0.1</li>
+  <li>URI: urn:ietf:params:xml:schema:epp:registry-0.2</li>
   <li>Registrant Contact: IESG</li>
   <li>XML: See the "Formal Syntax" section of this document.</li>
 </ul>
@@ -3000,6 +3000,7 @@ END</pre>
   <li>Added "that SHOULD match the statuses" to the descriptions of the &lt;registry:supportedStatus&gt; elements under the &lt;registry:domain&gt; element, the &lt;registry:host&gt; element, and the &lt;registry:contact&gt; element, based on feedback from Mario Loffredo.</li>
   <li>Added "or transferred" to the description of the &lt;registry:expiryPolicy&gt; element "autoRenew" value, based on feedback from Mario Laffredo.</li>
   <li>Added support for an optional list of &lt;registry:invalidIP&gt; elements, under the &lt;registry:host&gt; element, to reference a list of externally defined invalid IP addresses URIs, based on feedback from Patrick Mevzek.</li>
+  <li>Changed all references of urn:ietf:params:xml:ns:epp:registry-0.1 to urn:ietf:params:xml:ns:epp:registry-0.2 in the draft.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

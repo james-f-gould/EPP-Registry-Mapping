@@ -157,7 +157,7 @@ Internet-Draft                  registry                    October 2018
    relationships and are not a REQUIRED feature of this protocol.
 
    The XML namespace prefix "registry" is used for the namespace
-   "urn:ietf:params:xml:ns:epp:registry-0.1", but implementations MUST
+   "urn:ietf:params:xml:ns:epp:registry-0.2", but implementations MUST
    NOT depend on it and instead employ a proper namespace-aware XML
    parser and serializer to interpret and output the XML documents.
 
@@ -1409,7 +1409,7 @@ Internet-Draft                  registry                    October 2018
    C:  <command>
    C:    <check>
    C:      <registry:check
-   C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    C:        <registry:name>zone1</registry:name>
    C:        <registry:name>zone2</registry:name>
    C:        <registry:name>zone3</registry:name>
@@ -1469,7 +1469,7 @@ Internet-Draft                  registry                    October 2018
    S:    <resData>
    S:      <registry:chkData
    S:        xmlns:registry=
-   S:        "urn:ietf:params:xml:ns:epp:registry-0.1">
+   S:        "urn:ietf:params:xml:ns:epp:registry-0.2">
    S:        <registry:cd>
    S:          <registry:name avail="0">zone1</registry:name>
    S:          <registry:reason>Client not authorized
@@ -1537,7 +1537,7 @@ Internet-Draft                  registry                    October 2018
    C:  <command>
    C:    <info>
    C:      <registry:info
-   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    C:        <registry:all/>
    C:      </registry:info>
    C:    </info>
@@ -1553,7 +1553,7 @@ Internet-Draft                  registry                    October 2018
    C:  <command>
    C:    <info>
    C:      <registry:info
-   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    C:        <registry:name>zone1</registry:name>
    C:      </registry:info>
    C:    </info>
@@ -1577,7 +1577,7 @@ Internet-Draft                  registry                    October 2018
    C:  <command>
    C:    <info>
    C:      <registry:info
-   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    C:        <registry:system/>
    C:      </registry:info>
    C:    </info>
@@ -1693,7 +1693,7 @@ Internet-Draft                  registry                    October 2018
    S:    </result>
    S:    <resData>
    S:      <registry:infData
-   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    S:        <registry:zoneList>
    S:          <registry:zone>
    S:            <registry:name>EXAMPLE1</registry:name>
@@ -1749,7 +1749,7 @@ Internet-Draft                  registry                    October 2018
    S:    </result>
    S:    <resData>
    S:      <registry:infData
-   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    S:        <registry:zone>
    S:          <registry:name>EXAMPLE</registry:name>
    S:          ...
@@ -1804,7 +1804,7 @@ Internet-Draft                  registry                    October 2018
    S:    </result>
    S:    <resData>
    S:      <registry:infData
-   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    S:        <registry:system>
    S:          <registry:maxConnections>200
    S:          </registry:maxConnections>
@@ -1869,7 +1869,7 @@ Internet-Draft                  registry                    October 2018
    C:  <command>
    C:    <create>
    C:      <registry:create
-   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    C:        <registry:zone>
    C:          <registry:name>EXAMPLE</registry:name>
    C:          ...
@@ -1916,7 +1916,7 @@ Internet-Draft                  registry                    October 2018
    S:    </result>
    S:    <resData>
    S:      <registry:creData
-   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    S:        <registry:name>zone1</registry:name>
    S:        <registry:crDate>2012-10-30T22:00:00.0Z
    S:        </registry:crDate>
@@ -1969,7 +1969,7 @@ Internet-Draft                  registry                    October 2018
    C:  <command>
    C:    <delete>
    C:      <registry:delete
-   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    C:        <registry:name>EXAMPLE</registry:name>
    C:      </registry:delete>
    C:    </delete>
@@ -2037,7 +2037,7 @@ Internet-Draft                  registry                    October 2018
    C:  <command>
    C:    <update>
    C:      <registry:update
-   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1">
+   C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
    C:        <registry:zone>
    C:          <registry:name>EXAMPLE</registry:name>
    C:          ...
@@ -3315,13 +3315,13 @@ Internet-Draft                  registry                    October 2018
 
    Registration request for the registry namespace:
 
-      URI: urn:ietf:params:xml:ns:epp:registry-0.1
+      URI: urn:ietf:params:xml:ns:epp:registry-0.2
       Registrant Contact: IESG
       XML: None.  Namespace URIs do not represent an XML specification.
 
    Registration request for the registry XML schema:
 
-      URI: urn:ietf:params:xml:schema:epp:registry-0.1
+      URI: urn:ietf:params:xml:schema:epp:registry-0.2
       Registrant Contact: IESG
       XML: See the "Formal Syntax" section of this document.
 
@@ -3543,41 +3543,41 @@ A.3.  Change from 02 to 03
 
 A.4.  Change from 03 to 04
 
-   1.  Added the optional <registry:contactIdPrefix> element to support
-       a client-specific prefix for the <contact:id> elements in
-       [RFC5733], based on feedback from Patrick Mevzek.
-   2.  Added the optional <registry:unsupportedData> element to define
-       what the server does when unsupported data is sent by the client,
-       based on feedback from Patrick Mevzek.
-   3.  Added the <registry:nullAuthInfoSupported> element to indicate
-       whether the <domain:null> element of [RFC5731] is supported,
-       based on feedback from Patrick Mevzek.
-   4.  Added support for the <registry:flags> and the
-       <registry:protocol> elements under the
-       <registry:keyDataInterface> element to define the supported set
-       of key data interface flags and protocols, based on feedback from
-       Patrick Mevzek.
-   5.  Updated the Introduction sentence "It is up to server policy to
-       define what clients are authorized to execute which commands on
-       which registry zones" to "It is up to server policy what commands
-       are supported and to define the clients that are authorized to
-       execute the commands for the registry zones.  The server MUST
-       return a 2101 error response for an unimplemented command and
-       MUST return a 2201 error response for an unauthorized command.",
-       based on feedback from Mario Loffredo.
-   6.  Added two additional <registry:postalInfoTypeSupport> element
-       values, which include "intOptLoc" and "locOptInt", based on
-       feedback from Patrick Mevzek.
-   7.  Added "that SHOULD match the statuses" to the descriptions of the
-       <registry:supportedStatus> elements under the <registry:domain>
-       element, the <registry:host> element, and the <registry:contact>
-       element, based on feedback from Mario Loffredo.
-   8.  Added "or transferred" to the description of the
-       <registry:expiryPolicy> element "autoRenew" value, based on
-       feedback from Mario Laffredo.
-   9.  Added support for an optional list of <registry:invalidIP>
-       elements, under the <registry:host> element, to reference a list
-
+   1.   Added the optional <registry:contactIdPrefix> element to support
+        a client-specific prefix for the <contact:id> elements in
+        [RFC5733], based on feedback from Patrick Mevzek.
+   2.   Added the optional <registry:unsupportedData> element to define
+        what the server does when unsupported data is sent by the
+        client, based on feedback from Patrick Mevzek.
+   3.   Added the <registry:nullAuthInfoSupported> element to indicate
+        whether the <domain:null> element of [RFC5731] is supported,
+        based on feedback from Patrick Mevzek.
+   4.   Added support for the <registry:flags> and the
+        <registry:protocol> elements under the
+        <registry:keyDataInterface> element to define the supported set
+        of key data interface flags and protocols, based on feedback
+        from Patrick Mevzek.
+   5.   Updated the Introduction sentence "It is up to server policy to
+        define what clients are authorized to execute which commands on
+        which registry zones" to "It is up to server policy what
+        commands are supported and to define the clients that are
+        authorized to execute the commands for the registry zones.  The
+        server MUST return a 2101 error response for an unimplemented
+        command and MUST return a 2201 error response for an
+        unauthorized command.", based on feedback from Mario Loffredo.
+   6.   Added two additional <registry:postalInfoTypeSupport> element
+        values, which include "intOptLoc" and "locOptInt", based on
+        feedback from Patrick Mevzek.
+   7.   Added "that SHOULD match the statuses" to the descriptions of
+        the <registry:supportedStatus> elements under the
+        <registry:domain> element, the <registry:host> element, and the
+        <registry:contact> element, based on feedback from Mario
+        Loffredo.
+   8.   Added "or transferred" to the description of the
+        <registry:expiryPolicy> element "autoRenew" value, based on
+        feedback from Mario Laffredo.
+   9.   Added support for an optional list of <registry:invalidIP>
+        elements, under the <registry:host> element, to reference a list
 
 
 
@@ -3586,8 +3586,10 @@ Gould, et al.            Expires April 19, 2019                [Page 64]
 Internet-Draft                  registry                    October 2018
 
 
-       of externally defined invalid IP addresses URIs, based on
-       feedback from Patrick Mevzek.
+        of externally defined invalid IP addresses URIs, based on
+        feedback from Patrick Mevzek.
+   10.  Changed all references of urn:ietf:params:xml:ns:epp:registry-
+        0.1 to urn:ietf:params:xml:ns:epp:registry-0.2 in the draft.
 
 Authors' Addresses
 
@@ -3629,8 +3631,6 @@ Authors' Addresses
 
    Email: jkolker@godaddy.com
    URI:   http://www.godaddy.com
-
-
 
 
 
