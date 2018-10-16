@@ -222,6 +222,10 @@
         type="dateTime"
         minOccurs="0"/>
       <element
+        name="unsupportedData"
+        type="registry:unsupportedDataType"
+        minOccurs="0"/>
+      <element
         name="batch"
         type="registry:batchType"
         minOccurs="0"/>
@@ -996,4 +1000,10 @@
         minOccurs="0"/>
     </sequence>
   </complexType>
+  <simpleType name="unsupportedDataType">
+    <restriction base="token">
+      <enumeration value="fail"/>
+      <enumeration value="ignore"/>
+    </restriction>
+  </simpleType>  
 </schema>

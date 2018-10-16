@@ -592,6 +592,17 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   <dd style="margin-left: 4">The OPTIONAL identifier of the client that last updated the zone object.  This element MUST NOT be present if the zone has never been modified.</dd>
   <dt>&lt;registry:upDate&gt;:</dt>
   <dd style="margin-left: 4">The OPTIONAL date and time of the most recent zone object modification.  This element MUST NOT be present if the domain object has never been modified.</dd>
+  <dt>&lt;registry:unsupportedData&gt;:</dt>
+  <dd style="margin-left: 4">The OPTIONAL policy associated with receipt of unsupported data sent by the client to the server.  The unsupported data may be an unsupported element or extension.  The server SHOULD be consistent in the handling of unsupported data.  The possible values for the &lt;registry:unsupportedData&gt; element include:</dd>
+  <dt></dt>
+  <dd style="margin-left: 4">
+    <dl>
+      <dt>"fail":</dt>
+      <dd style="margin-left: 4">The server will fail the command that includes unsupported data.</dd>
+      <dt>"ignore":</dt>
+      <dd style="margin-left: 4">The server will ignore the unsupported data and execute the command.</dd>
+    </dl>
+  </dd>
   <dt>&lt;registry:batch&gt;:</dt>
   <dd style="margin-left: 4">The OPTIONAL list of batch jobs.  The &lt;registry:batch&gt; element contains the following child elements:</dd>
   <dt></dt>
@@ -1044,6 +1055,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   &lt;registry:upID&gt;clientY&lt;/registry:upID&gt;
   &lt;registry:upDate&gt;2012-10-15T00:00:00.0Z
   &lt;/registry:upDate&gt;
+  &lt;registry:unsupportedData&gt;fail
+  &lt;/registry:unsupportedData&gt;
   &lt;registry:batch&gt;
     &lt;registry:batchJob&gt;
       &lt;registry:name&gt;pendingDelete&lt;/registry:name&gt;
@@ -1984,6 +1997,10 @@ BEGIN
         type="dateTime"
         minOccurs="0"/&gt;
       &lt;element
+        name="unsupportedData"
+        type="registry:unsupportedDataType"
+        minOccurs="0"/&gt;
+      &lt;element
         name="batch"
         type="registry:batchType"
         minOccurs="0"/&gt;
@@ -2758,6 +2775,12 @@ BEGIN
         minOccurs="0"/&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
+  &lt;simpleType name="unsupportedDataType"&gt;
+    &lt;restriction base="token"&gt;
+      &lt;enumeration value="fail"/&gt;
+      &lt;enumeration value="ignore"/&gt;
+    &lt;/restriction&gt;
+  &lt;/simpleType&gt;  
 &lt;/schema&gt;
 END</pre>
 <h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#IANA" id="IANA">IANA Considerations</a></h1>
@@ -2922,6 +2945,7 @@ END</pre>
 
 <ol>
   <li>Added the optional &lt;registry:contactIdPrefix&gt; element to support a client-specific prefix for the &lt;contact:id&gt; elements in <a href="#RFC5733">[RFC5733]</a>, based on feedback from Patrick Mevzek.</li>
+  <li>Added the optional &lt;registry:unsupportedData&gt; element to define what the server does when unsupported data is sent by the client, based on feedback from Patrick Mevzek.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

@@ -316,6 +316,17 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <t hangText="&lt;registry:upDate&gt;:">The OPTIONAL date and time 
           of the most recent zone object modification.  This element MUST NOT 
           be present if the domain object has never been modified.</t>             
+          <t hangText="&lt;registry:unsupportedData&gt;:">The OPTIONAL policy 
+          associated with receipt of unsupported data sent by the client to the server. 
+          The unsupported data may be an unsupported element or extension. 
+          The server SHOULD be consistent in the handling of unsupported data. 
+          The possible values for the &lt;registry:unsupportedData&gt; element include:</t>
+		  <t><list hangIndent="4" style="hanging">
+			<t hangText="&quot;fail&quot;:">The server will fail the command 
+			that includes unsupported data.</t>
+			<t hangText="&quot;ignore&quot;:">The server will ignore the 
+			unsupported data and execute the command.</t>
+		  </list></t>   
           <t hangText="&lt;registry:batch&gt;:">The OPTIONAL list of 
           batch jobs.  The &lt;registry:batch&gt; element contains the 
           following child elements:</t>             
@@ -948,6 +959,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   <registry:upID>clientY</registry:upID>
   <registry:upDate>2012-10-15T00:00:00.0Z
   </registry:upDate>
+  <registry:unsupportedData>fail
+  </registry:unsupportedData>
   <registry:batch>
     <registry:batchJob>
       <registry:name>pendingDelete</registry:name>
@@ -2124,6 +2137,10 @@ BEGIN
         type="dateTime"
         minOccurs="0"/>
       <element
+        name="unsupportedData"
+        type="registry:unsupportedDataType"
+        minOccurs="0"/>
+      <element
         name="batch"
         type="registry:batchType"
         minOccurs="0"/>
@@ -2898,6 +2915,12 @@ BEGIN
         minOccurs="0"/>
     </sequence>
   </complexType>
+  <simpleType name="unsupportedDataType">
+    <restriction base="token">
+      <enumeration value="fail"/>
+      <enumeration value="ignore"/>
+    </restriction>
+  </simpleType>  
 </schema>
 END]]></artwork>
       </figure>
@@ -3106,6 +3129,9 @@ END]]></artwork>
           <t>Added the optional &lt;registry:contactIdPrefix&gt; element to support a 
           client-specific prefix for the &lt;contact:id&gt; elements in <xref target="RFC5733"/>, 
           based on feedback from Patrick Mevzek.</t>
+          <t>Added the optional &lt;registry:unsupportedData&gt; element to define what 
+          the server does when unsupported data is sent by the client, based on feedback from 
+          Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>

@@ -32,6 +32,8 @@
   <registry:upID>clientY</registry:upID>
   <registry:upDate>2012-10-15T00:00:00.0Z
   </registry:upDate>
+  <registry:unsupportedData>fail
+  </registry:unsupportedData>
   <registry:batch>
     <registry:batchJob>
       <registry:name>pendingDelete</registry:name>

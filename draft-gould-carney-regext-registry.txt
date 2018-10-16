@@ -72,8 +72,8 @@ Table of Contents
      2.4.  Zone Object . . . . . . . . . . . . . . . . . . . . . . .   5
    3.  EPP Command Mapping . . . . . . . . . . . . . . . . . . . . .  24
      3.1.  EPP Query Commands  . . . . . . . . . . . . . . . . . . .  24
-       3.1.1.  EPP <check> Command . . . . . . . . . . . . . . . . .  24
-       3.1.2.  EPP <info> Command  . . . . . . . . . . . . . . . . .  26
+       3.1.1.  EPP <check> Command . . . . . . . . . . . . . . . . .  25
+       3.1.2.  EPP <info> Command  . . . . . . . . . . . . . . . . .  27
        3.1.3.  EPP <transfer> Query Command  . . . . . . . . . . . .  32
      3.2.  EPP Transform Commands  . . . . . . . . . . . . . . . . .  32
        3.2.1.  EPP <create> Command  . . . . . . . . . . . . . . . .  33
@@ -93,8 +93,8 @@ Table of Contents
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  60
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  60
      9.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  61
-   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  61
-     A.1.  Change from 00 to 01  . . . . . . . . . . . . . . . . . .  61
+   Appendix A.  Change History . . . . . . . . . . . . . . . . . . .  62
+     A.1.  Change from 00 to 01  . . . . . . . . . . . . . . . . . .  62
      A.2.  Change from 01 to 02  . . . . . . . . . . . . . . . . . .  62
      A.3.  Change from 02 to 03  . . . . . . . . . . . . . . . . . .  62
      A.4.  Change from 03 to 04  . . . . . . . . . . . . . . . . . .  62
@@ -299,6 +299,18 @@ Internet-Draft                  registry                    October 2018
    <registry:upDate>:  The OPTIONAL date and time of the most recent
        zone object modification.  This element MUST NOT be present if
        the domain object has never been modified.
+   <registry:unsupportedData>:  The OPTIONAL policy associated with
+       receipt of unsupported data sent by the client to the server.
+       The unsupported data may be an unsupported element or extension.
+       The server SHOULD be consistent in the handling of unsupported
+       data.  The possible values for the <registry:unsupportedData>
+       element include:
+
+
+       "fail":  The server will fail the command that includes
+           unsupported data.
+       "ignore":  The server will ignore the unsupported data and
+           execute the command.
    <registry:batch>:  The OPTIONAL list of batch jobs.  The
        <registry:batch> element contains the following child elements:
 
@@ -317,6 +329,15 @@ Internet-Draft                  registry                    October 2018
            <registry:schedule>:  Execution schedule for the batch job as
                defined in Section 2.3, like <registry:schedule
                tz="EDT5EDT">0 14 * * *</registry:schedule>.
+
+
+
+
+Gould, et al.            Expires April 19, 2019                 [Page 6]
+
+Internet-Draft                  registry                    October 2018
+
+
    <registry:system>:  The OPTIONAL list of zones that makeup the system
        when the "perSystem" share policy is used for the internal hosts,
        external hosts, or contacts.  The list of zones are listed
@@ -328,16 +349,6 @@ Internet-Draft                  registry                    October 2018
        <registry:zone>:  One or more <registry:zone> elements, as
            described in Section 2.1, containing the name of the zone
            that is a member of the system.
-
-
-
-
-
-Gould, et al.            Expires April 19, 2019                 [Page 6]
-
-Internet-Draft                  registry                    October 2018
-
-
    <registry:domain>:  The domain name object policy information per
        [RFC5731].  The <registry:domain> element contains the following
        child elements:
@@ -374,6 +385,15 @@ Internet-Draft                  registry                    October 2018
                element that describes the regular expression with an
                OPTIONAL "lang" attribute that defines the language of
                the description with a default value of "en" (English).
+
+
+
+
+Gould, et al.            Expires April 19, 2019                 [Page 7]
+
+Internet-Draft                  registry                    October 2018
+
+
            <registry:reservedNames>:  An OPTIONAL element that defines
                the set of reserved domain names starting from that label
                level.  The reserved names can refer to values with more
@@ -385,15 +405,6 @@ Internet-Draft                  registry                    October 2018
 
                <registry:reservedName>:  Zero or more
                    <registry:reservedName> elements containing a
-
-
-
-
-Gould, et al.            Expires April 19, 2019                 [Page 7]
-
-Internet-Draft                  registry                    October 2018
-
-
                    reserved domain name relative to the level of the
                    parent <registry:domainName> element.
                <registry:reservedNameURI>:  An OPTIONAL URI to an
@@ -430,6 +441,15 @@ Internet-Draft                  registry                    October 2018
                element contains the following child elements:
 
 
+
+
+
+
+Gould, et al.            Expires April 19, 2019                 [Page 8]
+
+Internet-Draft                  registry                    October 2018
+
+
                <registry:table>:  The OPTIONAL language table URI that
                    contains the set of code points for the language.
                <registry:variantStrategy>:  An OPTIONAL strategy for the
@@ -442,14 +462,6 @@ Internet-Draft                  registry                    October 2018
 
                    "blocked":  Variant registrations are blocked for all
                        clients.
-
-
-
-Gould, et al.            Expires April 19, 2019                 [Page 8]
-
-Internet-Draft                  registry                    October 2018
-
-
                    "restricted":  Variant registrations are allowed for
                        client of the original IDN registration.
                    "open":  Variant registrations are open to all
@@ -487,6 +499,13 @@ Internet-Draft                  registry                    October 2018
            following child elements:
 
 
+
+
+Gould, et al.            Expires April 19, 2019                 [Page 9]
+
+Internet-Draft                  registry                    October 2018
+
+
            <registry:min>:  The minimum number of name servers
                associated with a domain object.
            <registry:max>:  The OPTIONAL maximum number of name servers
@@ -498,12 +517,6 @@ Internet-Draft                  registry                    October 2018
            subordinate host objects (child hosts) for a domain object.
            The <registry:childHost> element contains the following child
            elements:
-
-
-
-Gould, et al.            Expires April 19, 2019                 [Page 9]
-
-Internet-Draft                  registry                    October 2018
 
 
            <registry:min>:  The minimum number of child hosts for a
@@ -540,6 +553,15 @@ Internet-Draft                  registry                    October 2018
        <registry:transferHoldPeriod>:  The period of time a domain
            object is in the pending transfer before the transfer is auto
            approved by the server.  The <registry:transferHoldPeriod>
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 10]
+
+Internet-Draft                  registry                    October 2018
+
+
            element MUST have the "unit" attribute with the possible
            values of "y" for year, "m" for month, and "d" for day.
        <registry:gracePeriod>:  Zero or more <registry:gracePeriod>
@@ -554,12 +576,6 @@ Internet-Draft                  registry                    October 2018
            child elements, where each child element supports the "unit"
            attribute with the possible values of "y" for year, "m" for
            month, "d" for day, and "h" for hour:
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 10]
-
-Internet-Draft                  registry                    October 2018
 
 
            <registry:redemptionPeriod>:  The length of time that a
@@ -594,6 +610,14 @@ Internet-Draft                  registry                    October 2018
                    <registry:digestType> elements that define the
                    supported digest types as described in section 5.1.3
                    of [RFC4034].
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 11]
+
+Internet-Draft                  registry                    October 2018
+
+
            <registry:keyDataInterface>:  Defines the Key Data Interface,
                as defined in [RFC5910], policies.  The
                <registry:keyDataInterface> element contains the
@@ -608,16 +632,6 @@ Internet-Draft                  registry                    October 2018
                <registry:alg>:  Zero or more <registry:alg> elements
                    that define the supported algorithms as described in
                    section 2.1.3 of [RFC4034].
-
-
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 11]
-
-Internet-Draft                  registry                    October 2018
-
-
            <registry:maxSigLife>:  Defines the maximum signature
                lifetime policies.  The <registry:maxSigLife> element
                contains the following child elements:
@@ -654,6 +668,12 @@ Internet-Draft                  registry                    October 2018
            <registry:expiryPolicy> element include:
 
 
+
+Gould, et al.            Expires April 19, 2019                [Page 12]
+
+Internet-Draft                  registry                    October 2018
+
+
            "autoRenew":  The domain object will auto-renew at expiry.
                The client can receive a credit for the auto-renew if the
                domain object is deleted within the auto-renew grace
@@ -665,15 +685,6 @@ Internet-Draft                  registry                    October 2018
            "autoExpire":  The domain object will auto-expire at expiry
                that may include the server placing the domain object on
                serverHold.
-
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 12]
-
-Internet-Draft                  registry                    October 2018
-
-
            "autoParked":  The domain object will be auto-parked at
                expiry that results in the resolution of the domain
                object going to a parked page.
@@ -710,6 +721,15 @@ Internet-Draft                  registry                    October 2018
                value that indicates that all of the IP addresses for the
                host object must be unique, with a default value of
                "false".
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 13]
+
+Internet-Draft                  registry                    October 2018
+
+
        <registry:external>:  Defines the policies for external hosts.
            The <registry:external> elements contains the following child
            elements:
@@ -720,16 +740,6 @@ Internet-Draft                  registry                    October 2018
            <registry:maxIP>:  Maximum number of IP addresses supported
                for an external host.  The <registry:maxIP> element MUST
                NOT be less than the <registry:minIP> element.
-
-
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 13]
-
-Internet-Draft                  registry                    October 2018
-
-
            <registry:sharePolicy>:  The OPTIONAL policy for the sharing
                of external hosts in the server.  The possible shared
                policy values include:
@@ -768,22 +778,20 @@ Internet-Draft                  registry                    October 2018
        <registry:contactIdPrefix>:  The OPTIONAL client-specific prefix
            that must be used for the <contact:id> element defined in
            [RFC5733].  For example, if the client is assigned the
-           client-specific prefix "EX", every contact created by the
-           client must have a <contact:id> element value prefixed with
-           "EX", as in "EX123".
-       <registry:sharePolicy>:  The OPTIONAL policy for the sharing of
-           contacts in the server.  The possible shared policy values
-           include:
-
-
-
-
 
 
 
 Gould, et al.            Expires April 19, 2019                [Page 14]
 
 Internet-Draft                  registry                    October 2018
+
+
+           client-specific prefix "EX", every contact created by the
+           client must have a <contact:id> element value prefixed with
+           "EX", as in "EX123".
+       <registry:sharePolicy>:  The OPTIONAL policy for the sharing of
+           contacts in the server.  The possible shared policy values
+           include:
 
 
            "perZone":  The contacts are shared across all objects of the
@@ -827,19 +835,18 @@ Internet-Draft                  registry                    October 2018
                following child elements:
 
 
-               <registry:street>:  The minimum and maximum length and
-                   the minimum and maximum number of the
-                   <contact:street> elements defined in [RFC5733].  The
-                   <registry:street> element contains the following
-                   child elements:
-
-
-
 
 
 Gould, et al.            Expires April 19, 2019                [Page 15]
 
 Internet-Draft                  registry                    October 2018
+
+
+               <registry:street>:  The minimum and maximum length and
+                   the minimum and maximum number of the
+                   <contact:street> elements defined in [RFC5733].  The
+                   <registry:street> element contains the following
+                   child elements:
 
 
                    <registry:minLength>:  The minimum length of the
@@ -881,14 +888,7 @@ Internet-Draft                  registry                    October 2018
        <registry:maxCheckContact>:  The maximum number of contact
            identifiers (<contact:id> elements) that can be included in a
            contact check command defined in [RFC5733].
-       <registry:authInfoRegex>:  The OPTIONAL regular expression used
-           to validate the contact object authorization information
-           value.
-       <registry:clientDisclosureSupported>:  The OPTIONAL flag that
-           indicates whether the server supports the client to identify
-           elements that require exception server-operator handling to
-           allow or restrict disclosure to third parties defined in
-           [RFC5733] with a default of "false".
+
 
 
 
@@ -898,6 +898,14 @@ Gould, et al.            Expires April 19, 2019                [Page 16]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:authInfoRegex>:  The OPTIONAL regular expression used
+           to validate the contact object authorization information
+           value.
+       <registry:clientDisclosureSupported>:  The OPTIONAL flag that
+           indicates whether the server supports the client to identify
+           elements that require exception server-operator handling to
+           allow or restrict disclosure to third parties defined in
+           [RFC5733] with a default of "false".
        <registry:supportedStatus>:  The OPTIONAL set of supported
            contact statuses defined in [RFC5733].
        <registry:transferHoldPeriod>:  The OPTIONAL period of time a
@@ -938,14 +946,6 @@ Internet-Draft                  registry                    October 2018
          <registry:extURI required="true">
            http://www.verisign-grs.com/epp/namestoreExt-1.1
          </registry:extURI>
-         <registry:extURI required="false">
-           http://www.verisign.com/epp/idnLang-1.0
-         </registry:extURI>
-       </registry:svcExtension>
-     </registry:services>
-     <registry:crID>clientX</registry:crID>
-     <registry:crDate>2012-10-01T00:00:00.0Z
-     </registry:crDate>
 
 
 
@@ -954,9 +954,19 @@ Gould, et al.            Expires April 19, 2019                [Page 17]
 Internet-Draft                  registry                    October 2018
 
 
+         <registry:extURI required="false">
+           http://www.verisign.com/epp/idnLang-1.0
+         </registry:extURI>
+       </registry:svcExtension>
+     </registry:services>
+     <registry:crID>clientX</registry:crID>
+     <registry:crDate>2012-10-01T00:00:00.0Z
+     </registry:crDate>
      <registry:upID>clientY</registry:upID>
      <registry:upDate>2012-10-15T00:00:00.0Z
      </registry:upDate>
+     <registry:unsupportedData>fail
+     </registry:unsupportedData>
      <registry:batch>
        <registry:batchJob>
          <registry:name>pendingDelete</registry:name>
@@ -992,6 +1002,14 @@ Internet-Draft                  registry                    October 2018
            <registry:description>Alphanumeric
            </registry:description>
          </registry:regex>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 18]
+
+Internet-Draft                  registry                    October 2018
+
+
          <registry:regex>
            <registry:expression>^\d+.*$
            </registry:expression>
@@ -1002,14 +1020,6 @@ Internet-Draft                  registry                    October 2018
          </registry:reservedNames>
        </registry:domainName>
        <registry:idn>
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 18]
-
-Internet-Draft                  registry                    October 2018
-
-
          <registry:idnVersion>4.1
          </registry:idnVersion>
          <registry:idnaVersion>2008
@@ -1048,6 +1058,14 @@ Internet-Draft                  registry                    October 2018
          description="Abuse Contact"
        >
          <registry:min>0</registry:min>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 19]
+
+Internet-Draft                  registry                    October 2018
+
+
          <registry:max>1</registry:max>
        </registry:contact>
        <registry:ns>
@@ -1058,14 +1076,6 @@ Internet-Draft                  registry                    October 2018
          <registry:min>0</registry:min>
        </registry:childHost>
        <registry:period command="create">
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 19]
-
-Internet-Draft                  registry                    October 2018
-
-
          <registry:length>
            <registry:min unit="y">1</registry:min>
            <registry:max unit="y">10</registry:max>
@@ -1104,6 +1114,14 @@ Internet-Draft                  registry                    October 2018
        </registry:rgp>
        <registry:dnssec>
          <registry:dsDataInterface>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 20]
+
+Internet-Draft                  registry                    October 2018
+
+
            <registry:min>0</registry:min>
            <registry:max>13</registry:max>
            <registry:alg>3</registry:alg>
@@ -1114,14 +1132,6 @@ Internet-Draft                  registry                    October 2018
            </registry:clientDefined>
          </registry:maxSigLife>
        </registry:dnssec>
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 20]
-
-Internet-Draft                  registry                    October 2018
-
-
        <registry:maxCheckDomain>5
        </registry:maxCheckDomain>
        <registry:supportedStatus>
@@ -1160,6 +1170,14 @@ Internet-Draft                  registry                    October 2018
        <registry:expiryPolicy>autoRenew
        </registry:expiryPolicy>
      </registry:domain>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 21]
+
+Internet-Draft                  registry                    October 2018
+
+
      <registry:host>
        <registry:internal>
          <registry:minIP>1</registry:minIP>
@@ -1170,14 +1188,6 @@ Internet-Draft                  registry                    October 2018
          </registry:uniqueIpAddressesRequired>
        </registry:internal>
        <registry:external>
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 21]
-
-Internet-Draft                  registry                    October 2018
-
-
          <registry:minIP>0</registry:minIP>
          <registry:maxIP>0</registry:maxIP>
          <registry:sharePolicy>perSystem
@@ -1216,6 +1226,14 @@ Internet-Draft                  registry                    October 2018
        </registry:contactIdPrefix>
        <registry:sharePolicy>perZone
        </registry:sharePolicy>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 22]
+
+Internet-Draft                  registry                    October 2018
+
+
        <registry:postalInfoTypeSupport>int
        </registry:postalInfoTypeSupport>
        <registry:postalInfo>
@@ -1226,14 +1244,6 @@ Internet-Draft                  registry                    October 2018
          <registry:org>
            <registry:minLength>2</registry:minLength>
            <registry:maxLength>40</registry:maxLength>
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 22]
-
-Internet-Draft                  registry                    October 2018
-
-
          </registry:org>
          <registry:address>
            <registry:street>
@@ -1272,6 +1282,14 @@ Internet-Draft                  registry                    October 2018
        </registry:postalInfo>
        <registry:maxCheckContact>5</registry:maxCheckContact>
        <registry:authInfoRegex>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 23]
+
+Internet-Draft                  registry                    October 2018
+
+
          <registry:expression>^.*$</registry:expression>
        </registry:authInfoRegex>
        <registry:clientDisclosureSupported>false
@@ -1282,14 +1300,6 @@ Internet-Draft                  registry                    October 2018
          <registry:status>clientDeleteProhibited
          </registry:status>
          <registry:status>serverDeleteProhibited
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 23]
-
-Internet-Draft                  registry                    October 2018
-
-
          </registry:status>
          <registry:status>clientTransferProhibited
          </registry:status>
@@ -1329,6 +1339,13 @@ Internet-Draft                  registry                    October 2018
    retrieve detailed information associated with an object, and
    <transfer> to retrieve object transfer status information.
 
+
+
+Gould, et al.            Expires April 19, 2019                [Page 24]
+
+Internet-Draft                  registry                    October 2018
+
+
 3.1.1.  EPP <check> Command
 
    The EPP <check> command is used to determine if the server currently
@@ -1338,14 +1355,6 @@ Internet-Draft                  registry                    October 2018
 
    In addition to the standard EPP command elements, the <check> command
    MUST contain a <registry:check> element that identifies the registry
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 24]
-
-Internet-Draft                  registry                    October 2018
-
-
    namespace.  The <registry:check> element contains the following child
    elements:
 
@@ -1384,15 +1393,6 @@ Internet-Draft                  registry                    October 2018
        of "1" or "true" means that the zone object is available for an
        authorized client.  A value of "0" or "false" means that the zone
        object is currently supported by the server.
-   <registry:reason>:  The OPTIONAL element that MAY be provided when a
-       zone object is not available for provisioning.  If present, this
-       element contains server-specific text to help explain why the
-       zone object is unavailable.  This text MUST be represented in the
-       response language previously negotiated with the client; an
-       OPTIONAL "lang" attribute MAY be present to identify the language
-       if the negotiated value is something other than a default value
-       of "en" (English).
-
 
 
 
@@ -1401,6 +1401,15 @@ Gould, et al.            Expires April 19, 2019                [Page 25]
 
 Internet-Draft                  registry                    October 2018
 
+
+   <registry:reason>:  The OPTIONAL element that MAY be provided when a
+       zone object is not available for provisioning.  If present, this
+       element contains server-specific text to help explain why the
+       zone object is unavailable.  This text MUST be represented in the
+       response language previously negotiated with the client; an
+       OPTIONAL "lang" attribute MAY be present to identify the language
+       if the negotiated value is something other than a default value
+       of "en" (English).
 
    Example <check> response:
 
@@ -1441,15 +1450,6 @@ Internet-Draft                  registry                    October 2018
    An EPP error response MUST be returned if a <check> command cannot be
    processed for any reason.
 
-3.1.2.  EPP <info> Command
-
-   The EPP <info> command is used to retrieve information associated
-   with a zone object.  The response to this command MAY vary depending
-   on the identity of the querying client, use of authorization
-   information, and server policy towards unauthorized clients.  Server
-   policy determines which OPTIONAL elements are returned.
-
-
 
 
 
@@ -1457,6 +1457,14 @@ Gould, et al.            Expires April 19, 2019                [Page 26]
 
 Internet-Draft                  registry                    October 2018
 
+
+3.1.2.  EPP <info> Command
+
+   The EPP <info> command is used to retrieve information associated
+   with a zone object.  The response to this command MAY vary depending
+   on the identity of the querying client, use of authorization
+   information, and server policy towards unauthorized clients.  Server
+   policy determines which OPTIONAL elements are returned.
 
    In addition to the standard EPP command elements, the <info> command
    MUST contain a <registry:info> element that identifies the registry
@@ -1489,6 +1497,23 @@ Internet-Draft                  registry                    October 2018
    C:  </command>
    C:</epp>
 
+
+
+
+
+
+
+
+
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 27]
+
+Internet-Draft                  registry                    October 2018
+
+
    Example <info> command to query for the full set of "zone1" zone
    object attributes:
 
@@ -1504,15 +1529,6 @@ Internet-Draft                  registry                    October 2018
    C:    <clTRID>ABC-12345</clTRID>
    C:  </command>
    C:</epp>
-
-
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 27]
-
-Internet-Draft                  registry                    October 2018
-
 
    Example <info> command to query for registry system attributes:
 
@@ -1546,6 +1562,14 @@ Internet-Draft                  registry                    October 2018
        <registry:upDate>:  The OPTIONAL date and time of the most recent
            zone object modification.  This element MUST NOT be present
            if the zone object has never been modified.
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 28]
+
+Internet-Draft                  registry                    October 2018
+
+
    or a <registry:zone>:  Element that contains the full set of
        attributes for the zone name as defined in Section 2.4.
    <registry:system>:  Element that contains registry system attributes.
@@ -1561,15 +1585,6 @@ Internet-Draft                  registry                    October 2018
            connection does not receive a command within
            <registry:idleTimeout> milliseconds, the server will close
            the connection.
-
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 28]
-
-Internet-Draft                  registry                    October 2018
-
-
        <registry:absoluteTimeout>:  The OPTIONAL element that contains
            the absolute timeout for a connection in milliseconds.  The
            absolute timeout represents the maximum duration in
@@ -1585,21 +1600,6 @@ Internet-Draft                  registry                    October 2018
            connection per the "perMs" attribute milliseconds.  It is up
            to server policy what to do with the connection when the
            client exceeds the <registry:transLimit>.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2298,6 +2298,10 @@ Gould, et al.            Expires April 19, 2019                [Page 41]
 Internet-Draft                  registry                    October 2018
 
 
+           name="unsupportedData"
+           type="registry:unsupportedDataType"
+           minOccurs="0"/>
+         <element
            name="batch"
            type="registry:batchType"
            minOccurs="0"/>
@@ -2342,10 +2346,6 @@ Internet-Draft                  registry                    October 2018
            name="objURI"
            type="registry:uriType"
            maxOccurs="unbounded"/>
-         <element
-           name="svcExtension"
-           type="registry:svcExtensionType"
-           minOccurs="0"/>
 
 
 
@@ -2354,6 +2354,10 @@ Gould, et al.            Expires April 19, 2019                [Page 42]
 Internet-Draft                  registry                    October 2018
 
 
+         <element
+           name="svcExtension"
+           type="registry:svcExtensionType"
+           minOccurs="0"/>
        </sequence>
      </complexType>
      <complexType name="svcExtensionType">
@@ -2398,10 +2402,6 @@ Internet-Draft                  registry                    October 2018
            name="maxLength"
            type="unsignedShort"
            minOccurs="0"/>
-         <element
-           name="alphaNumStart"
-           type="boolean"
-           minOccurs="0"
 
 
 
@@ -2410,6 +2410,10 @@ Gould, et al.            Expires April 19, 2019                [Page 43]
 Internet-Draft                  registry                    October 2018
 
 
+         <element
+           name="alphaNumStart"
+           type="boolean"
+           minOccurs="0"
            default="false"/>
          <element
            name="alphaNumEnd"
@@ -2454,10 +2458,6 @@ Internet-Draft                  registry                    October 2018
            type="string"/>
          <element
            name="description"
-           minOccurs="0"
-         >
-           <complexType>
-             <simpleContent>
 
 
 
@@ -2466,6 +2466,10 @@ Gould, et al.            Expires April 19, 2019                [Page 44]
 Internet-Draft                  registry                    October 2018
 
 
+           minOccurs="0"
+         >
+           <complexType>
+             <simpleContent>
                <extension base="normalizedString">
                  <attribute
                    name="lang"
@@ -2510,10 +2514,6 @@ Internet-Draft                  registry                    October 2018
            name="variantStrategy"
            type="registry:variantStrategyType"
            minOccurs="0"/>
-       </sequence>
-       <attribute
-         name="code"
-         type="language"
 
 
 
@@ -2522,6 +2522,10 @@ Gould, et al.            Expires April 19, 2019                [Page 45]
 Internet-Draft                  registry                    October 2018
 
 
+       </sequence>
+       <attribute
+         name="code"
+         type="language"
          use="required"/>
      </complexType>
      <complexType name="idnType">
@@ -2566,10 +2570,6 @@ Internet-Draft                  registry                    October 2018
                  <enumeration value="tech"/>
                  <enumeration value="billing"/>
                  <enumeration value="custom"/>
-               </restriction>
-             </simpleType>
-           </attribute>
-           <attribute
 
 
 
@@ -2578,6 +2578,10 @@ Gould, et al.            Expires April 19, 2019                [Page 46]
 Internet-Draft                  registry                    October 2018
 
 
+               </restriction>
+             </simpleType>
+           </attribute>
+           <attribute
              name="name"
              type="token"/>
            <attribute
@@ -2622,10 +2626,6 @@ Internet-Draft                  registry                    October 2018
        <attribute
          name="command"
          type="token"
-         use="required"/>
-     </complexType>
-     <complexType name="gPeriodType">
-       <simpleContent>
 
 
 
@@ -2634,6 +2634,10 @@ Gould, et al.            Expires April 19, 2019                [Page 47]
 Internet-Draft                  registry                    October 2018
 
 
+         use="required"/>
+     </complexType>
+     <complexType name="gPeriodType">
+       <simpleContent>
          <extension base="registry:periodType">
            <attribute
              name="command"
@@ -2678,10 +2682,6 @@ Internet-Draft                  registry                    October 2018
          <element
            name="min"
            type="unsignedShort"/>
-         <element
-           name="max"
-           type="unsignedShort"/>
-         <element
 
 
 
@@ -2690,6 +2690,10 @@ Gould, et al.            Expires April 19, 2019                [Page 48]
 Internet-Draft                  registry                    October 2018
 
 
+         <element
+           name="max"
+           type="unsignedShort"/>
+         <element
            name="alg"
            type="token"
            minOccurs="0"
@@ -2734,10 +2738,6 @@ Internet-Draft                  registry                    October 2018
        <sequence>
          <choice>
            <element
-             name="dsDataInterface"
-             type="registry:dsInterfaceType"/>
-           <element
-             name="keyDataInterface"
 
 
 
@@ -2746,6 +2746,10 @@ Gould, et al.            Expires April 19, 2019                [Page 49]
 Internet-Draft                  registry                    October 2018
 
 
+             name="dsDataInterface"
+             type="registry:dsInterfaceType"/>
+           <element
+             name="keyDataInterface"
              type="registry:keyInterfaceType"/>
          </choice>
          <element
@@ -2790,10 +2794,6 @@ Internet-Draft                  registry                    October 2018
          <element
            name="schedule"
            type="registry:scheduleType"/>
-       </sequence>
-     </complexType>
-     <!-- Information about the batch jobs -->
-     <complexType name="batchType">
 
 
 
@@ -2802,6 +2802,10 @@ Gould, et al.            Expires April 19, 2019                [Page 50]
 Internet-Draft                  registry                    October 2018
 
 
+       </sequence>
+     </complexType>
+     <!-- Information about the batch jobs -->
+     <complexType name="batchType">
        <sequence>
          <element
            name="batchJob"
@@ -2846,10 +2850,6 @@ Internet-Draft                  registry                    October 2018
            type="boolean"
            minOccurs="0"
            default="false"/>
-         <element
-           name="contactsSupported"
-           type="boolean"
-           minOccurs="0"
 
 
 
@@ -2858,6 +2858,10 @@ Gould, et al.            Expires April 19, 2019                [Page 51]
 Internet-Draft                  registry                    October 2018
 
 
+         <element
+           name="contactsSupported"
+           type="boolean"
+           minOccurs="0"
            default="true"/>
          <element
            name="contact"
@@ -2902,10 +2906,6 @@ Internet-Draft                  registry                    October 2018
            name="authInfoRegex"
            type="registry:regexType"
            minOccurs="0"/>
-         <element
-           name="expiryPolicy"
-           type="registry:expiryPolicyType"
-           minOccurs="0"
 
 
 
@@ -2914,6 +2914,10 @@ Gould, et al.            Expires April 19, 2019                [Page 52]
 Internet-Draft                  registry                    October 2018
 
 
+         <element
+           name="expiryPolicy"
+           type="registry:expiryPolicyType"
+           minOccurs="0"
            default="autoRenew"/>
        </sequence>
      </complexType>
@@ -2958,10 +2962,6 @@ Internet-Draft                  registry                    October 2018
        </sequence>
      </complexType>
      <complexType name="extHostPolicyType">
-       <sequence>
-         <element
-           name="minIP"
-           type="unsignedShort"/>
 
 
 
@@ -2970,6 +2970,10 @@ Gould, et al.            Expires April 19, 2019                [Page 53]
 Internet-Draft                  registry                    October 2018
 
 
+       <sequence>
+         <element
+           name="minIP"
+           type="unsignedShort"/>
          <element
            name="maxIP"
            type="unsignedShort"/>
@@ -3014,10 +3018,6 @@ Internet-Draft                  registry                    October 2018
          <element
            name="maxLength"
            type="unsignedShort"/>
-       </sequence>
-     </complexType>
-     <simpleType name="contactSharePolicyType">
-       <restriction base="token">
 
 
 
@@ -3026,6 +3026,10 @@ Gould, et al.            Expires April 19, 2019                [Page 54]
 Internet-Draft                  registry                    October 2018
 
 
+       </sequence>
+     </complexType>
+     <simpleType name="contactSharePolicyType">
+       <restriction base="token">
          <enumeration value="perZone"/>
          <enumeration value="perSystem"/>
        </restriction>
@@ -3070,10 +3074,6 @@ Internet-Draft                  registry                    October 2018
            type="registry:minMaxLength"/>
          <element
            name="address"
-           type="registry:contactAddressType"/>
-         <element
-           name="voiceRequired"
-           type="boolean"
 
 
 
@@ -3082,6 +3082,10 @@ Gould, et al.            Expires April 19, 2019                [Page 55]
 Internet-Draft                  registry                    October 2018
 
 
+           type="registry:contactAddressType"/>
+         <element
+           name="voiceRequired"
+           type="boolean"
            minOccurs="0"
            default="false"/>
          <element
@@ -3126,10 +3130,6 @@ Internet-Draft                  registry                    October 2018
            type="registry:regexType"
            minOccurs="0"/>
          <element
-           name="clientDisclosureSupported"
-           type="boolean"
-           minOccurs="0"
-           default="false"/>
 
 
 
@@ -3138,6 +3138,10 @@ Gould, et al.            Expires April 19, 2019                [Page 56]
 Internet-Draft                  registry                    October 2018
 
 
+           name="clientDisclosureSupported"
+           type="boolean"
+           minOccurs="0"
+           default="false"/>
          <element
            name="supportedStatus"
            type="registry:supportedStatusType"
@@ -3182,10 +3186,6 @@ Internet-Draft                  registry                    October 2018
            name="absoluteTimeout"
            type="int"
            minOccurs="0"/>
-         <element
-           name="commandTimeout"
-           type="int"
-           minOccurs="0"/>
 
 
 
@@ -3195,11 +3195,21 @@ Internet-Draft                  registry                    October 2018
 
 
          <element
+           name="commandTimeout"
+           type="int"
+           minOccurs="0"/>
+         <element
            name="transLimit"
            type="registry:transLimitType"
            minOccurs="0"/>
        </sequence>
      </complexType>
+     <simpleType name="unsupportedDataType">
+       <restriction base="token">
+         <enumeration value="fail"/>
+         <enumeration value="ignore"/>
+       </restriction>
+     </simpleType>
    </schema>
    END
 
@@ -3233,6 +3243,13 @@ Internet-Draft                  registry                    October 2018
 
    Document status: Standards Track
 
+
+
+Gould, et al.            Expires April 19, 2019                [Page 58]
+
+Internet-Draft                  registry                    October 2018
+
+
    Reference: (insert reference to RFC version of this document)
 
    Registrant Name and Email Address: IESG, <iesg@ietf.org>
@@ -3242,13 +3259,6 @@ Internet-Draft                  registry                    October 2018
    IPR Disclosure: TBD
 
    Status: Active
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 58]
-
-Internet-Draft                  registry                    October 2018
-
 
    Notes: None
 
@@ -3289,6 +3299,13 @@ Internet-Draft                  registry                    October 2018
 
    Level of maturity: Development
 
+
+
+Gould, et al.            Expires April 19, 2019                [Page 59]
+
+Internet-Draft                  registry                    October 2018
+
+
    Coverage: All aspects of the protocol are implemented.
 
    Licensing: GNU Lesser General Public License
@@ -3297,14 +3314,6 @@ Internet-Draft                  registry                    October 2018
 
    URL: https://www.verisign.com/en_US/channel-resources/domain-
    registry-products/epp-sdks
-
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 59]
-
-Internet-Draft                  registry                    October 2018
-
 
 7.  Security Considerations
 
@@ -3342,15 +3351,6 @@ Internet-Draft                  registry                    October 2018
               DOI 10.17487/RFC3688, January 2004, <https://www.rfc-
               editor.org/info/rfc3688>.
 
-   [RFC4034]  Arends, R., Austein, R., Larson, M., Massey, D., and S.
-              Rose, "Resource Records for the DNS Security Extensions",
-              RFC 4034, DOI 10.17487/RFC4034, March 2005,
-              <https://www.rfc-editor.org/info/rfc4034>.
-
-   [RFC5730]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)",
-              STD 69, RFC 5730, DOI 10.17487/RFC5730, August 2009,
-              <https://www.rfc-editor.org/info/rfc5730>.
-
 
 
 
@@ -3361,6 +3361,15 @@ Gould, et al.            Expires April 19, 2019                [Page 60]
 
 Internet-Draft                  registry                    October 2018
 
+
+   [RFC4034]  Arends, R., Austein, R., Larson, M., Massey, D., and S.
+              Rose, "Resource Records for the DNS Security Extensions",
+              RFC 4034, DOI 10.17487/RFC4034, March 2005,
+              <https://www.rfc-editor.org/info/rfc4034>.
+
+   [RFC5730]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)",
+              STD 69, RFC 5730, DOI 10.17487/RFC5730, August 2009,
+              <https://www.rfc-editor.org/info/rfc5730>.
 
    [RFC5731]  Hollenbeck, S., "Extensible Provisioning Protocol (EPP)
               Domain Name Mapping", STD 69, RFC 5731,
@@ -3399,15 +3408,6 @@ Internet-Draft                  registry                    October 2018
 
    [1] http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/
 
-Appendix A.  Change History
-
-A.1.  Change from 00 to 01
-
-   1.  Added missing description of the "perRegistrar" value for the
-       <registry:external> <registry:sharePolicy> element.
-   2.  Revised the description of <registry:emailRegex> to be a single
-       optional element instead of an optional list of elements to match
-       the definition in the XML schema.
 
 
 
@@ -3417,6 +3417,16 @@ Gould, et al.            Expires April 19, 2019                [Page 61]
 
 Internet-Draft                  registry                    October 2018
 
+
+Appendix A.  Change History
+
+A.1.  Change from 00 to 01
+
+   1.  Added missing description of the "perRegistrar" value for the
+       <registry:external> <registry:sharePolicy> element.
+   2.  Revised the description of <registry:emailRegex> to be a single
+       optional element instead of an optional list of elements to match
+       the definition in the XML schema.
 
 A.2.  Change from 01 to 02
 
@@ -3443,8 +3453,26 @@ A.4.  Change from 03 to 04
    1.  Added the optional <registry:contactIdPrefix> element to support
        a client-specific prefix for the <contact:id> elements in
        [RFC5733], based on feedback from Patrick Mevzek.
+   2.  Added the optional <registry:unsupportedData> element to define
+       what the server does when unsupported data is sent by the client,
+       based on feedback from Patrick Mevzek.
 
 Authors' Addresses
+
+
+
+
+
+
+
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 62]
+
+Internet-Draft                  registry                    October 2018
+
 
    James Gould
    VeriSign, Inc.
@@ -3466,14 +3494,6 @@ Authors' Addresses
    URI:   http://www.verisigninc.com
 
 
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 62]
-
-Internet-Draft                  registry                    October 2018
-
-
    Roger Carney
    GoDaddy Inc.
    14455 N. Hayden Rd. #219
@@ -3492,26 +3512,6 @@ Internet-Draft                  registry                    October 2018
 
    Email: jkolker@godaddy.com
    URI:   http://www.godaddy.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
