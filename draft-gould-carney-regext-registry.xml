@@ -671,7 +671,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
 					<t hangText="&quot;autoRenew&quot;:">The domain object 
 					will auto-renew at expiry.
 					The client can receive a credit for the auto-renew if the 
-					domain object is deleted within the auto-renew grace period.</t>
+					domain object is deleted or transferred within the auto-renew grace period.</t>
 					<t hangText="&quot;autoDelete&quot;:">The domain object 
 					will auto-delete at expiry.  The client needs to explicitly 
 					renew the domain object prior to its expiry to ensure that it does not 
@@ -3192,6 +3192,8 @@ END]]></artwork>
           <t>Added "that SHOULD match the statuses" to the descriptions of the &lt;registry:supportedStatus&gt; elements 
           under the &lt;registry:domain&gt; element, the &lt;registry:host&gt; element, and the &lt;registry:contact&gt; element, 
           based on feedback from Mario Loffredo.</t>
+          <t>Added "or transferred" to the description of the &lt;registry:expiryPolicy&gt; element "autoRenew" value, based on 
+          feedback from Mario Laffredo.</t>
         </list></t>
       </section>      
     </section>

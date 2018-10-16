@@ -852,7 +852,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dd style="margin-left: 4">
         <dl>
           <dt>"autoRenew":</dt>
-          <dd style="margin-left: 4">The domain object will auto-renew at expiry.  The client can receive a credit for the auto-renew if the domain object is deleted within the auto-renew grace period.</dd>
+          <dd style="margin-left: 4">The domain object will auto-renew at expiry.  The client can receive a credit for the auto-renew if the domain object is deleted or transferred within the auto-renew grace period.</dd>
           <dt>"autoDelete":</dt>
           <dd style="margin-left: 4">The domain object will auto-delete at expiry.  The client needs to explicitly renew the domain object prior to its expiry to ensure that it does not get deleted.</dd>
           <dt>"autoExpire":</dt>
@@ -2987,6 +2987,7 @@ END</pre>
   <li>Updated the Introduction sentence "It is up to server policy to define what clients are authorized to execute which commands on which registry zones" to "It is up to server policy what commands are supported and to define the clients that are authorized to execute the commands for the registry zones.  The server MUST return a 2101 error response for an unimplemented command and MUST return a 2201 error response for an unauthorized command.", based on feedback from Mario Loffredo.</li>
   <li>Added two additional &lt;registry:postalInfoTypeSupport&gt; element values, which include "intOptLoc" and "locOptInt", based on feedback from Patrick Mevzek.</li>
   <li>Added "that SHOULD match the statuses" to the descriptions of the &lt;registry:supportedStatus&gt; elements under the &lt;registry:domain&gt; element, the &lt;registry:host&gt; element, and the &lt;registry:contact&gt; element, based on feedback from Mario Loffredo.</li>
+  <li>Added "or transferred" to the description of the &lt;registry:expiryPolicy&gt; element "autoRenew" value, based on feedback from Mario Laffredo.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

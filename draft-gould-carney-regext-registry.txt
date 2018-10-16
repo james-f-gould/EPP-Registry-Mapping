@@ -98,7 +98,7 @@ Table of Contents
      A.2.  Change from 01 to 02  . . . . . . . . . . . . . . . . . .  63
      A.3.  Change from 02 to 03  . . . . . . . . . . . . . . . . . .  64
      A.4.  Change from 03 to 04  . . . . . . . . . . . . . . . . . .  64
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  64
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  65
 
 1.  Introduction
 
@@ -685,8 +685,8 @@ Internet-Draft                  registry                    October 2018
 
            "autoRenew":  The domain object will auto-renew at expiry.
                The client can receive a credit for the auto-renew if the
-               domain object is deleted within the auto-renew grace
-               period.
+               domain object is deleted or transferred within the auto-
+               renew grace period.
            "autoDelete":  The domain object will auto-delete at expiry.
                The client needs to explicitly renew the domain object
                prior to its expiry to ensure that it does not get
@@ -3572,9 +3572,9 @@ A.4.  Change from 03 to 04
        <registry:supportedStatus> elements under the <registry:domain>
        element, the <registry:host> element, and the <registry:contact>
        element, based on feedback from Mario Loffredo.
-
-Authors' Addresses
-
+   8.  Added "or transferred" to the description of the
+       <registry:expiryPolicy> element "autoRenew" value, based on
+       feedback from Mario Laffredo.
 
 
 
@@ -3585,6 +3585,8 @@ Gould, et al.            Expires April 19, 2019                [Page 64]
 
 Internet-Draft                  registry                    October 2018
 
+
+Authors' Addresses
 
    James Gould
    VeriSign, Inc.
@@ -3624,8 +3626,6 @@ Internet-Draft                  registry                    October 2018
 
    Email: jkolker@godaddy.com
    URI:   http://www.godaddy.com
-
-
 
 
 
