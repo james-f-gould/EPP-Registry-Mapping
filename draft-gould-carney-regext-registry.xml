@@ -178,8 +178,11 @@
       For example, all clients may be capable of executing the <xref target="queryCommands">EPP Query Commands</xref>, 
       while internal clients or pre-defined external clients may be capable of executing the 
       <xref target="transformCommands">EPP Transform Commands</xref> for a specific set of zones.
-      It is up to server policy to define what clients are authorized to execute which commands on 
-      which registry zones.  The server policy can be defined out-of-band or in a seperate EPP extension.</t>
+      It is up to server policy what commands are supported and to define the clients 
+      that are authorized to execute the commands for the registry zones. 
+      The server MUST return a 2101 error response for an unimplemented command and MUST 
+      return a 2201 error response for an unauthorized command.  
+      The server policy can be defined out-of-band or in a seperate EPP extension.</t>
 
       <section title="Conventions Used in This Document">
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -3079,7 +3082,7 @@ END]]></artwork>
    <section title="Acknowledgements">
       <t>The authors wish to thank the following persons for their feedback and suggestions:</t>
       <t><list style="symbols">
-        <t>Patrick Mevzek</t>
+        <t>Mario Loffredo, Patrick Mevzek</t>
       </list></t>
    </section>
 
@@ -3169,6 +3172,13 @@ END]]></artwork>
           <t>Added support for the &lt;registry:flags&gt; and the &lt;registry:protocol&gt; elements 
           under the &lt;registry:keyDataInterface&gt; element to define the supported set of 
           key data interface flags and protocols, based on feedback from Patrick Mevzek.</t>
+          <t>Updated the Introduction sentence "It is up to server policy to define what 
+          clients are authorized to execute which commands on which registry zones" 
+          to "It is up to server policy what commands are supported and to define the 
+          clients that are authorized to execute the commands for the registry zones. 
+          The server MUST return a 2101 error response for an unimplemented command and 
+          MUST return a 2201 error response for an unauthorized command.", 
+          based on feedback from Mario Loffredo.</t>
         </list></t>
       </section>      
     </section>

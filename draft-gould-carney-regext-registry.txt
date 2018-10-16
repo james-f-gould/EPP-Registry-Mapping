@@ -133,9 +133,12 @@ Internet-Draft                  registry                    October 2018
    EPP Query Commands (Section 3.1), while internal clients or pre-
    defined external clients may be capable of executing the EPP
    Transform Commands (Section 3.2) for a specific set of zones.  It is
-   up to server policy to define what clients are authorized to execute
-   which commands on which registry zones.  The server policy can be
-   defined out-of-band or in a seperate EPP extension.
+   up to server policy what commands are supported and to define the
+   clients that are authorized to execute the commands for the registry
+   zones.  The server MUST return a 2101 error response for an
+   unimplemented command and MUST return a 2201 error response for an
+   unauthorized command.  The server policy can be defined out-of-band
+   or in a seperate EPP extension.
 
 1.1.  Conventions Used in This Document
 
@@ -157,9 +160,6 @@ Internet-Draft                  registry                    October 2018
    "urn:ietf:params:xml:ns:epp:registry-0.1", but implementations MUST
    NOT depend on it and instead employ a proper namespace-aware XML
    parser and serializer to interpret and output the XML documents.
-
-
-
 
 
 
@@ -3407,7 +3407,7 @@ Internet-Draft                  registry                    October 2018
    The authors wish to thank the following persons for their feedback
    and suggestions:
 
-   o  Patrick Mevzek
+   o  Mario Loffredo, Patrick Mevzek
 
 
 
@@ -3546,6 +3546,14 @@ A.4.  Change from 03 to 04
        <registry:keyDataInterface> element to define the supported set
        of key data interface flags and protocols, based on feedback from
        Patrick Mevzek.
+   5.  Updated the Introduction sentence "It is up to server policy to
+       define what clients are authorized to execute which commands on
+       which registry zones" to "It is up to server policy what commands
+       are supported and to define the clients that are authorized to
+       execute the commands for the registry zones.  The server MUST
+       return a 2101 error response for an unimplemented command and
+       MUST return a 2201 error response for an unauthorized command.",
+       based on feedback from Mario Loffredo.
 
 Authors' Addresses
 
@@ -3569,6 +3577,15 @@ Authors' Addresses
    URI:   http://www.verisigninc.com
 
 
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 64]
+
+Internet-Draft                  registry                    October 2018
+
+
    Roger Carney
    GoDaddy Inc.
    14455 N. Hayden Rd. #219
@@ -3579,13 +3596,6 @@ Authors' Addresses
    URI:   http://www.godaddy.com
 
 
-
-
-Gould, et al.            Expires April 19, 2019                [Page 64]
-
-Internet-Draft                  registry                    October 2018
-
-
    Jody Kolker
    GoDaddy Inc.
    14455 N. Hayden Rd. #219
@@ -3594,16 +3604,6 @@ Internet-Draft                  registry                    October 2018
 
    Email: jkolker@godaddy.com
    URI:   http://www.godaddy.com
-
-
-
-
-
-
-
-
-
-
 
 
 

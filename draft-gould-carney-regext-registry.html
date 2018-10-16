@@ -524,7 +524,7 @@
 
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
 <p id="rfc.section.1.p.1">This document describes an extension mapping for version 1.0 of the <a href="#RFC5730">Extensible Provisioning Protocol (EPP)</a> <cite title="NONE">[RFC5730]</cite>.  This document describes a Domain Name Registry Mapping, referred to as Registry Mapping, for the <a href="#RFC5730">Extensible Provisioning Protocol (EPP)</a> <cite title="NONE">[RFC5730]</cite>.  A Domain Name Registry can service one or more registry zones (e.g. top-level domains) with a variety of supported services and policies.  A registry zone, also referred to as a "zone" in this document, is a domain name that the Domain Name Registry supports provisioning operations to manage.  The registry zone and the associated DNS zone has an overlapping data set, where the registry zone is the source for the generation of a DNS zone.  A registry zone is typically a top-level domain name, but it can be a domain name at any domain name level.  A registry zone can be the source for multiple resolution services like DNS and WHOIS.</p>
-<p id="rfc.section.1.p.2">This mapping enables the provisioning of the features and policies of the registry zones in the Domain Name Registry.  A Domain Name Registry MAY support a subset of all of the commands defined in this mapping and can authorize different clients to execute specific commands.  For example, all clients may be capable of executing the <a href="#queryCommands">EPP Query Commands</a> <cite title="NONE">[queryCommands]</cite>, while internal clients or pre-defined external clients may be capable of executing the <a href="#transformCommands">EPP Transform Commands</a> <cite title="NONE">[transformCommands]</cite> for a specific set of zones.  It is up to server policy to define what clients are authorized to execute which commands on which registry zones.  The server policy can be defined out-of-band or in a seperate EPP extension.</p>
+<p id="rfc.section.1.p.2">This mapping enables the provisioning of the features and policies of the registry zones in the Domain Name Registry.  A Domain Name Registry MAY support a subset of all of the commands defined in this mapping and can authorize different clients to execute specific commands.  For example, all clients may be capable of executing the <a href="#queryCommands">EPP Query Commands</a> <cite title="NONE">[queryCommands]</cite>, while internal clients or pre-defined external clients may be capable of executing the <a href="#transformCommands">EPP Transform Commands</a> <cite title="NONE">[transformCommands]</cite> for a specific set of zones.  It is up to server policy what commands are supported and to define the clients that are authorized to execute the commands for the registry zones.  The server MUST return a 2101 error response for an unimplemented command and MUST return a 2201 error response for an unauthorized command.  The server policy can be defined out-of-band or in a seperate EPP extension.</p>
 <h1 id="rfc.section.1.1"><a href="#rfc.section.1.1">1.1.</a> Conventions Used in This Document</h1>
 <p id="rfc.section.1.1.p.1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="#RFC2119">RFC 2119</a> <cite title="NONE">[RFC2119]</cite>.</p>
 <p id="rfc.section.1.1.p.2">XML is case sensitive. Unless stated otherwise, XML specifications and examples provided in this document MUST be interpreted in the character case presented in order to develop a conforming implementation.</p>
@@ -2862,7 +2862,7 @@ END</pre>
 <p/>
 
 <ul>
-  <li>Patrick Mevzek</li>
+  <li>Mario Loffredo, Patrick Mevzek</li>
 </ul>
 <h1 id="rfc.references"><a href="#rfc.references">9.</a> Normative References</h1>
 <table>
@@ -2978,6 +2978,7 @@ END</pre>
   <li>Added the optional &lt;registry:unsupportedData&gt; element to define what the server does when unsupported data is sent by the client, based on feedback from Patrick Mevzek.</li>
   <li>Added the &lt;registry:nullAuthInfoSupported&gt; element to indicate whether the &lt;domain:null&gt; element of <a href="#RFC5731">[RFC5731]</a> is supported, based on feedback from Patrick Mevzek.</li>
   <li>Added support for the &lt;registry:flags&gt; and the &lt;registry:protocol&gt; elements under the &lt;registry:keyDataInterface&gt; element to define the supported set of key data interface flags and protocols, based on feedback from Patrick Mevzek.</li>
+  <li>Updated the Introduction sentence "It is up to server policy to define what clients are authorized to execute which commands on which registry zones" to "It is up to server policy what commands are supported and to define the clients that are authorized to execute the commands for the registry zones.  The server MUST return a 2101 error response for an unimplemented command and MUST return a 2201 error response for an unauthorized command.", based on feedback from Mario Loffredo.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
