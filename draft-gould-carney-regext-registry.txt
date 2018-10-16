@@ -83,7 +83,7 @@ Table of Contents
        3.2.5.  EPP <update> Command  . . . . . . . . . . . . . . . .  37
    4.  Formal Syntax . . . . . . . . . . . . . . . . . . . . . . . .  38
      4.1.  Registry Mapping Schema . . . . . . . . . . . . . . . . .  38
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  59
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  60
      5.1.  XML Namespace . . . . . . . . . . . . . . . . . . . . . .  60
      5.2.  EPP Extension Registry  . . . . . . . . . . . . . . . . .  60
    6.  Implementation Status . . . . . . . . . . . . . . . . . . . .  60
@@ -788,6 +788,12 @@ Internet-Draft                  registry                    October 2018
 
        <registry:supportedStatus>:  The OPTIONAL set of supported host
            statuses that SHOULD match the statuses defined in [RFC5732].
+       <registry:invalidIP>:  Zero or more <registry:invalidIP> elements
+           that defines the URI of an externally defined list of invalid
+           IP addresses.  The IP addresses referenced by the list of
+           <registry:invalidIP> elements should be combined and
+           normalized by the client to define the complete set of
+           invalid IP addresses.
    <registry:contact>:  The OPTIONAL contact object policy information
        per [RFC5733].  The <registry:contact> element contains the
        following child elements:
@@ -827,12 +833,6 @@ Internet-Draft                  registry                    October 2018
                element is supported with the type "loc" or "int".
            "locAndInt":  Indicates that up to two <contact:postalInfo>
                elements is supported for defining both the "loc" and the
-               "int" type.  This policy does not indicate that both must
-               be provided.
-           "intOptLoc":  Indicates that the <contact:postalInfo> element
-               with type "int" is required and the option of a second
-               <contact:postalInfo> element with the type "loc".
-
 
 
 
@@ -842,6 +842,11 @@ Gould, et al.            Expires April 19, 2019                [Page 15]
 Internet-Draft                  registry                    October 2018
 
 
+               "int" type.  This policy does not indicate that both must
+               be provided.
+           "intOptLoc":  Indicates that the <contact:postalInfo> element
+               with type "int" is required and the option of a second
+               <contact:postalInfo> element with the type "loc".
            "locOptInt":  Indicates that the <contact:postalInfo> element
                with type "loc" is required and the option of a second
                <contact:postalInfo> element with the type "int".
@@ -884,12 +889,7 @@ Internet-Draft                  registry                    October 2018
                        the <registry:minEntry> element.
                <registry:city>:  The minimum and maximum length of the
                    <contact:city> element defined in [RFC5733] using the
-                   <registry:minLength> and <registry:maxLength> child
-                   elements, respectively.
-               <registry:sp>:  The minimum and maximum length of the
-                   <contact:sp> element defined in [RFC5733] using the
-                   <registry:minLength> and <registry:maxLength> child
-                   elements, respectively.
+
 
 
 
@@ -898,6 +898,12 @@ Gould, et al.            Expires April 19, 2019                [Page 16]
 Internet-Draft                  registry                    October 2018
 
 
+                   <registry:minLength> and <registry:maxLength> child
+                   elements, respectively.
+               <registry:sp>:  The minimum and maximum length of the
+                   <contact:sp> element defined in [RFC5733] using the
+                   <registry:minLength> and <registry:maxLength> child
+                   elements, respectively.
                <registry:pc>:  The minimum and maximum length of the
                    <contact:pc> element defined in [RFC5733] using the
                    <registry:minLength> and <registry:maxLength> child
@@ -941,12 +947,6 @@ Internet-Draft                  registry                    October 2018
            indicates whether a proxy contact is supported, with a
            default value of "true".
 
-   Example of a <registry:zone> element:
-
-   <registry:zone>
-     <registry:name>EXAMPLE</registry:name>
-     <registry:group>STANDARD</registry:group>
-
 
 
 Gould, et al.            Expires April 19, 2019                [Page 17]
@@ -954,6 +954,11 @@ Gould, et al.            Expires April 19, 2019                [Page 17]
 Internet-Draft                  registry                    October 2018
 
 
+   Example of a <registry:zone> element:
+
+   <registry:zone>
+     <registry:name>EXAMPLE</registry:name>
+     <registry:group>STANDARD</registry:group>
      <registry:services>
        <registry:objURI required="true">
          urn:ietf:params:xml:ns:domain-1.0
@@ -997,11 +1002,6 @@ Internet-Draft                  registry                    October 2018
        </registry:batchJob>
      </registry:batch>
      <registry:system>
-       <registry:zone form="aLabel">EXAMPLE
-       </registry:zone>
-       <registry:zone form="aLabel">EXAMPLE2
-       </registry:zone>
-     </registry:system>
 
 
 
@@ -1010,6 +1010,11 @@ Gould, et al.            Expires April 19, 2019                [Page 18]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:zone form="aLabel">EXAMPLE
+       </registry:zone>
+       <registry:zone form="aLabel">EXAMPLE2
+       </registry:zone>
+     </registry:system>
      <registry:domain>
        <registry:domainName level="2">
          <registry:minLength>5
@@ -1053,11 +1058,6 @@ Internet-Draft                  registry                    October 2018
          <registry:language code="LANG-1">
            <registry:table>
              http://www.iana.org/idn-tables/test_tab1_1.1.txt
-           </registry:table>
-           <registry:variantStrategy>blocked
-           </registry:variantStrategy>
-         </registry:language>
-       </registry:idn>
 
 
 
@@ -1066,6 +1066,11 @@ Gould, et al.            Expires April 19, 2019                [Page 19]
 Internet-Draft                  registry                    October 2018
 
 
+           </registry:table>
+           <registry:variantStrategy>blocked
+           </registry:variantStrategy>
+         </registry:language>
+       </registry:idn>
        <registry:premiumSupport>false
        </registry:premiumSupport>
        <registry:contact type="admin">
@@ -1109,11 +1114,6 @@ Internet-Draft                  registry                    October 2018
          unit="d"
        >5
        </registry:gracePeriod>
-       <registry:gracePeriod
-         command="renew"
-         unit="d"
-       >5
-       </registry:gracePeriod>
 
 
 
@@ -1122,6 +1122,11 @@ Gould, et al.            Expires April 19, 2019                [Page 20]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:gracePeriod
+         command="renew"
+         unit="d"
+       >5
+       </registry:gracePeriod>
        <registry:gracePeriod
          command="transfer"
          unit="d"
@@ -1165,11 +1170,6 @@ Internet-Draft                  registry                    October 2018
          </registry:status>
          <registry:status>serverHold
          </registry:status>
-         <registry:status>clientRenewProhibited
-         </registry:status>
-         <registry:status>serverRenewProhibited
-         </registry:status>
-         <registry:status>clientTransferProhibited
 
 
 
@@ -1178,6 +1178,11 @@ Gould, et al.            Expires April 19, 2019                [Page 21]
 Internet-Draft                  registry                    October 2018
 
 
+         <registry:status>clientRenewProhibited
+         </registry:status>
+         <registry:status>serverRenewProhibited
+         </registry:status>
+         <registry:status>clientTransferProhibited
          </registry:status>
          <registry:status>serverTransferProhibited
          </registry:status>
@@ -1221,11 +1226,6 @@ Internet-Draft                  registry                    October 2018
        </registry:nameRegex>
        <registry:maxCheckHost>5
        </registry:maxCheckHost>
-       <registry:supportedStatus>
-         <registry:status>ok</registry:status>
-         <registry:status>clientDeleteProhibited
-         </registry:status>
-         <registry:status>serverDeleteProhibited
 
 
 
@@ -1234,6 +1234,11 @@ Gould, et al.            Expires April 19, 2019                [Page 22]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:supportedStatus>
+         <registry:status>ok</registry:status>
+         <registry:status>clientDeleteProhibited
+         </registry:status>
+         <registry:status>serverDeleteProhibited
          </registry:status>
          <registry:status>clientUpdateProhibited
          </registry:status>
@@ -1246,6 +1251,10 @@ Internet-Draft                  registry                    October 2018
          <registry:status>pendingTransfer
          </registry:status>
        </registry:supportedStatus>
+       <registry:invalidIP>http://www.example.com/invalidip-1.txt
+       </registry:invalidIP>
+       <registry:invalidIP>http://www.example.com/invalidip-2.txt
+       </registry:invalidIP>
      </registry:host>
      <registry:contact>
        <registry:contactIdRegex>
@@ -1273,6 +1282,14 @@ Internet-Draft                  registry                    October 2018
              <registry:maxLength>40</registry:maxLength>
              <registry:minEntry>1</registry:minEntry>
              <registry:maxEntry>3</registry:maxEntry>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 23]
+
+Internet-Draft                  registry                    October 2018
+
+
            </registry:street>
            <registry:city>
              <registry:minLength>1</registry:minLength>
@@ -1282,14 +1299,6 @@ Internet-Draft                  registry                    October 2018
              <registry:minLength>1</registry:minLength>
              <registry:maxLength>40</registry:maxLength>
            </registry:sp>
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 23]
-
-Internet-Draft                  registry                    October 2018
-
-
            <registry:pc>
              <registry:minLength>1</registry:minLength>
              <registry:maxLength>40</registry:maxLength>
@@ -1329,6 +1338,14 @@ Internet-Draft                  registry                    October 2018
          </registry:status>
          <registry:status>clientUpdateProhibited
          </registry:status>
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 24]
+
+Internet-Draft                  registry                    October 2018
+
+
          <registry:status>serverUpdateProhibited
          </registry:status>
          <registry:status>linked
@@ -1338,14 +1355,6 @@ Internet-Draft                  registry                    October 2018
          <registry:status>pendingTransfer
          </registry:status>
        </registry:supportedStatus>
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 24]
-
-Internet-Draft                  registry                    October 2018
-
-
        <registry:transferHoldPeriod unit="d">5
        </registry:transferHoldPeriod>
        <registry:privacyContactSupported>true
@@ -1384,15 +1393,6 @@ Internet-Draft                  registry                    October 2018
    <registry:name>:  One or more <registry:name> elements, as described
        in Section 2.1, that contain the fully qualified names of the
        zone objects to be queried.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3047,7 +3047,7 @@ Internet-Draft                  registry                    October 2018
            type="boolean"
            minOccurs="0"
            default="false"/>
-       </sequence>
+        </sequence>
      </complexType>
      <complexType name="extHostPolicyType">
        <sequence>
@@ -3096,6 +3096,11 @@ Internet-Draft                  registry                    October 2018
            name="supportedStatus"
            type="registry:supportedStatusType"
            minOccurs="0"/>
+         <element
+           name="invalidIP"
+           type="anyURI"
+           minOccurs="0"
+           maxOccurs="unbounded"/>
        </sequence>
      </complexType>
      <complexType name="minMaxLength">
@@ -3125,11 +3130,6 @@ Internet-Draft                  registry                    October 2018
                name="maxEntry"
                type="unsignedShort"/>
            </sequence>
-         </extension>
-       </complexContent>
-     </complexType>
-     <complexType name="contactAddressType">
-       <sequence>
 
 
 
@@ -3138,6 +3138,11 @@ Gould, et al.            Expires April 19, 2019                [Page 56]
 Internet-Draft                  registry                    October 2018
 
 
+         </extension>
+       </complexContent>
+     </complexType>
+     <complexType name="contactAddressType">
+       <sequence>
          <element
            name="street"
            type="registry:streetType"/>
@@ -3181,11 +3186,6 @@ Internet-Draft                  registry                    October 2018
            type="registry:regexType"
            minOccurs="0"/>
        </sequence>
-     </complexType>
-     <complexType name="contactType">
-       <sequence>
-         <element
-           name="contactIdRegex"
 
 
 
@@ -3194,6 +3194,11 @@ Gould, et al.            Expires April 19, 2019                [Page 57]
 Internet-Draft                  registry                    October 2018
 
 
+     </complexType>
+     <complexType name="contactType">
+       <sequence>
+         <element
+           name="contactIdRegex"
            type="registry:regexType"
            minOccurs="0"/>
          <element
@@ -3237,11 +3242,6 @@ Internet-Draft                  registry                    October 2018
            default="true"/>
          <element
            name="proxyContactSupported"
-           type="boolean"
-           minOccurs="0"
-           default="true"/>
-       </sequence>
-     </complexType>
 
 
 
@@ -3250,6 +3250,11 @@ Gould, et al.            Expires April 19, 2019                [Page 58]
 Internet-Draft                  registry                    October 2018
 
 
+           type="boolean"
+           minOccurs="0"
+           default="true"/>
+       </sequence>
+     </complexType>
      <complexType name="transLimitType">
        <simpleContent>
          <extension base="int">
@@ -3293,11 +3298,6 @@ Internet-Draft                  registry                    October 2018
    </schema>
    END
 
-5.  IANA Considerations
-
-
-
-
 
 
 
@@ -3305,6 +3305,8 @@ Gould, et al.            Expires April 19, 2019                [Page 59]
 
 Internet-Draft                  registry                    October 2018
 
+
+5.  IANA Considerations
 
 5.1.  XML Namespace
 
@@ -3351,9 +3353,7 @@ Internet-Draft                  registry                    October 2018
    Note to RFC Editor: Please remove this section and the reference to
    RFC 7942 [RFC7942] before publication.
 
-   This section records the status of known implementations of the
-   protocol defined by this specification at the time of posting of this
-   Internet-Draft, and is based on a proposal described in RFC 7942
+
 
 
 
@@ -3362,6 +3362,9 @@ Gould, et al.            Expires April 19, 2019                [Page 60]
 Internet-Draft                  registry                    October 2018
 
 
+   This section records the status of known implementations of the
+   protocol defined by this specification at the time of posting of this
+   Internet-Draft, and is based on a proposal described in RFC 7942
    [RFC7942].  The description of implementations in this section is
    intended to assist the IETF in its decision processes in progressing
    drafts to RFCs.  Please note that the listing of any individual
@@ -3406,9 +3409,6 @@ Internet-Draft                  registry                    October 2018
    security services beyond those described by EPP [RFC5730] and
    protocol layers used by EPP.  The security considerations described
    in these other specifications apply to this specification as well.
-
-
-
 
 
 
@@ -3575,8 +3575,8 @@ A.4.  Change from 03 to 04
    8.  Added "or transferred" to the description of the
        <registry:expiryPolicy> element "autoRenew" value, based on
        feedback from Mario Laffredo.
-
-
+   9.  Added support for an optional list of <registry:invalidIP>
+       elements, under the <registry:host> element, to reference a list
 
 
 
@@ -3585,6 +3585,9 @@ Gould, et al.            Expires April 19, 2019                [Page 64]
 
 Internet-Draft                  registry                    October 2018
 
+
+       of externally defined invalid IP addresses URIs, based on
+       feedback from Patrick Mevzek.
 
 Authors' Addresses
 
@@ -3626,9 +3629,6 @@ Authors' Addresses
 
    Email: jkolker@godaddy.com
    URI:   http://www.godaddy.com
-
-
-
 
 
 

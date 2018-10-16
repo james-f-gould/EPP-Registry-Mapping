@@ -763,6 +763,12 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
 
               <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL set 
               of supported host statuses that SHOULD match the statuses defined in <xref target="RFC5732"/>.</t>
+
+              <t hangText="&lt;registry:invalidIP&gt;:">Zero or more &lt;registry:invalidIP&gt; elements that 
+              defines the URI of an externally defined list of invalid IP addresses. 
+              The IP addresses referenced by the list of &lt;registry:invalidIP&gt; elements 
+              should be combined and normalized by the client to define the complete set of 
+              invalid IP addresses.</t>
                             
             </list></t>  
             
@@ -1196,6 +1202,10 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <registry:status>pendingTransfer
       </registry:status>
     </registry:supportedStatus>
+    <registry:invalidIP>http://www.example.com/invalidip-1.txt
+    </registry:invalidIP>
+    <registry:invalidIP>http://www.example.com/invalidip-2.txt
+    </registry:invalidIP>
   </registry:host>
   <registry:contact>
     <registry:contactIdRegex>
@@ -2752,7 +2762,7 @@ BEGIN
         type="boolean"
         minOccurs="0"
         default="false"/>
-    </sequence>
+     </sequence>
   </complexType>
   <complexType name="extHostPolicyType">
     <sequence>
@@ -2793,6 +2803,11 @@ BEGIN
         name="supportedStatus"
         type="registry:supportedStatusType"
         minOccurs="0"/>
+      <element
+        name="invalidIP"
+        type="anyURI"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
     </sequence>
   </complexType>
   <complexType name="minMaxLength">
@@ -3194,6 +3209,8 @@ END]]></artwork>
           based on feedback from Mario Loffredo.</t>
           <t>Added "or transferred" to the description of the &lt;registry:expiryPolicy&gt; element "autoRenew" value, based on 
           feedback from Mario Laffredo.</t>
+          <t>Added support for an optional list of &lt;registry:invalidIP&gt; elements, under the &lt;registry:host&gt; element, 
+          to reference a list of externally defined invalid IP addresses URIs, based on feedback from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>

@@ -253,6 +253,10 @@
       <registry:status>pendingTransfer
       </registry:status>
     </registry:supportedStatus>
+    <registry:invalidIP>http://www.example.com/invalidip-1.txt
+    </registry:invalidIP>
+    <registry:invalidIP>http://www.example.com/invalidip-2.txt
+    </registry:invalidIP>
   </registry:host>
   <registry:contact>
     <registry:contactIdRegex>

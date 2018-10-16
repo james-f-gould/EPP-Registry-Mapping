@@ -819,7 +819,7 @@
         type="boolean"
         minOccurs="0"
         default="false"/>
-    </sequence>
+     </sequence>
   </complexType>
   <complexType name="extHostPolicyType">
     <sequence>
@@ -860,6 +860,11 @@
         name="supportedStatus"
         type="registry:supportedStatusType"
         minOccurs="0"/>
+      <element
+        name="invalidIP"
+        type="anyURI"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
     </sequence>
   </complexType>
   <complexType name="minMaxLength">
