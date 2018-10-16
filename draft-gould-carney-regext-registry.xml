@@ -47,7 +47,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-carney-regext-registry-03" ipr="trust200902">
+<rfc category="std" docName="draft-gould-carney-regext-registry-04" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -148,7 +148,7 @@
     </author>
     
 
-    <date day="17" month="August" year="2018"/>
+    <date day="16" month="October" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -750,9 +750,14 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
          The &lt;registry:contact&gt; element contains the following child 
          elements:</t>             
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&lt;registry:contactIdRegEx&gt;:">The OPTIONAL regular 
+              <t hangText="&lt;registry:contactIdRegex&gt;:">The OPTIONAL regular 
               expression used to validate the &lt;contact:id&gt; element 
               defined in <xref target="RFC5733"/>.</t>
+              <t hangText="&lt;registry:contactIdPrefix&gt;:">The OPTIONAL client-specific 
+                prefix that must be used for the &lt;contact:id&gt; element defined in <xref target="RFC5733"/>. 
+                For example, if the client is assigned the client-specific prefix "EX", 
+                every contact created by the client must have a &lt;contact:id&gt; 
+                element value prefixed with "EX", as in "EX123".</t>
               <t hangText="&lt;registry:sharePolicy&gt;:">The OPTIONAL policy for 
               the sharing of contacts in the server.  The possible 
               shared policy values include:</t>
@@ -1166,6 +1171,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <registry:expression>^.*$
       </registry:expression>
     </registry:contactIdRegex>
+    <registry:contactIdPrefix>EX
+    </registry:contactIdPrefix>
     <registry:sharePolicy>perZone
     </registry:sharePolicy>
     <registry:postalInfoTypeSupport>int
@@ -1895,11 +1902,11 @@ S:</epp>]]></artwork>
 BEGIN
 <?xml version="1.0" encoding="UTF-8"?>
 <schema
-  xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.1"
+  xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"
   xmlns:epp="urn:ietf:params:xml:ns:epp-1.0"
   xmlns:eppcom="urn:ietf:params:xml:ns:eppcom-1.0"
   xmlns="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="urn:ietf:params:xml:ns:epp:registry-0.1"
+  targetNamespace="urn:ietf:params:xml:ns:epp:registry-0.2"
   elementFormDefault="qualified"
 >
   <!--
@@ -2812,6 +2819,10 @@ BEGIN
         type="registry:regexType"
         minOccurs="0"/>
       <element
+        name="contactIdPrefix"
+        type="token"
+        minOccurs="0"/>
+      <element
         name="sharePolicy"
         type="registry:contactSharePolicyType"
         minOccurs="0"/>
@@ -3011,9 +3022,12 @@ END]]></artwork>
       specification as well.</t>
     </section>
 
-    <section anchor="Acknowledgements" title="Acknowledgements">
-      <t>TBD</t>
-    </section>
+   <section title="Acknowledgements">
+      <t>The authors wish to thank the following persons for their feedback and suggestions:</t>
+      <t><list style="symbols">
+        <t>Patrick Mevzek</t>
+      </list></t>
+   </section>
 
   </middle>
 
@@ -3087,6 +3101,13 @@ END]]></artwork>
         on a request from IANA with draft-ietf-regext-allocation-token.</t>
         </list></t>
       </section>
+      <section title="Change from 03 to 04" anchor="change-03-to-04">
+        <t><list style="numbers">
+          <t>Added the optional &lt;registry:contactIdPrefix&gt; element to support a 
+          client-specific prefix for the &lt;contact:id&gt; elements in <xref target="RFC5733"/>, 
+          based on feedback from Patrick Mevzek.</t>
+        </list></t>
+      </section>      
     </section>
   </back>
 

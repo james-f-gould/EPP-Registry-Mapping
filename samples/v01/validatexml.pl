@@ -79,7 +79,7 @@ sub main {
 	
 	my @files = detokenizeFiles(@ARGV);
 	
-	system("../xmlvalidator-1.0/xmlvalidator -schemasDir . -schemasFile xmlschemas.txt @files");
+	system("../../xmlvalidator-1.0/xmlvalidator -schemasDir . -schemasFile xmlschemas.txt @files");
 	
 	if (!$keep) {
 		unlink @detokenizedFilesToDelete;

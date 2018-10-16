@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <check>
+      <registry:check
+       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
+        <registry:name>zone1</registry:name>
+        <registry:name>zone2</registry:name>
+        <registry:name>zone3</registry:name>
+      </registry:check>
+    </check>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>

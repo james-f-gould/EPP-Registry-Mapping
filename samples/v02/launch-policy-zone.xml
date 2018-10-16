@@ -1,0 +1,180 @@
+<lp:zone>
+  <lp:phase
+    type="sunrise"
+    mode="pending-application"
+  >
+    <lp:startDate>2017-11-01T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2017-12-01T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:status s="pendingAllocation"/>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pollPolicy>
+      <lp:intermediateStatus>false</lp:intermediateStatus>
+      <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+      <lp:extensionInfo>false</lp:extensionInfo>
+    </lp:pollPolicy>
+    <lp:markValidation>signedMark</lp:markValidation>
+    <lp:maxMarks>1</lp:maxMarks>
+    <lp:signedMarkSupported>
+      urn:ietf:params:xml:ns:signedMark-1.0
+    </lp:signedMarkSupported>
+    <lp:encodedSignedMarkSupported>
+      urn:ietf:params:xml:ns:signedMark-1.0
+    </lp:encodedSignedMarkSupported>
+    <lp:infoPhase type="sunrise"/>
+    <lp:createForm>sunrise</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="claims"
+    name="lrp1"
+    mode="pending-registration"
+  >
+    <lp:startDate>2017-12-01T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2017-12-08T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:status s="pendingValidation"/>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pendingCreate>true</lp:pendingCreate>
+    <lp:checkForm>claims</lp:checkForm>
+    <lp:checkForm>availability</lp:checkForm>
+    <lp:checkForm>trademark</lp:checkForm>
+    <lp:infoPhase type="sunrise"/>
+    <lp:infoPhase
+      type="claims"
+      name="lrp1"/>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="claims"
+    name="landrush"
+    mode="pending-application"
+  >
+    <lp:startDate>2017-12-08T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2017-12-15T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:status s="pendingAllocation"/>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pendingCreate>true</lp:pendingCreate>
+    <lp:pollPolicy>
+      <lp:intermediateStatus>false</lp:intermediateStatus>
+      <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+      <lp:extensionInfo>false</lp:extensionInfo>
+    </lp:pollPolicy>
+    <lp:checkForm>claims</lp:checkForm>
+    <lp:checkForm>availability</lp:checkForm>
+    <lp:checkForm>trademark</lp:checkForm>
+    <lp:infoPhase
+      type="claims"
+      name="lrp1"/>
+    <lp:infoPhase
+      type="claims"
+      name="landrush"/>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="claims"
+    name="open"
+    mode="fcfs"
+  >
+    <lp:startDate>2017-12-15T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2018-02-15T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>tmch
+    </lp:validatorId>
+    <lp:checkForm>claims</lp:checkForm>
+    <lp:checkForm>availability</lp:checkForm>
+    <lp:checkForm>trademark</lp:checkForm>
+    <lp:infoPhase
+      type="claims"
+      name="landrush"/>
+    <lp:infoPhase
+      type="claims"
+      name="open"/>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createForm>general</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <lp:phase
+    type="custom"
+    name="lrp2"
+    mode="pending-registration"
+  >
+    <lp:startDate>2018-02-15T00:00:00.0Z
+    </lp:startDate>
+    <lp:endDate>2018-03-15T00:00:00.0Z
+    </lp:endDate>
+    <lp:validatePhase>true</lp:validatePhase>
+    <lp:validatorId>lrp2-custom
+    </lp:validatorId>
+    <lp:status
+      s="custom"
+      name="pendingInternalValidation"
+    >
+      Internally validate registration
+    </lp:status>
+    <lp:status
+      s="custom"
+      name="pendingExternalValidation"
+    >
+      Externally validate registration
+    </lp:status>
+    <lp:status s="allocated"/>
+    <lp:status s="rejected"/>
+    <lp:pendingCreate>true</lp:pendingCreate>
+    <lp:pollPolicy>
+      <lp:intermediateStatus>true</lp:intermediateStatus>
+      <lp:nonMandatoryInfo>false</lp:nonMandatoryInfo>
+      <lp:extensionInfo>false</lp:extensionInfo>
+    </lp:pollPolicy>
+    <lp:markValidation>signedMark</lp:markValidation>
+    <lp:maxMarks>1</lp:maxMarks>
+    <lp:signedMarkSupported>
+      http://www.example.com/epp/lrp2-custom-1.0
+    </lp:signedMarkSupported>
+    <lp:encodedSignedMarkSupported>
+      http://www.example.com/epp/lrp2-custom-1.0
+    </lp:encodedSignedMarkSupported>
+    <lp:infoPhase
+      type="claims"
+      name="open"/>
+    <lp:infoPhase
+      type="custom"
+      name="lrp2"/>
+    <lp:createForm>sunrise</lp:createForm>
+    <lp:createForm>general</lp:createForm>
+    <lp:createForm>claims</lp:createForm>
+    <lp:createForm>mixed</lp:createForm>
+    <lp:createValidateType>true
+    </lp:createValidateType>
+  </lp:phase>
+  <!-- Use default mode="fcfs" -->
+  <lp:phase type="open">
+    <lp:startDate>2018-03-15T00:00:00.0Z
+    </lp:startDate>
+    <lp:validatePhase>false</lp:validatePhase>
+  </lp:phase>
+</lp:zone>

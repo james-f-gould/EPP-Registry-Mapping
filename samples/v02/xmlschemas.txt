@@ -1,0 +1,4 @@
+../../xsd/eppcom-1.0.xsd
+../../xsd/epp-1.0.xsd
+../../xsd/registry-0.2.xsd
+../../xsd/launchPolicy-0.1.xsd
