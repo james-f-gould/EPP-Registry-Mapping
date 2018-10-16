@@ -829,9 +829,9 @@ Internet-Draft                  registry                    October 2018
                elements is supported for defining both the "loc" and the
                "int" type.  This policy does not indicate that both must
                be provided.
-       <registry:postalInfo>:  The postal-address information policy
-           information.  The <registry:postalInfo> element contains the
-           following child elements:
+           "intOptLoc":  Indicates that the <contact:postalInfo> element
+               with type "int" is required and the option of a second
+               <contact:postalInfo> element with the type "loc".
 
 
 
@@ -840,6 +840,14 @@ Internet-Draft                  registry                    October 2018
 Gould, et al.            Expires April 19, 2019                [Page 15]
 
 Internet-Draft                  registry                    October 2018
+
+
+           "locOptInt":  Indicates that the <contact:postalInfo> element
+               with type "loc" is required and the option of a second
+               <contact:postalInfo> element with the type "int".
+       <registry:postalInfo>:  The postal-address information policy
+           information.  The <registry:postalInfo> element contains the
+           following child elements:
 
 
            <registry:name>:  The minimum and maximum length of
@@ -882,14 +890,6 @@ Internet-Draft                  registry                    October 2018
                    <contact:sp> element defined in [RFC5733] using the
                    <registry:minLength> and <registry:maxLength> child
                    elements, respectively.
-               <registry:pc>:  The minimum and maximum length of the
-                   <contact:pc> element defined in [RFC5733] using the
-                   <registry:minLength> and <registry:maxLength> child
-                   elements, respectively.
-           <registry:voiceRequired>:  An OPTIONAL boolean flag
-               indicating whether the server requires the
-               <contact:voice> element to be defined, with a default
-               value of "false".
 
 
 
@@ -898,6 +898,14 @@ Gould, et al.            Expires April 19, 2019                [Page 16]
 Internet-Draft                  registry                    October 2018
 
 
+               <registry:pc>:  The minimum and maximum length of the
+                   <contact:pc> element defined in [RFC5733] using the
+                   <registry:minLength> and <registry:maxLength> child
+                   elements, respectively.
+           <registry:voiceRequired>:  An OPTIONAL boolean flag
+               indicating whether the server requires the
+               <contact:voice> element to be defined, with a default
+               value of "false".
            <registry:voiceExt>:  The OPTIONAL minimum and maximum length
                of the <contact:voice> extension "x" attribute defined in
                [RFC5733] using the <registry:minLength> and
@@ -938,14 +946,6 @@ Internet-Draft                  registry                    October 2018
      <registry:name>EXAMPLE</registry:name>
      <registry:group>STANDARD</registry:group>
      <registry:services>
-       <registry:objURI required="true">
-         urn:ietf:params:xml:ns:domain-1.0
-       </registry:objURI>
-       <registry:objURI required="true">
-         urn:ietf:params:xml:ns:host-1.0
-       </registry:objURI>
-       <registry:objURI required="true">
-         urn:ietf:params:xml:ns:contact-1.0
 
 
 
@@ -954,6 +954,14 @@ Gould, et al.            Expires April 19, 2019                [Page 17]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:objURI required="true">
+         urn:ietf:params:xml:ns:domain-1.0
+       </registry:objURI>
+       <registry:objURI required="true">
+         urn:ietf:params:xml:ns:host-1.0
+       </registry:objURI>
+       <registry:objURI required="true">
+         urn:ietf:params:xml:ns:contact-1.0
        </registry:objURI>
        <registry:svcExtension>
          <registry:extURI required="true">
@@ -994,14 +1002,6 @@ Internet-Draft                  registry                    October 2018
        </registry:zone>
      </registry:system>
      <registry:domain>
-       <registry:domainName level="2">
-         <registry:minLength>5
-         </registry:minLength>
-         <registry:maxLength>50
-         </registry:maxLength>
-         <registry:alphaNumStart>true
-         </registry:alphaNumStart>
-         <registry:alphaNumEnd>false
 
 
 
@@ -1010,6 +1010,14 @@ Gould, et al.            Expires April 19, 2019                [Page 18]
 Internet-Draft                  registry                    October 2018
 
 
+       <registry:domainName level="2">
+         <registry:minLength>5
+         </registry:minLength>
+         <registry:maxLength>50
+         </registry:maxLength>
+         <registry:alphaNumStart>true
+         </registry:alphaNumStart>
+         <registry:alphaNumEnd>false
          </registry:alphaNumEnd>
          <registry:aLabelSupported>true
          </registry:aLabelSupported>
@@ -1050,14 +1058,6 @@ Internet-Draft                  registry                    October 2018
          </registry:language>
        </registry:idn>
        <registry:premiumSupport>false
-       </registry:premiumSupport>
-       <registry:contact type="admin">
-         <registry:min>1</registry:min>
-         <registry:max>1</registry:max>
-       </registry:contact>
-       <registry:contact type="tech">
-         <registry:min>1</registry:min>
-         <registry:max>1</registry:max>
 
 
 
@@ -1066,6 +1066,14 @@ Gould, et al.            Expires April 19, 2019                [Page 19]
 Internet-Draft                  registry                    October 2018
 
 
+       </registry:premiumSupport>
+       <registry:contact type="admin">
+         <registry:min>1</registry:min>
+         <registry:max>1</registry:max>
+       </registry:contact>
+       <registry:contact type="tech">
+         <registry:min>1</registry:min>
+         <registry:max>1</registry:max>
        </registry:contact>
        <registry:contact type="billing">
          <registry:min>0</registry:min>
@@ -1106,14 +1114,6 @@ Internet-Draft                  registry                    October 2018
        >5
        </registry:gracePeriod>
        <registry:gracePeriod
-         command="transfer"
-         unit="d"
-       >5
-       </registry:gracePeriod>
-       <registry:gracePeriod
-         command="autoRenew"
-         unit="d"
-       >45
 
 
 
@@ -1122,6 +1122,14 @@ Gould, et al.            Expires April 19, 2019                [Page 20]
 Internet-Draft                  registry                    October 2018
 
 
+         command="transfer"
+         unit="d"
+       >5
+       </registry:gracePeriod>
+       <registry:gracePeriod
+         command="autoRenew"
+         unit="d"
+       >45
        </registry:gracePeriod>
        <registry:rgp>
          <registry:redemptionPeriod unit="d">30
@@ -1162,14 +1170,6 @@ Internet-Draft                  registry                    October 2018
          </registry:status>
          <registry:status>clientTransferProhibited
          </registry:status>
-         <registry:status>serverTransferProhibited
-         </registry:status>
-         <registry:status>clientUpdateProhibited
-         </registry:status>
-         <registry:status>serverUpdateProhibited
-         </registry:status>
-         <registry:status>inactive
-         </registry:status>
 
 
 
@@ -1178,6 +1178,14 @@ Gould, et al.            Expires April 19, 2019                [Page 21]
 Internet-Draft                  registry                    October 2018
 
 
+         <registry:status>serverTransferProhibited
+         </registry:status>
+         <registry:status>clientUpdateProhibited
+         </registry:status>
+         <registry:status>serverUpdateProhibited
+         </registry:status>
+         <registry:status>inactive
+         </registry:status>
          <registry:status>pendingDelete
          </registry:status>
          <registry:status>pendingTransfer
@@ -1218,14 +1226,6 @@ Internet-Draft                  registry                    October 2018
          </registry:status>
          <registry:status>serverDeleteProhibited
          </registry:status>
-         <registry:status>clientUpdateProhibited
-         </registry:status>
-         <registry:status>serverUpdateProhibited
-         </registry:status>
-         <registry:status>linked
-         </registry:status>
-         <registry:status>pendingDelete
-         </registry:status>
 
 
 
@@ -1234,6 +1234,14 @@ Gould, et al.            Expires April 19, 2019                [Page 22]
 Internet-Draft                  registry                    October 2018
 
 
+         <registry:status>clientUpdateProhibited
+         </registry:status>
+         <registry:status>serverUpdateProhibited
+         </registry:status>
+         <registry:status>linked
+         </registry:status>
+         <registry:status>pendingDelete
+         </registry:status>
          <registry:status>pendingTransfer
          </registry:status>
        </registry:supportedStatus>
@@ -1274,14 +1282,6 @@ Internet-Draft                  registry                    October 2018
              <registry:maxLength>40</registry:maxLength>
            </registry:sp>
            <registry:pc>
-             <registry:minLength>1</registry:minLength>
-             <registry:maxLength>40</registry:maxLength>
-           </registry:pc>
-         </registry:address>
-         <registry:voiceRequired>false
-         </registry:voiceRequired>
-         <registry:voiceExt>
-           <registry:minLength>1</registry:minLength>
 
 
 
@@ -1290,6 +1290,14 @@ Gould, et al.            Expires April 19, 2019                [Page 23]
 Internet-Draft                  registry                    October 2018
 
 
+             <registry:minLength>1</registry:minLength>
+             <registry:maxLength>40</registry:maxLength>
+           </registry:pc>
+         </registry:address>
+         <registry:voiceRequired>false
+         </registry:voiceRequired>
+         <registry:voiceExt>
+           <registry:minLength>1</registry:minLength>
            <registry:maxLength>40</registry:maxLength>
          </registry:voiceExt>
          <registry:faxExt>
@@ -1330,14 +1338,6 @@ Internet-Draft                  registry                    October 2018
          </registry:status>
        </registry:supportedStatus>
        <registry:transferHoldPeriod unit="d">5
-       </registry:transferHoldPeriod>
-       <registry:privacyContactSupported>true
-       </registry:privacyContactSupported>
-       <registry:proxyContactSupported>true
-       </registry:proxyContactSupported>
-     </registry:contact>
-   </registry:zone>
-
 
 
 
@@ -1345,6 +1345,14 @@ Gould, et al.            Expires April 19, 2019                [Page 24]
 
 Internet-Draft                  registry                    October 2018
 
+
+       </registry:transferHoldPeriod>
+       <registry:privacyContactSupported>true
+       </registry:privacyContactSupported>
+       <registry:proxyContactSupported>true
+       </registry:proxyContactSupported>
+     </registry:contact>
+   </registry:zone>
 
 3.  EPP Command Mapping
 
@@ -1376,6 +1384,24 @@ Internet-Draft                  registry                    October 2018
        in Section 2.1, that contain the fully qualified names of the
        zone objects to be queried.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gould, et al.            Expires April 19, 2019                [Page 25]
+
+Internet-Draft                  registry                    October 2018
+
+
    Example <check> command:
 
    C:<?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -1392,15 +1418,6 @@ Internet-Draft                  registry                    October 2018
    C:    <clTRID>ABC-12345</clTRID>
    C:  </command>
    C:</epp>
-
-
-
-
-
-Gould, et al.            Expires April 19, 2019                [Page 25]
-
-Internet-Draft                  registry                    October 2018
-
 
    When a <check> command has been processed successfully, the EPP
    <resData> element MUST contain a child <registry:chkData> element
@@ -1424,23 +1441,6 @@ Internet-Draft                  registry                    October 2018
        OPTIONAL "lang" attribute MAY be present to identify the language
        if the negotiated value is something other than a default value
        of "en" (English).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3554,6 +3554,9 @@ A.4.  Change from 03 to 04
        return a 2101 error response for an unimplemented command and
        MUST return a 2201 error response for an unauthorized command.",
        based on feedback from Mario Loffredo.
+   6.  Added two additional <registry:postalInfoTypeSupport> element
+       values, which include "intOptLoc" and "locOptInt", based on
+       feedback from Patrick Mevzek.
 
 Authors' Addresses
 
@@ -3575,9 +3578,6 @@ Authors' Addresses
 
    Email: ljia@verisign.com
    URI:   http://www.verisigninc.com
-
-
-
 
 
 

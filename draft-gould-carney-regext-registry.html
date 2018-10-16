@@ -961,6 +961,10 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dd style="margin-left: 4">Indicates that a single &lt;contact:postalInfo&gt; element is supported with the type "loc" or "int".</dd>
           <dt>"locAndInt":</dt>
           <dd style="margin-left: 4">Indicates that up to two &lt;contact:postalInfo&gt; elements is supported for defining both the "loc" and the "int" type.  This policy does not indicate that both must be provided.</dd>
+          <dt>"intOptLoc":</dt>
+          <dd style="margin-left: 4">Indicates that the &lt;contact:postalInfo&gt; element with type "int" is required and the option of a second &lt;contact:postalInfo&gt; element with the type "loc".</dd>
+          <dt>"locOptInt":</dt>
+          <dd style="margin-left: 4">Indicates that the &lt;contact:postalInfo&gt; element with type "loc" is required and the option of a second &lt;contact:postalInfo&gt; element with the type "int".</dd>
         </dl>
       </dd>
       <dt>&lt;registry:postalInfo&gt;:</dt>
@@ -2979,6 +2983,7 @@ END</pre>
   <li>Added the &lt;registry:nullAuthInfoSupported&gt; element to indicate whether the &lt;domain:null&gt; element of <a href="#RFC5731">[RFC5731]</a> is supported, based on feedback from Patrick Mevzek.</li>
   <li>Added support for the &lt;registry:flags&gt; and the &lt;registry:protocol&gt; elements under the &lt;registry:keyDataInterface&gt; element to define the supported set of key data interface flags and protocols, based on feedback from Patrick Mevzek.</li>
   <li>Updated the Introduction sentence "It is up to server policy to define what clients are authorized to execute which commands on which registry zones" to "It is up to server policy what commands are supported and to define the clients that are authorized to execute the commands for the registry zones.  The server MUST return a 2101 error response for an unimplemented command and MUST return a 2201 error response for an unauthorized command.", based on feedback from Mario Loffredo.</li>
+  <li>Added two additional &lt;registry:postalInfoTypeSupport&gt; element values, which include "intOptLoc" and "locOptInt", based on feedback from Patrick Mevzek.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

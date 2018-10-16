@@ -798,6 +798,8 @@
       <enumeration value="int"/>
       <enumeration value="locOrInt"/>
       <enumeration value="locAndInt"/>
+      <enumeration value="intOptLoc"/>
+      <enumeration value="locOptInt"/>
     </restriction>
   </simpleType>
   <complexType name="intHostPolicyType">

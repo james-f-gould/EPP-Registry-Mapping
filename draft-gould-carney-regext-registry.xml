@@ -807,6 +807,12 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     <t hangText="&quot;locAndInt&quot;:">Indicates that up to two  
                     &lt;contact:postalInfo&gt; elements is supported for defining both the "loc" and the "int" type.  
                     This policy does not indicate that both must be provided.</t>
+                    <t hangText="&quot;intOptLoc&quot;:">Indicates that the &lt;contact:postalInfo&gt; element 
+                    with type "int" is required and the option of a second &lt;contact:postalInfo&gt; element 
+                    with the type "loc".</t>
+                    <t hangText="&quot;locOptInt&quot;:">Indicates that the &lt;contact:postalInfo&gt; element 
+                    with type "loc" is required and the option of a second &lt;contact:postalInfo&gt; element 
+                    with the type "int".</t>
                   </list></t>
               
               <t hangText="&lt;registry:postalInfo&gt;:">The postal-address 
@@ -3179,6 +3185,8 @@ END]]></artwork>
           The server MUST return a 2101 error response for an unimplemented command and 
           MUST return a 2201 error response for an unauthorized command.", 
           based on feedback from Mario Loffredo.</t>
+          <t>Added two additional &lt;registry:postalInfoTypeSupport&gt; element values, which include 
+          "intOptLoc" and "locOptInt", based on feedback from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>
