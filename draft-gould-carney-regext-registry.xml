@@ -373,10 +373,10 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 length of the domain name label.</t>
                 <t hangText="&lt;registry:alphaNumStart&gt;:">An OPTIONAL flag 
                 indicating whether the label must start with an alphanumeric 
-                character with a default of "false".</t>
+                character, with a default of "false".</t>
                 <t hangText="&lt;registry:alphaNumEnd&gt;:">An OPTIONAL flag 
                 indicating whether the label must end with an alphanumeric 
-                character with a default value of "false".</t>
+                character, with a default value of "false".</t>
                 <t hangText="&lt;registry:aLabelSupported&gt;:">An OPTIONAL flag 
                 indicating whether ASCII domain names are supported with 
                 a default value of "true".</t>
@@ -389,7 +389,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 regular expression to apply to domain name label along with 
                 an OPTIONAL &lt;registry:description&gt; child element that 
                 describes the regular expression with an OPTIONAL "lang" 
-                attribute that defines the language of the description 
+                attribute that defines the language of the description,  
                 with a default value of "en" (English).</t>
                 <t hangText="&lt;registry:reservedNames&gt;:">An OPTIONAL 
                 element that defines the set of reserved domain names 
@@ -427,11 +427,11 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 "6.0" for Unicode 6.0.</t>
                 <t hangText="&lt;registry:encoding&gt;:">The OPTIONAL encoding 
                 for transforming Unicode characters uniquely and reversibly 
-                into DNS compatible characters with a default value 
+                into DNS compatible characters, with a default value 
                 of "Punycode".</t>
                 <t hangText="&lt;registry:commingleAllowed&gt;:">An OPTIONAL 
                 boolean value that indicates whether commingling of scripts 
-                is allowed with a default value of "false".</t>
+                is allowed, with a default value of "false".</t>
                 <t hangText="&lt;registry:language&gt;:">Zero or more 
                 &lt;registry:language&gt; elements that defines the supported 
                 language codes and character code point policy.  
@@ -463,9 +463,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 </list></t>
                 <t hangText="&lt;registry:premiumSupport&gt;:">The OPTIONAL 
                 boolean value that indicates whether the server supports 
-                premium domain names with a default value of "false".</t>
+                premium domain names, with a default value of "false".</t>
                 <t hangText="&lt;registry:contactsSupported&gt;:">The OPTIONAL 
-                boolean value that indicates whether contacts are supported 
+                boolean value that indicates whether contacts are supported,  
                 with a default value of "true".</t>
                 <t hangText="&lt;registry:contact&gt;:">Zero or more 
                 &lt;registry:contact&gt; elements that defines the minimum 
@@ -623,7 +623,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                       <t><list hangIndent="4" style="hanging">
                         <t hangText="&lt;registry:clientDefined&gt;:">An 
                         OPTIONAL boolean flag indicating whether the client 
-                        can set the maximum signature lifetime with a default 
+                        can set the maximum signature lifetime, with a default 
                         value of "false".</t>
                         <t hangText="&lt;registry:default&gt;:">The OPTIONAL 
                         default maximum signature lifetime set by the server.</t>
@@ -641,7 +641,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                        </list></t>
                     <t hangText="&lt;registry:urgent&gt;:">An OPTIONAL flag 
                     that of whether the client can specify the urgent attribute 
-                    for DNSSEC updates with a default value of "false".</t>
+                    for DNSSEC updates, with a default value of "false".</t>
                  </list></t>
                 <t hangText="&lt;registry:maxCheckDomain&gt;:">The maximum 
                 number of domain names (&lt;domain:name&gt; elements) that 
@@ -655,7 +655,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 authorization information value.</t>   
                 <t hangText="&lt;registry:expiryPolicy&gt;:">The OPTIONAL 
                 expiry policy used to define what happens when the 
-                domain object expires with a default value of "autoRenew".  The 
+                domain object expires, with a default value of "autoRenew".  The 
                 possible values for the &lt;registry:expiryPolicy&gt; element 
                 include:</t>
 				  <t><list hangIndent="4" style="hanging">
@@ -674,8 +674,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
 					will be auto-parked at expiry that results in the resolution 
 					of the domain object going to a parked page.</t>
 				  </list></t>
-                
-                
+                <t hangText="&lt;registry:nullAuthInfoSupported&gt;:">An OPTIONAL flag 
+                indicating whether the &lt;domain:null&gt; element in <xref target="RFC5731"/> 
+                is supported to remove the authorization information, with a default value of "false".</t>    
             </list></t>
 
          <t hangText="&lt;registry:host&gt;:">The host object policy information per 
@@ -911,11 +912,11 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               "m" for month, and "d" for day.</t>
                 
 			  <t hangText="&lt;registry:privacyContactSupported&gt;:">An OPTIONAL 
-			  boolean value that indicates whether a privacy contact is supported
+			  boolean value that indicates whether a privacy contact is supported, 
 			  with a default value of "true".</t>
                 
 			  <t hangText="&lt;registry:proxyContactSupported&gt;:">An OPTIONAL 
-			  boolean value that indicates whether a proxy contact is supported
+			  boolean value that indicates whether a proxy contact is supported, 
 			  with a default value of "true".</t>
             </list></t>        
         
@@ -1139,6 +1140,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
     </registry:authInfoRegex>
     <registry:expiryPolicy>autoRenew
     </registry:expiryPolicy>
+    <registry:nullAuthInfoSupported>false
+    </registry:nullAuthInfoSupported>    
   </registry:domain>
   <registry:host>
     <registry:internal>
@@ -2670,6 +2673,11 @@ BEGIN
         type="registry:expiryPolicyType"
         minOccurs="0"
         default="autoRenew"/>
+      <element
+        name="nullAuthInfoSupported"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>        
     </sequence>
   </complexType>
   <simpleType name="intHostSharePolicyType">
@@ -3132,6 +3140,9 @@ END]]></artwork>
           <t>Added the optional &lt;registry:unsupportedData&gt; element to define what 
           the server does when unsupported data is sent by the client, based on feedback from 
           Patrick Mevzek.</t>
+          <t>Added the &lt;registry:nullAuthInfoSupported&gt; element to indicate whether 
+          the &lt;domain:null&gt; element of <xref target="RFC5731"/> is supported, 
+          based on feedback from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>

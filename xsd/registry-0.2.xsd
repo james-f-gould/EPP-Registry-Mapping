@@ -755,6 +755,11 @@
         type="registry:expiryPolicyType"
         minOccurs="0"
         default="autoRenew"/>
+      <element
+        name="nullAuthInfoSupported"
+        type="boolean"
+        minOccurs="0"
+        default="false"/>        
     </sequence>
   </complexType>
   <simpleType name="intHostSharePolicyType">

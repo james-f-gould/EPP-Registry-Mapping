@@ -647,15 +647,15 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:maxLength&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL maximum length of the domain name label.</dd>
           <dt>&lt;registry:alphaNumStart&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL flag indicating whether the label must start with an alphanumeric character with a default of "false".</dd>
+          <dd style="margin-left: 4">An OPTIONAL flag indicating whether the label must start with an alphanumeric character, with a default of "false".</dd>
           <dt>&lt;registry:alphaNumEnd&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL flag indicating whether the label must end with an alphanumeric character with a default value of "false".</dd>
+          <dd style="margin-left: 4">An OPTIONAL flag indicating whether the label must end with an alphanumeric character, with a default value of "false".</dd>
           <dt>&lt;registry:aLabelSupported&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL flag indicating whether ASCII domain names are supported with a default value of "true".</dd>
           <dt>&lt;registry:uLabelSupported&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL flag indicating whether non-ASCII domain names are supported with a default value of "false".</dd>
           <dt>&lt;registry:regex&gt;:</dt>
-          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements that contain a &lt;registry:expression&gt; child element that defines the regular expression to apply to domain name label along with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description with a default value of "en" (English).</dd>
+          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements that contain a &lt;registry:expression&gt; child element that defines the regular expression to apply to domain name label along with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description, with a default value of "en" (English).</dd>
           <dt>&lt;registry:reservedNames&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL element that defines the set of reserved domain names starting from that label level.  The reserved names can refer to values with more than one level which is relative to the level of the parent &lt;registry:domainName&gt; element.  The &lt;registry:reservedNames&gt; element contains the following child elements:</dd>
           <dt></dt>
@@ -681,9 +681,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:unicodeVersion&gt;:</dt>
           <dd style="margin-left: 4">The Unicode version supported by the server like the value of "6.0" for Unicode 6.0.</dd>
           <dt>&lt;registry:encoding&gt;:</dt>
-          <dd style="margin-left: 4">The OPTIONAL encoding for transforming Unicode characters uniquely and reversibly into DNS compatible characters with a default value of "Punycode".</dd>
+          <dd style="margin-left: 4">The OPTIONAL encoding for transforming Unicode characters uniquely and reversibly into DNS compatible characters, with a default value of "Punycode".</dd>
           <dt>&lt;registry:commingleAllowed&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL boolean value that indicates whether commingling of scripts is allowed with a default value of "false".</dd>
+          <dd style="margin-left: 4">An OPTIONAL boolean value that indicates whether commingling of scripts is allowed, with a default value of "false".</dd>
           <dt>&lt;registry:language&gt;:</dt>
           <dd style="margin-left: 4">Zero or more &lt;registry:language&gt; elements that defines the supported language codes and character code point policy.  The required "code" attribute defines the language code for the supported language.  The language code SHOULD be an ISO 639 (ISO 639-1 or ISO 639-2) value.  The &lt;registry:language&gt; element contains the following child elements:</dd>
           <dt></dt>
@@ -709,9 +709,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
         </dl>
       </dd>
       <dt>&lt;registry:premiumSupport&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL boolean value that indicates whether the server supports premium domain names with a default value of "false".</dd>
+      <dd style="margin-left: 4">The OPTIONAL boolean value that indicates whether the server supports premium domain names, with a default value of "false".</dd>
       <dt>&lt;registry:contactsSupported&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL boolean value that indicates whether contacts are supported with a default value of "true".</dd>
+      <dd style="margin-left: 4">The OPTIONAL boolean value that indicates whether contacts are supported, with a default value of "true".</dd>
       <dt>&lt;registry:contact&gt;:</dt>
       <dd style="margin-left: 4">Zero or more &lt;registry:contact&gt; elements that defines the minimum and maximum number of contacts by contact type.  The contact type is defined with the required "type" attribute with the possible values of "admin", "tech", and "billing", and "custom".  The OPTIONAL "name" attribute is an identifier, represented in the 7-bit US-ASCII character set, that is used to define the name of the "custom" type.  If "custom" is the contact "type" value, then the "name" attribute MUST be set.  The OPTIONAL "description" attribute can be set with a description of the contact type.  The &lt;registry:contact&gt; element contains the following child elements:</dd>
       <dt></dt>
@@ -823,7 +823,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dd style="margin-left: 4">
             <dl>
               <dt>&lt;registry:clientDefined&gt;:</dt>
-              <dd style="margin-left: 4">An OPTIONAL boolean flag indicating whether the client can set the maximum signature lifetime with a default value of "false".</dd>
+              <dd style="margin-left: 4">An OPTIONAL boolean flag indicating whether the client can set the maximum signature lifetime, with a default value of "false".</dd>
               <dt>&lt;registry:default&gt;:</dt>
               <dd style="margin-left: 4">The OPTIONAL default maximum signature lifetime set by the server.</dd>
               <dt>&lt;registry:min&gt;:</dt>
@@ -833,7 +833,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
             </dl>
           </dd>
           <dt>&lt;registry:urgent&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL flag that of whether the client can specify the urgent attribute for DNSSEC updates with a default value of "false".</dd>
+          <dd style="margin-left: 4">An OPTIONAL flag that of whether the client can specify the urgent attribute for DNSSEC updates, with a default value of "false".</dd>
         </dl>
       </dd>
       <dt>&lt;registry:maxCheckDomain&gt;:</dt>
@@ -843,7 +843,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:authInfoRegEx&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL regular expression used to validate the domain object authorization information value.</dd>
       <dt>&lt;registry:expiryPolicy&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL expiry policy used to define what happens when the domain object expires with a default value of "autoRenew".  The possible values for the &lt;registry:expiryPolicy&gt; element include:</dd>
+      <dd style="margin-left: 4">The OPTIONAL expiry policy used to define what happens when the domain object expires, with a default value of "autoRenew".  The possible values for the &lt;registry:expiryPolicy&gt; element include:</dd>
       <dt></dt>
       <dd style="margin-left: 4">
         <dl>
@@ -857,6 +857,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dd style="margin-left: 4">The domain object will be auto-parked at expiry that results in the resolution of the domain object going to a parked page.</dd>
         </dl>
       </dd>
+      <dt>&lt;registry:nullAuthInfoSupported&gt;:</dt>
+      <dd style="margin-left: 4">An OPTIONAL flag indicating whether the &lt;domain:null&gt; element in <a href="#RFC5731">[RFC5731]</a> is supported to remove the authorization information, with a default value of "false".</dd>
     </dl>
   </dd>
   <dt>&lt;registry:host&gt;:</dt>
@@ -1013,9 +1015,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:transferHoldPeriod&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL period of time a contact object is in the pending transfer before the transfer is auto approved by the server.  The &lt;registry:transferHoldPeriod&gt; element MUST have the "unit" attribute with the possible values of "y" for year, "m" for month, and "d" for day.</dd>
       <dt>&lt;registry:privacyContactSupported&gt;:</dt>
-      <dd style="margin-left: 4">An OPTIONAL boolean value that indicates whether a privacy contact is supported with a default value of "true".</dd>
+      <dd style="margin-left: 4">An OPTIONAL boolean value that indicates whether a privacy contact is supported, with a default value of "true".</dd>
       <dt>&lt;registry:proxyContactSupported&gt;:</dt>
-      <dd style="margin-left: 4">An OPTIONAL boolean value that indicates whether a proxy contact is supported with a default value of "true".</dd>
+      <dd style="margin-left: 4">An OPTIONAL boolean value that indicates whether a proxy contact is supported, with a default value of "true".</dd>
     </dl>
   </dd>
 </dl>
@@ -1235,6 +1237,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
     &lt;/registry:authInfoRegex&gt;
     &lt;registry:expiryPolicy&gt;autoRenew
     &lt;/registry:expiryPolicy&gt;
+    &lt;registry:nullAuthInfoSupported&gt;false
+    &lt;/registry:nullAuthInfoSupported&gt;    
   &lt;/registry:domain&gt;
   &lt;registry:host&gt;
     &lt;registry:internal&gt;
@@ -2530,6 +2534,11 @@ BEGIN
         type="registry:expiryPolicyType"
         minOccurs="0"
         default="autoRenew"/&gt;
+      &lt;element
+        name="nullAuthInfoSupported"
+        type="boolean"
+        minOccurs="0"
+        default="false"/&gt;        
     &lt;/sequence&gt;
   &lt;/complexType&gt;
   &lt;simpleType name="intHostSharePolicyType"&gt;
@@ -2946,6 +2955,7 @@ END</pre>
 <ol>
   <li>Added the optional &lt;registry:contactIdPrefix&gt; element to support a client-specific prefix for the &lt;contact:id&gt; elements in <a href="#RFC5733">[RFC5733]</a>, based on feedback from Patrick Mevzek.</li>
   <li>Added the optional &lt;registry:unsupportedData&gt; element to define what the server does when unsupported data is sent by the client, based on feedback from Patrick Mevzek.</li>
+  <li>Added the &lt;registry:nullAuthInfoSupported&gt; element to indicate whether the &lt;domain:null&gt; element of <a href="#RFC5731">[RFC5731]</a> is supported, based on feedback from Patrick Mevzek.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
