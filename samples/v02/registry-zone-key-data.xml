@@ -213,6 +213,8 @@
     </registry:expiryPolicy>
     <registry:nullAuthInfoSupported>false
     </registry:nullAuthInfoSupported>    
+    <registry:hostModelSupported>hostObj
+    </registry:hostModelSupported>
   </registry:domain>
   <registry:host>
     <registry:internal>

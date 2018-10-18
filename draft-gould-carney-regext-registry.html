@@ -743,7 +743,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
         </dl>
       </dd>
       <dt>&lt;registry:childHost&gt;:</dt>
-      <dd style="margin-left: 4">Defines the minimum and maximum number of subordinate host objects (child hosts) for a domain object.  The &lt;registry:childHost&gt; element contains the following child elements:</dd>
+      <dd style="margin-left: 4">Defines the OPTIONAL minimum and maximum number of subordinate host objects (child hosts) for a domain object.  This element is only applicable when using the host object model in <a href="#RFC5731">[RFC5731]</a>.  The &lt;registry:childHost&gt; element contains the following child elements:</dd>
       <dt></dt>
       <dd style="margin-left: 4">
         <dl>
@@ -871,6 +871,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       </dd>
       <dt>&lt;registry:nullAuthInfoSupported&gt;:</dt>
       <dd style="margin-left: 4">An OPTIONAL flag indicating whether the &lt;domain:null&gt; element in <a href="#RFC5731">[RFC5731]</a> is supported to remove the authorization information, with a default value of "false".</dd>
+      <dt>&lt;registry:hostModelSupported&gt;:</dt>
+      <dd style="margin-left: 4">The OPTIONAL definition of which <a href="#RFC5731">[RFC5731]</a> host model is used by the server.  The possible values include "hostObj" for the host object model and "hostAttr" for the host attribute model, with the default value of "hostObj".</dd>
     </dl>
   </dd>
   <dt>&lt;registry:host&gt;:</dt>
@@ -931,7 +933,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:nameRegex&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the host name value.</dd>
       <dt>&lt;registry:maxCheckHost&gt;:</dt>
-      <dd style="margin-left: 4">The maximum number of host names (&lt;host:name&gt; elements) that can be included in a host check command defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
+      <dd style="margin-left: 4">The OPTIONAL maximum number of host names (&lt;host:name&gt; elements) that can be included in a host check command defined in <a href="#RFC5732">[RFC5732]</a>.  This element is only applicable when using the host object model in <a href="#RFC5731">[RFC5731]</a> and supporting host objects in <a href="#RFC5732">[RFC5732]</a>.</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL set of supported host statuses that SHOULD match the statuses defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
       <dt>&lt;registry:invalidIP&gt;:</dt>
@@ -1256,7 +1258,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
     &lt;registry:expiryPolicy&gt;autoRenew
     &lt;/registry:expiryPolicy&gt;
     &lt;registry:nullAuthInfoSupported&gt;false
-    &lt;/registry:nullAuthInfoSupported&gt;    
+    &lt;/registry:nullAuthInfoSupported&gt;
+    &lt;registry:hostModelSupported&gt;hostObj
+    &lt;/registry:hostModelSupported&gt;
   &lt;/registry:domain&gt;
   &lt;registry:host&gt;
     &lt;registry:internal&gt;
@@ -2538,7 +2542,8 @@ BEGIN
         type="registry:minMaxType"/&gt;
       &lt;element
         name="childHost"
-        type="registry:minMaxType"/&gt;
+        type="registry:minMaxType"
+        minOccurs="0"/&gt;
       &lt;element
         name="period"
         type="registry:dPeriodType"
@@ -2581,6 +2586,17 @@ BEGIN
         type="boolean"
         minOccurs="0"
         default="false"/&gt;        
+      &lt;element
+        name="hostModelSupported"
+        default="hostObj"
+        minOccurs="0"&gt;
+        &lt;simpleType&gt; 
+          &lt;restriction base="token"&gt;
+            &lt;enumeration value="hostObj"/&gt;
+            &lt;enumeration value="hostAttr"/&gt;
+          &lt;/restriction&gt;
+        &lt;/simpleType&gt;
+      &lt;/element&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
   &lt;simpleType name="intHostSharePolicyType"&gt;
@@ -2658,7 +2674,8 @@ BEGIN
         minOccurs="0"/&gt;
       &lt;element
         name="maxCheckHost"
-        type="unsignedShort"/&gt;
+        type="unsignedShort"
+        minOccurs="0"/&gt;
       &lt;element
         name="supportedStatus"
         type="registry:supportedStatusType"
@@ -3030,6 +3047,7 @@ END</pre>
   <li>Added a "Regular Expressions" section that describes the regular expression syntax used in the draft, which is Perl-compatible Regular Expression (PCRE).  The elements that use regular expression values reference the new "Regular Expressions" section.  Referencing the expected regular expression syntax to use is based on feedback from Patrick Mevzek.</li>
   <li>Added support for the &lt;registry:locCharRegex&gt; element to define the acceptable set of characters for the "loc" postal information elements, based on feedback from Patrick Mevzek.</li>
   <li>Updated to make the regular expression elements follow a consistent naming convention and cardinality.  Changed &lt;registry:regex&gt; to &lt;registry:nameRegex&gt; under the &lt;registry:domainName&gt; element, and changed to a single element.  Changed the &lt;registry:nameRegex&gt; under the &lt;registry:host&gt; element to a single element.</li>
+  <li>Added support for the host attribute model in RFC 5731 by adding the &lt;registry:hostModelSupported&gt; element under the &lt;registry:domain&gt; element, making the &lt;registry:maxCheckHost&gt; element optional, and making the &lt;registry:childHost&gt; element optional, based on feedback from Mario Loffredo.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

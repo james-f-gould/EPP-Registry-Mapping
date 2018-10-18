@@ -514,9 +514,11 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     maximum number is unbounded.  The &lt;registry:max&gt; element MUST NOT be 
                     less than the &lt;registry:min&gt; element.</t>
                    </list></t>
-                <t hangText="&lt;registry:childHost&gt;:">Defines the minimum 
+                <t hangText="&lt;registry:childHost&gt;:">Defines the OPTIONAL minimum 
                 and maximum number of subordinate host objects (child hosts) 
-                for a domain object.  The &lt;registry:childHost&gt; element 
+                for a domain object.  This element is only applicable when 
+                using the host object model in <xref target="RFC5731"/>.  
+                The &lt;registry:childHost&gt; element 
                 contains the following child elements:</t>
                   <t><list hangIndent="4" style="hanging">
                     <t hangText="&lt;registry:min&gt;:">The minimum number of 
@@ -695,6 +697,10 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 <t hangText="&lt;registry:nullAuthInfoSupported&gt;:">An OPTIONAL flag 
                 indicating whether the &lt;domain:null&gt; element in <xref target="RFC5731"/> 
                 is supported to remove the authorization information, with a default value of "false".</t>    
+                <t hangText="&lt;registry:hostModelSupported&gt;:">The OPTIONAL definition of which 
+                <xref target="RFC5731"/> host model is used by the server. 
+                The possible values include "hostObj" for the host object model and 
+                "hostAttr" for the host attribute model, with the default value of "hostObj".</t>    
             </list></t>
 
          <t hangText="&lt;registry:host&gt;:">The host object policy information per 
@@ -766,9 +772,12 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               OPTIONAL regular expression, as defined in <xref target="regex"/>, 
               used to validate the host name value.</t>
               
-              <t hangText="&lt;registry:maxCheckHost&gt;:">The maximum number of 
+              <t hangText="&lt;registry:maxCheckHost&gt;:">The OPTIONAL maximum number of 
               host names (&lt;host:name&gt; elements) that can be included in a 
-              host check command defined in <xref target="RFC5732"/>.</t>
+              host check command defined in <xref target="RFC5732"/>.
+              This element is only applicable when using the host object model 
+              in <xref target="RFC5731"/> and supporting host objects 
+              in <xref target="RFC5732"/>.</t>
 
               <t hangText="&lt;registry:supportedStatus&gt;:">The OPTIONAL set 
               of supported host statuses that SHOULD match the statuses defined in <xref target="RFC5732"/>.</t>
@@ -1175,7 +1184,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
     <registry:expiryPolicy>autoRenew
     </registry:expiryPolicy>
     <registry:nullAuthInfoSupported>false
-    </registry:nullAuthInfoSupported>    
+    </registry:nullAuthInfoSupported>
+    <registry:hostModelSupported>hostObj
+    </registry:hostModelSupported>
   </registry:domain>
   <registry:host>
     <registry:internal>
@@ -2693,7 +2704,8 @@ BEGIN
         type="registry:minMaxType"/>
       <element
         name="childHost"
-        type="registry:minMaxType"/>
+        type="registry:minMaxType"
+        minOccurs="0"/>
       <element
         name="period"
         type="registry:dPeriodType"
@@ -2736,6 +2748,17 @@ BEGIN
         type="boolean"
         minOccurs="0"
         default="false"/>        
+      <element
+        name="hostModelSupported"
+        default="hostObj"
+        minOccurs="0">
+        <simpleType> 
+          <restriction base="token">
+            <enumeration value="hostObj"/>
+            <enumeration value="hostAttr"/>
+          </restriction>
+        </simpleType>
+      </element>
     </sequence>
   </complexType>
   <simpleType name="intHostSharePolicyType">
@@ -2813,7 +2836,8 @@ BEGIN
         minOccurs="0"/>
       <element
         name="maxCheckHost"
-        type="unsignedShort"/>
+        type="unsignedShort"
+        minOccurs="0"/>
       <element
         name="supportedStatus"
         type="registry:supportedStatusType"
@@ -3255,7 +3279,10 @@ END]]></artwork>
           <t>Updated to make the regular expression elements follow a consistent naming convention and cardinality.
           Changed &lt;registry:regex&gt; to &lt;registry:nameRegex&gt; under the &lt;registry:domainName&gt; element, 
           and changed to a single element.  Changed the &lt;registry:nameRegex&gt; under the &lt;registry:host&gt; 
-          element to a single element.</t>  
+          element to a single element.</t>
+          <t>Added support for the host attribute model in RFC 5731 by adding the &lt;registry:hostModelSupported&gt; element 
+          under the &lt;registry:domain&gt; element, making the &lt;registry:maxCheckHost&gt; element optional, and making 
+          the &lt;registry:childHost&gt; element optional, based on feedback from Mario Loffredo.</t>
         </list></t>
       </section>      
     </section>

@@ -733,7 +733,8 @@
         type="registry:minMaxType"/>
       <element
         name="childHost"
-        type="registry:minMaxType"/>
+        type="registry:minMaxType"
+        minOccurs="0"/>
       <element
         name="period"
         type="registry:dPeriodType"
@@ -776,6 +777,17 @@
         type="boolean"
         minOccurs="0"
         default="false"/>        
+      <element
+        name="hostModelSupported"
+        default="hostObj"
+        minOccurs="0">
+        <simpleType> 
+          <restriction base="token">
+            <enumeration value="hostObj"/>
+            <enumeration value="hostAttr"/>
+          </restriction>
+        </simpleType>
+      </element>
     </sequence>
   </complexType>
   <simpleType name="intHostSharePolicyType">
@@ -853,7 +865,8 @@
         minOccurs="0"/>
       <element
         name="maxCheckHost"
-        type="unsignedShort"/>
+        type="unsignedShort"
+        minOccurs="0"/>
       <element
         name="supportedStatus"
         type="registry:supportedStatusType"
