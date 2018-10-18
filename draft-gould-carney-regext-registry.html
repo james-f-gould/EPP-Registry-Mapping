@@ -418,7 +418,7 @@
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-04" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-10-16" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-18" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -442,7 +442,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: April 19, 2019</td>
+  <td class="left">Expires: April 21, 2019</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -455,7 +455,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">October 16, 2018</td>
+  <td class="right">October 18, 2018</td>
 </tr>
 
     	
@@ -475,7 +475,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 19, 2019.</p>
+<p>This Internet-Draft will expire on April 21, 2019.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -571,7 +571,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   &lt;/registry:schedule&gt;
 &lt;/registry:batchJob&gt;</pre>
 <h1 id="rfc.section.2.4"><a href="#rfc.section.2.4">2.4.</a> <a href="#regex" id="regex">Regular Expressions</a></h1>
-<p id="rfc.section.2.4.p.1">Elements that contain regular expressions MUST conform to the <a href="#pcre">Perl-compatible Regular Expression (PCRE)</a> <cite title="NONE">[pcre]</cite> syntax.  Programming languages support different sets of PCRE features, so the server SHOULD define a PCRE that leverages features that are supported by a broad set of client programming languages.</p>
+<p id="rfc.section.2.4.p.1">A regular expression element contains a &lt;registry:expression&gt; child element that defines the regular expression to apply with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description, with a default value of "en" (English).  The &lt;registry:expression&gt; element MUST conform to the <a href="#pcre">Perl-compatible Regular Expression (PCRE)</a> <cite title="NONE">[pcre]</cite> syntax.  Programming languages support different sets of PCRE features, so the server SHOULD define a PCRE that leverages features that are supported by a broad set of client programming languages.</p>
 <h1 id="rfc.section.2.5"><a href="#rfc.section.2.5">2.5.</a> <a href="#zoneObject" id="zoneObject">Zone Object</a></h1>
 <p id="rfc.section.2.5.p.1">The Zone object, represented by the &lt;registry:zone&gt; element, is the primary object managed by this mapping.  The Zone object can apply to any zone level (top level, second level, third level, etc.).  The &lt;registry:zone&gt; element contains the following child elements:</p>
 <p/>
@@ -663,7 +663,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:uLabelSupported&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL flag indicating whether non-ASCII domain names are supported with a default value of "false".</dd>
           <dt>&lt;registry:regex&gt;:</dt>
-          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements that contain a &lt;registry:expression&gt; child element that defines the <a href="#regex">regular expressions</a> <cite title="NONE">[regex]</cite> to apply to domain name label along with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description, with a default value of "en" (English).</dd>
+          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements, as defined in <a href="#regex">Section 2.4</a>, that represent the regular expressions to apply to the domain name label.</dd>
           <dt>&lt;registry:reservedNames&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL element that defines the set of reserved domain names starting from that label level.  The reserved names can refer to values with more than one level which is relative to the level of the parent &lt;registry:domainName&gt; element.  The &lt;registry:reservedNames&gt; element contains the following child elements:</dd>
           <dt></dt>
@@ -853,7 +853,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt>&lt;registry:supportedStatus&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL set of supported domain statuses that SHOULD match the statuses defined in <a href="#RFC5731">[RFC5731]</a>.</dd>
       <dt>&lt;registry:authInfoRegEx&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the domain object authorization information value.</dd>
+      <dd style="margin-left: 4">The OPTIONAL regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the domain object authorization information value.</dd>
       <dt>&lt;registry:expiryPolicy&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL expiry policy used to define what happens when the domain object expires, with a default value of "autoRenew".  The possible values for the &lt;registry:expiryPolicy&gt; element include:</dd>
       <dt></dt>
@@ -929,7 +929,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
         </dl>
       </dd>
       <dt>&lt;registry:nameRegex&gt;:</dt>
-      <dd style="margin-left: 4">Zero or more &lt;registry:nameRegex&gt; elements that define the <a href="#regex">regular expressions</a> <cite title="NONE">[regex]</cite> used to validate the host name value.</dd>
+      <dd style="margin-left: 4">Zero or more &lt;registry:nameRegex&gt; elements that define the regular expressions, as defined in <a href="#regex">Section 2.4</a>, used to validate the host name value.</dd>
       <dt>&lt;registry:maxCheckHost&gt;:</dt>
       <dd style="margin-left: 4">The maximum number of host names (&lt;host:name&gt; elements) that can be included in a host check command defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
@@ -944,7 +944,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   <dd style="margin-left: 4">
     <dl>
       <dt>&lt;registry:contactIdRegex&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the &lt;contact:id&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
+      <dd style="margin-left: 4">The OPTIONAL regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the &lt;contact:id&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
       <dt>&lt;registry:contactIdPrefix&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL client-specific prefix that must be used for the &lt;contact:id&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.  For example, if the client is assigned the client-specific prefix "EX", every contact created by the client must have a &lt;contact:id&gt; element value prefixed with "EX", as in "EX123".</dd>
       <dt>&lt;registry:sharePolicy&gt;:</dt>
@@ -982,6 +982,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       <dt></dt>
       <dd style="margin-left: 4">
         <dl>
+          <dt>&lt;registry:locCharRegex&gt;:</dt>
+          <dd style="margin-left: 4">The OPTIONAL regular expression , as defined in <a href="#regex">Section 2.4</a>, that represents the character set that can be used for the &lt;contact:postalInfo&gt; localized form (type="loc") element content. The regular expression MUST be applicable to all &lt;contact:postalInfo&gt; element content.</dd>
           <dt>&lt;registry:name&gt;:</dt>
           <dd style="margin-left: 4">The minimum and maximum length of &lt;contact:name&gt; element defined <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
           <dt>&lt;registry:org&gt;:</dt>
@@ -1019,13 +1021,13 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:voiceExt&gt;:</dt>
           <dd style="margin-left: 4">The OPTIONAL minimum and maximum length of the &lt;contact:voice&gt; extension "x" attribute defined in <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
           <dt>&lt;registry:emailRegex&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL &lt;registry:emailRegex&gt; element that defines the <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the &lt;contact:email&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
+          <dd style="margin-left: 4">An OPTIONAL &lt;registry:emailRegex&gt; element that defines the regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the &lt;contact:email&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:maxCheckContact&gt;:</dt>
       <dd style="margin-left: 4">The maximum number of contact identifiers (&lt;contact:id&gt; elements) that can be included in a contact check command defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
       <dt>&lt;registry:authInfoRegex&gt;:</dt>
-      <dd style="margin-left: 4">The OPTIONAL <a href="#regex">regular expression</a> <cite title="NONE">[regex]</cite> used to validate the contact object authorization information value.</dd>
+      <dd style="margin-left: 4">The OPTIONAL regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the contact object authorization information value.</dd>
       <dt>&lt;registry:clientDisclosureSupported&gt;:</dt>
       <dd style="margin-left: 4">The OPTIONAL flag that indicates whether the server supports the client to identify elements that require exception server-operator handling to allow or restrict disclosure to third parties defined in <a href="#RFC5733">[RFC5733]</a> with a default of "false".</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
@@ -1310,9 +1312,13 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
     &lt;/registry:contactIdPrefix&gt;
     &lt;registry:sharePolicy&gt;perZone
     &lt;/registry:sharePolicy&gt;
-    &lt;registry:postalInfoTypeSupport&gt;int
+    &lt;registry:postalInfoTypeSupport&gt;locOrInt
     &lt;/registry:postalInfoTypeSupport&gt;
     &lt;registry:postalInfo&gt;
+      &lt;registry:locCharRegex&gt;
+        &lt;registry:expression&gt;^.*$
+        &lt;/registry:expression&gt;
+      &lt;/registry:locCharRegex&gt;
       &lt;registry:name&gt;
         &lt;registry:minLength&gt;5&lt;/registry:minLength&gt;
         &lt;registry:maxLength&gt;15&lt;/registry:maxLength&gt;
@@ -2717,6 +2723,10 @@ BEGIN
   &lt;complexType name="postalType"&gt;
     &lt;sequence&gt;
       &lt;element
+        name="locCharRegex"
+        type="registry:regexType"
+        minOccurs="0"/&gt;      
+      &lt;element
         name="name"
         type="registry:minMaxLength"/&gt;
       &lt;element
@@ -3022,6 +3032,7 @@ END</pre>
   <li>Added support for an optional list of &lt;registry:invalidIP&gt; elements, under the &lt;registry:host&gt; element, to reference a list of externally defined invalid IP addresses URIs, based on feedback from Patrick Mevzek.</li>
   <li>Changed all references of urn:ietf:params:xml:ns:epp:registry-0.1 to urn:ietf:params:xml:ns:epp:registry-0.2 in the draft.</li>
   <li>Added a "Regular Expressions" section that describes the regular expression syntax used in the draft, which is Perl-compatible Regular Expression (PCRE).  The elements that use regular expression values reference the new "Regular Expressions" section.  Referencing the expected regular expression syntax to use is based on feedback from Patrick Mevzek.</li>
+  <li>Added support for the &lt;registry:locCharRegex&gt; element to define the acceptable set of characters for the "loc" postal information elements, based on feedback from Patrick Mevzek.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

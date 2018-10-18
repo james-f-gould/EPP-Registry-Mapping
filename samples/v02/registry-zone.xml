@@ -267,9 +267,13 @@
     </registry:contactIdPrefix>
     <registry:sharePolicy>perZone
     </registry:sharePolicy>
-    <registry:postalInfoTypeSupport>int
+    <registry:postalInfoTypeSupport>locOrInt
     </registry:postalInfoTypeSupport>
     <registry:postalInfo>
+      <registry:locCharRegex>
+        <registry:expression>^.*$
+        </registry:expression>
+      </registry:locCharRegex>
       <registry:name>
         <registry:minLength>5</registry:minLength>
         <registry:maxLength>15</registry:maxLength>

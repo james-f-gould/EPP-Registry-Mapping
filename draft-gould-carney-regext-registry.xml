@@ -148,7 +148,7 @@
     </author>
     
 
-    <date day="16" month="October" year="2018"/>
+    <date day="18" month="October" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -277,7 +277,14 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       </section>
       
        <section anchor="regex" title="Regular Expressions">
-         <t>Elements that contain regular expressions MUST conform to the 
+         <t>A regular expression element contains a 
+         &lt;registry:expression&gt; child element that defines the 
+         regular expression to apply with
+         an OPTIONAL &lt;registry:description&gt; child element that 
+         describes the regular expression with an OPTIONAL "lang" 
+         attribute that defines the language of the description,  
+         with a default value of "en" (English).  The &lt;registry:expression&gt; 
+         element MUST conform to the 
          <xref target="pcre">Perl-compatible Regular Expression (PCRE)</xref> syntax.  
          Programming languages support different sets of PCRE features, so the server 
          SHOULD define a PCRE that leverages features that are supported by a broad set 
@@ -394,14 +401,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 indicating whether non-ASCII domain names are supported with 
                 a default value of "false".</t>
                 <t hangText="&lt;registry:regex&gt;:">Zero or more 
-                &lt;registry:regex&gt; elements that contain a 
-                &lt;registry:expression&gt; child element that defines the 
-                <xref target="regex">regular expressions</xref> to apply to 
-                domain name label along with 
-                an OPTIONAL &lt;registry:description&gt; child element that 
-                describes the regular expression with an OPTIONAL "lang" 
-                attribute that defines the language of the description,  
-                with a default value of "en" (English).</t>
+                &lt;registry:regex&gt; elements, as defined in <xref target="regex"/>, 
+                that represent the regular expressions to apply to the domain name label.</t>
                 <t hangText="&lt;registry:reservedNames&gt;:">An OPTIONAL 
                 element that defines the set of reserved domain names 
                 starting from that label level.  The reserved names can 
@@ -668,8 +669,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 set of supported domain statuses that SHOULD match the statuses defined in 
                 <xref target="RFC5731"/>.</t>
                 <t hangText="&lt;registry:authInfoRegEx&gt;:">The OPTIONAL 
-                <xref target="regex">regular expression</xref> used to validate the domain object 
-                authorization information value.</t>   
+                regular expression, as defined in <xref target="regex"/>, 
+                used to validate the domain object authorization information value.</t>   
                 <t hangText="&lt;registry:expiryPolicy&gt;:">The OPTIONAL 
                 expiry policy used to define what happens when the 
                 domain object expires, with a default value of "autoRenew".  The 
@@ -762,8 +763,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               </list></t>             
               
               <t hangText="&lt;registry:nameRegex&gt;:">Zero or more 
-              &lt;registry:nameRegex&gt; elements that define the <xref target="regex">regular 
-              expressions</xref> used to validate the host name value.</t>
+              &lt;registry:nameRegex&gt; elements that define the regular expressions, 
+              as defined in <xref target="regex"/>, used to validate the host name value.</t>
               
               <t hangText="&lt;registry:maxCheckHost&gt;:">The maximum number of 
               host names (&lt;host:name&gt; elements) that can be included in a 
@@ -785,8 +786,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
          The &lt;registry:contact&gt; element contains the following child 
          elements:</t>             
             <t><list hangIndent="4" style="hanging">
-              <t hangText="&lt;registry:contactIdRegex&gt;:">The OPTIONAL <xref target="regex">regular 
-              expression</xref> used to validate the &lt;contact:id&gt; element 
+              <t hangText="&lt;registry:contactIdRegex&gt;:">The OPTIONAL regular expression, 
+              as defined in <xref target="regex"/>, 
+              used to validate the &lt;contact:id&gt; element 
               defined in <xref target="RFC5733"/>.</t>
               <t hangText="&lt;registry:contactIdPrefix&gt;:">The OPTIONAL client-specific 
                 prefix that must be used for the &lt;contact:id&gt; element defined in <xref target="RFC5733"/>. 
@@ -833,6 +835,11 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               information policy information.  The &lt;registry:postalInfo&gt; 
               element contains the following child elements:</t>
                 <t><list hangIndent="4" style="hanging">
+                  <t hangText="&lt;registry:locCharRegex&gt;:">The OPTIONAL regular expression 
+                  , as defined in <xref target="regex"/>, that represents the character set 
+                  that can be used for the &lt;contact:postalInfo&gt; 
+                  localized form (type="loc") element content. The regular expression 
+                  MUST be applicable to all &lt;contact:postalInfo&gt; element content.</t>
                   <t hangText="&lt;registry:name&gt;:">The minimum and maximum 
                   length of &lt;contact:name&gt; element defined 
                   <xref target="RFC5733"/> using the &lt;registry:minLength&gt; 
@@ -907,8 +914,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                 elements, respectively.</t>
 
                 <t hangText="&lt;registry:emailRegex&gt;:">An OPTIONAL  
-                &lt;registry:emailRegex&gt; element that defines the <xref target="regex">regular 
-                expression</xref> used to validate the &lt;contact:email&gt; element 
+                &lt;registry:emailRegex&gt; element that defines the regular expression, 
+                as defined in <xref target="regex"/>, used to validate the &lt;contact:email&gt; element 
                 defined in <xref target="RFC5733"/>.</t>
                   
                 </list></t>
@@ -918,8 +925,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               included in a contact check command defined in 
               <xref target="RFC5733"/>.</t>
                
-              <t hangText="&lt;registry:authInfoRegex&gt;:">The OPTIONAL <xref target="regex">regular 
-              expression</xref> used to validate the contact object authorization 
+              <t hangText="&lt;registry:authInfoRegex&gt;:">The OPTIONAL regular expression, 
+              as defined in <xref target="regex"/>, used to validate the contact object authorization 
               information value.</t>
 
               <t hangText="&lt;registry:clientDisclosureSupported&gt;:">The 
@@ -1224,9 +1231,13 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
     </registry:contactIdPrefix>
     <registry:sharePolicy>perZone
     </registry:sharePolicy>
-    <registry:postalInfoTypeSupport>int
+    <registry:postalInfoTypeSupport>locOrInt
     </registry:postalInfoTypeSupport>
     <registry:postalInfo>
+      <registry:locCharRegex>
+        <registry:expression>^.*$
+        </registry:expression>
+      </registry:locCharRegex>
       <registry:name>
         <registry:minLength>5</registry:minLength>
         <registry:maxLength>15</registry:maxLength>
@@ -2867,6 +2878,10 @@ BEGIN
   <complexType name="postalType">
     <sequence>
       <element
+        name="locCharRegex"
+        type="registry:regexType"
+        minOccurs="0"/>      
+      <element
         name="name"
         type="registry:minMaxLength"/>
       <element
@@ -3239,6 +3254,8 @@ END]]></artwork>
           is Perl-compatible Regular Expression (PCRE).  The elements that use regular expression values reference 
           the new "Regular Expressions" section.  Referencing the expected regular expression syntax to use is based on feedback 
           from Patrick Mevzek.</t>
+          <t>Added support for the &lt;registry:locCharRegex&gt; element to define the acceptable set of 
+          characters for the "loc" postal information elements, based on feedback from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>

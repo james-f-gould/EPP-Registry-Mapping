@@ -916,6 +916,10 @@
   <complexType name="postalType">
     <sequence>
       <element
+        name="locCharRegex"
+        type="registry:regexType"
+        minOccurs="0"/>      
+      <element
         name="name"
         type="registry:minMaxLength"/>
       <element
