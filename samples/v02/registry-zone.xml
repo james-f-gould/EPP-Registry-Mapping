@@ -63,16 +63,14 @@
       </registry:aLabelSupported>
       <registry:uLabelSupported>false
       </registry:uLabelSupported>
-      <registry:regex>
-        <registry:expression>^\w+.*$
+      <registry:nameRegex>
+        <registry:expression>
+        ^[a-zA-Z\d][a-zA-Z\d\-]{4,49}$
         </registry:expression>
-        <registry:description>Alphanumeric
+        <registry:description>
+          5 to 50 DNS characters starting with alphanumeric
         </registry:description>
-      </registry:regex>
-      <registry:regex>
-        <registry:expression>^\d+.*$
-        </registry:expression>
-      </registry:regex>
+      </registry:nameRegex>
       <registry:reservedNames>
         <registry:reservedName>reserved1
         </registry:reservedName>

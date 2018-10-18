@@ -339,10 +339,9 @@
         minOccurs="0"
         default="false"/>
       <element
-        name="regex"
+        name="nameRegex"
         type="registry:regexType"
-        minOccurs="0"
-        maxOccurs="unbounded"/>
+        minOccurs="0"/>
       <element
         name="reservedNames"
         type="registry:reservedNamesType"
@@ -851,8 +850,7 @@
       <element
         name="nameRegex"
         type="registry:regexType"
-        minOccurs="0"
-        maxOccurs="unbounded"/>
+        minOccurs="0"/>
       <element
         name="maxCheckHost"
         type="unsignedShort"/>

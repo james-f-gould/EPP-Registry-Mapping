@@ -662,8 +662,8 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dd style="margin-left: 4">An OPTIONAL flag indicating whether ASCII domain names are supported with a default value of "true".</dd>
           <dt>&lt;registry:uLabelSupported&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL flag indicating whether non-ASCII domain names are supported with a default value of "false".</dd>
-          <dt>&lt;registry:regex&gt;:</dt>
-          <dd style="margin-left: 4">Zero or more &lt;registry:regex&gt; elements, as defined in <a href="#regex">Section 2.4</a>, that represent the regular expressions to apply to the domain name label.</dd>
+          <dt>&lt;registry:nameRegex&gt;:</dt>
+          <dd style="margin-left: 4">The OPTIONAL regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the domain name label.</dd>
           <dt>&lt;registry:reservedNames&gt;:</dt>
           <dd style="margin-left: 4">An OPTIONAL element that defines the set of reserved domain names starting from that label level.  The reserved names can refer to values with more than one level which is relative to the level of the parent &lt;registry:domainName&gt; element.  The &lt;registry:reservedNames&gt; element contains the following child elements:</dd>
           <dt></dt>
@@ -929,7 +929,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
         </dl>
       </dd>
       <dt>&lt;registry:nameRegex&gt;:</dt>
-      <dd style="margin-left: 4">Zero or more &lt;registry:nameRegex&gt; elements that define the regular expressions, as defined in <a href="#regex">Section 2.4</a>, used to validate the host name value.</dd>
+      <dd style="margin-left: 4">The OPTIONAL regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the host name value.</dd>
       <dt>&lt;registry:maxCheckHost&gt;:</dt>
       <dd style="margin-left: 4">The maximum number of host names (&lt;host:name&gt; elements) that can be included in a host check command defined in <a href="#RFC5732">[RFC5732]</a>.</dd>
       <dt>&lt;registry:supportedStatus&gt;:</dt>
@@ -1021,7 +1021,7 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:voiceExt&gt;:</dt>
           <dd style="margin-left: 4">The OPTIONAL minimum and maximum length of the &lt;contact:voice&gt; extension "x" attribute defined in <a href="#RFC5733">[RFC5733]</a> using the &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child elements, respectively.</dd>
           <dt>&lt;registry:emailRegex&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL &lt;registry:emailRegex&gt; element that defines the regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the &lt;contact:email&gt; element defined in <a href="#RFC5733">[RFC5733]</a>.</dd>
+          <dd style="margin-left: 4">An OPTIONAL &lt;registry:emailRegex&gt; element that defines the regular expression, as defined in <a href="#regex">Section 2.4</a>, used to validate the &lt;contact:email&gt; in <a href="#RFC5733">[RFC5733]</a>.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:maxCheckContact&gt;:</dt>
@@ -1108,16 +1108,14 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
       &lt;/registry:aLabelSupported&gt;
       &lt;registry:uLabelSupported&gt;false
       &lt;/registry:uLabelSupported&gt;
-      &lt;registry:regex&gt;
-        &lt;registry:expression&gt;^\w+.*$
+      &lt;registry:nameRegex&gt;
+        &lt;registry:expression&gt;
+        ^[a-zA-Z\d][a-zA-Z\d\-]{4,49}$
         &lt;/registry:expression&gt;
-        &lt;registry:description&gt;Alphanumeric
+        &lt;registry:description&gt;
+          5 to 50 DNS characters starting with alphanumeric
         &lt;/registry:description&gt;
-      &lt;/registry:regex&gt;
-      &lt;registry:regex&gt;
-        &lt;registry:expression&gt;^\d+.*$
-        &lt;/registry:expression&gt;
-      &lt;/registry:regex&gt;
+      &lt;/registry:nameRegex&gt;
       &lt;registry:reservedNames&gt;
         &lt;registry:reservedName&gt;reserved1
         &lt;/registry:reservedName&gt;
@@ -2146,10 +2144,9 @@ BEGIN
         minOccurs="0"
         default="false"/&gt;
       &lt;element
-        name="regex"
+        name="nameRegex"
         type="registry:regexType"
-        minOccurs="0"
-        maxOccurs="unbounded"/&gt;
+        minOccurs="0"/&gt;
       &lt;element
         name="reservedNames"
         type="registry:reservedNamesType"
@@ -2658,8 +2655,7 @@ BEGIN
       &lt;element
         name="nameRegex"
         type="registry:regexType"
-        minOccurs="0"
-        maxOccurs="unbounded"/&gt;
+        minOccurs="0"/&gt;
       &lt;element
         name="maxCheckHost"
         type="unsignedShort"/&gt;
@@ -3033,6 +3029,7 @@ END</pre>
   <li>Changed all references of urn:ietf:params:xml:ns:epp:registry-0.1 to urn:ietf:params:xml:ns:epp:registry-0.2 in the draft.</li>
   <li>Added a "Regular Expressions" section that describes the regular expression syntax used in the draft, which is Perl-compatible Regular Expression (PCRE).  The elements that use regular expression values reference the new "Regular Expressions" section.  Referencing the expected regular expression syntax to use is based on feedback from Patrick Mevzek.</li>
   <li>Added support for the &lt;registry:locCharRegex&gt; element to define the acceptable set of characters for the "loc" postal information elements, based on feedback from Patrick Mevzek.</li>
+  <li>Updated to make the regular expression elements follow a consistent naming convention and cardinality.  Changed &lt;registry:regex&gt; to &lt;registry:nameRegex&gt; under the &lt;registry:domainName&gt; element, and changed to a single element.  Changed the &lt;registry:nameRegex&gt; under the &lt;registry:host&gt; element to a single element.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
