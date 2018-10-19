@@ -240,40 +240,58 @@
       </section>
       
       <section anchor="schedule" title="Schedule">
-        <t>A schedule is defined using the &lt;registry:schedule&gt; element, in the time zone 
-        represented by the OPTIONAL "tz" attribute with the default of "UTC", and containing the first five crontab 
-        entry columns with the format:</t>
+        <t>A schedule is defined using the &lt;registry:schedule&gt; element, with the required 
+        "frequency" attribute that defines the frequency of execution.  
+        The "frequency" attribute has the possible values of "daily", "weekly", and "monthy".
+        The time zone is defined using the XML schema "time" type conventions of UTC and offsets from UTC, or 
+        using the OPTIONAL "tz" attribute that defines the named time zone.  
+        For example, the named Eastern time zone can be specified 
+        using the setting "tz=EST5EDT".</t>
+        <t>When the "frequency" attribute is set to "weekly", the "dayOfWeek" attribute MUST be set 
+        with a value between 0 (Sunday) to 6 (Saturday), to define the day of week of execution.</t>
+        <t>When the "frequency" attribute is 
+        set to "monthy", the "dayOfMonth" attribute MUST be set with a value between 1 and 31, to define the day 
+        of month of execution.  Execution will not occur 
+        in the current month if the "dayOfMonth" value is out-of-range for the current month (e.g, 29 - 31).</t>
+        <t>The following are examples 
+        of different &lt;registry:schedule&gt; element definitions:</t>
         
-<figure>
-<artwork><![CDATA[
-*     *     *   *    *        
--     -     -   -    -
-|     |     |   |    |
-|     |     |   |    +----- day of week (0 - 6) (Sunday=0)
-|     |     |   +------- month (1 - 12)
-|     |     +--------- day of month (1 - 31)
-|     +----------- hour (0 - 23)
-+------------- min (0 - 59)
+       <figure>
+            <preamble>Example daily schedule at 2 PM in the Eastern time zone:</preamble>
 
-* indicates any legal value
-A column can include a list of in range values seperated by commas, 
-as in 2,14 "hour" for 2 AM and 2 PM.  
-A column can include an inclusive range of values using two values 
-seperated by a hyphen, as in (1-5) "day of week" for weekdays.   
-]]></artwork>
-</figure>   
+            <artwork><![CDATA[
+<registry:schedule frequency="daily" tz="EST5EDT">
+  14:00:00
+</registry:schedule>]]></artwork>
+       </figure>
 
        <figure>
-            <preamble>Example schedule of a batch job that executes at 2 PM Eastern time zone:</preamble>
+            <preamble>Example daily schedule at 5 PM EST (5 UTC offset):</preamble>
+
             <artwork><![CDATA[
-<registry:batchJob>
-  <registry:name>pendingDelete</registry:name>
-  <registry:description>Pending Delete Batch
-  </registry:description>
-  <registry:schedule tz="EST5EDT">0 14 * * *
-  </registry:schedule>
-</registry:batchJob>]]></artwork>
+<registry:schedule frequency="daily">
+  07:00:00-05:00
+</registry:schedule>]]></artwork>
        </figure>
+
+       <figure>
+            <preamble>Example weekly schedule at midnight UTC on Sunday:</preamble>
+
+            <artwork><![CDATA[
+<registry:schedule frequency="weekly" dayOfWeek="0">
+  00:00:00Z  
+</registry:schedule>]]></artwork>
+       </figure>
+
+       <figure>
+            <preamble>Example monthly schedule at 5 PM UTC on the 15th of the month:</preamble>
+
+            <artwork><![CDATA[
+<registry:schedule frequency="monthly" dayOfMonth="15">
+  17:00:00Z
+</registry:schedule>]]></artwork>
+       </figure>
+       
       </section>
       
        <section anchor="regex" title="Regular Expressions">
@@ -355,11 +373,10 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
               <t><list hangIndent="4" style="hanging">
                 <t hangText="&lt;registry:name&gt;:">Name of the batch job, like 
                 "autoRenew" or "pendingDelete".</t>
-                <t hangText="&lt;registry:description&gt;:">OPTIONAL freeform 
-                description of batch job, like "Auto Renew Batch" or "Pending Delete Batch".</t>
-                <t hangText="&lt;registry:schedule&gt;:">Execution schedule for 
-                the batch job as defined in <xref target="schedule"/>, 
-                like &lt;registry:schedule tz="EDT5EDT"&gt;0 14 * * *&lt;/registry:schedule&gt;.</t>            
+                <t hangText="&lt;registry:description&gt;:">OPTIONAL free-form 
+                description of the batch job, like "Auto Renew Batch" or "Pending Delete Batch".</t>
+                <t hangText="&lt;registry:schedule&gt;:">One or more &lt;registry:schedule&gt; elements, 
+                as defined in <xref target="schedule"/>, that specifies when the batch job executes.</t>            
               </list></t>
              </list></t>
           <t hangText="&lt;registry:system&gt;:">The OPTIONAL list of 
@@ -1039,12 +1056,32 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   </registry:unsupportedData>
   <registry:batch>
     <registry:batchJob>
-      <registry:name>pendingDelete</registry:name>
-      <registry:description>Pending Delete Batch
+      <registry:name>localTzBatch</registry:name>
+      <registry:description>
+        Batch with multiple local time schedules (name and offset)
       </registry:description>
-      <registry:schedule tz="EDT5EDT">0 14 * * *
+      <registry:schedule frequency="daily" tz="EST5EDT">
+       04:00:00
       </registry:schedule>
-    </registry:batchJob>
+      <registry:schedule frequency="daily">
+       07:00:00-05:00
+      </registry:schedule>
+     </registry:batchJob>
+    <registry:batchJob>
+      <registry:name>multiBatchSchedule</registry:name>
+      <registry:description>
+        Batch with multiple UTC schedules 
+      </registry:description>
+      <registry:schedule frequency="daily">
+       12:00:00Z
+      </registry:schedule>
+      <registry:schedule frequency="weekly" dayOfWeek="0">
+       00:00:00Z
+      </registry:schedule>
+      <registry:schedule frequency="monthly" dayOfMonth="15">
+       17:00:00Z
+      </registry:schedule>
+     </registry:batchJob>
   </registry:batch>
   <registry:system>
     <registry:zone form="aLabel">EXAMPLE
@@ -2673,11 +2710,42 @@ BEGIN
   </complexType>
   <complexType name="scheduleType">
     <simpleContent>
-      <extension base="token">
+      <extension base="time">
+        <attribute
+          name="frequency"
+          use="required"
+        >
+          <simpleType>
+            <restriction base="token">
+              <enumeration value="daily"/>
+              <enumeration value="weekly"/>
+              <enumeration value="monthly"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+        <attribute
+          name="dayOfWeek"
+        >
+          <simpleType>
+            <restriction base="byte">
+              <minInclusive value="0"/>
+              <maxInclusive value="6"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+        <attribute
+          name="dayOfMonth"
+        >
+          <simpleType>
+            <restriction base="byte">
+              <minInclusive value="1"/>
+              <maxInclusive value="31"/>
+            </restriction>
+          </simpleType>
+        </attribute>
         <attribute
           name="tz"
-          type="token"
-          default="UTC"/>
+          type="token"/>
       </extension>
     </simpleContent>
   </complexType>
@@ -2693,7 +2761,8 @@ BEGIN
       <!-- UNIX crontab job schedule format -->
       <element
         name="schedule"
-        type="registry:scheduleType"/>
+        type="registry:scheduleType"
+        maxOccurs="unbounded"/>
     </sequence>
   </complexType>
   <!-- Information about the batch jobs -->
@@ -3344,6 +3413,10 @@ END]]></artwork>
           <t>Added the &lt;registry:exceedMaxExDate&gt; element under the &lt;registry:domain&gt; element to support 
           returning the server policy when the client exceeds the maximum expiration date on a per renewal command basis, 
           based on feedback from Patrick Mevzek.</t>
+          <t>Re-defined the &lt;registry:schedule&gt; element to use a simplified XML definition in place of a crontab 
+          definition, and added support for one or more &lt;registry:schedule&gt; elements per batch job.  The &lt;registry:schedule&gt; 
+          element supports multiple frequencies (daily, weekly, monthly), both local and UTC time zones, and a time using the XML schema "time" 
+          type.  This change is based on feedback from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>

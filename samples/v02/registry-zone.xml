@@ -36,12 +36,32 @@
   </registry:unsupportedData>
   <registry:batch>
     <registry:batchJob>
-      <registry:name>pendingDelete</registry:name>
-      <registry:description>Pending Delete Batch
+      <registry:name>localTzBatch</registry:name>
+      <registry:description>
+        Batch with multiple local time schedules (name and offset)
       </registry:description>
-      <registry:schedule tz="EDT5EDT">0 14 * * *
+      <registry:schedule frequency="daily" tz="EST5EDT">
+       04:00:00
       </registry:schedule>
-    </registry:batchJob>
+      <registry:schedule frequency="daily">
+       07:00:00-05:00
+      </registry:schedule>
+     </registry:batchJob>
+    <registry:batchJob>
+      <registry:name>multiBatchSchedule</registry:name>
+      <registry:description>
+        Batch with multiple UTC schedules 
+      </registry:description>
+      <registry:schedule frequency="daily">
+       12:00:00Z
+      </registry:schedule>
+      <registry:schedule frequency="weekly" dayOfWeek="0">
+       00:00:00Z
+      </registry:schedule>
+      <registry:schedule frequency="monthly" dayOfMonth="15">
+       17:00:00Z
+      </registry:schedule>
+     </registry:batchJob>
   </registry:batch>
   <registry:system>
     <registry:zone form="aLabel">EXAMPLE

@@ -544,32 +544,30 @@
 <h1 id="rfc.section.2.2"><a href="#rfc.section.2.2">2.2.</a> <a href="#datesTimes" id="datesTimes">Dates and Times</a></h1>
 <p id="rfc.section.2.2.p.1">Date and time attribute values MUST be represented in Universal Coordinated Time (UTC) using the Gregorian calendar.  The extended date-time form using upper case "T" and "Z" characters defined in <a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/">XML Schema Part 2</a> MUST be used to represent date-time values, as XML Schema does not support truncated date-time forms or lower case "T" and "Z" characters.</p>
 <h1 id="rfc.section.2.3"><a href="#rfc.section.2.3">2.3.</a> <a href="#schedule" id="schedule">Schedule</a></h1>
-<p id="rfc.section.2.3.p.1">A schedule is defined using the &lt;registry:schedule&gt; element, in the time zone represented by the OPTIONAL "tz" attribute with the default of "UTC", and containing the first five crontab entry columns with the format:</p>
+<p id="rfc.section.2.3.p.1">A schedule is defined using the &lt;registry:schedule&gt; element, with the required "frequency" attribute that defines the frequency of execution.  The "frequency" attribute has the possible values of "daily", "weekly", and "monthy".  The time zone is defined using the XML schema "time" type conventions of UTC and offsets from UTC, or using the OPTIONAL "tz" attribute that defines the named time zone.  For example, the named Eastern time zone can be specified using the setting "tz=EST5EDT".</p>
+<p id="rfc.section.2.3.p.2">When the "frequency" attribute is set to "weekly", the "dayOfWeek" attribute MUST be set with a value between 0 (Sunday) to 6 (Saturday), to define the day of week of execution.</p>
+<p id="rfc.section.2.3.p.3">When the "frequency" attribute is set to "monthy", the "dayOfMonth" attribute MUST be set with a value between 1 and 31, to define the day of month of execution.  Execution will not occur in the current month if the "dayOfMonth" value is out-of-range for the current month (e.g, 29 - 31).</p>
+<p id="rfc.section.2.3.p.4">The following are examples of different &lt;registry:schedule&gt; element definitions:</p>
+<p>Example daily schedule at 2 PM in the Eastern time zone:</p>
 <pre>
-*     *     *   *    *        
--     -     -   -    -
-|     |     |   |    |
-|     |     |   |    +----- day of week (0 - 6) (Sunday=0)
-|     |     |   +------- month (1 - 12)
-|     |     +--------- day of month (1 - 31)
-|     +----------- hour (0 - 23)
-+------------- min (0 - 59)
-
-* indicates any legal value
-A column can include a list of in range values seperated by commas, 
-as in 2,14 "hour" for 2 AM and 2 PM.  
-A column can include an inclusive range of values using two values 
-seperated by a hyphen, as in (1-5) "day of week" for weekdays.   
-</pre>
-<p>Example schedule of a batch job that executes at 2 PM Eastern time zone:</p>
+&lt;registry:schedule frequency="daily" tz="EST5EDT"&gt;
+  14:00:00
+&lt;/registry:schedule&gt;</pre>
+<p>Example daily schedule at 5 PM EST (5 UTC offset):</p>
 <pre>
-&lt;registry:batchJob&gt;
-  &lt;registry:name&gt;pendingDelete&lt;/registry:name&gt;
-  &lt;registry:description&gt;Pending Delete Batch
-  &lt;/registry:description&gt;
-  &lt;registry:schedule tz="EST5EDT"&gt;0 14 * * *
-  &lt;/registry:schedule&gt;
-&lt;/registry:batchJob&gt;</pre>
+&lt;registry:schedule frequency="daily"&gt;
+  07:00:00-05:00
+&lt;/registry:schedule&gt;</pre>
+<p>Example weekly schedule at midnight UTC on Sunday:</p>
+<pre>
+&lt;registry:schedule frequency="weekly" dayOfWeek="0"&gt;
+  00:00:00Z  
+&lt;/registry:schedule&gt;</pre>
+<p>Example monthly schedule at 5 PM UTC on the 15th of the month:</p>
+<pre>
+&lt;registry:schedule frequency="monthly" dayOfMonth="15"&gt;
+  17:00:00Z
+&lt;/registry:schedule&gt;</pre>
 <h1 id="rfc.section.2.4"><a href="#rfc.section.2.4">2.4.</a> <a href="#regex" id="regex">Regular Expressions</a></h1>
 <p id="rfc.section.2.4.p.1">A regular expression element contains a &lt;registry:expression&gt; child element that defines the regular expression to apply with an OPTIONAL &lt;registry:description&gt; child element that describes the regular expression with an OPTIONAL "lang" attribute that defines the language of the description, with a default value of "en" (English).  The &lt;registry:expression&gt; element MUST conform to the <a href="#pcre">Perl-compatible Regular Expression (PCRE)</a> <cite title="NONE">[pcre]</cite> syntax.  Programming languages support different sets of PCRE features, so the server SHOULD define a PCRE that leverages features that are supported by a broad set of client programming languages.</p>
 <h1 id="rfc.section.2.5"><a href="#rfc.section.2.5">2.5.</a> <a href="#zoneObject" id="zoneObject">Zone Object</a></h1>
@@ -624,9 +622,9 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           <dt>&lt;registry:name&gt;:</dt>
           <dd style="margin-left: 4">Name of the batch job, like "autoRenew" or "pendingDelete".</dd>
           <dt>&lt;registry:description&gt;:</dt>
-          <dd style="margin-left: 4">OPTIONAL freeform description of batch job, like "Auto Renew Batch" or "Pending Delete Batch".</dd>
+          <dd style="margin-left: 4">OPTIONAL free-form description of the batch job, like "Auto Renew Batch" or "Pending Delete Batch".</dd>
           <dt>&lt;registry:schedule&gt;:</dt>
-          <dd style="margin-left: 4">Execution schedule for the batch job as defined in <a href="#schedule">Section 2.3</a>, like &lt;registry:schedule tz="EDT5EDT"&gt;0 14 * * *&lt;/registry:schedule&gt;.</dd>
+          <dd style="margin-left: 4">One or more &lt;registry:schedule&gt; elements, as defined in <a href="#schedule">Section 2.3</a>, that specifies when the batch job executes.</dd>
         </dl>
       </dd>
     </dl>
@@ -1096,12 +1094,32 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
   &lt;/registry:unsupportedData&gt;
   &lt;registry:batch&gt;
     &lt;registry:batchJob&gt;
-      &lt;registry:name&gt;pendingDelete&lt;/registry:name&gt;
-      &lt;registry:description&gt;Pending Delete Batch
+      &lt;registry:name&gt;localTzBatch&lt;/registry:name&gt;
+      &lt;registry:description&gt;
+        Batch with multiple local time schedules (name and offset)
       &lt;/registry:description&gt;
-      &lt;registry:schedule tz="EDT5EDT"&gt;0 14 * * *
+      &lt;registry:schedule frequency="daily" tz="EST5EDT"&gt;
+       04:00:00
       &lt;/registry:schedule&gt;
-    &lt;/registry:batchJob&gt;
+      &lt;registry:schedule frequency="daily"&gt;
+       07:00:00-05:00
+      &lt;/registry:schedule&gt;
+     &lt;/registry:batchJob&gt;
+    &lt;registry:batchJob&gt;
+      &lt;registry:name&gt;multiBatchSchedule&lt;/registry:name&gt;
+      &lt;registry:description&gt;
+        Batch with multiple UTC schedules 
+      &lt;/registry:description&gt;
+      &lt;registry:schedule frequency="daily"&gt;
+       12:00:00Z
+      &lt;/registry:schedule&gt;
+      &lt;registry:schedule frequency="weekly" dayOfWeek="0"&gt;
+       00:00:00Z
+      &lt;/registry:schedule&gt;
+      &lt;registry:schedule frequency="monthly" dayOfMonth="15"&gt;
+       17:00:00Z
+      &lt;/registry:schedule&gt;
+     &lt;/registry:batchJob&gt;
   &lt;/registry:batch&gt;
   &lt;registry:system&gt;
     &lt;registry:zone form="aLabel"&gt;EXAMPLE
@@ -2494,11 +2512,42 @@ BEGIN
   &lt;/complexType&gt;
   &lt;complexType name="scheduleType"&gt;
     &lt;simpleContent&gt;
-      &lt;extension base="token"&gt;
+      &lt;extension base="time"&gt;
+        &lt;attribute
+          name="frequency"
+          use="required"
+        &gt;
+          &lt;simpleType&gt;
+            &lt;restriction base="token"&gt;
+              &lt;enumeration value="daily"/&gt;
+              &lt;enumeration value="weekly"/&gt;
+              &lt;enumeration value="monthly"/&gt;
+            &lt;/restriction&gt;
+          &lt;/simpleType&gt;
+        &lt;/attribute&gt;
+        &lt;attribute
+          name="dayOfWeek"
+        &gt;
+          &lt;simpleType&gt;
+            &lt;restriction base="byte"&gt;
+              &lt;minInclusive value="0"/&gt;
+              &lt;maxInclusive value="6"/&gt;
+            &lt;/restriction&gt;
+          &lt;/simpleType&gt;
+        &lt;/attribute&gt;
+        &lt;attribute
+          name="dayOfMonth"
+        &gt;
+          &lt;simpleType&gt;
+            &lt;restriction base="byte"&gt;
+              &lt;minInclusive value="1"/&gt;
+              &lt;maxInclusive value="31"/&gt;
+            &lt;/restriction&gt;
+          &lt;/simpleType&gt;
+        &lt;/attribute&gt;
         &lt;attribute
           name="tz"
-          type="token"
-          default="UTC"/&gt;
+          type="token"/&gt;
       &lt;/extension&gt;
     &lt;/simpleContent&gt;
   &lt;/complexType&gt;
@@ -2514,7 +2563,8 @@ BEGIN
       &lt;!-- UNIX crontab job schedule format --&gt;
       &lt;element
         name="schedule"
-        type="registry:scheduleType"/&gt;
+        type="registry:scheduleType"
+        maxOccurs="unbounded"/&gt;
     &lt;/sequence&gt;
   &lt;/complexType&gt;
   &lt;!-- Information about the batch jobs --&gt;
@@ -3090,6 +3140,7 @@ END</pre>
   <li>Updated to make the regular expression elements follow a consistent naming convention and cardinality.  Changed &lt;registry:regex&gt; to &lt;registry:nameRegex&gt; under the &lt;registry:domainName&gt; element, and changed to a single element.  Changed the &lt;registry:nameRegex&gt; under the &lt;registry:host&gt; element to a single element.</li>
   <li>Added support for the host attribute model in RFC 5731 by adding the &lt;registry:hostModelSupported&gt; element under the &lt;registry:domain&gt; element, making the &lt;registry:maxCheckHost&gt; element optional, and making the &lt;registry:childHost&gt; element optional, based on feedback from Mario Loffredo.</li>
   <li>Added the &lt;registry:exceedMaxExDate&gt; element under the &lt;registry:domain&gt; element to support returning the server policy when the client exceeds the maximum expiration date on a per renewal command basis, based on feedback from Patrick Mevzek.</li>
+  <li>Re-defined the &lt;registry:schedule&gt; element to use a simplified XML definition in place of a crontab definition, and added support for one or more &lt;registry:schedule&gt; elements per batch job.  The &lt;registry:schedule&gt; element supports multiple frequencies (daily, weekly, monthly), both local and UTC time zones, and a time using the XML schema "time" type.  This change is based on feedback from Patrick Mevzek.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

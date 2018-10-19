@@ -666,11 +666,42 @@
   </complexType>
   <complexType name="scheduleType">
     <simpleContent>
-      <extension base="token">
+      <extension base="time">
+        <attribute
+          name="frequency"
+          use="required"
+        >
+          <simpleType>
+            <restriction base="token">
+              <enumeration value="daily"/>
+              <enumeration value="weekly"/>
+              <enumeration value="monthly"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+        <attribute
+          name="dayOfWeek"
+        >
+          <simpleType>
+            <restriction base="byte">
+              <minInclusive value="0"/>
+              <maxInclusive value="6"/>
+            </restriction>
+          </simpleType>
+        </attribute>
+        <attribute
+          name="dayOfMonth"
+        >
+          <simpleType>
+            <restriction base="byte">
+              <minInclusive value="1"/>
+              <maxInclusive value="31"/>
+            </restriction>
+          </simpleType>
+        </attribute>
         <attribute
           name="tz"
-          type="token"
-          default="UTC"/>
+          type="token"/>
       </extension>
     </simpleContent>
   </complexType>
@@ -686,7 +717,8 @@
       <!-- UNIX crontab job schedule format -->
       <element
         name="schedule"
-        type="registry:scheduleType"/>
+        type="registry:scheduleType"
+        maxOccurs="unbounded"/>
     </sequence>
   </complexType>
   <!-- Information about the batch jobs -->
