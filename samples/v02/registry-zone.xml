@@ -131,6 +131,12 @@
         <registry:default unit="y">1</registry:default>
       </registry:length>
     </registry:period>
+    <registry:exceedMaxExDate command="renew">
+      fail
+    </registry:exceedMaxExDate>
+    <registry:exceedMaxExDate command="transfer">
+      clip
+    </registry:exceedMaxExDate>
     <registry:transferHoldPeriod unit="d">5
     </registry:transferHoldPeriod>
     <registry:gracePeriod

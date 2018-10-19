@@ -418,7 +418,7 @@
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-04" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-10-18" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-19" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -442,7 +442,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: April 21, 2019</td>
+  <td class="left">Expires: April 22, 2019</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -455,7 +455,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">October 18, 2018</td>
+  <td class="right">October 19, 2018</td>
 </tr>
 
     	
@@ -475,7 +475,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 21, 2019.</p>
+<p>This Internet-Draft will expire on April 22, 2019.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -773,6 +773,19 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
           </dd>
           <dt>or &lt;registry:serverDecided&gt;:</dt>
           <dd style="margin-left: 4">The registration period is decided by the server based on the relationship to a related object that MUST have the same expiration date.</dd>
+        </dl>
+      </dd>
+      <dt>&lt;registry:exceedMaxExDate&gt;:</dt>
+      <dd style="margin-left: 4">Zero or more &lt;registry:exceedMaxExDate&gt; elements that defines the action taken by the server when executing commands that will result in an expiration date that exceeds the maximum expiration date.  The required "command" attribute is used to define the command with a renewal feature, such as "renew" or "transfer".  New commands can be defined that include a renewal feature, such as "sync". The possible values for the &lt;registry:exceedMaxExDate&gt; element include:</dd>
+      <dt></dt>
+      <dd style="margin-left: 4">
+        <dl>
+          <dt>"fail":</dt>
+          <dd style="margin-left: 4">The server will fail the renewal command when the expiration date exceeds the maximum expiration date. An example is if the maximum expiration date is 10 years, and a client renews a domain name to 10.5 years, the server will fail the renew.</dd>
+          <dt>"clip":</dt>
+          <dd style="margin-left: 4">The server will clip the fractional period when the expiration date exceeds the maximum expiration date by a fraction of a period and will fail the renewal command when the expiration date exceeds the maximum expiration date by a whole period and above. An example is if the maximum expiration date is 10 years, and the client renews a domain to 10.5 years, the server will clip the .5 fractional year so that the domain name will expire exactly in 10 years.</dd>
+          <dt>"disableRenewal":</dt>
+          <dd style="margin-left: 4">The server will execute the command with the renewal feature disabled when the expiration date exceeds the maximum expiration date.  This may be the case for a command like "transfer" that includes a renewal feature in <a href="#RFC5731">[RFC5731]</a>.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:transferHoldPeriod&gt;:</dt>
@@ -1178,6 +1191,12 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
         &lt;registry:default unit="y"&gt;1&lt;/registry:default&gt;
       &lt;/registry:length&gt;
     &lt;/registry:period&gt;
+    &lt;registry:exceedMaxExDate command="renew"&gt;
+      fail
+    &lt;/registry:exceedMaxExDate&gt;
+    &lt;registry:exceedMaxExDate command="transfer"&gt;
+      clip
+    &lt;/registry:exceedMaxExDate&gt;
     &lt;registry:transferHoldPeriod unit="d"&gt;5
     &lt;/registry:transferHoldPeriod&gt;
     &lt;registry:gracePeriod
@@ -2348,6 +2367,23 @@ BEGIN
       &lt;enumeration value="h"/&gt;
     &lt;/restriction&gt;
   &lt;/simpleType&gt;
+  &lt;simpleType name="exceedMaxExDateEnumType"&gt;
+    &lt;restriction base="token"&gt;
+      &lt;enumeration value="fail"/&gt;
+      &lt;enumeration value="clip"/&gt;
+      &lt;enumeration value="disableRenewal"/&gt;
+    &lt;/restriction&gt;
+  &lt;/simpleType&gt;
+  &lt;complexType name="exceedMaxExDateType"&gt;
+    &lt;simpleContent&gt;
+      &lt;extension base="registry:exceedMaxExDateEnumType"&gt;
+        &lt;attribute
+          name="command"
+          type="token"
+          use="required"/&gt;
+      &lt;/extension&gt;
+    &lt;/simpleContent&gt;
+  &lt;/complexType&gt;
   &lt;complexType name="rgpType"&gt;
     &lt;sequence&gt;
       &lt;element
@@ -2547,6 +2583,11 @@ BEGIN
       &lt;element
         name="period"
         type="registry:dPeriodType"
+        minOccurs="0"
+        maxOccurs="unbounded"/&gt;
+      &lt;element
+        name="exceedMaxExDate"
+        type="registry:exceedMaxExDateType"
         minOccurs="0"
         maxOccurs="unbounded"/&gt;
       &lt;element
@@ -3048,6 +3089,7 @@ END</pre>
   <li>Added support for the &lt;registry:locCharRegex&gt; element to define the acceptable set of characters for the "loc" postal information elements, based on feedback from Patrick Mevzek.</li>
   <li>Updated to make the regular expression elements follow a consistent naming convention and cardinality.  Changed &lt;registry:regex&gt; to &lt;registry:nameRegex&gt; under the &lt;registry:domainName&gt; element, and changed to a single element.  Changed the &lt;registry:nameRegex&gt; under the &lt;registry:host&gt; element to a single element.</li>
   <li>Added support for the host attribute model in RFC 5731 by adding the &lt;registry:hostModelSupported&gt; element under the &lt;registry:domain&gt; element, making the &lt;registry:maxCheckHost&gt; element optional, and making the &lt;registry:childHost&gt; element optional, based on feedback from Mario Loffredo.</li>
+  <li>Added the &lt;registry:exceedMaxExDate&gt; element under the &lt;registry:domain&gt; element to support returning the server policy when the client exceeds the maximum expiration date on a per renewal command basis, based on feedback from Patrick Mevzek.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

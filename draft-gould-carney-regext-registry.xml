@@ -148,7 +148,7 @@
     </author>
     
 
-    <date day="18" month="October" year="2018"/>
+    <date day="19" month="October" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -557,6 +557,36 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
                     relationship to a related object that MUST have the 
                     same expiration date.</t>
                    </list></t>
+                <t hangText="&lt;registry:exceedMaxExDate&gt;:">Zero or more 
+                &lt;registry:exceedMaxExDate&gt; elements that defines the action 
+                taken by the server when executing commands that will result 
+                in an expiration date that exceeds the maximum expiration date. 
+                The required "command" attribute is used to define the command 
+                with a renewal feature, such as "renew" or "transfer". 
+                New commands can be defined that include a renewal feature, 
+                such as "sync". The possible values for the 
+                &lt;registry:exceedMaxExDate&gt; element include:</t>
+                  <t><list hangIndent="4" style="hanging">
+                    <t hangText="&quot;fail&quot;:">The server will fail the 
+                    renewal command when the expiration date exceeds the 
+                    maximum expiration date. An example is if the maximum 
+                    expiration date is 10 years, and a client renews a 
+                    domain name to 10.5 years, the server will fail the renew.</t>
+                    <t hangText="&quot;clip&quot;:">The server will clip the 
+                    fractional period when the expiration date exceeds the 
+                    maximum expiration date by a fraction of a period and 
+                    will fail the renewal command when the expiration date 
+                    exceeds the maximum expiration date by a whole period 
+                    and above. An example is if the maximum expiration date 
+                    is 10 years, and the client renews a domain to 10.5 years, 
+                    the server will clip the .5 fractional year so that the 
+                    domain name will expire exactly in 10 years.</t>
+                    <t hangText="&quot;disableRenewal&quot;:">The server will 
+                    execute the command with the renewal feature disabled when 
+                    the expiration date exceeds the maximum expiration date. 
+                    This may be the case for a command like "transfer" that 
+                    includes a renewal feature in <xref target="RFC5731"/>.</t>
+                  </list></t>
                 <t hangText="&lt;registry:transferHoldPeriod&gt;:">The period 
                 of time a domain object is in the pending transfer before the 
                 transfer is auto approved by the server.  The 
@@ -1104,6 +1134,12 @@ seperated by a hyphen, as in (1-5) "day of week" for weekdays.
         <registry:default unit="y">1</registry:default>
       </registry:length>
     </registry:period>
+    <registry:exceedMaxExDate command="renew">
+      fail
+    </registry:exceedMaxExDate>
+    <registry:exceedMaxExDate command="transfer">
+      clip
+    </registry:exceedMaxExDate>
     <registry:transferHoldPeriod unit="d">5
     </registry:transferHoldPeriod>
     <registry:gracePeriod
@@ -2510,6 +2546,23 @@ BEGIN
       <enumeration value="h"/>
     </restriction>
   </simpleType>
+  <simpleType name="exceedMaxExDateEnumType">
+    <restriction base="token">
+      <enumeration value="fail"/>
+      <enumeration value="clip"/>
+      <enumeration value="disableRenewal"/>
+    </restriction>
+  </simpleType>
+  <complexType name="exceedMaxExDateType">
+    <simpleContent>
+      <extension base="registry:exceedMaxExDateEnumType">
+        <attribute
+          name="command"
+          type="token"
+          use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
   <complexType name="rgpType">
     <sequence>
       <element
@@ -2709,6 +2762,11 @@ BEGIN
       <element
         name="period"
         type="registry:dPeriodType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="exceedMaxExDate"
+        type="registry:exceedMaxExDateType"
         minOccurs="0"
         maxOccurs="unbounded"/>
       <element
@@ -3283,6 +3341,9 @@ END]]></artwork>
           <t>Added support for the host attribute model in RFC 5731 by adding the &lt;registry:hostModelSupported&gt; element 
           under the &lt;registry:domain&gt; element, making the &lt;registry:maxCheckHost&gt; element optional, and making 
           the &lt;registry:childHost&gt; element optional, based on feedback from Mario Loffredo.</t>
+          <t>Added the &lt;registry:exceedMaxExDate&gt; element under the &lt;registry:domain&gt; element to support 
+          returning the server policy when the client exceeds the maximum expiration date on a per renewal command basis, 
+          based on feedback from Patrick Mevzek.</t>
         </list></t>
       </section>      
     </section>

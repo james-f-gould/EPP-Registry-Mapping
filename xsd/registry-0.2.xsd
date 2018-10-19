@@ -539,6 +539,23 @@
       <enumeration value="h"/>
     </restriction>
   </simpleType>
+  <simpleType name="exceedMaxExDateEnumType">
+    <restriction base="token">
+      <enumeration value="fail"/>
+      <enumeration value="clip"/>
+      <enumeration value="disableRenewal"/>
+    </restriction>
+  </simpleType>
+  <complexType name="exceedMaxExDateType">
+    <simpleContent>
+      <extension base="registry:exceedMaxExDateEnumType">
+        <attribute
+          name="command"
+          type="token"
+          use="required"/>
+      </extension>
+    </simpleContent>
+  </complexType>
   <complexType name="rgpType">
     <sequence>
       <element
@@ -738,6 +755,11 @@
       <element
         name="period"
         type="registry:dPeriodType"
+        minOccurs="0"
+        maxOccurs="unbounded"/>
+      <element
+        name="exceedMaxExDate"
+        type="registry:exceedMaxExDateType"
         minOccurs="0"
         maxOccurs="unbounded"/>
       <element
