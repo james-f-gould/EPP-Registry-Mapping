@@ -4,9 +4,9 @@
     <check>
       <registry:check
        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
-        <registry:name>zone1</registry:name>
-        <registry:name>zone2</registry:name>
-        <registry:name>zone3</registry:name>
+        <registry:name>EXAMPLE1</registry:name>
+        <registry:name>EXAMPLE2</registry:name>
+        <registry:name>EXAMPLE3</registry:name>
       </registry:check>
     </check>
     <clTRID>ABC-12345</clTRID>

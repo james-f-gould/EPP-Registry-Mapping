@@ -418,7 +418,7 @@
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-04" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-10-19" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-20" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -442,7 +442,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: April 22, 2019</td>
+  <td class="left">Expires: April 23, 2019</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -455,7 +455,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">October 19, 2018</td>
+  <td class="right">October 20, 2018</td>
 </tr>
 
     	
@@ -475,7 +475,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 22, 2019.</p>
+<p>This Internet-Draft will expire on April 23, 2019.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -689,7 +689,7 @@
           <dt>&lt;registry:encoding&gt;:</dt>
           <dd style="margin-left: 4">The OPTIONAL encoding for transforming Unicode characters uniquely and reversibly into DNS compatible characters, with a default value of "Punycode".</dd>
           <dt>&lt;registry:commingleAllowed&gt;:</dt>
-          <dd style="margin-left: 4">An OPTIONAL boolean value that indicates whether commingling of scripts is allowed, with a default value of "false".</dd>
+          <dd style="margin-left: 4">An OPTIONAL value that indicates whether commingling of scripts is allowed, with a default value of "false".</dd>
           <dt>&lt;registry:language&gt;:</dt>
           <dd style="margin-left: 4">Zero or more &lt;registry:language&gt; elements that defines the supported language codes and character code point policy.  The required "code" attribute defines the language code for the supported language.  The language code SHOULD be an ISO 639 (ISO 639-1 or ISO 639-2) value.  The &lt;registry:language&gt; element contains the following child elements:</dd>
           <dt></dt>
@@ -1458,9 +1458,9 @@ C:  &lt;command&gt;
 C:    &lt;check&gt;
 C:      &lt;registry:check
 C:       xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
-C:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
-C:        &lt;registry:name&gt;zone2&lt;/registry:name&gt;
-C:        &lt;registry:name&gt;zone3&lt;/registry:name&gt;
+C:        &lt;registry:name&gt;EXAMPLE1&lt;/registry:name&gt;
+C:        &lt;registry:name&gt;EXAMPLE2&lt;/registry:name&gt;
+C:        &lt;registry:name&gt;EXAMPLE3&lt;/registry:name&gt;
 C:      &lt;/registry:check&gt;
 C:    &lt;/check&gt;
 C:    &lt;clTRID&gt;ABC-12345&lt;/clTRID&gt;
@@ -1488,18 +1488,18 @@ S:      &lt;registry:chkData
 S:        xmlns:registry=
 S:        "urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 S:        &lt;registry:cd&gt;
-S:          &lt;registry:name avail="0"&gt;zone1&lt;/registry:name&gt;
+S:          &lt;registry:name avail="0"&gt;EXAMPLE1&lt;/registry:name&gt;
 S:          &lt;registry:reason&gt;Client not authorized
 S:          &lt;/registry:reason&gt;
 S:        &lt;/registry:cd&gt;
 S:        &lt;registry:cd&gt;
-S:          &lt;registry:name avail="0"&gt;zone2
+S:          &lt;registry:name avail="0"&gt;EXAMPLE2
 S:          &lt;/registry:name&gt;
 S:          &lt;registry:reason&gt;Already supported
 S:          &lt;/registry:reason&gt;
 S:        &lt;/registry:cd&gt;
 S:        &lt;registry:cd&gt;
-S:          &lt;registry:name avail="1"&gt;zone3
+S:          &lt;registry:name avail="1"&gt;EXAMPLE3
 S:          &lt;/registry:name&gt;
 S:        &lt;/registry:cd&gt;
 S:      &lt;/registry:chkData&gt;
@@ -1518,13 +1518,13 @@ S:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:all&gt;:</dt>
-  <dd style="margin-left: 4">Element that is empty and that indicates that a list of all of the supported zone objects are queried with a summary set of attributes per zone object.</dd>
+  <dd style="margin-left: 4">Element that is empty and that indicates to return the client accessible and/or available zone objects with a summary set of attributes per zone object.  The scope of the zones to return is defined by the "scope" attribute with the possible values of "accessible" to indicate the zones that are assessible to the client, "available" to indicate the zones that are not accessible to the client but available on the server, and "both" to indicate both accessible and available zones.  The default value for the "scope" attribute is "accessible".  It is up to server policy what available zones the client is authorized to get information for.</dd>
   <dt>&lt;registry:name&gt;:</dt>
   <dd style="margin-left: 4">Element that contains the fully qualified name of the zone object, as described in <a href="#zoneName">Section 2.1</a>, to be queried for a full set of attributes for the zone object.</dd>
   <dt>&lt;registry:system&gt;:</dt>
   <dd style="margin-left: 4">Element that is empty and that indicates that the registry system attributes, like maximum connections and timeouts, are queried.</dd>
 </dl>
-<p>Example &lt;info&gt; command to query for a summary set of attributes for all of the supported zone objects:</p>
+<p>Example &lt;info&gt; command to query for a summary set of attributes for all of the accessible and available zone objects:</p>
 <pre>
 C:&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
 C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
@@ -1532,13 +1532,13 @@ C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
 C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
-C:        &lt;registry:all/&gt;
+C:        &lt;registry:all scope="both"/&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
 C:    &lt;clTRID&gt;ABC-12345&lt;/clTRID&gt;
 C:  &lt;/command&gt;
 C:&lt;/epp&gt;</pre>
-<p>Example &lt;info&gt; command to query for the full set of "zone1" zone object attributes:</p>
+<p>Example &lt;info&gt; command to query for the full set of "EXAMPLE" zone object attributes:</p>
 <pre>
 C:&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
 C:&lt;epp xmlns="urn:ietf:params:xml:ns:epp-1.0"&gt;
@@ -1546,7 +1546,7 @@ C:  &lt;command&gt;
 C:    &lt;info&gt;
 C:      &lt;registry:info
 C:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
-C:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
+C:        &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 C:      &lt;/registry:info&gt;
 C:    &lt;/info&gt;
 C:    &lt;clTRID&gt;ABC-12345&lt;/clTRID&gt;
@@ -1571,7 +1571,7 @@ C:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:zoneList&gt;:</dt>
-  <dd style="margin-left: 4">Element that contains the list of supported zones by the server with a set of summary attributes per zone.  The &lt;registry:zoneList&gt; element contains the following child elements:</dd>
+  <dd style="margin-left: 4">Element that contains the list of &lt;registry:zone&gt; elements representing the zones accessible or available to the client with a set of summary attributes per zone.  It is up to server policy what available zones the client is authorized to get information for.  The &lt;registry:zone&gt; element includes the boolean "accessible" attribute that indicates whether the zone is accessible to the client, with a default value of "true".  If the "accessible" attribute value is "false", the client does not have access to the zone, but the zone is available on the server.  The &lt;registry:zone&gt; element contains the following child elements:</dd>
   <dt></dt>
   <dd style="margin-left: 4">
     <dl>
@@ -1583,8 +1583,8 @@ C:&lt;/epp&gt;</pre>
       <dd style="margin-left: 4">The OPTIONAL date and time of the most recent zone object modification.  This element MUST NOT be present if the zone object has never been modified.</dd>
     </dl>
   </dd>
-  <dt>or a &lt;registry:zone&gt;:</dt>
-  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone name as defined in <a href="#zoneObject">Section 2.5</a>.</dd>
+  <dt>&lt;registry:zone&gt;:</dt>
+  <dd style="margin-left: 4">Element that contains the full set of attributes for the zone name as defined in <a href="#zoneObject">Section 2.5</a>.  The &lt;registry:zone&gt; element includes the boolean "accessible" attribute that indicates whether the zone is accessible to the client, with a default value of "true".  If the "accessible" attribute value is "false", the client does not have access to the zone, but the zone is available on the server.</dd>
   <dt>&lt;registry:system&gt;:</dt>
   <dd style="margin-left: 4">Element that contains registry system attributes.  The &lt;registry:system&gt; element contains the following child elements:</dd>
   <dt></dt>
@@ -1615,14 +1615,14 @@ S:    &lt;resData&gt;
 S:      &lt;registry:infData
 S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
 S:        &lt;registry:zoneList&gt;
-S:          &lt;registry:zone&gt;
+S:          &lt;registry:zone accessible="true"&gt;
 S:            &lt;registry:name&gt;EXAMPLE1&lt;/registry:name&gt;
 S:            &lt;registry:crDate&gt;2012-10-01T00:00:00.0Z
 S:            &lt;/registry:crDate&gt;
 S:            &lt;registry:upDate&gt;2012-10-15T00:00:00.0Z
 S:            &lt;/registry:upDate&gt;
 S:          &lt;/registry:zone&gt;
-S:          &lt;registry:zone&gt;
+S:          &lt;registry:zone accessible="false"&gt;
 S:            &lt;registry:name&gt;EXAMPLE2&lt;/registry:name&gt;
 S:            &lt;registry:crDate&gt;2012-09-01T00:00:00.0Z
 S:            &lt;/registry:crDate&gt;
@@ -1649,7 +1649,7 @@ S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:infData
 S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
-S:        &lt;registry:zone&gt;
+S:        &lt;registry:zone accessible="true"&gt;
 S:          &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 S:          ...
 S:        &lt;/registry:zone&gt;
@@ -1743,7 +1743,7 @@ S:    &lt;/result&gt;
 S:    &lt;resData&gt;
 S:      &lt;registry:creData
 S:        xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2"&gt;
-S:        &lt;registry:name&gt;zone1&lt;/registry:name&gt;
+S:        &lt;registry:name&gt;EXAMPLE&lt;/registry:name&gt;
 S:        &lt;registry:crDate&gt;2012-10-30T22:00:00.0Z
 S:        &lt;/registry:crDate&gt;
 S:      &lt;/registry:creData&gt;
@@ -1929,7 +1929,19 @@ BEGIN
     &lt;sequence&gt;
       &lt;choice&gt;
         &lt;element name="all"&gt;
-          &lt;complexType/&gt;
+          &lt;complexType&gt;
+            &lt;attribute 
+              name="scope"
+              default="accessible"&gt;
+              &lt;simpleType&gt;
+                &lt;restriction base="token"&gt;
+                  &lt;enumeration value="accessible"/&gt;
+                  &lt;enumeration value="available"/&gt;
+                  &lt;enumeration value="both"/&gt;
+                &lt;/restriction&gt;
+              &lt;/simpleType&gt;
+            &lt;/attribute&gt;
+          &lt;/complexType&gt;
         &lt;/element&gt;
         &lt;element
           name="name"
@@ -2009,7 +2021,7 @@ BEGIN
         type="registry:zoneListType"/&gt;
       &lt;element
         name="zone"
-        type="registry:zoneType"/&gt;
+        type="registry:zoneInfDataType"/&gt;
       &lt;element
         name="system"
         type="registry:systemType"/&gt;
@@ -2037,6 +2049,10 @@ BEGIN
         type="dateTime"
         minOccurs="0"/&gt;
     &lt;/sequence&gt;
+    &lt;attribute
+      name="accessible"
+      type="boolean"
+      default="true"/&gt;
   &lt;/complexType&gt;
   &lt;complexType name="zoneType"&gt;
     &lt;sequence&gt;
@@ -2090,6 +2106,16 @@ BEGIN
         type="registry:contactType"
         minOccurs="0"/&gt;
     &lt;/sequence&gt;
+  &lt;/complexType&gt;
+  &lt;complexType name="zoneInfDataType"&gt;
+    &lt;complexContent&gt;
+      &lt;extension base="registry:zoneType"&gt;
+        &lt;attribute
+          name="accessible"
+          type="boolean"
+          default="true"/&gt;
+      &lt;/extension&gt;
+    &lt;/complexContent&gt;
   &lt;/complexType&gt;
   &lt;complexType name="fieldsType"&gt;
     &lt;sequence&gt;
@@ -3141,6 +3167,8 @@ END</pre>
   <li>Added support for the host attribute model in RFC 5731 by adding the &lt;registry:hostModelSupported&gt; element under the &lt;registry:domain&gt; element, making the &lt;registry:maxCheckHost&gt; element optional, and making the &lt;registry:childHost&gt; element optional, based on feedback from Mario Loffredo.</li>
   <li>Added the &lt;registry:exceedMaxExDate&gt; element under the &lt;registry:domain&gt; element to support returning the server policy when the client exceeds the maximum expiration date on a per renewal command basis, based on feedback from Patrick Mevzek.</li>
   <li>Re-defined the &lt;registry:schedule&gt; element to use a simplified XML definition in place of a crontab definition, and added support for one or more &lt;registry:schedule&gt; elements per batch job.  The &lt;registry:schedule&gt; element supports multiple frequencies (daily, weekly, monthly), both local and UTC time zones, and a time using the XML schema "time" type.  This change is based on feedback from Patrick Mevzek.</li>
+  <li>Made the zone names more consistent by using EXAMPLE and EXAMPLE#.</li>
+  <li>Added support for the &lt;registry:all&gt; element "scope" attribute and the &lt;registry:zone&gt; element "accessible" boolean attribute, to enable the client to explicitly specify which zones are of interest (accessible, available, or both) in the info command and indicate in the info response whether a zone is accessible or not.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>

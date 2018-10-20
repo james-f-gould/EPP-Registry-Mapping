@@ -83,7 +83,19 @@
     <sequence>
       <choice>
         <element name="all">
-          <complexType/>
+          <complexType>
+            <attribute 
+              name="scope"
+              default="accessible">
+              <simpleType>
+                <restriction base="token">
+                  <enumeration value="accessible"/>
+                  <enumeration value="available"/>
+                  <enumeration value="both"/>
+                </restriction>
+              </simpleType>
+            </attribute>
+          </complexType>
         </element>
         <element
           name="name"
@@ -163,7 +175,7 @@
         type="registry:zoneListType"/>
       <element
         name="zone"
-        type="registry:zoneType"/>
+        type="registry:zoneInfDataType"/>
       <element
         name="system"
         type="registry:systemType"/>
@@ -191,6 +203,10 @@
         type="dateTime"
         minOccurs="0"/>
     </sequence>
+    <attribute
+      name="accessible"
+      type="boolean"
+      default="true"/>
   </complexType>
   <complexType name="zoneType">
     <sequence>
@@ -244,6 +260,16 @@
         type="registry:contactType"
         minOccurs="0"/>
     </sequence>
+  </complexType>
+  <complexType name="zoneInfDataType">
+    <complexContent>
+      <extension base="registry:zoneType">
+        <attribute
+          name="accessible"
+          type="boolean"
+          default="true"/>
+      </extension>
+    </complexContent>
   </complexType>
   <complexType name="fieldsType">
     <sequence>

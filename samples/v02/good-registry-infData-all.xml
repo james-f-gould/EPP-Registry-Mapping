@@ -8,14 +8,14 @@
       <registry:infData
         xmlns:registry="urn:ietf:params:xml:ns:epp:registry-0.2">
         <registry:zoneList>
-          <registry:zone>
+          <registry:zone accessible="true">
             <registry:name>EXAMPLE1</registry:name>
             <registry:crDate>2012-10-01T00:00:00.0Z
             </registry:crDate>
             <registry:upDate>2012-10-15T00:00:00.0Z
             </registry:upDate>
           </registry:zone>
-          <registry:zone>
+          <registry:zone accessible="false">
             <registry:name>EXAMPLE2</registry:name>
             <registry:crDate>2012-09-01T00:00:00.0Z
             </registry:crDate>
