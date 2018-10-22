@@ -148,7 +148,7 @@
     </author>
     
 
-    <date day="20" month="October" year="2018"/>
+    <date day="22" month="October" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -217,7 +217,7 @@
       appropriate normative references.</t>
   
       <section anchor="zoneName" title="Zone Name">
-        <t>The zone name is an element that includes an optional "form" attribute that 
+        <t>The zone name is an element that includes an OPTIONAL "form" attribute that 
         defines the form of the zone name as either "aLabel" or "uLabel", with the default 
         value of "aLabel".  The "aLabel" form of a zone name contains all ASCII name labels that conform to 
         <xref target="RFC0952"/> and <xref target="RFC1123"/>.  
@@ -880,11 +880,11 @@
                     &lt;contact:postalInfo&gt; elements is supported for defining both the "loc" and the "int" type.  
                     This policy does not indicate that both must be provided.</t>
                     <t hangText="&quot;intOptLoc&quot;:">Indicates that the &lt;contact:postalInfo&gt; element 
-                    with type "int" is required and the option of a second &lt;contact:postalInfo&gt; element 
-                    with the type "loc".</t>
+                    with type "int" is required and a second &lt;contact:postalInfo&gt; element 
+                    with the type "loc" is optional.</t>
                     <t hangText="&quot;locOptInt&quot;:">Indicates that the &lt;contact:postalInfo&gt; element 
-                    with type "loc" is required and the option of a second &lt;contact:postalInfo&gt; element 
-                    with the type "int".</t>
+                    with type "loc" is required and a second &lt;contact:postalInfo&gt; element 
+                    with the type "int" is optional.</t>
                   </list></t>
               
               <t hangText="&lt;registry:postalInfo&gt;:">The postal-address 
@@ -1546,7 +1546,7 @@ S:</epp>]]></artwork>
           <t hangText="&lt;registry:all&gt;:">Element that is empty and that 
           indicates to return the client accessible and/or available 
           zone objects with a summary set of attributes per zone object.
-          The scope of the zones to return is defined by the "scope" attribute 
+          The scope of the zones to return is defined by the "scope" attribute,  
           with the possible values of "accessible" to indicate the zones that are 
           assessible to the client, "available" to indicate the zones that are not 
           accessible to the client but available on the server, and "both" to indicate 
@@ -3460,8 +3460,8 @@ END]]></artwork>
           <t>Made the zone names more consistent by using EXAMPLE and EXAMPLE#.</t>
           <t>Added support for the &lt;registry:all&gt; element "scope" attribute and the &lt;registry:zone&gt; element "accessible" boolean 
           attribute, to enable the client to explicitly specify 
-          which zones are of interest (accessible, available, or both) in the info command and indicate in the info response 
-          whether a zone is accessible or not.</t>  
+          which zones are of interest (accessible, available, or both) in the info command and to enable the server to 
+          indicate in the info response whether a zone is accessible or not.</t>  
         </list></t>
       </section>      
     </section>

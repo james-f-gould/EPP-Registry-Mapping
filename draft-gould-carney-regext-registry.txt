@@ -5,10 +5,10 @@
 Network Working Group                                           J. Gould
 Internet-Draft                                                    L. Jia
 Intended status: Standards Track                          VeriSign, Inc.
-Expires: April 23, 2019                                        R. Carney
+Expires: April 25, 2019                                        R. Carney
                                                                J. Kolker
                                                             GoDaddy Inc.
-                                                        October 20, 2018
+                                                        October 22, 2018
 
 
     Registry Mapping for the Extensible Provisioning Protocol (EPP)
@@ -36,7 +36,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 23, 2019.
+   This Internet-Draft will expire on April 25, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 1]
+Gould, et al.            Expires April 25, 2019                 [Page 1]
 
 Internet-Draft                  registry                    October 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 2]
+Gould, et al.            Expires April 25, 2019                 [Page 2]
 
 Internet-Draft                  registry                    October 2018
 
@@ -165,7 +165,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 3]
+Gould, et al.            Expires April 25, 2019                 [Page 3]
 
 Internet-Draft                  registry                    October 2018
 
@@ -186,7 +186,7 @@ Internet-Draft                  registry                    October 2018
 
 2.1.  Zone Name
 
-   The zone name is an element that includes an optional "form"
+   The zone name is an element that includes an OPTIONAL "form"
    attribute that defines the form of the zone name as either "aLabel"
    or "uLabel", with the default value of "aLabel".  The "aLabel" form
    of a zone name contains all ASCII name labels that conform to
@@ -221,7 +221,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 4]
+Gould, et al.            Expires April 25, 2019                 [Page 4]
 
 Internet-Draft                  registry                    October 2018
 
@@ -277,7 +277,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 5]
+Gould, et al.            Expires April 25, 2019                 [Page 5]
 
 Internet-Draft                  registry                    October 2018
 
@@ -333,7 +333,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 6]
+Gould, et al.            Expires April 25, 2019                 [Page 6]
 
 Internet-Draft                  registry                    October 2018
 
@@ -389,7 +389,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 7]
+Gould, et al.            Expires April 25, 2019                 [Page 7]
 
 Internet-Draft                  registry                    October 2018
 
@@ -445,7 +445,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 8]
+Gould, et al.            Expires April 25, 2019                 [Page 8]
 
 Internet-Draft                  registry                    October 2018
 
@@ -501,7 +501,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                 [Page 9]
+Gould, et al.            Expires April 25, 2019                 [Page 9]
 
 Internet-Draft                  registry                    October 2018
 
@@ -557,7 +557,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 10]
+Gould, et al.            Expires April 25, 2019                [Page 10]
 
 Internet-Draft                  registry                    October 2018
 
@@ -613,7 +613,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 11]
+Gould, et al.            Expires April 25, 2019                [Page 11]
 
 Internet-Draft                  registry                    October 2018
 
@@ -669,7 +669,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 12]
+Gould, et al.            Expires April 25, 2019                [Page 12]
 
 Internet-Draft                  registry                    October 2018
 
@@ -725,7 +725,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 13]
+Gould, et al.            Expires April 25, 2019                [Page 13]
 
 Internet-Draft                  registry                    October 2018
 
@@ -781,7 +781,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 14]
+Gould, et al.            Expires April 25, 2019                [Page 14]
 
 Internet-Draft                  registry                    October 2018
 
@@ -837,7 +837,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 15]
+Gould, et al.            Expires April 25, 2019                [Page 15]
 
 Internet-Draft                  registry                    October 2018
 
@@ -893,7 +893,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 16]
+Gould, et al.            Expires April 25, 2019                [Page 16]
 
 Internet-Draft                  registry                    October 2018
 
@@ -909,11 +909,13 @@ Internet-Draft                  registry                    October 2018
                "int" type.  This policy does not indicate that both must
                be provided.
            "intOptLoc":  Indicates that the <contact:postalInfo> element
-               with type "int" is required and the option of a second
-               <contact:postalInfo> element with the type "loc".
+               with type "int" is required and a second
+               <contact:postalInfo> element with the type "loc" is
+               optional.
            "locOptInt":  Indicates that the <contact:postalInfo> element
-               with type "loc" is required and the option of a second
-               <contact:postalInfo> element with the type "int".
+               with type "loc" is required and a second
+               <contact:postalInfo> element with the type "int" is
+               optional.
        <registry:postalInfo>:  The postal-address information policy
            information.  The <registry:postalInfo> element contains the
            following child elements:
@@ -947,9 +949,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-
-
-Gould, et al.            Expires April 23, 2019                [Page 17]
+Gould, et al.            Expires April 25, 2019                [Page 17]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 18]
+Gould, et al.            Expires April 25, 2019                [Page 18]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 19]
+Gould, et al.            Expires April 25, 2019                [Page 19]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 20]
+Gould, et al.            Expires April 25, 2019                [Page 20]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 21]
+Gould, et al.            Expires April 25, 2019                [Page 21]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 22]
+Gould, et al.            Expires April 25, 2019                [Page 22]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 23]
+Gould, et al.            Expires April 25, 2019                [Page 23]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1341,7 +1341,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 24]
+Gould, et al.            Expires April 25, 2019                [Page 24]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1397,7 +1397,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 25]
+Gould, et al.            Expires April 25, 2019                [Page 25]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1453,7 +1453,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 26]
+Gould, et al.            Expires April 25, 2019                [Page 26]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1509,7 +1509,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 27]
+Gould, et al.            Expires April 25, 2019                [Page 27]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1565,7 +1565,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 28]
+Gould, et al.            Expires April 25, 2019                [Page 28]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 29]
+Gould, et al.            Expires April 25, 2019                [Page 29]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1634,7 +1634,7 @@ Internet-Draft                  registry                    October 2018
    <registry:all>:  Element that is empty and that indicates to return
        the client accessible and/or available zone objects with a
        summary set of attributes per zone object.  The scope of the
-       zones to return is defined by the "scope" attribute with the
+       zones to return is defined by the "scope" attribute, with the
        possible values of "accessible" to indicate the zones that are
        assessible to the client, "available" to indicate the zones that
        are not accessible to the client but available on the server, and
@@ -1677,7 +1677,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 30]
+Gould, et al.            Expires April 25, 2019                [Page 30]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 31]
+Gould, et al.            Expires April 25, 2019                [Page 31]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 32]
+Gould, et al.            Expires April 25, 2019                [Page 32]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 33]
+Gould, et al.            Expires April 25, 2019                [Page 33]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 34]
+Gould, et al.            Expires April 25, 2019                [Page 34]
 
 Internet-Draft                  registry                    October 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 35]
+Gould, et al.            Expires April 25, 2019                [Page 35]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 36]
+Gould, et al.            Expires April 25, 2019                [Page 36]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 37]
+Gould, et al.            Expires April 25, 2019                [Page 37]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 38]
+Gould, et al.            Expires April 25, 2019                [Page 38]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2181,7 +2181,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 39]
+Gould, et al.            Expires April 25, 2019                [Page 39]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2237,7 +2237,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 40]
+Gould, et al.            Expires April 25, 2019                [Page 40]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2293,7 +2293,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 41]
+Gould, et al.            Expires April 25, 2019                [Page 41]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2349,7 +2349,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 42]
+Gould, et al.            Expires April 25, 2019                [Page 42]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2405,7 +2405,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 43]
+Gould, et al.            Expires April 25, 2019                [Page 43]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2461,7 +2461,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 44]
+Gould, et al.            Expires April 25, 2019                [Page 44]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2517,7 +2517,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 45]
+Gould, et al.            Expires April 25, 2019                [Page 45]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2573,7 +2573,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 46]
+Gould, et al.            Expires April 25, 2019                [Page 46]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2629,7 +2629,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 47]
+Gould, et al.            Expires April 25, 2019                [Page 47]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2685,7 +2685,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 48]
+Gould, et al.            Expires April 25, 2019                [Page 48]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2741,7 +2741,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 49]
+Gould, et al.            Expires April 25, 2019                [Page 49]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2797,7 +2797,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 50]
+Gould, et al.            Expires April 25, 2019                [Page 50]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2853,7 +2853,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 51]
+Gould, et al.            Expires April 25, 2019                [Page 51]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2909,7 +2909,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 52]
+Gould, et al.            Expires April 25, 2019                [Page 52]
 
 Internet-Draft                  registry                    October 2018
 
@@ -2965,7 +2965,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 53]
+Gould, et al.            Expires April 25, 2019                [Page 53]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3021,7 +3021,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 54]
+Gould, et al.            Expires April 25, 2019                [Page 54]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3077,7 +3077,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 55]
+Gould, et al.            Expires April 25, 2019                [Page 55]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3133,7 +3133,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 56]
+Gould, et al.            Expires April 25, 2019                [Page 56]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3189,7 +3189,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 57]
+Gould, et al.            Expires April 25, 2019                [Page 57]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3245,7 +3245,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 58]
+Gould, et al.            Expires April 25, 2019                [Page 58]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3301,7 +3301,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 59]
+Gould, et al.            Expires April 25, 2019                [Page 59]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3357,7 +3357,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 60]
+Gould, et al.            Expires April 25, 2019                [Page 60]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3413,7 +3413,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 61]
+Gould, et al.            Expires April 25, 2019                [Page 61]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3469,7 +3469,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 62]
+Gould, et al.            Expires April 25, 2019                [Page 62]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3525,7 +3525,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 63]
+Gould, et al.            Expires April 25, 2019                [Page 63]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3581,7 +3581,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 64]
+Gould, et al.            Expires April 25, 2019                [Page 64]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3637,7 +3637,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 65]
+Gould, et al.            Expires April 25, 2019                [Page 65]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3693,7 +3693,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 66]
+Gould, et al.            Expires April 25, 2019                [Page 66]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3749,7 +3749,7 @@ A.1.  Change from 00 to 01
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 67]
+Gould, et al.            Expires April 25, 2019                [Page 67]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3805,7 +3805,7 @@ A.4.  Change from 03 to 04
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 68]
+Gould, et al.            Expires April 25, 2019                [Page 68]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3861,7 +3861,7 @@ Internet-Draft                  registry                    October 2018
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 69]
+Gould, et al.            Expires April 25, 2019                [Page 69]
 
 Internet-Draft                  registry                    October 2018
 
@@ -3870,8 +3870,8 @@ Internet-Draft                  registry                    October 2018
         and the <registry:zone> element "accessible" boolean attribute,
         to enable the client to explicitly specify which zones are of
         interest (accessible, available, or both) in the info command
-        and indicate in the info response whether a zone is accessible
-        or not.
+        and to enable the server to indicate in the info response
+        whether a zone is accessible or not.
 
 Authors' Addresses
 
@@ -3917,4 +3917,4 @@ Authors' Addresses
 
 
 
-Gould, et al.            Expires April 23, 2019                [Page 70]
+Gould, et al.            Expires April 25, 2019                [Page 70]

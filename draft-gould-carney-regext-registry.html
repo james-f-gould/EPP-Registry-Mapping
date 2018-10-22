@@ -418,7 +418,7 @@
 
   <meta name="dct.creator" content="Gould, J., Jia, L., Carney, R., and J. Kolker" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-gould-carney-regext-registry-04" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-10-20" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-10-22" />
   <meta name="dct.abstract" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
   <meta name="description" content="This document describes an Extensible Provisioning Protocol (EPP) mapping for provisioning registry zones (e.g. top-level domains) in a Domain Name Registry.  The attributes of a registry zone include the features and policies of the registry zone." />
 
@@ -442,7 +442,7 @@
   <td class="right">VeriSign, Inc.</td>
 </tr>
 <tr>
-  <td class="left">Expires: April 23, 2019</td>
+  <td class="left">Expires: April 25, 2019</td>
   <td class="right">R. Carney</td>
 </tr>
 <tr>
@@ -455,7 +455,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">October 20, 2018</td>
+  <td class="right">October 22, 2018</td>
 </tr>
 
     	
@@ -475,7 +475,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on April 23, 2019.</p>
+<p>This Internet-Draft will expire on April 25, 2019.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -539,7 +539,7 @@
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> <a href="#attrs" id="attrs">Object Attributes</a></h1>
 <p id="rfc.section.2.p.1">An EPP registry object has attributes and associated values that may be viewed and modified by the sponsoring client or the server.  This section describes each attribute type in detail. The formal syntax for the attribute values described here can be found in the "Formal Syntax" section of this document and in the appropriate normative references.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> <a href="#zoneName" id="zoneName">Zone Name</a></h1>
-<p id="rfc.section.2.1.p.1">The zone name is an element that includes an optional "form" attribute that defines the form of the zone name as either "aLabel" or "uLabel", with the default value of "aLabel".  The "aLabel" form of a zone name contains all ASCII name labels that conform to <a href="#RFC0952">[RFC0952]</a> and <a href="#RFC1123">[RFC1123]</a>.  The "uLabel" form of a zone name that includes one or more non-ASCII name labels that can be represented as ASCII labels using <a href="#RFC5890">[RFC5890]</a>.</p>
+<p id="rfc.section.2.1.p.1">The zone name is an element that includes an OPTIONAL "form" attribute that defines the form of the zone name as either "aLabel" or "uLabel", with the default value of "aLabel".  The "aLabel" form of a zone name contains all ASCII name labels that conform to <a href="#RFC0952">[RFC0952]</a> and <a href="#RFC1123">[RFC1123]</a>.  The "uLabel" form of a zone name that includes one or more non-ASCII name labels that can be represented as ASCII labels using <a href="#RFC5890">[RFC5890]</a>.</p>
 <p id="rfc.section.2.1.p.2">At the time of this writing, <a href="#RFC5890">[RFC5890]</a> describes a standard to use certain ASCII name labels to represent non-ASCII name labels.  These conformance requirements might change in the future as a result of progressing work in developing standards for internationalized names.</p>
 <h1 id="rfc.section.2.2"><a href="#rfc.section.2.2">2.2.</a> <a href="#datesTimes" id="datesTimes">Dates and Times</a></h1>
 <p id="rfc.section.2.2.p.1">Date and time attribute values MUST be represented in Universal Coordinated Time (UTC) using the Gregorian calendar.  The extended date-time form using upper case "T" and "Z" characters defined in <a href="http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/">XML Schema Part 2</a> MUST be used to represent date-time values, as XML Schema does not support truncated date-time forms or lower case "T" and "Z" characters.</p>
@@ -985,9 +985,9 @@
           <dt>"locAndInt":</dt>
           <dd style="margin-left: 4">Indicates that up to two &lt;contact:postalInfo&gt; elements is supported for defining both the "loc" and the "int" type.  This policy does not indicate that both must be provided.</dd>
           <dt>"intOptLoc":</dt>
-          <dd style="margin-left: 4">Indicates that the &lt;contact:postalInfo&gt; element with type "int" is required and the option of a second &lt;contact:postalInfo&gt; element with the type "loc".</dd>
+          <dd style="margin-left: 4">Indicates that the &lt;contact:postalInfo&gt; element with type "int" is required and a second &lt;contact:postalInfo&gt; element with the type "loc" is optional.</dd>
           <dt>"locOptInt":</dt>
-          <dd style="margin-left: 4">Indicates that the &lt;contact:postalInfo&gt; element with type "loc" is required and the option of a second &lt;contact:postalInfo&gt; element with the type "int".</dd>
+          <dd style="margin-left: 4">Indicates that the &lt;contact:postalInfo&gt; element with type "loc" is required and a second &lt;contact:postalInfo&gt; element with the type "int" is optional.</dd>
         </dl>
       </dd>
       <dt>&lt;registry:postalInfo&gt;:</dt>
@@ -1518,7 +1518,7 @@ S:&lt;/epp&gt;</pre>
 
 <dl>
   <dt>&lt;registry:all&gt;:</dt>
-  <dd style="margin-left: 4">Element that is empty and that indicates to return the client accessible and/or available zone objects with a summary set of attributes per zone object.  The scope of the zones to return is defined by the "scope" attribute with the possible values of "accessible" to indicate the zones that are assessible to the client, "available" to indicate the zones that are not accessible to the client but available on the server, and "both" to indicate both accessible and available zones.  The default value for the "scope" attribute is "accessible".  It is up to server policy what available zones the client is authorized to get information for.</dd>
+  <dd style="margin-left: 4">Element that is empty and that indicates to return the client accessible and/or available zone objects with a summary set of attributes per zone object.  The scope of the zones to return is defined by the "scope" attribute, with the possible values of "accessible" to indicate the zones that are assessible to the client, "available" to indicate the zones that are not accessible to the client but available on the server, and "both" to indicate both accessible and available zones.  The default value for the "scope" attribute is "accessible".  It is up to server policy what available zones the client is authorized to get information for.</dd>
   <dt>&lt;registry:name&gt;:</dt>
   <dd style="margin-left: 4">Element that contains the fully qualified name of the zone object, as described in <a href="#zoneName">Section 2.1</a>, to be queried for a full set of attributes for the zone object.</dd>
   <dt>&lt;registry:system&gt;:</dt>
@@ -3168,7 +3168,7 @@ END</pre>
   <li>Added the &lt;registry:exceedMaxExDate&gt; element under the &lt;registry:domain&gt; element to support returning the server policy when the client exceeds the maximum expiration date on a per renewal command basis, based on feedback from Patrick Mevzek.</li>
   <li>Re-defined the &lt;registry:schedule&gt; element to use a simplified XML definition in place of a crontab definition, and added support for one or more &lt;registry:schedule&gt; elements per batch job.  The &lt;registry:schedule&gt; element supports multiple frequencies (daily, weekly, monthly), both local and UTC time zones, and a time using the XML schema "time" type.  This change is based on feedback from Patrick Mevzek.</li>
   <li>Made the zone names more consistent by using EXAMPLE and EXAMPLE#.</li>
-  <li>Added support for the &lt;registry:all&gt; element "scope" attribute and the &lt;registry:zone&gt; element "accessible" boolean attribute, to enable the client to explicitly specify which zones are of interest (accessible, available, or both) in the info command and indicate in the info response whether a zone is accessible or not.</li>
+  <li>Added support for the &lt;registry:all&gt; element "scope" attribute and the &lt;registry:zone&gt; element "accessible" boolean attribute, to enable the client to explicitly specify which zones are of interest (accessible, available, or both) in the info command and to enable the server to indicate in the info response whether a zone is accessible or not.</li>
 </ol>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
