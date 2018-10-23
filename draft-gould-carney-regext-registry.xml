@@ -47,7 +47,7 @@
 <?rfc inline="yes" ?>
 <!-- inline cref output -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="std" docName="draft-gould-carney-regext-registry-04" ipr="trust200902">
+<rfc category="std" docName="draft-gould-carney-regext-registry-05" ipr="trust200902">
   <!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -148,7 +148,7 @@
     </author>
     
 
-    <date day="22" month="October" year="2018"/>
+    <date day="23" month="October" year="2018"/>
 
     <abstract>
       <t>This document describes an Extensible Provisioning Protocol (EPP)
@@ -965,6 +965,12 @@
                     
                 <t hangText="&lt;registry:voiceExt&gt;:">The OPTIONAL minimum 
                 and maximum length of the &lt;contact:voice&gt; extension "x" 
+                attribute defined in <xref target="RFC5733"/> using the 
+                &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child 
+                elements, respectively.</t>
+
+                <t hangText="&lt;registry:faxExt&gt;:">The OPTIONAL minimum 
+                and maximum length of the &lt;contact:fax&gt; extension "x" 
                 attribute defined in <xref target="RFC5733"/> using the 
                 &lt;registry:minLength&gt; and &lt;registry:maxLength&gt; child 
                 elements, respectively.</t>
@@ -3462,6 +3468,11 @@ END]]></artwork>
           attribute, to enable the client to explicitly specify 
           which zones are of interest (accessible, available, or both) in the info command and to enable the server to 
           indicate in the info response whether a zone is accessible or not.</t>  
+        </list></t>
+      </section> 
+      <section title="Change from 04 to 05" anchor="change-04-to-05">
+        <t><list style="numbers">
+        <t>Adding missing description of the &lt;registry:faxExt&gt; element under the &lt;registry:postalInfo&gt; element.</t>
         </list></t>
       </section>      
     </section>
